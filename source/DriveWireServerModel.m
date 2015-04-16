@@ -482,13 +482,14 @@ static TBSerialManager *fSerialManager = nil;
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
                                     [[self class] instanceMethodSignatureForSelector:currentState]];
         [invocation setSelector:currentState];
-        [invocation setArgument:(__bridge void *)(serialData) atIndex:0];
+        [invocation setArgument:&_serialBuffer atIndex:2];
         [invocation setTarget:self];
         [invocation invoke];
         [invocation getReturnValue:&bytesConsumed];
         
+        NSLog(@"Data = %@", self.serialBuffer);
         // chop off consumed bytes
-        [self.serialBuffer replaceBytesInRange:NSMakeRange(0, bytesConsumed) withBytes:nil];
+        [self.serialBuffer replaceBytesInRange:NSMakeRange(0, bytesConsumed) withBytes:nil length:0];
     } while (bytesConsumed > 0 && [self.serialBuffer length] > 0);
     
     
@@ -998,10 +999,17 @@ static TBSerialManager *fSerialManager = nil;
 
             [statistics setObject:[NSString stringWithFormat:@"%d", readexResponse] forKey:@"Error"];
             [statistics setObject:[NSString stringWithFormat:@"%d", readexChecksum] forKey:@"Checksum"];
-           [self.delegate updateInfoView:statistics];
+            [self.delegate updateInfoView:statistics];
         }
 
-        currentState = @selector(OP_READEXP2:);
+        if (0 == readexResponse)
+        {
+            currentState = @selector(OP_READEXP2:);
+        }
+        else
+        {
+            [self resetState:nil];
+        }
     }
 	
     return result;

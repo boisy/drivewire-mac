@@ -1,2 +1,2 @@
-# drivewire_macserver
-DriveWire Server for Mac OS X
+# DriveWire MacServer
+DriveWire MacServer is the official DriveWire server for Mac OS X.

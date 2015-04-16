@@ -9,15 +9,15 @@
 /* Begin PBXBuildFile section */
 		6805D7851AD583E800EA3B5F /* TeeBoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6805D7841AD583E800EA3B5F /* TeeBoy.framework */; };
 		6805D7891AD583F900EA3B5F /* TeeBoy.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6805D7841AD583E800EA3B5F /* TeeBoy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		680612D41ADFC85200B1C502 /* CoCo1.png in Resources */ = {isa = PBXBuildFile; fileRef = 680612D01ADFC85200B1C502 /* CoCo1.png */; };
+		680612D51ADFC85200B1C502 /* CoCo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 680612D11ADFC85200B1C502 /* CoCo2.png */; };
+		680612D61ADFC85200B1C502 /* CoCo3.png in Resources */ = {isa = PBXBuildFile; fileRef = 680612D21ADFC85200B1C502 /* CoCo3.png */; };
 		6809AD840F6C08A6000BB954 /* TBVirtualDriveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6809AD7F0F6C08A6000BB954 /* TBVirtualDriveController.m */; };
 		6809AD850F6C08A6000BB954 /* TBVirtualDriveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6809AD810F6C08A6000BB954 /* TBVirtualDriveModel.m */; };
 		6809AD860F6C08A6000BB954 /* TBVirtualDriveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6809AD830F6C08A6000BB954 /* TBVirtualDriveView.m */; };
 		6809AD940F6C0974000BB954 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6809AD930F6C0974000BB954 /* IOKit.framework */; };
 		6809AE020F6C0C30000BB954 /* TBVirtualDriveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6809AE010F6C0C30000BB954 /* TBVirtualDriveView.xib */; };
 		6809AE070F6C0C4C000BB954 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6809AE050F6C0C4C000BB954 /* MainMenu.xib */; };
-		6809AEF80F6C0DB6000BB954 /* CoCo1.psd in Resources */ = {isa = PBXBuildFile; fileRef = 6809AEEA0F6C0DB6000BB954 /* CoCo1.psd */; };
-		6809AEF90F6C0DB6000BB954 /* CoCo2.psd in Resources */ = {isa = PBXBuildFile; fileRef = 6809AEEB0F6C0DB6000BB954 /* CoCo2.psd */; };
-		6809AEFA0F6C0DB6000BB954 /* CoCo3.psd in Resources */ = {isa = PBXBuildFile; fileRef = 6809AEEC0F6C0DB6000BB954 /* CoCo3.psd */; };
 		6809AEFB0F6C0DB6000BB954 /* drive.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6809AEED0F6C0DB6000BB954 /* drive.jpg */; };
 		6809AEFC0F6C0DB6000BB954 /* driveface.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6809AEEE0F6C0DB6000BB954 /* driveface.jpg */; };
 		6809AEFD0F6C0DB6000BB954 /* DriveWire 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6809AEEF0F6C0DB6000BB954 /* DriveWire 3.png */; };
@@ -70,6 +70,10 @@
 		2A37F4BAFDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		32DBCF750370BD2300C91783 /* DriveWire_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriveWire_Prefix.pch; sourceTree = "<group>"; };
 		6805D7841AD583E800EA3B5F /* TeeBoy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TeeBoy.framework; sourceTree = "<group>"; };
+		680612D01ADFC85200B1C502 /* CoCo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CoCo1.png; path = assets/CoCo1.png; sourceTree = "<group>"; };
+		680612D11ADFC85200B1C502 /* CoCo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CoCo2.png; path = assets/CoCo2.png; sourceTree = "<group>"; };
+		680612D21ADFC85200B1C502 /* CoCo3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CoCo3.png; path = assets/CoCo3.png; sourceTree = "<group>"; };
+		680612D31ADFC85200B1C502 /* CoCos.psd */ = {isa = PBXFileReference; lastKnownFileType = file; name = CoCos.psd; path = assets/CoCos.psd; sourceTree = "<group>"; };
 		6809AD7E0F6C08A6000BB954 /* TBVirtualDriveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBVirtualDriveController.h; sourceTree = "<group>"; };
 		6809AD7F0F6C08A6000BB954 /* TBVirtualDriveController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBVirtualDriveController.m; sourceTree = "<group>"; };
 		6809AD800F6C08A6000BB954 /* TBVirtualDriveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBVirtualDriveModel.h; sourceTree = "<group>"; };
@@ -79,9 +83,6 @@
 		6809AD930F6C0974000BB954 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
 		6809AE010F6C0C30000BB954 /* TBVirtualDriveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TBVirtualDriveView.xib; sourceTree = "<group>"; };
 		6809AE060F6C0C4C000BB954 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		6809AEEA0F6C0DB6000BB954 /* CoCo1.psd */ = {isa = PBXFileReference; lastKnownFileType = file; name = CoCo1.psd; path = assets/CoCo1.psd; sourceTree = "<group>"; };
-		6809AEEB0F6C0DB6000BB954 /* CoCo2.psd */ = {isa = PBXFileReference; lastKnownFileType = file; name = CoCo2.psd; path = assets/CoCo2.psd; sourceTree = "<group>"; };
-		6809AEEC0F6C0DB6000BB954 /* CoCo3.psd */ = {isa = PBXFileReference; lastKnownFileType = file; name = CoCo3.psd; path = assets/CoCo3.psd; sourceTree = "<group>"; };
 		6809AEED0F6C0DB6000BB954 /* drive.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = drive.jpg; path = assets/drive.jpg; sourceTree = "<group>"; };
 		6809AEEE0F6C0DB6000BB954 /* driveface.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = driveface.jpg; path = assets/driveface.jpg; sourceTree = "<group>"; };
 		6809AEEF0F6C0DB6000BB954 /* DriveWire 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DriveWire 3.png"; path = "assets/DriveWire 3.png"; sourceTree = "<group>"; };
@@ -158,9 +159,8 @@
 		2A37F4AAFDCFA73011CA2CEA /* DriveWire */ = {
 			isa = PBXGroup;
 			children = (
-				6882CDB2096B57760065973D /* Supporting Files */,
-				68DB155809683356005D9079 /* Frameworks */,
 				2A37F4ABFDCFA73011CA2CEA /* Classes */,
+				68DB155809683356005D9079 /* Frameworks */,
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				6882CEA5096B5BAF0065973D /* Resources */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
@@ -185,9 +185,23 @@
 		2A37F4AFFDCFA73011CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				6879C0271ADFC0750033AF94 /* main.m */,
 				32DBCF750370BD2300C91783 /* DriveWire_Prefix.pch */,
 			);
 			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		680612CF1ADFC82C00B1C502 /* Source Assets */ = {
+			isa = PBXGroup;
+			children = (
+				680612D31ADFC85200B1C502 /* CoCos.psd */,
+				6809AEF40F6C0DB6000BB954 /* DriveWire Logo.psd */,
+				6809AEF30F6C0DB6000BB954 /* DriveWire Icon.psd */,
+				6809AEF20F6C0DB6000BB954 /* DriveWire Icon 512x512.psd */,
+				6809AEF00F6C0DB6000BB954 /* DriveWire Disk Image.psd */,
+				6809AEF10F6C0DB6000BB954 /* DriveWire Document.psd */,
+			);
+			name = "Source Assets";
 			sourceTree = "<group>";
 		};
 		6809AD790F6C086D000BB954 /* VirtualDrive */ = {
@@ -219,30 +233,14 @@
 			path = source;
 			sourceTree = "<group>";
 		};
-		6882CDB2096B57760065973D /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				6879C0271ADFC0750033AF94 /* main.m */,
-				6805D7841AD583E800EA3B5F /* TeeBoy.framework */,
-				6882CDB3096B57760065973D /* website */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		6882CDB3096B57760065973D /* website */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = website;
-			sourceTree = "<group>";
-		};
 		6882CEA5096B5BAF0065973D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				680612CF1ADFC82C00B1C502 /* Source Assets */,
+				680612D01ADFC85200B1C502 /* CoCo1.png */,
+				680612D11ADFC85200B1C502 /* CoCo2.png */,
+				680612D21ADFC85200B1C502 /* CoCo3.png */,
 				6809AE050F6C0C4C000BB954 /* MainMenu.xib */,
-				6809AEEA0F6C0DB6000BB954 /* CoCo1.psd */,
-				6809AEEB0F6C0DB6000BB954 /* CoCo2.psd */,
-				6809AEEC0F6C0DB6000BB954 /* CoCo3.psd */,
 				6809AF3D0F6C0F81000BB954 /* greenled.jpg */,
 				6809AEF70F6C0DB6000BB954 /* redled.jpg */,
 				6809AEED0F6C0DB6000BB954 /* drive.jpg */,
@@ -250,11 +248,6 @@
 				6809AEEF0F6C0DB6000BB954 /* DriveWire 3.png */,
 				6809AEF50F6C0DB6000BB954 /* eject.wav */,
 				6809AEF60F6C0DB6000BB954 /* insert.wav */,
-				6809AEF00F6C0DB6000BB954 /* DriveWire Disk Image.psd */,
-				6809AEF10F6C0DB6000BB954 /* DriveWire Document.psd */,
-				6809AEF20F6C0DB6000BB954 /* DriveWire Icon 512x512.psd */,
-				6809AEF30F6C0DB6000BB954 /* DriveWire Icon.psd */,
-				6809AEF40F6C0DB6000BB954 /* DriveWire Logo.psd */,
 				68ABF6CE09806CD600838EB9 /* DriveWire MacServer Help */,
 				68C494E20965F01800F9E265 /* DriveWire Document.icns */,
 				68C494E00965F00500F9E265 /* DriveWire Disk Image.icns */,
@@ -314,6 +307,7 @@
 		68DB155809683356005D9079 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6805D7841AD583E800EA3B5F /* TeeBoy.framework */,
 				68742E850F41B9EA0049FEF6 /* AppKit.framework */,
 				68742E860F41B9EA0049FEF6 /* Cocoa.framework */,
 				6809AD930F6C0974000BB954 /* IOKit.framework */,
@@ -398,16 +392,16 @@
 				68C535D50F68971B00F39926 /* DriveWireDocument.xib in Resources */,
 				6809AE020F6C0C30000BB954 /* TBVirtualDriveView.xib in Resources */,
 				6809AE070F6C0C4C000BB954 /* MainMenu.xib in Resources */,
-				6809AEF80F6C0DB6000BB954 /* CoCo1.psd in Resources */,
-				6809AEF90F6C0DB6000BB954 /* CoCo2.psd in Resources */,
-				6809AEFA0F6C0DB6000BB954 /* CoCo3.psd in Resources */,
 				6809AEFB0F6C0DB6000BB954 /* drive.jpg in Resources */,
 				6809AEFC0F6C0DB6000BB954 /* driveface.jpg in Resources */,
+				680612D41ADFC85200B1C502 /* CoCo1.png in Resources */,
 				6809AEFD0F6C0DB6000BB954 /* DriveWire 3.png in Resources */,
 				6809AF030F6C0DB6000BB954 /* eject.wav in Resources */,
 				6809AF040F6C0DB6000BB954 /* insert.wav in Resources */,
 				6809AF050F6C0DB6000BB954 /* redled.jpg in Resources */,
+				680612D51ADFC85200B1C502 /* CoCo2.png in Resources */,
 				6809AF3E0F6C0F81000BB954 /* greenled.jpg in Resources */,
+				680612D61ADFC85200B1C502 /* CoCo3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +504,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -557,6 +552,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (

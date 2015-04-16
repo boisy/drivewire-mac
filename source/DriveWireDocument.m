@@ -190,16 +190,16 @@
    switch ([dwModel machineType])
    {
       case 1:
-         [speedSwitch setTitle:@"CoCo 1 @ 38400 bps"];
+//         [speedSwitch setTitle:@"CoCo 1 @ 38400 bps"];
          [speedSwitch setImage:[NSImage imageNamed:@"CoCo1"]];
          break;
       case 2:
-         [speedSwitch setTitle:@"CoCo 2 @ 57600 bps"];
+//         [speedSwitch setTitle:@"CoCo 2 @ 57600 bps"];
          [speedSwitch setImage:[NSImage imageNamed:@"CoCo2"]];
          break;
       case 3:
       default:
-         [speedSwitch setTitle:@"CoCo 3 @ 115200 bps"];
+//         [speedSwitch setTitle:@"CoCo 3 @ 115200 bps"];
          [speedSwitch setImage:[NSImage imageNamed:@"CoCo3"]];
          break;
    }

@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------------------------------------------
 //
-//   File Name   :   TBVirtualDriveModel.h
+//   File Name   :   VirtualDriveModel.h
 //
 //   Description :   Virtual Drive Model Header File
 //
@@ -19,11 +19,11 @@
 //  Opelousas, LA  70570                   info@tee-boy.com
 //
 //--------------------------------------------------------------------------------------------------
-//  $Id: TBVirtualDriveModel.h,v 1.3 2015/04/15 19:38:07 boisy Exp $
+//  $Id: VirtualDriveModel.h,v 1.3 2015/04/15 19:38:07 boisy Exp $
 //------------------------------------------------------------------------------------------------*/
 
 /*!
-	@header TBVirtualDriveModel.h
+	@header VirtualDriveModel.h
 	@copyright Tee-Boy
 	@abstract
 	@discussion
@@ -35,10 +35,10 @@
 typedef enum {LED_OFF, LED_READ, LED_WRITE} ledState;
 
 /*!
-	@class TBVirtualDriveModel
-	The behavior of the TBVirtualDriveModel is modeled in the manner of a removable storage medium such as a cartridge-based hard drive.  The basis for storage is the cartridge (which is a file in reality).  Cartridges can be inserted and ejected from the drive, as well as read from and written to.
+	@class VirtualDriveModel
+	The behavior of the VirtualDriveModel is modeled in the manner of a removable storage medium such as a cartridge-based hard drive.  The basis for storage is the cartridge (which is a file in reality).  Cartridges can be inserted and ejected from the drive, as well as read from and written to.
 */
-@interface TBVirtualDriveModel : NSObject <NSCoding, NSSoundDelegate>
+@interface VirtualDriveModel : NSObject <NSCoding, NSSoundDelegate>
 {
 	ledState led;			// State of the LED (off, read, write)
 	uint16_t driveID;		// Drive Identification number
@@ -59,7 +59,7 @@ typedef enum {LED_OFF, LED_READ, LED_WRITE} ledState;
 
 /*!
 	@method init
-	@abstract Initializes an instance of the TBVirtualDriveModel class.
+	@abstract Initializes an instance of the VirtualDriveModel class.
  */
 - (id)init;
 
@@ -174,7 +174,7 @@ typedef enum {LED_OFF, LED_READ, LED_WRITE} ledState;
 
 @end
 
-@interface NSObject (TBVirtualDriveModelDelegate)
+@interface NSObject (VirtualDriveModelDelegate)
 
 - (void)ledRead;
 - (void)ledWrite;

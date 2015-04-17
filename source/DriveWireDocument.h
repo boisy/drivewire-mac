@@ -23,9 +23,9 @@
     NSWindowController *myWindowController;
     IBOutlet DebuggerWindowController *debuggerWindowController;
     IBOutlet PrinterWindowController *printerWindowController;
-   
-	DriveWireServerModel	*dwModel;
 }
+
+@property (strong) DriveWireServerModel *dwModel;
 
 - (void)updateInfoView:(NSDictionary *)info;
 - (void)updateMemoryView:(NSDictionary *)info;

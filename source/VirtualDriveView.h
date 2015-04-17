@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------------------------------------------
 //
-//   File Name   :   TBVirtualDriveView.h
+//   File Name   :   VirtualDriveView.h
 //
 //   Description :   Virtual Drive View Header File
 //
@@ -19,11 +19,11 @@
 //  Opelousas, LA  70570                   info@tee-boy.com
 //
 //--------------------------------------------------------------------------------------------------
-//  $Id: TBVirtualDriveView.h,v 1.1 2009/03/14 16:27:43 boisy Exp $
+//  $Id: VirtualDriveView.h,v 1.1 2009/03/14 16:27:43 boisy Exp $
 //------------------------------------------------------------------------------------------------*/
 
 /*!
-	@header TBVirtualDriveView.h
+	@header VirtualDriveView.h
 	@copyright Tee-Boy
 	@abstract
 	@discussion
@@ -33,7 +33,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface TBVirtualDriveView : NSView
+@interface VirtualDriveView : NSView
 {
 
 }

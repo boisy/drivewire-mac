@@ -36,6 +36,127 @@ static TBSerialManager *fSerialManager = nil;
 #pragma mark -
 #pragma mark Init/Dealloc Methods
 
+- (void)initCommon;
+{
+    int32_t		i;
+    
+    NSArray		*keys = [NSArray arrayWithObjects:
+                         @"OpCode",
+                         @"DriveNumber",
+                         @"LSN",
+                         @"ReadCount",
+                         @"WriteCount",
+                         @"ReReadCount",
+                         @"ReWriteCount",
+                         @"GetStat",
+                         @"SetStat",
+                         @"Checksum",
+                         @"Error",
+                         nil];
+    
+    NSArray		*objects = [NSArray arrayWithObjects:
+                            @"NONE",
+                            @"0",
+                            @"0",
+                            @"0",
+                            @"0",
+                            @"0",
+                            @"0",
+                            @"NONE",
+                            @"NONE",
+                            @"0",
+                            @"0",
+                            nil];
+    
+    NSArray		*registerKeys = [NSArray arrayWithObjects:
+                                 @"CC",
+                                 @"DP",
+                                 @"A",
+                                 @"B",
+                                 @"E",
+                                 @"F",
+                                 @"X",
+                                 @"Y",
+                                 @"U",
+                                 @"S",
+                                 @"PC",
+                                 nil];
+    
+    NSArray		*registerObjects = [NSArray arrayWithObjects:
+                                    [NSNumber numberWithInt:0],
+                                    [NSNumber numberWithInt:0],
+                                    [NSNumber numberWithInt:0],
+                                    [NSNumber numberWithInt:0],
+                                    [NSNumber numberWithInt:0],
+                                    [NSNumber numberWithInt:0],
+                                    [NSNumber numberWithInt:0],
+                                    [NSNumber numberWithInt:0],
+                                    [NSNumber numberWithInt:0],
+                                    [NSNumber numberWithInt:0],
+                                    [NSNumber numberWithInt:0],
+                                    nil];
+				
+    // Set drive numbers.
+    for (i = 0; i < [driveArray count]; i++)
+    {
+        [[driveArray objectAtIndex:i] setDriveID:i];
+    }
+    
+    // Allocate stats manager.
+    statistics = [[NSMutableDictionary alloc] initWithObjects:objects forKeys:keys];
+    
+    // Allocate registers dictionary.
+    registers = [[NSMutableDictionary alloc] initWithObjects:registerObjects
+                                                     forKeys:registerKeys];
+    
+    portDelegate = nil;
+    
+    if (version > 1)
+    {
+        self.validateWithCRC = NO;		/* We will do checksums on the data. */
+    }
+    else
+    {
+        self.validateWithCRC = YES;		/* We will do CRCs on the data. */
+    }
+    
+    if (fSerialManager == nil)
+    {
+        fSerialManager = [[TBSerialManager alloc] init];		
+    }
+    
+    // Set up the devices
+    fSerialPortNames = [TBSerialManager availablePorts];
+    
+    // Set up state variables
+    [self resetState:nil];
+    
+    // Setup printer buffer
+    printBuffer = [[NSMutableData alloc] init];
+    
+    // Setup array of 16 serial data buffers
+    self.serialChannels = [NSArray arrayWithObjects:
+                           [[VSerialChannel alloc] initWithNumber:0],
+                           [[VSerialChannel alloc] initWithNumber:1],
+                           [[VSerialChannel alloc] initWithNumber:2],
+                           [[VSerialChannel alloc] initWithNumber:3],
+                           [[VSerialChannel alloc] initWithNumber:4],
+                           [[VSerialChannel alloc] initWithNumber:5],
+                           [[VSerialChannel alloc] initWithNumber:6],
+                           [[VSerialChannel alloc] initWithNumber:7],
+                           [[VSerialChannel alloc] initWithNumber:8],
+                           [[VSerialChannel alloc] initWithNumber:9],
+                           [[VSerialChannel alloc] initWithNumber:10],
+                           [[VSerialChannel alloc] initWithNumber:11],
+                           [[VSerialChannel alloc] initWithNumber:12],
+                           [[VSerialChannel alloc] initWithNumber:13],
+                           [[VSerialChannel alloc] initWithNumber:14],
+                           [[VSerialChannel alloc] initWithNumber:15],
+                           nil
+                           ];
+    return;
+}
+
 - (id)init
 {
 	return [self initWithVersion:DW_DEFAULT_VERSION];
@@ -55,9 +176,9 @@ static TBSerialManager *fSerialManager = nil;
 		TBDebug(@"About to allocate drives");
 		for (i = 0; i < 4; i++)
 		{
-			TBVirtualDriveController *drive;
+			VirtualDriveController *drive;
 		
-			drive = [[TBVirtualDriveController alloc] init];
+			drive = [[VirtualDriveController alloc] init];
 			[driveArray insertObject:drive atIndex:i];
 		}
 
@@ -66,11 +187,11 @@ static TBSerialManager *fSerialManager = nil;
 		version = versionNumber;
 		
 		// set defaults
-		[self setStatState:false];
-		[self setLogState:false];
-		[self setWirebugState:false];
+        self.statState = FALSE;
+        self.logState = FALSE;
+        self.wirebugState = FALSE;
 		[self setMachineType:MachineTypeCoCo3_115_2];
-		[self setMemAddress:0];
+        self.memAddress = 0;
 
 		TBDebug(@"Defaults set");
 		
@@ -160,126 +281,6 @@ static TBSerialManager *fSerialManager = nil;
     self.watchDog = nil;
 }
 
-- (void)initCommon;
-{
-    int32_t		i;
-    
-	NSArray		*keys = [NSArray arrayWithObjects:
-		@"OpCode",
-		@"DriveNumber",
-		@"LSN",
-		@"ReadCount",
-		@"WriteCount",
-		@"ReReadCount",
-		@"ReWriteCount",
-		@"GetStat",
-		@"SetStat",
-		@"Checksum",
-		@"Error",
-		nil];
-    
-	NSArray		*objects = [NSArray arrayWithObjects:
-		@"NONE",
-		@"0",
-		@"0",
-		@"0",
-		@"0",
-		@"0",
-		@"0",
-		@"NONE",
-		@"NONE",
-		@"0",
-		@"0",
-		nil];
-    
-	NSArray		*registerKeys = [NSArray arrayWithObjects:
-		@"CC",
-		@"DP",
-		@"A",
-		@"B",
-		@"E",
-		@"F",
-		@"X",
-		@"Y",
-		@"U",
-		@"S",
-		@"PC",
-		nil];
-    
-	NSArray		*registerObjects = [NSArray arrayWithObjects:
-		[NSNumber numberWithInt:0],
-		[NSNumber numberWithInt:0],
-		[NSNumber numberWithInt:0],
-		[NSNumber numberWithInt:0],
-		[NSNumber numberWithInt:0],
-		[NSNumber numberWithInt:0],
-		[NSNumber numberWithInt:0],
-		[NSNumber numberWithInt:0],
-		[NSNumber numberWithInt:0],
-		[NSNumber numberWithInt:0],
-		[NSNumber numberWithInt:0],
-		nil];
-				
-	// Set drive numbers.
-    for (i = 0; i < [driveArray count]; i++)
-	{
-		[[driveArray objectAtIndex:i] setDriveID:i];
-	}
-
-	// Allocate stats manager.        
-	statistics = [[NSMutableDictionary alloc] initWithObjects:objects forKeys:keys];
-
-	// Allocate registers dictionary.        
-	registers = [[NSMutableDictionary alloc] initWithObjects:registerObjects
-													  forKeys:registerKeys];
-	
-	portDelegate = nil;
-
-	if (version > 1)
-	{
-		self.validateWithCRC = NO;		/* We will do checksums on the data. */
-	}
-	else
-	{
-		self.validateWithCRC = YES;		/* We will do CRCs on the data. */
-	}
-
-	if (fSerialManager == nil)
-	{
-		fSerialManager = [[TBSerialManager alloc] init];		
-	}
-		
-    // Set up the devices
-	fSerialPortNames = [TBSerialManager availablePorts];
-   
-    // Set up state variables
-	[self resetState:nil];
-   
-    // Setup printer buffer
-    printBuffer = [[NSMutableData alloc] init];
-   
-    // Setup array of 16 serial data buffers
-    self.serialChannels = [NSArray arrayWithObjects:
-                      [[VSerialChannel alloc] initWithNumber:0],
-                      [[VSerialChannel alloc] initWithNumber:1],
-                      [[VSerialChannel alloc] initWithNumber:2],
-                      [[VSerialChannel alloc] initWithNumber:3],
-                      [[VSerialChannel alloc] initWithNumber:4],
-                      [[VSerialChannel alloc] initWithNumber:5],
-                      [[VSerialChannel alloc] initWithNumber:6],
-                      [[VSerialChannel alloc] initWithNumber:7],
-                      [[VSerialChannel alloc] initWithNumber:8],
-                      [[VSerialChannel alloc] initWithNumber:9],
-                      [[VSerialChannel alloc] initWithNumber:10],
-                      [[VSerialChannel alloc] initWithNumber:11],
-                      [[VSerialChannel alloc] initWithNumber:12],
-                      [[VSerialChannel alloc] initWithNumber:13],
-                      [[VSerialChannel alloc] initWithNumber:14],
-                      [[VSerialChannel alloc] initWithNumber:15],
-                      nil
-                      ];
-	return;
-}
 
 // This method communicates with the serial manager to reserve a specific
 // communications port.  It returns YES if the port was successfully
@@ -382,14 +383,9 @@ static TBSerialManager *fSerialManager = nil;
 	return fCurrentPort;
 }
 
-- (void)setMemAddress:(u_int16_t)newAddress
-{
-	memAddress = newAddress;
-}
-
 
 #pragma mark -
-#pragma mark Calculation Routines
+#pragma mark Data Integrity Calculation Routines
 
 - (uint16_t)compute16BitChecksum:(const u_char *)data length:(int)length
 {
@@ -573,6 +569,10 @@ static TBSerialManager *fSerialManager = nil;
             [self OP_SERREAD];
             break;
             
+        case _OP_SERREADM:
+            self.currentState = @selector(OP_SERREADM:);
+            break;
+            
         case _OP_SERWRITE:
             self.currentState = @selector(OP_SERWRITE:);
             break;
@@ -599,7 +599,7 @@ static TBSerialManager *fSerialManager = nil;
             break;
     }
     
-    if (byte >= 0x80 && byte <= 0x84)
+    if (byte >= 0x80 && byte <= 0x8E)
     {
         // FASTWRITE
         // Note: we don't consume the opcode byte since it has the channel number
@@ -1347,7 +1347,7 @@ static TBSerialManager *fSerialManager = nil;
 		int i;
 		for (i = 0; i < [driveArray count]; i++)
 		{
-			TBVirtualDriveController *c = [driveArray objectAtIndex:i];
+			VirtualDriveController *c = [driveArray objectAtIndex:i];
 			if ([[c cartridgePath] isEqualToString:fullPath])
 			{
 				break;
@@ -1356,7 +1356,7 @@ static TBSerialManager *fSerialManager = nil;
 		
 		if (i == [driveArray count])
 		{
-			TBVirtualDriveController *drive = [[TBVirtualDriveController alloc] init];
+			VirtualDriveController *drive = [[VirtualDriveController alloc] init];
 			[drive setDriveID:i];
 			[drive insertCartridge:fullPath];
 			[driveArray addObject:drive];
@@ -1556,6 +1556,35 @@ static TBSerialManager *fSerialManager = nil;
     [self.delegate updateInfoView:statistics];
     
     [self resetState:nil];
+    
+    return result;
+}
+
+- (NSUInteger)OP_SERREADM:(NSData *)data;
+{
+    NSUInteger result = 0;
+    
+    if ([data length] >= 2)
+    {
+        u_char *bytes = (u_char *)[data bytes];
+        
+        // We read 2 bytes into this buffer (channel number, bytes requested)
+        result = 2;
+        
+        NSUInteger channelNumber = bytes[0];
+        NSUInteger bytesToRead = bytes[1];
+        
+        VSerialChannel *channel = [self channelWithNumber:channelNumber];
+        NSData *dataToRead = [channel getNumberOfBytes:bytesToRead];
+
+        [portDelegate writeData:dataToRead];
+    
+        // Update log
+        [statistics setObject:@"OP_SERREADM" forKey:@"OpCode"];
+        [self.delegate updateInfoView:statistics];
+        
+        [self resetState:nil];
+    }
     
     return result;
 }

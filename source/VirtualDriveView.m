@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------------------------------------------
 //
-//   File Name   :   TBVirtualDriveView.m
+//   File Name   :   VirtualDriveView.m
 //
 //   Description :   Virtual Drive View Implementation File
 //
@@ -19,13 +19,13 @@
 //  Opelousas, LA  70570                   info@tee-boy.com
 //
 //--------------------------------------------------------------------------------------------------
-//  $Id: TBVirtualDriveView.m,v 1.1 2009/03/14 16:27:43 boisy Exp $
+//  $Id: VirtualDriveView.m,v 1.1 2009/03/14 16:27:43 boisy Exp $
 //------------------------------------------------------------------------------------------------*/
 
-#import <TBVirtualDriveView.h>
+#import <VirtualDriveView.h>
 
 
-@implementation TBVirtualDriveView
+@implementation VirtualDriveView
 
 - (id)initWithFrame:(NSRect)frame
 {

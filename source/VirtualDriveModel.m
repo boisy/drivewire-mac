@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------------------------------------------
 //
-//   File Name   :   TBVirtualDriveModel.m
+//   File Name   :   VirtualDriveModel.m
 //
 //   Description :   Virtual Drive Model Implementation File
 //
@@ -19,7 +19,7 @@
 //  Opelousas, LA  70570                   info@tee-boy.com
 //
 //--------------------------------------------------------------------------------------------------
-//  $Id: TBVirtualDriveModel.m,v 1.7 2015/04/16 09:52:27 boisy Exp $
+//  $Id: VirtualDriveModel.m,v 1.7 2015/04/16 09:52:27 boisy Exp $
 //------------------------------------------------------------------------------------------------*/
 // Jan-12-07  BGP
 // Reworked model to now use a delegate to communicate to the controller instead of
@@ -27,12 +27,12 @@
 //------------------------------------------------------------------------------------------------*/
 
 
-#import <TBVirtualDriveModel.h>
+#import <VirtualDriveModel.h>
 #import <CoreFoundation/CoreFoundation.h>
 
-#define MODULE_HASHTAG "TBVirtualDriveModel"
+#define MODULE_HASHTAG "VirtualDriveModel"
 
-@implementation TBVirtualDriveModel
+@implementation VirtualDriveModel
 
 static NSRunLoop *mainRunLoop;
 
@@ -69,7 +69,7 @@ static int instanceCount = 0;
    
 	if (instanceCount == 0)
 	{
-//      NSBundle *myFrameworkBundle = [NSBundle bundleWithIdentifier:@"com.tee-boy.TBVirtualDrive"];
+//      NSBundle *myFrameworkBundle = [NSBundle bundleWithIdentifier:@"com.tee-boy.VirtualDrive"];
       NSBundle *myFrameworkBundle = [NSBundle bundleForClass:[self class]];
       TBDebug(@"myFrameworksBundle = %@", [myFrameworkBundle description]);
 

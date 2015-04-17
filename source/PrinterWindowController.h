@@ -10,7 +10,7 @@
 
 @interface PrinterWindowController : NSWindowController 
 {
-   IBOutlet NSTextView *printView;
+    IBOutlet NSTextView *printView;
 }
 
 - (void)windowDidLoad;

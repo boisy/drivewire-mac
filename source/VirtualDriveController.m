@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------------------------------------------
 //
-//   File Name   :   TBVirtualDriveController.m
+//   File Name   :   VirtualDriveController.m
 //
 //   Description :   Virtual Drive Controller Implementation File
 //
@@ -19,18 +19,18 @@
 //  Opelousas, LA  70570                   info@tee-boy.com
 //
 //--------------------------------------------------------------------------------------------------
-//  $Id: TBVirtualDriveController.m,v 1.3 2015/04/16 09:52:27 boisy Exp $
+//  $Id: VirtualDriveController.m,v 1.3 2015/04/16 09:52:27 boisy Exp $
 //------------------------------------------------------------------------------------------------*/
 // Jan-12-07  BGP
 // Reworked model to now use a delegate to communicate to the controller instead of
 // using NSNotifcationCenter.
 //------------------------------------------------------------------------------------------------*/
 
-#import <TBVirtualDriveController.h>
+#import <VirtualDriveController.h>
 
-#define MODULE_HASHTAG "TBVirtualDriveController"
+#define MODULE_HASHTAG "VirtualDriveController"
 
-@implementation TBVirtualDriveController
+@implementation VirtualDriveController
 
 #pragma mark Init Methods
 
@@ -38,7 +38,7 @@
 {
 	if ((self = [super init]) != nil)
 	{
-		model = [[TBVirtualDriveModel alloc] init];
+		model = [[VirtualDriveModel alloc] init];
 
 		if (model == nil)
 		{
@@ -57,7 +57,7 @@
 
 - (void)initDesignated
 {
-	if ([NSBundle loadNibNamed:@"TBVirtualDriveView" owner:self] == NO)
+	if ([NSBundle loadNibNamed:@"VirtualDriveView" owner:self] == NO)
 	{
 		TBDebug(@"We've got a load Nib problem\n");
 	}
@@ -76,7 +76,7 @@
 {
 }
 
-- (TBVirtualDriveView *)view
+- (VirtualDriveView *)view
 {
 	return virtualDriveView;
 }

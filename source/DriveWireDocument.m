@@ -29,17 +29,17 @@
 - (void)dealloc;
 {
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-	NSMutableArray *driveArray = [dwModel driveArray];
+	NSMutableArray *driveArray = [self.dwModel driveArray];
 	int i;
 	
 	// Remove observer of printer messages
-	[nc removeObserver:printerWindowController name:@"DWPrint" object:dwModel];
+	[nc removeObserver:printerWindowController name:@"DWPrint" object:self.dwModel];
    
 	// Remove observer of statistics messages
-	[nc removeObserver:statsView name:@"DWStats" object:dwModel];
+	[nc removeObserver:statsView name:@"DWStats" object:self.dwModel];
 		
 	// Remove observer of log messages
-	[nc removeObserver:logView name:@"DWStats" object:dwModel];
+	[nc removeObserver:logView name:@"DWStats" object:self.dwModel];
 	
 	for (i = 0; i < [driveArray count]; i++)
 	{
@@ -63,12 +63,12 @@
 	
     myWindowController = aController;
    
-    if (dwModel == nil)
+    if (self.dwModel == nil)
     {
-        dwModel = [[DriveWireServerModel alloc] init];
+        self.dwModel = [[DriveWireServerModel alloc] init];
     }
    
-    [dwModel setDelegate:self];
+    [self.dwModel setDelegate:self];
 
     // Call super class
     [super windowControllerDidLoadNib:aController];
@@ -80,7 +80,7 @@
 	[serialPortButton removeAllItems];
 	
 	// Get the selected serial port, if any
-	currentPort = [dwModel serialPort];
+	currentPort = [self.dwModel serialPort];
    
 	// Iterate through the list of names and add each to the list
 	{
@@ -113,7 +113,7 @@
 	}
 
 	// Get the array of drives from the Document Model
-	NSMutableArray *driveArray = [dwModel driveArray];
+	NSMutableArray *driveArray = [self.dwModel driveArray];
 	
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	
@@ -128,33 +128,35 @@
 	}	
 	
 	// Add the statsView as an observer of statistics messages
-	[nc addObserver:statsView selector:@selector(updateStats:) name:@"DWStats" object:dwModel];
+	[nc addObserver:statsView selector:@selector(updateStats:) name:@"DWStats" object:self.dwModel];
 
 	// Add the logView as an observer of log messages
-	[nc addObserver:logView selector:@selector(updateLog:) name:@"DWStats" object:dwModel];
+	[nc addObserver:logView selector:@selector(updateLog:) name:@"DWStats" object:self.dwModel];
 
     // Add the printerWindowController as an observer of print messages
-    [nc addObserver:printerWindowController selector:@selector(updatePrintBuffer:) name:@"DWPrint" object:dwModel];
+    [nc addObserver:printerWindowController selector:@selector(updatePrintBuffer:) name:@"DWPrint" object:self.dwModel];
 	
 //   [debugDrawer open];
    
     // Hide logging if its not turned on
     NSWindow *documentWindow = [myWindowController window];
     NSRect frame = [documentWindow frame];
-    if ([dwModel logState] == FALSE)
+    if ([self.dwModel logState] == FALSE)
     {
         frame.size.height -= [[logView superview] frame].size.height + 30;
         frame.origin.y += [[logView superview] frame].size.height + 30;
     }
    
     // Hide statistics if its not turned on
-    if ([dwModel statState] == FALSE)
+    if ([self.dwModel statState] == FALSE)
     {
         frame.size.width -= [[statsView superview] frame].size.width + 20;
     }
 
     [documentWindow setFrame:frame display:TRUE animate:FALSE];
-   
+
+    [machineTypePopupButton selectItemWithTag:MachineTypeCoCo3_115_2];
+    self.dwModel.machineType = MachineTypeCoCo3_115_2;
     [self updateUIComponents];
 }
 
@@ -184,10 +186,10 @@
 
 - (void)updateUIComponents;
 {
-    [loggingSwitch setState:[dwModel logState]];
-    [statSwitch setState:[dwModel statState]];
+    [loggingSwitch setState:[self.dwModel logState]];
+    [statSwitch setState:[self.dwModel statState]];
 
-    switch ([dwModel machineType])
+    switch ([self.dwModel machineType])
     {
         case MachineTypeCoCo1_38_4:
         case MachineTypeCoCo1_57_6:
@@ -202,17 +204,21 @@
         default:
             [machineImageView setImage:[NSImage imageNamed:@"CoCo3"]];
             break;
+
+        case MachineTypeAtariLiber809_57_6:
+            [machineImageView setImage:[NSImage imageNamed:@"Atari"]];
+            break;
     }
 }
 
 - (NSData *)dataRepresentationOfType:(NSString *)aType;
 {
-    return [NSArchiver archivedDataWithRootObject:dwModel];
+    return [NSArchiver archivedDataWithRootObject:self.dwModel];
 }
 
 - (BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)aType;
 {
-	dwModel = [NSUnarchiver unarchiveObjectWithData:data];
+	self.dwModel = [NSUnarchiver unarchiveObjectWithData:data];
 	
 	return YES;
 }
@@ -222,7 +228,7 @@
 	NSString *thePort = [serialPortButton titleOfSelectedItem];
 	
 	// Ask the Document Model to open thePort
-	if ([dwModel setCommPort:thePort] == NO)
+	if ([self.dwModel setCommPort:thePort] == NO)
 	{
 		NSAlert *errorAlert = [NSAlert alertWithMessageText:@"Communications Error"
 											   defaultButton:@"OK"
@@ -250,7 +256,7 @@
 - (IBAction)setCoCoType:(NSPopUpButton *)sender;
 {
     MachineType machineType = [sender selectedTag];
-   [dwModel setMachineType:machineType];
+   [self.dwModel setMachineType:machineType];
    
    [self updateUIComponents];
 }
@@ -258,7 +264,7 @@
 - (IBAction)setLogSwitch:(id)sender;
 {
    NSButton *b = (NSButton *)sender;
-   [dwModel setLogState:[b state]];
+   [self.dwModel setLogState:[b state]];
 
    NSWindow *documentWindow = [myWindowController window];
    NSRect frame = [documentWindow frame];
@@ -280,7 +286,7 @@
 - (IBAction)setStatsSwitch:(id)sender;
 {
    NSButton *b = (NSButton *)sender;
-   [dwModel setStatState:[b state]];
+   [self.dwModel setStatState:[b state]];
 
    NSWindow *documentWindow = [myWindowController window];
    NSRect frame = [documentWindow frame];
@@ -300,7 +306,7 @@
 - (IBAction)goCoCo:(id)sender;
 {
    [debugDrawer close];
-   [dwModel goCoCo];
+   [self.dwModel goCoCo];
 }
 
 @end

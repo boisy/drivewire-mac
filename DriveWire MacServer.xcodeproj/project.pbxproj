@@ -12,11 +12,11 @@
 		680612D41ADFC85200B1C502 /* CoCo1.png in Resources */ = {isa = PBXBuildFile; fileRef = 680612D01ADFC85200B1C502 /* CoCo1.png */; };
 		680612D51ADFC85200B1C502 /* CoCo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 680612D11ADFC85200B1C502 /* CoCo2.png */; };
 		680612D61ADFC85200B1C502 /* CoCo3.png in Resources */ = {isa = PBXBuildFile; fileRef = 680612D21ADFC85200B1C502 /* CoCo3.png */; };
-		6809AD840F6C08A6000BB954 /* TBVirtualDriveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6809AD7F0F6C08A6000BB954 /* TBVirtualDriveController.m */; };
-		6809AD850F6C08A6000BB954 /* TBVirtualDriveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6809AD810F6C08A6000BB954 /* TBVirtualDriveModel.m */; };
-		6809AD860F6C08A6000BB954 /* TBVirtualDriveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6809AD830F6C08A6000BB954 /* TBVirtualDriveView.m */; };
+		6809AD840F6C08A6000BB954 /* VirtualDriveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6809AD7F0F6C08A6000BB954 /* VirtualDriveController.m */; };
+		6809AD850F6C08A6000BB954 /* VirtualDriveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6809AD810F6C08A6000BB954 /* VirtualDriveModel.m */; };
+		6809AD860F6C08A6000BB954 /* VirtualDriveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6809AD830F6C08A6000BB954 /* VirtualDriveView.m */; };
 		6809AD940F6C0974000BB954 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6809AD930F6C0974000BB954 /* IOKit.framework */; };
-		6809AE020F6C0C30000BB954 /* TBVirtualDriveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6809AE010F6C0C30000BB954 /* TBVirtualDriveView.xib */; };
+		6809AE020F6C0C30000BB954 /* VirtualDriveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6809AE010F6C0C30000BB954 /* VirtualDriveView.xib */; };
 		6809AE070F6C0C4C000BB954 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6809AE050F6C0C4C000BB954 /* MainMenu.xib */; };
 		6809AEFB0F6C0DB6000BB954 /* drive.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6809AEED0F6C0DB6000BB954 /* drive.jpg */; };
 		6809AEFC0F6C0DB6000BB954 /* driveface.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6809AEEE0F6C0DB6000BB954 /* driveface.jpg */; };
@@ -28,6 +28,7 @@
 		68190D2E0F47011400C4CDDD /* RegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68190D2C0F47011400C4CDDD /* RegisterView.m */; };
 		68190D310F47011F00C4CDDD /* MemoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68190D300F47011F00C4CDDD /* MemoryView.m */; };
 		68363D450F63182400CD8A1B /* PrinterWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68363D440F63182400CD8A1B /* PrinterWindowController.m */; };
+		686CA3FB1AE1162500544862 /* Atari.png in Resources */ = {isa = PBXBuildFile; fileRef = 686CA3FA1AE1162500544862 /* Atari.png */; };
 		68742C370F41A78E0049FEF6 /* DriveWireServerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 68742C360F41A78E0049FEF6 /* DriveWireServerModel.m */; };
 		68742E870F41B9EA0049FEF6 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68742E850F41B9EA0049FEF6 /* AppKit.framework */; };
 		68742E880F41B9EA0049FEF6 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68742E860F41B9EA0049FEF6 /* Cocoa.framework */; };
@@ -74,14 +75,14 @@
 		680612D11ADFC85200B1C502 /* CoCo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CoCo2.png; path = assets/CoCo2.png; sourceTree = "<group>"; };
 		680612D21ADFC85200B1C502 /* CoCo3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CoCo3.png; path = assets/CoCo3.png; sourceTree = "<group>"; };
 		680612D31ADFC85200B1C502 /* CoCos.psd */ = {isa = PBXFileReference; lastKnownFileType = file; name = CoCos.psd; path = assets/CoCos.psd; sourceTree = "<group>"; };
-		6809AD7E0F6C08A6000BB954 /* TBVirtualDriveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBVirtualDriveController.h; sourceTree = "<group>"; };
-		6809AD7F0F6C08A6000BB954 /* TBVirtualDriveController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBVirtualDriveController.m; sourceTree = "<group>"; };
-		6809AD800F6C08A6000BB954 /* TBVirtualDriveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBVirtualDriveModel.h; sourceTree = "<group>"; };
-		6809AD810F6C08A6000BB954 /* TBVirtualDriveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBVirtualDriveModel.m; sourceTree = "<group>"; };
-		6809AD820F6C08A6000BB954 /* TBVirtualDriveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBVirtualDriveView.h; sourceTree = "<group>"; };
-		6809AD830F6C08A6000BB954 /* TBVirtualDriveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBVirtualDriveView.m; sourceTree = "<group>"; };
+		6809AD7E0F6C08A6000BB954 /* VirtualDriveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualDriveController.h; sourceTree = "<group>"; };
+		6809AD7F0F6C08A6000BB954 /* VirtualDriveController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualDriveController.m; sourceTree = "<group>"; };
+		6809AD800F6C08A6000BB954 /* VirtualDriveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualDriveModel.h; sourceTree = "<group>"; };
+		6809AD810F6C08A6000BB954 /* VirtualDriveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualDriveModel.m; sourceTree = "<group>"; };
+		6809AD820F6C08A6000BB954 /* VirtualDriveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualDriveView.h; sourceTree = "<group>"; };
+		6809AD830F6C08A6000BB954 /* VirtualDriveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualDriveView.m; sourceTree = "<group>"; };
 		6809AD930F6C0974000BB954 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
-		6809AE010F6C0C30000BB954 /* TBVirtualDriveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TBVirtualDriveView.xib; sourceTree = "<group>"; };
+		6809AE010F6C0C30000BB954 /* VirtualDriveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VirtualDriveView.xib; sourceTree = "<group>"; };
 		6809AE060F6C0C4C000BB954 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		6809AEED0F6C0DB6000BB954 /* drive.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = drive.jpg; path = assets/drive.jpg; sourceTree = "<group>"; };
 		6809AEEE0F6C0DB6000BB954 /* driveface.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = driveface.jpg; path = assets/driveface.jpg; sourceTree = "<group>"; };
@@ -111,6 +112,7 @@
 		68363D440F63182400CD8A1B /* PrinterWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrinterWindowController.m; sourceTree = "<group>"; };
 		685105F70966DA1C00AAEA3F /* VirtualDriveJukeBoxView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = VirtualDriveJukeBoxView.h; sourceTree = "<group>"; };
 		685105F80966DA1C00AAEA3F /* VirtualDriveJukeBoxView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = VirtualDriveJukeBoxView.m; sourceTree = "<group>"; };
+		686CA3FA1AE1162500544862 /* Atari.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Atari.png; path = assets/Atari.png; sourceTree = "<group>"; };
 		6872687908A97EDD00ADD1F0 /* DriveWire Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "DriveWire Icon.icns"; path = "assets/DriveWire Icon.icns"; sourceTree = "<group>"; };
 		68742C360F41A78E0049FEF6 /* DriveWireServerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriveWireServerModel.m; sourceTree = "<group>"; };
 		68742E850F41B9EA0049FEF6 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
@@ -207,13 +209,13 @@
 		6809AD790F6C086D000BB954 /* VirtualDrive */ = {
 			isa = PBXGroup;
 			children = (
-				6809AE010F6C0C30000BB954 /* TBVirtualDriveView.xib */,
-				6809AD7E0F6C08A6000BB954 /* TBVirtualDriveController.h */,
-				6809AD7F0F6C08A6000BB954 /* TBVirtualDriveController.m */,
-				6809AD800F6C08A6000BB954 /* TBVirtualDriveModel.h */,
-				6809AD810F6C08A6000BB954 /* TBVirtualDriveModel.m */,
-				6809AD820F6C08A6000BB954 /* TBVirtualDriveView.h */,
-				6809AD830F6C08A6000BB954 /* TBVirtualDriveView.m */,
+				6809AE010F6C0C30000BB954 /* VirtualDriveView.xib */,
+				6809AD7E0F6C08A6000BB954 /* VirtualDriveController.h */,
+				6809AD7F0F6C08A6000BB954 /* VirtualDriveController.m */,
+				6809AD800F6C08A6000BB954 /* VirtualDriveModel.h */,
+				6809AD810F6C08A6000BB954 /* VirtualDriveModel.m */,
+				6809AD820F6C08A6000BB954 /* VirtualDriveView.h */,
+				6809AD830F6C08A6000BB954 /* VirtualDriveView.m */,
 				685105F70966DA1C00AAEA3F /* VirtualDriveJukeBoxView.h */,
 				685105F80966DA1C00AAEA3F /* VirtualDriveJukeBoxView.m */,
 			);
@@ -240,6 +242,7 @@
 				680612D01ADFC85200B1C502 /* CoCo1.png */,
 				680612D11ADFC85200B1C502 /* CoCo2.png */,
 				680612D21ADFC85200B1C502 /* CoCo3.png */,
+				686CA3FA1AE1162500544862 /* Atari.png */,
 				6809AE050F6C0C4C000BB954 /* MainMenu.xib */,
 				6809AF3D0F6C0F81000BB954 /* greenled.jpg */,
 				6809AEF70F6C0DB6000BB954 /* redled.jpg */,
@@ -390,12 +393,13 @@
 				68ADE05F096B7686002324CE /* InfoPlist.strings in Resources */,
 				68ABF6F309806CD600838EB9 /* DriveWire MacServer Help in Resources */,
 				68C535D50F68971B00F39926 /* DriveWireDocument.xib in Resources */,
-				6809AE020F6C0C30000BB954 /* TBVirtualDriveView.xib in Resources */,
+				6809AE020F6C0C30000BB954 /* VirtualDriveView.xib in Resources */,
 				6809AE070F6C0C4C000BB954 /* MainMenu.xib in Resources */,
 				6809AEFB0F6C0DB6000BB954 /* drive.jpg in Resources */,
 				6809AEFC0F6C0DB6000BB954 /* driveface.jpg in Resources */,
 				680612D41ADFC85200B1C502 /* CoCo1.png in Resources */,
 				6809AEFD0F6C0DB6000BB954 /* DriveWire 3.png in Resources */,
+				686CA3FB1AE1162500544862 /* Atari.png in Resources */,
 				6809AF030F6C0DB6000BB954 /* eject.wav in Resources */,
 				6809AF040F6C0DB6000BB954 /* insert.wav in Resources */,
 				6809AF050F6C0DB6000BB954 /* redled.jpg in Resources */,
@@ -426,9 +430,9 @@
 				68C5367B0F6B4E2400F39926 /* DebuggerWindowController.m in Sources */,
 				6879C0281ADFC0750033AF94 /* main.m in Sources */,
 				68C536B90F6B502200F39926 /* DisassemblerView.m in Sources */,
-				6809AD840F6C08A6000BB954 /* TBVirtualDriveController.m in Sources */,
-				6809AD850F6C08A6000BB954 /* TBVirtualDriveModel.m in Sources */,
-				6809AD860F6C08A6000BB954 /* TBVirtualDriveView.m in Sources */,
+				6809AD840F6C08A6000BB954 /* VirtualDriveController.m in Sources */,
+				6809AD850F6C08A6000BB954 /* VirtualDriveModel.m in Sources */,
+				6809AD860F6C08A6000BB954 /* VirtualDriveView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

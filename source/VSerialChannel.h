@@ -18,7 +18,9 @@
 - (id)initWithNumber:(NSUInteger)number;
 
 - (BOOL)hasData;
+- (NSUInteger)availableToRead;
 - (u_char)getByte;
+- (NSData *)getNumberOfBytes:(NSUInteger)count;
 - (void)putByte:(u_char)byte;
 - (void)putBytes:(u_char *)bytes length:(NSUInteger)length;
 

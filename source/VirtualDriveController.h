@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------------------------------------------
 //
-//   File Name   :   TBVirtualDriveController.h
+//   File Name   :   VirtualDriveController.h
 //
 //   Description :   Virtual Drive Controller Header File
 //
@@ -19,12 +19,12 @@
 //  Opelousas, LA  70570                   info@tee-boy.com
 //
 //--------------------------------------------------------------------------------------------------
-//  $Id: TBVirtualDriveController.h,v 1.1 2009/03/14 16:27:43 boisy Exp $
+//  $Id: VirtualDriveController.h,v 1.1 2009/03/14 16:27:43 boisy Exp $
 //------------------------------------------------------------------------------------------------*/
 
 
 /*!
-	@header TBVirtualDriveController.h
+	@header VirtualDriveController.h
 	@copyright Tee-Boy
 	@abstract
 	@discussion
@@ -32,16 +32,16 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "TBVirtualDriveView.h"
-#import "TBVirtualDriveModel.h"
+#import "VirtualDriveView.h"
+#import "VirtualDriveModel.h"
 
 
-@interface TBVirtualDriveController : NSObject <NSCoding>
+@interface VirtualDriveController : NSObject <NSCoding>
 {
-	TBVirtualDriveModel *model;
+	VirtualDriveModel *model;
 	
-	// Outlets to asset components of TBVirtualDriveView
-	IBOutlet TBVirtualDriveView *virtualDriveView;
+	// Outlets to asset components of VirtualDriveView
+	IBOutlet VirtualDriveView *virtualDriveView;
 	IBOutlet NSImageView *driveFacePlate;
 	IBOutlet NSImageView *driveDoor;
 	IBOutlet NSImageView *readLED;
@@ -52,7 +52,7 @@
 
 - (void)initDesignated;
 
-- (TBVirtualDriveView *)view;
+- (VirtualDriveView *)view;
 
 #pragma mark Cartridge methods
 

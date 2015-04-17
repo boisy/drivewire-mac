@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "TBVirtualDriveView.h"
+#import "VirtualDriveView.h"
 
 
 @interface VirtualDriveJukeBoxView : NSView

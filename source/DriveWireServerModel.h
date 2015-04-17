@@ -17,7 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <TeeBoy/TBSerialPort.h>
 #import <TeeBoy/TBSerialManager.h>
-#import "TBVirtualDriveController.h"
+#import "VirtualDriveController.h"
 #import "VSerialChannel.h"
 
 #define DW_DEFAULT_VERSION       3
@@ -50,6 +50,7 @@
 #define	_OP_SERSETSTAT			0xC4
 #define	_OP_SERTERM				0xC5
 #define	_OP_SERREAD				0x43
+#define	_OP_SERREADM			0x63
 #define	_OP_SERWRITE			0xC3
 #define	_OP_SERWRITEM			0x64
 
@@ -122,9 +123,6 @@ typedef enum {
 	u_int8_t                _cc, _dp, _a, _b, _e, _f, _md;
 	u_int16_t               _v, _x, _y, _u, _s, _pc;
 
-    // Address of memory to view
-	u_int16_t               memAddress;
-
 	int                     nameobj_size;
 	int                     driveCount;
 	
@@ -136,6 +134,7 @@ typedef enum {
 @property (assign) BOOL wirebugState;
 @property (assign) id<DriveWireDelegate> delegate;
 @property (strong) NSArray *serialChannels;
+@property (assign) u_int16_t memAddress;
 
 /*!
 	@method init

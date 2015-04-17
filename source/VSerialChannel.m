@@ -28,6 +28,11 @@
     return [self.incomingBuffer length] > 0;
 }
 
+- (NSUInteger)availableToRead;
+{
+    return [self.incomingBuffer length];
+}
+
 - (u_char)getByte;
 {
     u_char result = 0;
@@ -37,6 +42,22 @@
         result = *(u_char *)[self.incomingBuffer bytes];
         [self.incomingBuffer replaceBytesInRange:NSMakeRange(0, 1) withBytes:NULL];
     }
+    
+    return result;
+}
+
+- (NSData *)getNumberOfBytes:(NSUInteger)count;
+{
+    NSData *result = nil;
+    NSUInteger available = [self availableToRead];
+    if (count > available)
+    {
+        count = available;
+    }
+    
+    // get data directly from channel's incoming buffer
+    result = [self.incomingBuffer subdataWithRange:NSMakeRange(0, count)];
+    [self.incomingBuffer replaceBytesInRange:NSMakeRange(0, count) withBytes:NULL];
     
     return result;
 }

@@ -12,19 +12,19 @@
 
 @implementation DriveWireDocument
 
-// Initializion routine
+
+#pragma mark -
+#pragma mark Init/Dealloc
+
 - (id)init;
 {
-   self = [super init];
-
-   if (self)
+    if (self = [super init])
 	{
 		// All of our initialization is done in windowControllerDidLoadNib
 	}
 
-   return self;
+    return self;
 }
-
 
 - (void)dealloc;
 {
@@ -58,20 +58,20 @@
 
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController;
 {
-	int i;
-	NSString *currentPort, *portTitle = nil;
+    int i;
+    NSString *currentPort, *portTitle = nil;
 	
-   myWindowController = aController;
+    myWindowController = aController;
    
-   if (dwModel == nil)
-   {
-      dwModel = [[DriveWireServerModel alloc] init];
-   }
+    if (dwModel == nil)
+    {
+        dwModel = [[DriveWireServerModel alloc] init];
+    }
    
-   [dwModel setDelegate:self];
+    [dwModel setDelegate:self];
 
-	// Call super class
-   [super windowControllerDidLoadNib:aController];
+    // Call super class
+    [super windowControllerDidLoadNib:aController];
 	
     // Request the array of ports from the Document Model	
 	NSMutableDictionary *portNames = [TBSerialManager availablePorts] ;
@@ -133,29 +133,29 @@
 	// Add the logView as an observer of log messages
 	[nc addObserver:logView selector:@selector(updateLog:) name:@"DWStats" object:dwModel];
 
-   // Add the printerWindowController as an observer of print messages
-   [nc addObserver:printerWindowController selector:@selector(updatePrintBuffer:) name:@"DWPrint" object:dwModel];
+    // Add the printerWindowController as an observer of print messages
+    [nc addObserver:printerWindowController selector:@selector(updatePrintBuffer:) name:@"DWPrint" object:dwModel];
 	
 //   [debugDrawer open];
    
-   // Hide logging if its not turned on
-   NSWindow *documentWindow = [myWindowController window];
-   NSRect frame = [documentWindow frame];
-   if ([dwModel logState] == FALSE)
-   {
-      frame.size.height -= [[logView superview] frame].size.height + 30;
-      frame.origin.y += [[logView superview] frame].size.height + 30;
-   }
+    // Hide logging if its not turned on
+    NSWindow *documentWindow = [myWindowController window];
+    NSRect frame = [documentWindow frame];
+    if ([dwModel logState] == FALSE)
+    {
+        frame.size.height -= [[logView superview] frame].size.height + 30;
+        frame.origin.y += [[logView superview] frame].size.height + 30;
+    }
    
-   // Hide statistics if its not turned on
-   if ([dwModel statState] == FALSE)
-   {
-      frame.size.width -= [[statsView superview] frame].size.width + 20;
-   }
+    // Hide statistics if its not turned on
+    if ([dwModel statState] == FALSE)
+    {
+        frame.size.width -= [[statsView superview] frame].size.width + 20;
+    }
 
-   [documentWindow setFrame:frame display:TRUE animate:FALSE];
+    [documentWindow setFrame:frame display:TRUE animate:FALSE];
    
-   [self updateUIComponents];
+    [self updateUIComponents];
 }
 
 
@@ -163,51 +163,51 @@
 
 - (void)updateInfoView:(NSDictionary *)info;
 {
-   [logView update:info];
-   [statsView update:info];
+    [logView update:info];
+    [statsView update:info];
 }
 
 - (void)updateMemoryView:(NSDictionary *)info;
 {
-   [debuggerWindowController updateMemory:info];
+    [debuggerWindowController updateMemory:info];
 }
 
 - (void)updateRegisterView:(NSDictionary *)info;
 {
-   [debuggerWindowController updateRegisters:info];
+    [debuggerWindowController updateRegisters:info];
 }
 
 - (void)updatePrinterView:(NSDictionary *)info;
 {
-   [printerWindowController updatePrintBuffer:[info objectForKey:@"PrintData"]];
+    [printerWindowController updatePrintBuffer:[info objectForKey:@"PrintData"]];
 }
 
 - (void)updateUIComponents;
 {
-   [loggingSwitch setState:[dwModel logState]];
-   [statSwitch setState:[dwModel statState]];
+    [loggingSwitch setState:[dwModel logState]];
+    [statSwitch setState:[dwModel statState]];
 
-   switch ([dwModel machineType])
-   {
-      case 1:
-//         [speedSwitch setTitle:@"CoCo 1 @ 38400 bps"];
-         [speedSwitch setImage:[NSImage imageNamed:@"CoCo1"]];
-         break;
-      case 2:
-//         [speedSwitch setTitle:@"CoCo 2 @ 57600 bps"];
-         [speedSwitch setImage:[NSImage imageNamed:@"CoCo2"]];
-         break;
-      case 3:
-      default:
-//         [speedSwitch setTitle:@"CoCo 3 @ 115200 bps"];
-         [speedSwitch setImage:[NSImage imageNamed:@"CoCo3"]];
-         break;
-   }
+    switch ([dwModel machineType])
+    {
+        case MachineTypeCoCo1_38_4:
+        case MachineTypeCoCo1_57_6:
+            [machineImageView setImage:[NSImage imageNamed:@"CoCo1"]];
+            break;
+
+        case MachineTypeCoCo2_57_6:
+            [machineImageView setImage:[NSImage imageNamed:@"CoCo2"]];
+            break;
+           
+        case MachineTypeCoCo3_115_2:
+        default:
+            [machineImageView setImage:[NSImage imageNamed:@"CoCo3"]];
+            break;
+    }
 }
 
 - (NSData *)dataRepresentationOfType:(NSString *)aType;
 {
-	return [NSArchiver archivedDataWithRootObject:dwModel];
+    return [NSArchiver archivedDataWithRootObject:dwModel];
 }
 
 - (BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)aType;
@@ -247,10 +247,9 @@
 	[self updateChangeCount:NSChangeDone];
 }
 
-- (IBAction)setCoCoType:(id)sender;
+- (IBAction)setCoCoType:(NSPopUpButton *)sender;
 {
-   int machineType = [dwModel machineType] + 1;
-   if (machineType > 3) machineType = 1;
+    MachineType machineType = [sender selectedTag];
    [dwModel setMachineType:machineType];
    
    [self updateUIComponents];

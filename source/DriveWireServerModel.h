@@ -23,7 +23,6 @@
 #define DW_DEFAULT_VERSION       3
 
 #define	_OP_NOP                 '\0'
-//#define	_OP_RESYNC              '\1'
 #define	_OP_TIME                '#'
 #define	_OP_INIT                'I'
 #define	_OP_TERM                'T'
@@ -65,7 +64,7 @@
 #define _OP_NAMEOBJ_MOUNT        0x01 /* Named Object Mount */
 #define _OP_NAMEOBJ_CREATE       0x02 /* Named Object Create */
 
-
+// OS-9 Errors
 #define E_ILLNUM                 16
 #define E_CRC                    243
 
@@ -78,6 +77,14 @@
 
 @end
 
+typedef enum {
+    MachineTypeCoCo1_38_4 = 1,
+    MachineTypeCoCo2_57_6,
+    MachineTypeCoCo3_115_2,
+    MachineTypeCoCo1_57_6,
+    MachineTypeAtariLiber809_57_6,
+} MachineType;
+
 /*!
 	@class DriveWireServerModel
 	This class encapsulates the entire DriveWire protocol.
@@ -85,55 +92,48 @@
 @interface DriveWireServerModel : NSObject
 {
 	TBSerialPort			*fPort;
-	NSMutableDictionary	*fSerialPortNames;
-	NSString             *fCurrentPort;
+	NSMutableDictionary     *fSerialPortNames;
+	NSString                *fCurrentPort;
 	
-	Boolean					statState;
-	Boolean					logState;
-	Boolean					wirebugState;
-	int						machineType;
+	MachineType				_machineType;
 
 	NSMutableArray			*driveArray;
 	NSFileHandle			*portDelegate;
 	
-	// Protocol management variables
-    const u_char			*dataBytes;
-    int						dataLength;
-    SEL						currentState;
-	Boolean					validateWithCRC;
-	NSTimer					*watchDog;
-
 	// Statistics Dictionary
-	NSMutableDictionary	*statistics;
+	NSMutableDictionary     *statistics;
 
 	// Registers Dictionary
-	NSMutableDictionary	*registers;
+	NSMutableDictionary     *registers;
 
 	// Server version
 	int						version;
 
 	// Response used for OP_READEX
-   uint16_t             readexChecksum;
-	unsigned char        readexResponse;
+    uint16_t                readexChecksum;
+	unsigned char           readexResponse;
 
 	// Flags used for OP_WIREBUG_MODE
-	unsigned char        wirebugOpcode;
-	unsigned char        wirebugCoCoType;
-	unsigned char        wirebugCPUType;
+	unsigned char           wirebugOpcode;
+	unsigned char           wirebugCoCoType;
+	unsigned char           wirebugCPUType;
 	
 	// Registers used for WireBug
-	u_int8_t	_cc, _dp, _a, _b, _e, _f, _md;
-	u_int16_t	_v, _x, _y, _u, _s, _pc;
-	// Address of memory to view
-	u_int16_t	memAddress;
+	u_int8_t                _cc, _dp, _a, _b, _e, _f, _md;
+	u_int16_t               _v, _x, _y, _u, _s, _pc;
 
-	int nameobj_size;
-	int driveCount;
+    // Address of memory to view
+	u_int16_t               memAddress;
+
+	int                     nameobj_size;
+	int                     driveCount;
 	
-   NSMutableData *printBuffer;
-   
+    NSMutableData           *printBuffer;
 }
 
+@property (assign) BOOL statState;
+@property (assign) BOOL logState;
+@property (assign) BOOL wirebugState;
 @property (assign) id<DriveWireDelegate> delegate;
 @property (strong) NSArray *serialChannels;
 
@@ -143,14 +143,11 @@
  */
 - (id)init;
 
-
-
 /*!
 	@method initWithVersion
 	@abstract Initializes the object with a specific DriveWire version.
  */
 - (id)initWithVersion:(int)versionNumber;
-
 
 /*!
 	@method driveArray
@@ -159,16 +156,12 @@
  */
 - (NSMutableArray *)driveArray;
 
-
-
 /*!
 	@method portDelegate
 	@abstract Returns the serial port.
 	@result A pointer to the serial port object.
  */
 - (id)portDelegate;
-
-
 
 /*!
 	@method setPortDelegate
@@ -177,7 +170,6 @@
  */
 - (void)setPortDelegate:(id)new_handler;
 
-
 /*!
 	@method setMemAddress
 	@abstract Sets the memory address used to inspect memory.
@@ -185,17 +177,10 @@
  */
 - (void)setMemAddress:(u_int16_t)new_address;
 
-
-- (void)setMachineType:(int)whichCoCo;
+- (void)setMachineType:(MachineType)machine;
 - (Boolean)setCommPort:(NSString *)thePort;
-- (void)setStatState:(Boolean)state;
-- (void)setLogState:(Boolean)state;
-- (void)setWirebugState:(Boolean)state;
 - (NSString *)serialPort;
-- (int)machineType;
-- (Boolean)statState;
-- (Boolean)logState;
-- (Boolean)wirebugState;
+- (MachineType)machineType;
 
 - (void)goCoCo;
 

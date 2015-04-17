@@ -8,21 +8,21 @@
 #import "LogView.h"
 #import "StatsView.h"
 
-
 @interface DriveWireDocument : NSDocument <DriveWireDelegate>
 {
-   IBOutlet VirtualDriveJukeBoxView *driveView;
-	IBOutlet NSPopUpButton *serialPortButton;
-	IBOutlet NSButton	*speedSwitch;
+    IBOutlet VirtualDriveJukeBoxView *driveView;
+    IBOutlet NSPopUpButton *serialPortButton;
+    IBOutlet NSPopUpButton *machineTypePopupButton;
+    IBOutlet NSImageView *machineImageView;
 	IBOutlet LogView	*logView;
 	IBOutlet StatsView	*statsView;
-   IBOutlet NSDrawer *debugDrawer;
-   IBOutlet NSButton *loggingSwitch;
-   IBOutlet NSButton *statSwitch;
+    IBOutlet NSDrawer *debugDrawer;
+    IBOutlet NSButton *loggingSwitch;
+    IBOutlet NSButton *statSwitch;
 	int lastPortSelected;
-   NSWindowController *myWindowController;
-   IBOutlet DebuggerWindowController *debuggerWindowController;
-   IBOutlet PrinterWindowController *printerWindowController;
+    NSWindowController *myWindowController;
+    IBOutlet DebuggerWindowController *debuggerWindowController;
+    IBOutlet PrinterWindowController *printerWindowController;
    
 	DriveWireServerModel	*dwModel;
 }

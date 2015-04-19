@@ -13,6 +13,26 @@
 @implementation DriveWireDocument
 
 
++ (void)initializeDefaults;
+{
+#if 0
+    NSDictionary *initialValues = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   [NSNumber numberWithBool:TRUE], @"ApplePersistenceIgnoreState",
+                                   nil];
+    
+    [[NSUserDefaults standardUserDefaults] registerDefaults:initialValues];
+#endif
+}
+
++ (void)initialize;
+{
+    if ([[self className] isEqualToString:[DriveWireDocument className]])
+    {
+        // Initialize our defaults right away
+        [DriveWireDocument initializeDefaults];
+    }
+}
+
 #pragma mark -
 #pragma mark Init/Dealloc
 
@@ -21,6 +41,7 @@
     if (self = [super init])
 	{
 		// All of our initialization is done in windowControllerDidLoadNib
+        self.log = [TBLog sharedLog];
 	}
 
     return self;
@@ -30,10 +51,9 @@
 {
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	NSMutableArray *driveArray = [self.dwModel driveArray];
-	int i;
 	
 	// Remove observer of printer messages
-	[nc removeObserver:printerWindowController name:@"DWPrint" object:self.dwModel];
+	[nc removeObserver:self.printerWindowController name:@"DWPrint" object:self.dwModel];
    
 	// Remove observer of statistics messages
 	[nc removeObserver:statsView name:@"DWStats" object:self.dwModel];
@@ -41,12 +61,15 @@
 	// Remove observer of log messages
 	[nc removeObserver:logView name:@"DWStats" object:self.dwModel];
 	
-	for (i = 0; i < [driveArray count]; i++)
+	for (int i = 0; i < [driveArray count]; i++)
 	{
 		// Remove ourself as an observer of cartridge insert/eject messages for each drive
 		[nc removeObserver:self name:@"cartridgeWasInserted" object:[driveArray objectAtIndex:i]];
 		[nc removeObserver:self name:@"cartridgeWasEjected" object:[driveArray objectAtIndex:i]];
-	}	
+	}
+    
+    [self removeWindowController:self.printerWindowController];
+    [self removeWindowController:self.debuggerWindowController];
 }
 
 - (NSString *)windowNibName;
@@ -61,8 +84,14 @@
     int i;
     NSString *currentPort, *portTitle = nil;
 	
+    [aController setShouldCloseDocument:YES];
+    
     myWindowController = aController;
-   
+
+    // add our window controllers
+    [self addWindowController:self.printerWindowController];
+    [self addWindowController:self.debuggerWindowController];
+    
     if (self.dwModel == nil)
     {
         self.dwModel = [[DriveWireServerModel alloc] init];
@@ -130,11 +159,11 @@
 	// Add the statsView as an observer of statistics messages
 	[nc addObserver:statsView selector:@selector(updateStats:) name:@"DWStats" object:self.dwModel];
 
-	// Add the logView as an observer of log messages
-	[nc addObserver:logView selector:@selector(updateLog:) name:@"DWStats" object:self.dwModel];
+	// Add the logView as an observer of TBLog messages
+    [nc addObserver:logView selector:@selector(update:) name:kTBLogNotification object:nil];
 
     // Add the printerWindowController as an observer of print messages
-    [nc addObserver:printerWindowController selector:@selector(updatePrintBuffer:) name:@"DWPrint" object:self.dwModel];
+    [nc addObserver:self.printerWindowController selector:@selector(updatePrintBuffer:) name:@"DWPrint" object:self.dwModel];
 	
 //   [debugDrawer open];
    
@@ -165,23 +194,23 @@
 
 - (void)updateInfoView:(NSDictionary *)info;
 {
-    [logView update:info];
+//    [logView update:info];
     [statsView update:info];
 }
 
 - (void)updateMemoryView:(NSDictionary *)info;
 {
-    [debuggerWindowController updateMemory:info];
+    [self.debuggerWindowController updateMemory:info];
 }
 
 - (void)updateRegisterView:(NSDictionary *)info;
 {
-    [debuggerWindowController updateRegisters:info];
+    [self.debuggerWindowController updateRegisters:info];
 }
 
 - (void)updatePrinterView:(NSDictionary *)info;
 {
-    [printerWindowController updatePrintBuffer:[info objectForKey:@"PrintData"]];
+    [self.printerWindowController updatePrintBuffer:[info objectForKey:@"PrintData"]];
 }
 
 - (void)updateUIComponents;
@@ -213,12 +242,12 @@
 
 - (NSData *)dataRepresentationOfType:(NSString *)aType;
 {
-    return [NSArchiver archivedDataWithRootObject:self.dwModel];
+    return [NSKeyedArchiver archivedDataWithRootObject:self.dwModel];
 }
 
 - (BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)aType;
 {
-	self.dwModel = [NSUnarchiver unarchiveObjectWithData:data];
+	self.dwModel = [NSKeyedUnarchiver unarchiveObjectWithData:data];
 	
 	return YES;
 }
@@ -307,6 +336,16 @@
 {
    [debugDrawer close];
    [self.dwModel goCoCo];
+}
+
+- (void)viewWireBugWindow:(id)sender;
+{
+    [self.debuggerWindowController showWindow:self];
+}
+
+- (void)viewPrinterWindow:(id)sender;
+{
+    [self.printerWindowController showWindow:self];
 }
 
 @end

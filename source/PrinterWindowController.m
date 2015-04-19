@@ -23,7 +23,7 @@
    [[self window] orderOut:nil]; // to hide it
 }
 
-- (void)updatePrintBuffer:(NSData *)data;
+- (void)updatePrintBufferMainThread:(NSData *)data;
 {
     NSString *s = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     [printView setEditable:TRUE];
@@ -32,6 +32,11 @@
     [printView insertText:s];
     [printView setEditable:FALSE];
     [self showWindow:self];
+}
+
+- (void)updatePrintBuffer:(NSData *)data;
+{
+    [self performSelectorOnMainThread:@selector(updatePrintBufferMainThread:) withObject:data waitUntilDone:YES];
 }
 
 - (IBAction)clear:(id)sender;
@@ -64,6 +69,11 @@
     op = [NSPrintOperation printOperationWithView:pv printInfo:myPrintInfo];
     [op setShowsPrintPanel:YES];
     [op runOperationModalForWindow:[self window] delegate:nil didRunSelector:NULL contextInfo:NULL];
+}
+
+- (NSString *)windowTitleForDocumentDisplayName:(NSString *)displayName;
+{
+    return [NSString stringWithFormat:@"Virtual Printer - %@", displayName];
 }
 
 @end

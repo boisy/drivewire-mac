@@ -79,7 +79,7 @@
 - (NSData *)readSectors:(uint32_t)lsn forCount:(uint32_t)count;
 
 // Writes the number of passed sectors to the cartridge
-- (NSData *)writeSectors:(uint32_t)lsn forCount:(uint32_t)count sectors:(NSData *)sectors;
+- (void)writeSectors:(uint32_t)lsn forCount:(uint32_t)count sectors:(NSData *)sectors;
 
 // LED handlers
 - (void)ledRead;

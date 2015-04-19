@@ -200,7 +200,17 @@ typedef enum
  */
 - (void)sweepLogs;
 
+/*!
+ @method showInConsole
+ @discussion Launches the OS X Console with the current log in view
+ */
 - (void)showInConsole;
+
+/*!
+ @method logLabels
+ @discussion Returns the array of log labels -- useful for populating UI elements like NSPopUpButtons
+ */
+- (NSArray *)logLabels;
 
 @end
 

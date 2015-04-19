@@ -8,12 +8,17 @@
     NSRange range = {[[logTextView string] length], 0};
     [logTextView setSelectedRange:range];
     [logTextView insertText:logString];
+    [logTextView insertText:@"\n"];
     [logTextView setEditable:FALSE];
 }
 
+
+#pragma mark -
+#pragma mark Init/Dealloc Methods
+
 - (id)initWithFrame:(NSRect)frameRect;
 {
-	if ((self = [super initWithFrame:frameRect]) != nil)
+    if ((self = [super initWithFrame:frameRect]) != nil)
 	{
 	}
 
@@ -22,8 +27,8 @@
 
 - (void)awakeFromNib;
 {
-   [logTextView setEditable:FALSE];
-   [logTextView setContinuousSpellCheckingEnabled:FALSE];
+    [logTextView setEditable:FALSE];
+    [logTextView setContinuousSpellCheckingEnabled:FALSE];
 }
 
 - (void)dealloc
@@ -36,28 +41,31 @@
 
 - (IBAction)clearLog:(id)sender;
 {
-   [logTextView setEditable:TRUE];
+    [logTextView setEditable:TRUE];
 	[logTextView selectAll:sender];
 	[logTextView cut:sender];
-   [logTextView setEditable:FALSE];
+    [logTextView setEditable:FALSE];
 }
 
 - (IBAction)copyLog:(id)sender;
 {
 	NSRange range = {0, 0};
-   [logTextView setEditable:TRUE];
+    [logTextView setEditable:TRUE];
 	[logTextView selectAll:sender];
 	[logTextView copy:sender];
 	[logTextView setSelectedRange:range];
-   [logTextView setEditable:FALSE];
+    [logTextView setEditable:FALSE];
 }
 
-- (void)update:(NSDictionary *)info;
+- (void)update:(NSNotification *)note;
 {
-	NSString *logString = [info objectForKey:@"OpCode"];
-	NSString *rightNow = [[NSDate date] descriptionWithCalendarFormat:@"%Y-%m-%d %H:%M:%S" timeZone:nil locale:nil];
+    NSDictionary *info = [note object];
+    
+	NSString *logString = [info objectForKey:@"message"];
+//	NSString *rightNow = [[NSDate date] descriptionWithCalendarFormat:@"%Y-%m-%d %H:%M:%S" timeZone:nil locale:nil];
 	
-	if ([logString isEqualToString:@"OP_GETSTAT"] == YES)
+#if 0
+    if ([logString isEqualToString:@"OP_GETSTAT"] == YES)
 	{
 		logString = [NSString stringWithFormat:@"%@ %@[%@] Code[%@]\n", rightNow, [info objectForKey:@"OpCode"], [info objectForKey:@"DriveNumber"],
 			[info objectForKey:@"GetStat"]];
@@ -95,7 +103,8 @@
 	{
 		logString = [NSString stringWithFormat:@"%@ %@\n", rightNow, logString];
 	}
-	
+#endif
+    
     [self performSelectorOnMainThread:@selector(updateLog:) withObject:logString waitUntilDone:YES];
 }
 

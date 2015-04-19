@@ -1,5 +1,5 @@
 //
-//  VSerialChannel.h
+//  VirtualSerialChannel.h
 //  DriveWire MacServer
 //
 //  Created by Boisy Pitre on 4/15/15.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface VSerialChannel : NSObject
+@interface VirtualSerialChannel : NSObject
 
 @property (assign) NSUInteger number;
 @property (strong) NSMutableData *incomingBuffer; // incoming TO CoCo

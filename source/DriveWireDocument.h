@@ -21,11 +21,12 @@
     IBOutlet NSButton *statSwitch;
 	int lastPortSelected;
     NSWindowController *myWindowController;
-    IBOutlet DebuggerWindowController *debuggerWindowController;
-    IBOutlet PrinterWindowController *printerWindowController;
 }
 
 @property (strong) DriveWireServerModel *dwModel;
+@property (strong) TBLog *log;
+@property (assign) IBOutlet DebuggerWindowController *debuggerWindowController;
+@property (assign) IBOutlet PrinterWindowController *printerWindowController;
 
 - (void)updateInfoView:(NSDictionary *)info;
 - (void)updateMemoryView:(NSDictionary *)info;
@@ -39,5 +40,8 @@
 - (IBAction)setSerialPort:(id)sender;
 - (void)driveNotification:(NSNotification *)note;
 - (IBAction)goCoCo:(id)sender;
+
+- (void)viewWireBugWindow:(id)sender;
+- (void)viewPrinterWindow:(id)sender;
 
 @end

@@ -162,9 +162,8 @@ typedef enum {LED_OFF, LED_READ, LED_WRITE} ledState;
 	@param lsn The starting logical sector number where the write will occur.
 	@param count The number of sectors to write.
 	@param sectors A pointer to the sector data to write.
-	@result An NSData pointer holding the address of the sector data.  If an error occurred, nil is returned.
 */
-- (NSData *)writeSectors:(uint32_t)lsn forCount:(uint32_t)count withData:(NSData *)sectors;
+- (void)writeSectors:(uint32_t)lsn forCount:(uint32_t)count withData:(NSData *)sectors;
 
 
 - (void)turnOnReadLED:(id)sender time:(NSTimeInterval)timeValue;

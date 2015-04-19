@@ -1,14 +1,14 @@
 //
-//  VSerialChannel.m
+//  VirtualSerialChannel.m
 //  DriveWire MacServer
 //
 //  Created by Boisy Pitre on 4/15/15.
 //
 //
 
-#import "VSerialChannel.h"
+#import "VirtualSerialChannel.h"
 
-@implementation VSerialChannel
+@implementation VirtualSerialChannel
 
 - (void)open;
 {

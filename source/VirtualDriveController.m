@@ -32,9 +32,31 @@
 
 @implementation VirtualDriveController
 
-#pragma mark Init Methods
+#pragma mark -
+#pragma mark Init/Dealloc Methods
 
-- (id)init
+- (id)initWithCoder:(NSCoder *)coder;
+{
+    if ((self = [super init]))
+    {
+        model = [coder decodeObject];
+        
+        [self initDesignated];
+        
+        // insert the cartridge
+        [self insertCartridge:[coder decodeObject]];
+    }
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder;
+{
+    [coder encodeObject:model];
+    [coder encodeObject:[self cartridgePath]];
+}
+
+- (id)init;
 {
 	if ((self = [super init]) != nil)
 	{
@@ -43,7 +65,6 @@
 		if (model == nil)
 		{
 			// There was a problem allocating the model
-			
 			return nil;
 		}
 	}
@@ -53,17 +74,15 @@
 	return self;
 }
 
-
-
-- (void)initDesignated
+- (void)initDesignated;
 {
 	if ([NSBundle loadNibNamed:@"VirtualDriveView" owner:self] == NO)
 	{
 		TBDebug(@"We've got a load Nib problem\n");
 	}
    
-   // set ourself as the delegate of the model
-   [model setDelegate:self];
+    // set ourself as the delegate of the model
+    [model setDelegate:self];
 
 	// Turn off LEDs
 	[self ledOff];
@@ -72,16 +91,17 @@
 	[self ejectCartridge:self];
 }
 
-- (void)dealloc
+- (void)dealloc;
 {
 }
 
-- (VirtualDriveView *)view
+- (VirtualDriveView *)view;
 {
 	return virtualDriveView;
 }
 
 
+#pragma mark -
 #pragma mark Drive ID Methods
 
 - (void)setDriveID:(uint16_t)driveId;
@@ -96,6 +116,7 @@
 }
 
 
+#pragma mark -
 #pragma mark Cartridge Methods
 
 - (NSString *)cartridgeLabel
@@ -107,8 +128,6 @@
 {
     return [model cartridgePath];
 }
-
-
 
 - (void)selectAndInsertCartridge:(id)object
 {
@@ -139,9 +158,6 @@
 	}
 }
 
-
-
-
 - (BOOL)insertCartridge:(NSString *)cartridge
 {
 	TBInfo(@"Inserting Cartridge");
@@ -159,8 +175,6 @@
 	return YES;
 }
 
-
-
 - (IBAction)ejectCartridge:(id)object
 {
 	TBInfo(@"Ejecting Cartridge");
@@ -170,15 +184,13 @@
 	[diskLabel setHidden:YES];
 }
 
-
-
 - (BOOL)isEmpty
 {
 	return [model isEmpty];
 }
 
 
-
+#pragma mark -
 #pragma mark Sector Access Methods
 
 - (NSData *)readSectors:(uint32_t)lsn forCount:(uint32_t)count
@@ -188,37 +200,27 @@
 	return [model readSectors:lsn forCount:count];
 }
 
-
-
-- (NSData *)writeSectors:(uint32_t)lsn forCount:(uint32_t)count sectors:(NSData *)sectors
+- (void)writeSectors:(uint32_t)lsn forCount:(uint32_t)count sectors:(NSData *)sectors
 {
 	TBDebug(@"writeSectors LSN[%d] Count[%d]", lsn, count);
 	
-	return [model writeSectors:lsn forCount:count withData:sectors];
+    [model writeSectors:lsn forCount:count withData:sectors];
 }
-
-
 
 - (uint32_t)sectorsRead
 {
 	return [model sectorsRead];
 }
 
-
-
 - (uint32_t)sectorsWritten
 {
 	return [model sectorsWritten];
 }
 
-
-
 - (uint32_t)totalSectorsRead
 {
 	return [model totalSectorsRead];
 }
-
-
 
 - (uint32_t)totalSectorsWritten
 {
@@ -226,9 +228,8 @@
 }
 
 
-
+#pragma mark -
 #pragma mark LED Methods
-// Methods called when receiving LED commands from the model
 
 - (void)ledRead
 {
@@ -236,48 +237,16 @@
 	[writeLED setHidden:TRUE];
 }
 
-
-
 - (void)ledWrite
 {
 	[writeLED setHidden:FALSE];
 	[readLED setHidden:TRUE];
 }
 
-
-
 - (void)ledOff
 {
 	[readLED setHidden:TRUE];
 	[writeLED setHidden:TRUE];
 }
-
-
-#pragma mark Coding Methods
-
-- (id)initWithCoder:(NSCoder *)coder;
-{
-	if ((self = [super init]))
-	{
-		model = [coder decodeObject];
-
-		[self initDesignated];
-
-        // insert the cartridge
-		[self insertCartridge:[coder decodeObject]];
-	}
-	
-	return self;
-}
-
-
-
-- (void)encodeWithCoder:(NSCoder *)coder;
-{
-	[coder encodeObject:model];
-   [coder encodeObject:[self cartridgePath]];
-}
-
-
 
 @end

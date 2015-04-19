@@ -54,6 +54,7 @@ static int instanceCount = 0;
 
 - (void)initDesignated
 {
+    // capture the main runloop
     mainRunLoop = [NSRunLoop currentRunLoop];
 
     // Set the initial state of the drive
@@ -70,17 +71,17 @@ static int instanceCount = 0;
 	if (instanceCount == 0)
 	{
 //      NSBundle *myFrameworkBundle = [NSBundle bundleWithIdentifier:@"com.tee-boy.VirtualDrive"];
-      NSBundle *myFrameworkBundle = [NSBundle bundleForClass:[self class]];
-      TBDebug(@"myFrameworksBundle = %@", [myFrameworkBundle description]);
+        NSBundle *myFrameworkBundle = [NSBundle bundleForClass:[self class]];
+        TBDebug(@"myFrameworksBundle = %@", [myFrameworkBundle description]);
 
-      NSString *insertSoundPath = [myFrameworkBundle pathForResource:@"insert" ofType:@"wav"];
-      insertSound = [[NSSound alloc] initWithContentsOfFile:insertSoundPath byReference:YES];
-      TBDebug(@"insertSoundPath = %@, insertSound = 0x%@", insertSoundPath, insertSound);
+        NSString *insertSoundPath = [myFrameworkBundle pathForResource:@"insert" ofType:@"wav"];
+        insertSound = [[NSSound alloc] initWithContentsOfFile:insertSoundPath byReference:YES];
+        TBDebug(@"insertSoundPath = %@, insertSound = 0x%@", insertSoundPath, insertSound);
 		[insertSound setDelegate:self];
       
-      NSString *ejectSoundPath = [myFrameworkBundle pathForResource:@"eject" ofType:@"wav"];
-      ejectSound = [[NSSound alloc] initWithContentsOfFile:ejectSoundPath byReference:YES];
-      TBDebug(@"ejectSoundPath = %@, ejectSound = 0x%@", ejectSoundPath, ejectSound);
+        NSString *ejectSoundPath = [myFrameworkBundle pathForResource:@"eject" ofType:@"wav"];
+        ejectSound = [[NSSound alloc] initWithContentsOfFile:ejectSoundPath byReference:YES];
+        TBDebug(@"ejectSoundPath = %@, ejectSound = 0x%@", ejectSoundPath, ejectSound);
 	}
 	
 	instanceCount++;
@@ -132,29 +133,28 @@ static int instanceCount = 0;
 
 - (BOOL)insertCartridge:(NSString *)cartridgeName
 {
-    if (cartridgeHandle != nil)
-    {
-        // User didn't close!
-        return FALSE;
-    }
+    BOOL result = FALSE;
     
-    cartridgeHandle = [NSFileHandle fileHandleForUpdatingAtPath:cartridgeName];
-	
     if (cartridgeHandle == nil)
     {
-        return FALSE;
+        cartridgeHandle = [NSFileHandle fileHandleForUpdatingAtPath:cartridgeName];
+        
+        if (cartridgeHandle != nil)
+        {
+            // Turn on Read LED
+            [self turnOnReadLED:self time:1.0];
+
+            // Play the "insert" sound
+            [insertSound play];		
+            
+            // Thread-safe exchange of cartridgePath
+            cartridgePath = cartridgeName;
+            
+            result = TRUE;
+        }
     }
-
-	// Turn on Read LED
-	[self turnOnReadLED:self time:1.0];
-
-	// Play the "insert" sound
-	[insertSound play];		
 	
-	// Thread-safe exchange of cartridgePath
-	cartridgePath = cartridgeName;
-	
-    return TRUE;
+    return result;
 }
 
 - (void)ejectCartridge
@@ -181,71 +181,67 @@ static int instanceCount = 0;
 
 - (BOOL)isEmpty
 {
+    BOOL result = FALSE;
+    
     // Determine if the drive is empty
-    if (cartridgeHandle != nil)
+    if (cartridgeHandle == nil)
     {
-		return FALSE;
+        result = TRUE;
     }
 	
-    return TRUE;
+    return result;
 }
 
 
+#pragma mark -
 #pragma mark Sector Access Methods
 
 - (NSData *)readSectors:(uint32_t)lsn forCount:(uint32_t)count
 {
-    NSData *sectors;
+    NSData *result = nil;
     unsigned long long offset = lsn * sectorSize;
 	
     // Determine there is a disk in the drive
-    if (cartridgeHandle == nil)
+    if (cartridgeHandle != nil)
     {
-        return nil;
+        // Turn on Read LED
+        [self turnOnReadLED:self time:0.1];
+        
+        // Seek to offset based on LSN passed.
+        [cartridgeHandle seekToFileOffset:offset];
+        
+        // Read sector at current position.
+        result = [cartridgeHandle readDataOfLength:sectorSize * count];
+        
+        sectorReadCount += count;
+        totalSectorReadCount += count;
     }
 	
-	// Turn on Read LED
-	[self turnOnReadLED:self time:0.1];
-	
-    // Seek to offset based on LSN passed.
-    [cartridgeHandle seekToFileOffset:offset];
-	
-    // Read sector at current position.
-    sectors = [cartridgeHandle readDataOfLength:sectorSize * count];
-	
-	sectorReadCount += count;
-	totalSectorReadCount += count;
-	
     // Return sectors passed.
-    return sectors;
+    return result;
 }
 
-
-
-- (NSData *)writeSectors:(uint32_t)lsn forCount:(uint32_t)count withData:(NSData *)sectors
+- (void)writeSectors:(uint32_t)lsn forCount:(uint32_t)count withData:(NSData *)sectors;
 {
     unsigned long long offset = lsn * sectorSize;
 		
     // Determine there is a disk in the drive
-    if (cartridgeHandle == nil)
+    if (cartridgeHandle != nil)
     {
-        return nil;
+        // Turn on write LED
+        [self turnOnWriteLED:self time:0.1];
+        
+        // Seek to offset based on LSN passed
+        [cartridgeHandle seekToFileOffset:offset];
+        
+        // Write sector at current position.
+        [cartridgeHandle writeData:sectors];
+        
+        sectorWriteCount += count;
+        totalSectorWriteCount += count;
     }
 	
-	// Turn on write LED
-	[self turnOnWriteLED:self time:0.1];
-	
-	// Seek to offset based on LSN passed
-    [cartridgeHandle seekToFileOffset:offset];
-	
-    // Write sector at current position.
-    [cartridgeHandle writeData:sectors];
-	
-	sectorWriteCount += count;
-	totalSectorWriteCount += count;
-	
-    // Return sectors passed.
-    return sectors;
+    return;
 }
 
 - (uint32_t)sectorsRead
@@ -269,6 +265,7 @@ static int instanceCount = 0;
 }
 
 
+#pragma mark -
 #pragma mark LED Control Methods
 
 - (void)shutOffLED:(id)sender

@@ -136,22 +136,22 @@ static TBSerialManager *fSerialManager = nil;
     
     // Setup array of 16 serial data buffers
     self.serialChannels = [NSArray arrayWithObjects:
-                           [[VSerialChannel alloc] initWithNumber:0],
-                           [[VSerialChannel alloc] initWithNumber:1],
-                           [[VSerialChannel alloc] initWithNumber:2],
-                           [[VSerialChannel alloc] initWithNumber:3],
-                           [[VSerialChannel alloc] initWithNumber:4],
-                           [[VSerialChannel alloc] initWithNumber:5],
-                           [[VSerialChannel alloc] initWithNumber:6],
-                           [[VSerialChannel alloc] initWithNumber:7],
-                           [[VSerialChannel alloc] initWithNumber:8],
-                           [[VSerialChannel alloc] initWithNumber:9],
-                           [[VSerialChannel alloc] initWithNumber:10],
-                           [[VSerialChannel alloc] initWithNumber:11],
-                           [[VSerialChannel alloc] initWithNumber:12],
-                           [[VSerialChannel alloc] initWithNumber:13],
-                           [[VSerialChannel alloc] initWithNumber:14],
-                           [[VSerialChannel alloc] initWithNumber:15],
+                           [[VirtualSerialChannel alloc] initWithNumber:0],
+                           [[VirtualSerialChannel alloc] initWithNumber:1],
+                           [[VirtualSerialChannel alloc] initWithNumber:2],
+                           [[VirtualSerialChannel alloc] initWithNumber:3],
+                           [[VirtualSerialChannel alloc] initWithNumber:4],
+                           [[VirtualSerialChannel alloc] initWithNumber:5],
+                           [[VirtualSerialChannel alloc] initWithNumber:6],
+                           [[VirtualSerialChannel alloc] initWithNumber:7],
+                           [[VirtualSerialChannel alloc] initWithNumber:8],
+                           [[VirtualSerialChannel alloc] initWithNumber:9],
+                           [[VirtualSerialChannel alloc] initWithNumber:10],
+                           [[VirtualSerialChannel alloc] initWithNumber:11],
+                           [[VirtualSerialChannel alloc] initWithNumber:12],
+                           [[VirtualSerialChannel alloc] initWithNumber:13],
+                           [[VirtualSerialChannel alloc] initWithNumber:14],
+                           [[VirtualSerialChannel alloc] initWithNumber:15],
                            nil
                            ];
     return;
@@ -212,12 +212,12 @@ static TBSerialManager *fSerialManager = nil;
     {
         NSString *savedPort;
         
-        driveArray = [coder decodeObject];
-        [coder decodeValueOfObjCType:@encode(int) at:&version];
-        savedPort = [coder decodeObject];
-        [coder decodeValueOfObjCType:@encode(Boolean) at:&_statState];
-        [coder decodeValueOfObjCType:@encode(Boolean) at:&_logState];
-        [coder decodeValueOfObjCType:@encode(int) at:&_machineType];
+        driveArray = [coder decodeObjectForKey:@"driveArray"];
+        version = [coder decodeIntegerForKey:@"version"];
+        savedPort = [coder decodeObjectForKey:@"port"];
+        self.statState = [coder decodeBoolForKey:@"statState"];
+        self.logState = [coder decodeBoolForKey:@"logState"];
+        self.machineType = [coder decodeIntegerForKey:@"_machineType"];
         
         [self initCommon];
         
@@ -234,12 +234,12 @@ static TBSerialManager *fSerialManager = nil;
 - (void)encodeWithCoder:(NSCoder *)coder;
 {
     NSArray *encodedDriveArray = [driveArray subarrayWithRange:NSMakeRange(0, 4)];
-    [coder encodeObject:encodedDriveArray];
-    [coder encodeValueOfObjCType:@encode(int) at:&version];
-    [coder encodeObject:fCurrentPort];
-    [coder encodeValueOfObjCType:@encode(Boolean) at:&_statState];
-    [coder encodeValueOfObjCType:@encode(Boolean) at:&_logState];
-    [coder encodeValueOfObjCType:@encode(int) at:&_machineType];
+    [coder encodeObject:encodedDriveArray forKey:@"driveArray"];
+    [coder encodeInteger:version forKey:@"version"];
+    [coder encodeObject:fCurrentPort forKey:@"port"];
+    [coder encodeBool:self.statState forKey:@"statState"];
+    [coder encodeBool:self.logState forKey:@"logState"];
+    [coder encodeInteger:self.machineType forKey:@"machineType"];
 }
 
 - (void)dealloc
@@ -468,7 +468,8 @@ static TBSerialManager *fSerialManager = nil;
         [invocation invoke];
         [invocation getReturnValue:&bytesConsumed];
         
-        NSLog(@"Data = %@", self.serialBuffer);
+        TBDebug(@"Incoming bytes: %@", self.serialBuffer);
+        
         // chop off consumed bytes
         [self.serialBuffer replaceBytesInRange:NSMakeRange(0, bytesConsumed) withBytes:nil length:0];
     } while (bytesConsumed > 0 && [self.serialBuffer length] > 0);
@@ -493,6 +494,10 @@ static TBSerialManager *fSerialManager = nil;
         case _OP_TIME:
             [self OP_TIME];
 			break;
+            
+        case _OP_PRINT:
+            self.currentState = @selector(OP_PRINT:);
+            break;
             
        case _OP_PRINTFLUSH:
             [self OP_PRINTFLUSH];
@@ -1480,7 +1485,7 @@ static TBSerialManager *fSerialManager = nil;
             case 0x29: // SS.Open
                 // open channel
             {
-                VSerialChannel *channel = [self channelWithNumber:channelNumber];
+                VirtualSerialChannel *channel = [self channelWithNumber:channelNumber];
                 [channel open];
                 break;
             }
@@ -1488,7 +1493,7 @@ static TBSerialManager *fSerialManager = nil;
             case 0x2A: // SS.Close
                 // close channel
             {
-                VSerialChannel *channel = [self channelWithNumber:channelNumber];
+                VirtualSerialChannel *channel = [self channelWithNumber:channelNumber];
                 [channel close];
                 break;
             }
@@ -1507,7 +1512,7 @@ static TBSerialManager *fSerialManager = nil;
 - (void)OP_SERREAD;
 {
     u_char response[2] = {0, 0};
-    VSerialChannel *channel = nil;
+    VirtualSerialChannel *channel = nil;
     BOOL dataReady = FALSE;
     
     for (channel in self.serialChannels)
@@ -1547,7 +1552,7 @@ static TBSerialManager *fSerialManager = nil;
         
         NSUInteger channelNumber = bytes[0];
         
-        VSerialChannel *channel = [self channelWithNumber:channelNumber];
+        VirtualSerialChannel *channel = [self channelWithNumber:channelNumber];
         [channel putByte:bytes[1]];
     }
     
@@ -1574,7 +1579,7 @@ static TBSerialManager *fSerialManager = nil;
         NSUInteger channelNumber = bytes[0];
         NSUInteger bytesToRead = bytes[1];
         
-        VSerialChannel *channel = [self channelWithNumber:channelNumber];
+        VirtualSerialChannel *channel = [self channelWithNumber:channelNumber];
         NSData *dataToRead = [channel getNumberOfBytes:bytesToRead];
 
         [portDelegate writeData:dataToRead];
@@ -1609,11 +1614,11 @@ static TBSerialManager *fSerialManager = nil;
     return result;
 }
 
-- (VSerialChannel *)channelWithNumber:(u_int8_t)number;
+- (VirtualSerialChannel *)channelWithNumber:(u_int8_t)number;
 {
-    VSerialChannel *channel = nil;
+    VirtualSerialChannel *channel = nil;
 
-    for (VSerialChannel *searchChannel in self.serialChannels)
+    for (VirtualSerialChannel *searchChannel in self.serialChannels)
     {
         if (channel.number == number)
         {
@@ -1638,7 +1643,7 @@ static TBSerialManager *fSerialManager = nil;
         
         NSUInteger channelNumber = self.serwritemChannelNumber;
         
-        VSerialChannel *channel = [self channelWithNumber:channelNumber];
+        VirtualSerialChannel *channel = [self channelWithNumber:channelNumber];
         [channel putBytes:bytes length:result];
         
         // Update log
@@ -1664,7 +1669,7 @@ static TBSerialManager *fSerialManager = nil;
         
         NSUInteger channelNumber = bytes[0] & 0x7F;
         
-        VSerialChannel *channel = [self channelWithNumber:channelNumber];
+        VirtualSerialChannel *channel = [self channelWithNumber:channelNumber];
         [channel putByte:bytes[1]];
         
         // Update log

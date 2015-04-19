@@ -18,7 +18,7 @@
 #import <TeeBoy/TBSerialPort.h>
 #import <TeeBoy/TBSerialManager.h>
 #import "VirtualDriveController.h"
-#import "VSerialChannel.h"
+#import "VirtualSerialChannel.h"
 
 #define DW_DEFAULT_VERSION       3
 

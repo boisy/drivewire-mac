@@ -59,7 +59,7 @@
 	[nc removeObserver:statsView name:@"DWStats" object:self.dwModel];
 		
 	// Remove observer of log messages
-	[nc removeObserver:logView name:@"DWStats" object:self.dwModel];
+	[nc removeObserver:logView name:kTBLogNotification object:nil];
 	
 	for (int i = 0; i < [driveArray count]; i++)
 	{

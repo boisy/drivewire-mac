@@ -330,6 +330,14 @@
 									<reference key="NSOnImage" ref="368815869"/>
 									<reference key="NSMixedImage" ref="623832413"/>
 								</object>
+								<object class="NSMenuItem" id="818887301">
+									<reference key="NSMenu" ref="588662856"/>
+									<string key="NSTitle">Network</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="368815869"/>
+									<reference key="NSMixedImage" ref="623832413"/>
+								</object>
 								<object class="NSMenuItem" id="887370836">
 									<reference key="NSMenu" ref="588662856"/>
 									<string key="NSTitle">Printer</string>
@@ -582,6 +590,14 @@
 						<reference key="destination" ref="704472321"/>
 					</object>
 					<int key="connectionID">255</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">viewNetworkWindow:</string>
+						<reference key="source" ref="956037858"/>
+						<reference key="destination" ref="818887301"/>
+					</object>
+					<int key="connectionID">259</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -870,6 +886,7 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="704472321"/>
 							<reference ref="887370836"/>
+							<reference ref="818887301"/>
 						</array>
 						<reference key="parent" ref="699249650"/>
 					</object>
@@ -910,6 +927,11 @@
 						<reference key="object" ref="887370836"/>
 						<reference key="parent" ref="588662856"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">256</int>
+						<reference key="object" ref="818887301"/>
+						<reference key="parent" ref="588662856"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -943,6 +965,7 @@
 				<string key="247.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="248.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="250.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="256.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="29.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="56.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -965,7 +988,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">255</int>
+			<int key="maxID">259</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1009,10 +1032,15 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">FirstResponder</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="viewNetworkWindow:">id</string>
 						<string key="viewPrinterWindow:">id</string>
 						<string key="viewWireBugWindow:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="viewNetworkWindow:">
+							<string key="name">viewNetworkWindow:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="viewPrinterWindow:">
 							<string key="name">viewPrinterWindow:</string>
 							<string key="candidateClassName">id</string>

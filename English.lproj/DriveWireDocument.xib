@@ -605,25 +605,6 @@
 																<object class="NSTextView" id="470695084">
 																	<reference key="NSNextResponder" ref="269374337"/>
 																	<int key="NSvFlags">2322</int>
-																	<set class="NSMutableSet" key="NSDragTypes">
-																		<string>Apple HTML pasteboard type</string>
-																		<string>Apple PDF pasteboard type</string>
-																		<string>Apple PICT pasteboard type</string>
-																		<string>Apple PNG pasteboard type</string>
-																		<string>Apple URL pasteboard type</string>
-																		<string>CorePasteboardFlavorType 0x6D6F6F76</string>
-																		<string>NSColor pasteboard type</string>
-																		<string>NSFilenamesPboardType</string>
-																		<string>NSStringPboardType</string>
-																		<string>NeXT Encapsulated PostScript v1.2 pasteboard type</string>
-																		<string>NeXT RTFD pasteboard type</string>
-																		<string>NeXT Rich Text Format v1.0 pasteboard type</string>
-																		<string>NeXT TIFF v4.0 pasteboard type</string>
-																		<string>NeXT font pasteboard type</string>
-																		<string>NeXT ruler pasteboard type</string>
-																		<string>WebURLsWithTitlesPboardType</string>
-																		<string>public.url</string>
-																	</set>
 																	<string key="NSFrameSize">{692, 165}</string>
 																	<reference key="NSSuperview" ref="269374337"/>
 																	<reference key="NSWindow"/>
@@ -759,7 +740,6 @@
 													<string key="NSFrame">{{633, -2}, {73, 32}}</string>
 													<reference key="NSSuperview" ref="166082803"/>
 													<reference key="NSWindow"/>
-													<reference key="NSNextKeyView"/>
 													<bool key="NSEnabled">YES</bool>
 													<object class="NSButtonCell" key="NSCell" id="969346390">
 														<int key="NSCellFlags">67108864</int>
@@ -1041,9 +1021,9 @@
 															<int key="NSTag">1</int>
 															<reference key="NSTarget" ref="1014613222"/>
 														</object>
-														<object class="NSMenuItem" id="527573985">
+														<object class="NSMenuItem" id="337148652">
 															<reference key="NSMenu" ref="147777023"/>
-															<string key="NSTitle">CoCo 2 @ 57.6K</string>
+															<string key="NSTitle">CoCo 1 @ 57.6K</string>
 															<string key="NSKeyEquiv"/>
 															<int key="NSKeyEquivModMask">1048576</int>
 															<int key="NSMnemonicLoc">2147483647</int>
@@ -1053,9 +1033,9 @@
 															<int key="NSTag">2</int>
 															<reference key="NSTarget" ref="1014613222"/>
 														</object>
-														<object class="NSMenuItem" id="805513963">
+														<object class="NSMenuItem" id="527573985">
 															<reference key="NSMenu" ref="147777023"/>
-															<string key="NSTitle">CoCo 3 @ 115.2K</string>
+															<string key="NSTitle">CoCo 2 @ 57.6K</string>
 															<string key="NSKeyEquiv"/>
 															<int key="NSKeyEquivModMask">1048576</int>
 															<int key="NSMnemonicLoc">2147483647</int>
@@ -1065,9 +1045,9 @@
 															<int key="NSTag">3</int>
 															<reference key="NSTarget" ref="1014613222"/>
 														</object>
-														<object class="NSMenuItem" id="337148652">
+														<object class="NSMenuItem" id="805513963">
 															<reference key="NSMenu" ref="147777023"/>
-															<string key="NSTitle">CoCo 1 @ 57.6K</string>
+															<string key="NSTitle">CoCo 3 @ 115.2K</string>
 															<string key="NSKeyEquiv"/>
 															<int key="NSKeyEquivModMask">1048576</int>
 															<int key="NSMnemonicLoc">2147483647</int>

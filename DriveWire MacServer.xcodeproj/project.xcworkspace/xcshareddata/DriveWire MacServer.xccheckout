@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>12726CD5-3F4B-4E4F-B149-4D716DB069B5</string>
 	<key>IDESourceControlProjectName</key>
-	<string>DriveWire MacServer</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>ECD04A75B5CF27ACDBFC8A7A39E1738F59C5FC94</key>
 		<string>github.com:boisy/DriveWire-MacServer.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>DriveWire MacServer.xcodeproj</string>
+	<string>DriveWire MacServer.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>ECD04A75B5CF27ACDBFC8A7A39E1738F59C5FC94</key>

@@ -34,6 +34,10 @@
 		686CA4071AE1C4EF00544862 /* VirtualScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 686CA4061AE1C4EF00544862 /* VirtualScreenController.m */; };
 		686CA40A1AE2726600544862 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 686CA4091AE2726600544862 /* GCDAsyncSocket.m */; };
 		686CA40C1AE272FE00544862 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 686CA40B1AE272FE00544862 /* Security.framework */; };
+		686CA44A1AE3E10100544862 /* NetworkWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 686CA4481AE3E10100544862 /* NetworkWindowController.m */; };
+		686CA44B1AE3E10100544862 /* NetworkWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686CA4491AE3E10100544862 /* NetworkWindowController.xib */; };
+		686CA44D1AE3E44400544862 /* NetworkConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686CA44C1AE3E44400544862 /* NetworkConnectionView.xib */; };
+		686CA4501AE3E5A800544862 /* NetworkConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 686CA44F1AE3E5A800544862 /* NetworkConnectionViewController.m */; };
 		68742C370F41A78E0049FEF6 /* DriveWireServerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 68742C360F41A78E0049FEF6 /* DriveWireServerModel.m */; };
 		68742E870F41B9EA0049FEF6 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68742E850F41B9EA0049FEF6 /* AppKit.framework */; };
 		68742E880F41B9EA0049FEF6 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68742E860F41B9EA0049FEF6 /* Cocoa.framework */; };
@@ -54,6 +58,9 @@
 		68C535D50F68971B00F39926 /* DriveWireDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68C535D30F68971B00F39926 /* DriveWireDocument.xib */; };
 		68C5367B0F6B4E2400F39926 /* DebuggerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C5367A0F6B4E2400F39926 /* DebuggerWindowController.m */; };
 		68C536B90F6B502200F39926 /* DisassemblerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C536B80F6B502200F39926 /* DisassemblerView.m */; };
+		68C7AFA71AE9C946005594CF /* VirtualSerialChannel+DWCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C7AFA61AE9C946005594CF /* VirtualSerialChannel+DWCommands.m */; };
+		68C7AFAA1AE9C996005594CF /* VirtualSerialChannel+TCPCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C7AFA91AE9C996005594CF /* VirtualSerialChannel+TCPCommands.m */; };
+		68C7AFAD1AE9C9CD005594CF /* VirtualSerialChannel+ATCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C7AFAC1AE9C9CD005594CF /* VirtualSerialChannel+ATCommands.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -127,6 +134,12 @@
 		686CA4081AE2726600544862 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		686CA4091AE2726600544862 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		686CA40B1AE272FE00544862 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		686CA4471AE3E10100544862 /* NetworkWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkWindowController.h; path = source/NetworkWindowController.h; sourceTree = "<group>"; };
+		686CA4481AE3E10100544862 /* NetworkWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkWindowController.m; path = source/NetworkWindowController.m; sourceTree = "<group>"; };
+		686CA4491AE3E10100544862 /* NetworkWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NetworkWindowController.xib; path = source/NetworkWindowController.xib; sourceTree = "<group>"; };
+		686CA44C1AE3E44400544862 /* NetworkConnectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NetworkConnectionView.xib; path = source/NetworkConnectionView.xib; sourceTree = "<group>"; };
+		686CA44E1AE3E5A800544862 /* NetworkConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkConnectionViewController.h; path = source/NetworkConnectionViewController.h; sourceTree = "<group>"; };
+		686CA44F1AE3E5A800544862 /* NetworkConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkConnectionViewController.m; path = source/NetworkConnectionViewController.m; sourceTree = "<group>"; };
 		6872687908A97EDD00ADD1F0 /* DriveWire Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "DriveWire Icon.icns"; path = "assets/DriveWire Icon.icns"; sourceTree = "<group>"; };
 		68742C360F41A78E0049FEF6 /* DriveWireServerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriveWireServerModel.m; sourceTree = "<group>"; };
 		68742E850F41B9EA0049FEF6 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
@@ -144,6 +157,12 @@
 		68C5367A0F6B4E2400F39926 /* DebuggerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebuggerWindowController.m; sourceTree = "<group>"; };
 		68C536B70F6B502200F39926 /* DisassemblerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisassemblerView.h; sourceTree = "<group>"; };
 		68C536B80F6B502200F39926 /* DisassemblerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisassemblerView.m; sourceTree = "<group>"; };
+		68C7AFA51AE9C946005594CF /* VirtualSerialChannel+DWCommands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VirtualSerialChannel+DWCommands.h"; sourceTree = "<group>"; };
+		68C7AFA61AE9C946005594CF /* VirtualSerialChannel+DWCommands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VirtualSerialChannel+DWCommands.m"; sourceTree = "<group>"; };
+		68C7AFA81AE9C996005594CF /* VirtualSerialChannel+TCPCommands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VirtualSerialChannel+TCPCommands.h"; sourceTree = "<group>"; };
+		68C7AFA91AE9C996005594CF /* VirtualSerialChannel+TCPCommands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VirtualSerialChannel+TCPCommands.m"; sourceTree = "<group>"; };
+		68C7AFAB1AE9C9CD005594CF /* VirtualSerialChannel+ATCommands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VirtualSerialChannel+ATCommands.h"; sourceTree = "<group>"; };
+		68C7AFAC1AE9C9CD005594CF /* VirtualSerialChannel+ATCommands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VirtualSerialChannel+ATCommands.m"; sourceTree = "<group>"; };
 		68DBD1DE0964F1A900B011C5 /* DWAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = DWAppDelegate.m; sourceTree = "<group>"; };
 		68DBD1DF0964F1A900B011C5 /* DWAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = DWAppDelegate.h; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* DriveWire MacServer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DriveWire MacServer-Info.plist"; sourceTree = "<group>"; };
@@ -188,12 +207,12 @@
 		2A37F4ABFDCFA73011CA2CEA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				686CA4081AE2726600544862 /* GCDAsyncSocket.h */,
-				686CA4091AE2726600544862 /* GCDAsyncSocket.m */,
+				686CA4461AE3E0D600544862 /* Network Window */,
+				686CA4421AE3505600544862 /* Socket */,
 				686CA3FE1AE1C4AC00544862 /* VirtualScreen */,
 				6809AD790F6C086D000BB954 /* VirtualDrive */,
-				68C537050F6B509A00F39926 /* Printer */,
-				68E20D4C098D173B00FF0CF2 /* Debugger */,
+				68C537050F6B509A00F39926 /* Printer Window */,
+				68E20D4C098D173B00FF0CF2 /* Debugger Window */,
 				68CED8D2095B30930055679A /* DriveWire */,
 				68CED8D1095B305F0055679A /* Application Management */,
 				68CED8C4095B302F0055679A /* Document Management */,
@@ -255,6 +274,28 @@
 			name = VirtualScreen;
 			sourceTree = "<group>";
 		};
+		686CA4421AE3505600544862 /* Socket */ = {
+			isa = PBXGroup;
+			children = (
+				686CA4081AE2726600544862 /* GCDAsyncSocket.h */,
+				686CA4091AE2726600544862 /* GCDAsyncSocket.m */,
+			);
+			name = Socket;
+			sourceTree = "<group>";
+		};
+		686CA4461AE3E0D600544862 /* Network Window */ = {
+			isa = PBXGroup;
+			children = (
+				686CA4471AE3E10100544862 /* NetworkWindowController.h */,
+				686CA4481AE3E10100544862 /* NetworkWindowController.m */,
+				686CA4491AE3E10100544862 /* NetworkWindowController.xib */,
+				686CA44E1AE3E5A800544862 /* NetworkConnectionViewController.h */,
+				686CA44F1AE3E5A800544862 /* NetworkConnectionViewController.m */,
+				686CA44C1AE3E44400544862 /* NetworkConnectionView.xib */,
+			);
+			name = "Network Window";
+			sourceTree = "<group>";
+		};
 		6872657F08A8163700ADD1F0 /* Statistics */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,13 +334,13 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		68C537050F6B509A00F39926 /* Printer */ = {
+		68C537050F6B509A00F39926 /* Printer Window */ = {
 			isa = PBXGroup;
 			children = (
 				68363D430F63182400CD8A1B /* PrinterWindowController.h */,
 				68363D440F63182400CD8A1B /* PrinterWindowController.m */,
 			);
-			name = Printer;
+			name = "Printer Window";
 			path = source;
 			sourceTree = "<group>";
 		};
@@ -333,6 +374,12 @@
 				68742C360F41A78E0049FEF6 /* DriveWireServerModel.m */,
 				68A1F6A81ADF59DF00A5B030 /* VirtualSerialChannel.h */,
 				68A1F6A91ADF59DF00A5B030 /* VirtualSerialChannel.m */,
+				68C7AFAB1AE9C9CD005594CF /* VirtualSerialChannel+ATCommands.h */,
+				68C7AFAC1AE9C9CD005594CF /* VirtualSerialChannel+ATCommands.m */,
+				68C7AFA51AE9C946005594CF /* VirtualSerialChannel+DWCommands.h */,
+				68C7AFA61AE9C946005594CF /* VirtualSerialChannel+DWCommands.m */,
+				68C7AFA81AE9C996005594CF /* VirtualSerialChannel+TCPCommands.h */,
+				68C7AFA91AE9C996005594CF /* VirtualSerialChannel+TCPCommands.m */,
 			);
 			name = DriveWire;
 			path = source;
@@ -350,7 +397,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		68E20D4C098D173B00FF0CF2 /* Debugger */ = {
+		68E20D4C098D173B00FF0CF2 /* Debugger Window */ = {
 			isa = PBXGroup;
 			children = (
 				68C536790F6B4E2400F39926 /* DebuggerWindowController.h */,
@@ -364,7 +411,7 @@
 				68C536B70F6B502200F39926 /* DisassemblerView.h */,
 				68C536B80F6B502200F39926 /* DisassemblerView.m */,
 			);
-			name = Debugger;
+			name = "Debugger Window";
 			path = source;
 			sourceTree = "<group>";
 		};
@@ -433,9 +480,11 @@
 				680612D41ADFC85200B1C502 /* CoCo1.png in Resources */,
 				686CA3FB1AE1162500544862 /* Atari.png in Resources */,
 				6809AF030F6C0DB6000BB954 /* eject.wav in Resources */,
+				686CA44D1AE3E44400544862 /* NetworkConnectionView.xib in Resources */,
 				6809AF040F6C0DB6000BB954 /* insert.wav in Resources */,
 				6809AF050F6C0DB6000BB954 /* redled.jpg in Resources */,
 				680612D51ADFC85200B1C502 /* CoCo2.png in Resources */,
+				686CA44B1AE3E10100544862 /* NetworkWindowController.xib in Resources */,
 				6809AF3E0F6C0F81000BB954 /* greenled.jpg in Resources */,
 				680612D61ADFC85200B1C502 /* CoCo3.png in Resources */,
 			);
@@ -448,13 +497,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68C7AFAD1AE9C9CD005594CF /* VirtualSerialChannel+ATCommands.m in Sources */,
 				68ADDF87096B7347002324CE /* DWAppDelegate.m in Sources */,
 				68ADDF8B096B7347002324CE /* LogView.m in Sources */,
 				68ADDF8D096B7347002324CE /* DriveWireDocument.m in Sources */,
 				68ADDF8F096B7347002324CE /* PreferenceController.m in Sources */,
+				68C7AFA71AE9C946005594CF /* VirtualSerialChannel+DWCommands.m in Sources */,
 				68ADDF91096B7347002324CE /* StatsView.m in Sources */,
 				68ADDF93096B7347002324CE /* VirtualDriveJukeBoxView.m in Sources */,
+				686CA44A1AE3E10100544862 /* NetworkWindowController.m in Sources */,
 				68742C370F41A78E0049FEF6 /* DriveWireServerModel.m in Sources */,
+				686CA4501AE3E5A800544862 /* NetworkConnectionViewController.m in Sources */,
 				686CA4071AE1C4EF00544862 /* VirtualScreenController.m in Sources */,
 				68190D2E0F47011400C4CDDD /* RegisterView.m in Sources */,
 				68190D310F47011F00C4CDDD /* MemoryView.m in Sources */,
@@ -465,6 +518,7 @@
 				6879C0281ADFC0750033AF94 /* main.m in Sources */,
 				68C536B90F6B502200F39926 /* DisassemblerView.m in Sources */,
 				6809AD840F6C08A6000BB954 /* VirtualDriveController.m in Sources */,
+				68C7AFAA1AE9C996005594CF /* VirtualSerialChannel+TCPCommands.m in Sources */,
 				6809AD850F6C08A6000BB954 /* VirtualDriveModel.m in Sources */,
 				6809AD860F6C08A6000BB954 /* VirtualDriveView.m in Sources */,
 				686CA4041AE1C4E000544862 /* VirtualScreenView.m in Sources */,
@@ -544,7 +598,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -570,6 +624,7 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				OTHER_CODE_SIGN_FLAGS = "--timestamp=none";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -592,7 +647,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -616,6 +671,7 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				OTHER_CODE_SIGN_FLAGS = "--timestamp=none";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,

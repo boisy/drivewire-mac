@@ -80,9 +80,9 @@
 
 typedef enum {
     MachineTypeCoCo1_38_4 = 1,
+    MachineTypeCoCo1_57_6,
     MachineTypeCoCo2_57_6,
     MachineTypeCoCo3_115_2,
-    MachineTypeCoCo1_57_6,
     MachineTypeAtariLiber809_57_6,
 } MachineType;
 

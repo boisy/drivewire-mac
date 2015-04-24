@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "68ADDE98096B723F002324CE"
-               BuildableName = "DriveWire MacServer.app"
+               BuildableName = "DriveWire.app"
                BlueprintName = "DriveWire MacServer"
                ReferencedContainer = "container:DriveWire MacServer.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "68ADDE98096B723F002324CE"
-            BuildableName = "DriveWire MacServer.app"
+            BuildableName = "DriveWire.app"
             BlueprintName = "DriveWire MacServer"
             ReferencedContainer = "container:DriveWire MacServer.xcodeproj">
          </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "68ADDE98096B723F002324CE"
-            BuildableName = "DriveWire MacServer.app"
+            BuildableName = "DriveWire.app"
             BlueprintName = "DriveWire MacServer"
             ReferencedContainer = "container:DriveWire MacServer.xcodeproj">
          </BuildableReference>
@@ -72,7 +72,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "68ADDE98096B723F002324CE"
-            BuildableName = "DriveWire MacServer.app"
+            BuildableName = "DriveWire.app"
             BlueprintName = "DriveWire MacServer"
             ReferencedContainer = "container:DriveWire MacServer.xcodeproj">
          </BuildableReference>

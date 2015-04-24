@@ -10,4 +10,13 @@
 
 @implementation VirtualScreenController
 
+- (id)initWithFontURL:(NSURL *)fontURL;
+{
+    if (self = [super init])
+    {
+    }
+    
+    return self;
+}
+
 @end

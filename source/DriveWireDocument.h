@@ -5,6 +5,7 @@
 #import "DriveWireServerModel.h"
 #import "PrinterWindowController.h"
 #import "DebuggerWindowController.h"
+#import "NetworkWindowController.h"
 #import "LogView.h"
 #import "StatsView.h"
 
@@ -27,6 +28,7 @@
 @property (strong) TBLog *log;
 @property (assign) IBOutlet DebuggerWindowController *debuggerWindowController;
 @property (assign) IBOutlet PrinterWindowController *printerWindowController;
+@property (strong) NetworkWindowController *networkWindowController;
 
 - (void)updateInfoView:(NSDictionary *)info;
 - (void)updateMemoryView:(NSDictionary *)info;

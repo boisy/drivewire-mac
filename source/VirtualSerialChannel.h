@@ -8,14 +8,28 @@
 
 #import <Foundation/Foundation.h>
 
+@class VirtualSerialChannel;
+
+@protocol VirtualSerialChannelDelegate
+
+- (void)didConnect:(VirtualSerialChannel *)channel;
+- (void)didDisconnect:(VirtualSerialChannel *)channel;
+- (void)didSendData:(VirtualSerialChannel *)channel;
+- (void)didReceiveData:(VirtualSerialChannel *)channel;
+
+@end
+
 @interface VirtualSerialChannel : NSObject
 
 @property (assign) NSUInteger number;
+@property (assign) NSUInteger port;
 @property (strong) NSMutableData *incomingBuffer; // incoming TO CoCo
 @property (strong) NSMutableData *outgoingBuffer; // outgoing FROM CoCo
 @property (assign) NSUInteger waitCounter;
+@property (assign) id<VirtualSerialChannelDelegate> delegate;
+@property (assign) BOOL shouldClose;
 
-- (id)initWithNumber:(NSUInteger)number;
+- (id)initWithNumber:(NSUInteger)number port:(NSUInteger)port;
 
 - (BOOL)hasData;
 - (NSUInteger)availableToRead;

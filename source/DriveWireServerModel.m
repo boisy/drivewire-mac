@@ -127,7 +127,7 @@ static TBSerialManager *fSerialManager = nil;
     }
     
     // Set up the devices
-    fSerialPortNames = [TBSerialManager availablePorts];
+    fSerialPortNames = [[TBSerialManager defaultManager] availablePorts];
     
     // Set up state variables
     [self resetState:nil];

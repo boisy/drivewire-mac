@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6805D7851AD583E800EA3B5F /* TeeBoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6805D7841AD583E800EA3B5F /* TeeBoy.framework */; };
-		6805D7891AD583F900EA3B5F /* TeeBoy.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6805D7841AD583E800EA3B5F /* TeeBoy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		680612D41ADFC85200B1C502 /* CoCo1.png in Resources */ = {isa = PBXBuildFile; fileRef = 680612D01ADFC85200B1C502 /* CoCo1.png */; };
 		680612D51ADFC85200B1C502 /* CoCo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 680612D11ADFC85200B1C502 /* CoCo2.png */; };
 		680612D61ADFC85200B1C502 /* CoCo3.png in Resources */ = {isa = PBXBuildFile; fileRef = 680612D21ADFC85200B1C502 /* CoCo3.png */; };
@@ -61,22 +60,12 @@
 		68C7AFA71AE9C946005594CF /* VirtualSerialChannel+DWCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C7AFA61AE9C946005594CF /* VirtualSerialChannel+DWCommands.m */; };
 		68C7AFAA1AE9C996005594CF /* VirtualSerialChannel+TCPCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C7AFA91AE9C996005594CF /* VirtualSerialChannel+TCPCommands.m */; };
 		68C7AFAD1AE9C9CD005594CF /* VirtualSerialChannel+ATCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C7AFAC1AE9C9CD005594CF /* VirtualSerialChannel+ATCommands.m */; };
+		6AC18F9BDBD316170904674A /* libPods-DriveWire MacServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01892DFF2A9748149A1B0A3F /* libPods-DriveWire MacServer.a */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		6805D7BD1AD5842B00EA3B5F /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				6805D7891AD583F900EA3B5F /* TeeBoy.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
+		01892DFF2A9748149A1B0A3F /* libPods-DriveWire MacServer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DriveWire MacServer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0763232A94623FD3213981B1 /* Pods-DriveWire MacServer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveWire MacServer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DriveWire MacServer/Pods-DriveWire MacServer.debug.xcconfig"; sourceTree = "<group>"; };
 		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2A37F4ACFDCFA73011CA2CEA /* DriveWireDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriveWireDocument.m; sourceTree = "<group>"; };
 		2A37F4AEFDCFA73011CA2CEA /* DriveWireDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriveWireDocument.h; sourceTree = "<group>"; };
@@ -166,6 +155,7 @@
 		68DBD1DE0964F1A900B011C5 /* DWAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = DWAppDelegate.m; sourceTree = "<group>"; };
 		68DBD1DF0964F1A900B011C5 /* DWAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = DWAppDelegate.h; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* DriveWire MacServer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DriveWire MacServer-Info.plist"; sourceTree = "<group>"; };
+		BD40BD754E2481641C1DCDF9 /* Pods-DriveWire MacServer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveWire MacServer.release.xcconfig"; path = "Pods/Target Support Files/Pods-DriveWire MacServer/Pods-DriveWire MacServer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +168,7 @@
 				68742E880F41B9EA0049FEF6 /* Cocoa.framework in Frameworks */,
 				6809AD940F6C0974000BB954 /* IOKit.framework in Frameworks */,
 				6805D7851AD583E800EA3B5F /* TeeBoy.framework in Frameworks */,
+				6AC18F9BDBD316170904674A /* libPods-DriveWire MacServer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +191,7 @@
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				6882CEA5096B5BAF0065973D /* Resources */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
+				95D124CD3F955202ECB1EC9E /* Pods */,
 			);
 			name = DriveWire;
 			sourceTree = "<group>";
@@ -393,6 +385,7 @@
 				68742E850F41B9EA0049FEF6 /* AppKit.framework */,
 				68742E860F41B9EA0049FEF6 /* Cocoa.framework */,
 				6809AD930F6C0974000BB954 /* IOKit.framework */,
+				01892DFF2A9748149A1B0A3F /* libPods-DriveWire MacServer.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -415,6 +408,15 @@
 			path = source;
 			sourceTree = "<group>";
 		};
+		95D124CD3F955202ECB1EC9E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0763232A94623FD3213981B1 /* Pods-DriveWire MacServer.debug.xcconfig */,
+				BD40BD754E2481641C1DCDF9 /* Pods-DriveWire MacServer.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -422,10 +424,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 68ADDE9C096B723F002324CE /* Build configuration list for PBXNativeTarget "DriveWire MacServer" */;
 			buildPhases = (
+				3F4EAEAB8530F6DF36AC15E2 /* [CP] Check Pods Manifest.lock */,
 				68ADDE95096B723F002324CE /* Resources */,
 				68ADDE96096B723F002324CE /* Sources */,
 				68ADDE97096B723F002324CE /* Frameworks */,
-				6805D7BD1AD5842B00EA3B5F /* CopyFiles */,
+				730E88D4E8D2D859A2E46F73 /* [CP] Embed Pods Frameworks */,
+				9FA43F8D23F1BD95E3BFDF64 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -452,6 +456,7 @@
 				en,
 			);
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* DriveWire */;
+			productRefGroup = 19C28FB0FE9D524F11CA2CBB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -491,6 +496,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3F4EAEAB8530F6DF36AC15E2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		730E88D4E8D2D859A2E46F73 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DriveWire MacServer/Pods-DriveWire MacServer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9FA43F8D23F1BD95E3BFDF64 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DriveWire MacServer/Pods-DriveWire MacServer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		68ADDE96096B723F002324CE /* Sources */ = {
@@ -596,11 +649,13 @@
 		};
 		68ADDE9D096B723F002324CE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0763232A94623FD3213981B1 /* Pods-DriveWire MacServer.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -626,6 +681,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_CODE_SIGN_FLAGS = "--timestamp=none";
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-framework",
 					Foundation,
 					"-framework",
@@ -645,11 +701,13 @@
 		};
 		68ADDE9E096B723F002324CE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD40BD754E2481641C1DCDF9 /* Pods-DriveWire MacServer.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -673,6 +731,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_CODE_SIGN_FLAGS = "--timestamp=none";
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-framework",
 					Foundation,
 					"-framework",

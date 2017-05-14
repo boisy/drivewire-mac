@@ -325,8 +325,8 @@ static TBSerialManager *fSerialManager = nil;
 
     [fPort setDelegate:self];
 	[self setPortDelegate:fPort];
-
-	return YES;
+    
+    return [fPort openPort:self error:nil];
 }
 
 - (id)portDelegate
@@ -353,23 +353,32 @@ static TBSerialManager *fSerialManager = nil;
 - (void)setMachineType:(MachineType)type
 {
 	_machineType = type;
-	
+    int oldBaudRate = [fPort baudRate];
+    int newBaudRate;
+    
     switch (type)
     {
         case MachineTypeCoCo1_38_4:
-            [fPort setBaudRate:38400];
+            newBaudRate = 38400;
             break;
            
         case MachineTypeCoCo1_57_6:
         case MachineTypeCoCo2_57_6:
         case MachineTypeAtariLiber809_57_6:
-            [fPort setBaudRate:57600];
+            newBaudRate = 57600;
             break;
             
         case MachineTypeCoCo3_115_2:
         default:
-            [fPort setBaudRate:115200];
+            newBaudRate = 115200;
             break;
+    }
+
+    // We have to close and reopen the port when we change the baud rate now
+    if (oldBaudRate != newBaudRate) {
+        [fPort setBaudRate:115200];
+        [fPort closePort];
+        [fPort openPort:self error:nil];
     }
 }
 

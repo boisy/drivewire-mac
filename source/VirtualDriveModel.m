@@ -288,7 +288,7 @@ static int instanceCount = 0;
 		led = LED_READ;
 		if ([delegate respondsToSelector:@selector(ledRead)])
 		{
-			[delegate ledRead];
+            [delegate performSelectorOnMainThread:@selector(ledRead) withObject:nil waitUntilDone:YES];
 		}
 	}
 	
@@ -312,7 +312,7 @@ static int instanceCount = 0;
 		led = LED_WRITE;
 		if ([delegate respondsToSelector:@selector(ledWrite)])
 		{
-			[delegate ledWrite];
+            [delegate performSelectorOnMainThread:@selector(ledWrite) withObject:nil waitUntilDone:YES];
 		}
 	}
 

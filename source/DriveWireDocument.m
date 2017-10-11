@@ -187,8 +187,7 @@
 
     [documentWindow setFrame:frame display:TRUE animate:FALSE];
 
-    [machineTypePopupButton selectItemWithTag:MachineTypeCoCo3_115_2];
-    self.dwModel.machineType = MachineTypeCoCo3_115_2;
+    [machineTypePopupButton selectItemWithTag:self.dwModel.machineType];
     [self updateUIComponents];
 }
 
@@ -198,7 +197,8 @@
 - (void)updateInfoView:(NSDictionary *)info;
 {
 //    [logView update:info];
-    [statsView update:info];
+    [statsView performSelectorOnMainThread:@selector(update:) withObject:info waitUntilDone:NO];
+//    [statsView update:info];
 }
 
 - (void)updateMemoryView:(NSDictionary *)info;

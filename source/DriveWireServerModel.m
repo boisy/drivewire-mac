@@ -212,7 +212,7 @@ static TBSerialManager *fSerialManager = nil;
         savedPort = [coder decodeObjectForKey:@"port"];
         self.statState = [coder decodeBoolForKey:@"statState"];
         self.logState = [coder decodeBoolForKey:@"logState"];
-        self.machineType = [coder decodeIntegerForKey:@"_machineType"];
+        self.machineType = [coder decodeIntegerForKey:@"machineType"];
         
         [self initCommon];
         
@@ -322,11 +322,13 @@ static TBSerialManager *fSerialManager = nil;
     [self setMachineType:_machineType];  // force the setting of the baud rate
     [fPort setInputLogging:true];
     [fPort setOutputLogging:true];
+    [fPort setDTRState:FALSE];
+    [fPort setHardwareHandshaking:NO];
 
     [fPort setDelegate:self];
 	[self setPortDelegate:fPort];
     
-    return [fPort openPort:self error:nil];
+    return [fPort openPort:self error:&error];
 }
 
 - (id)portDelegate
@@ -376,9 +378,12 @@ static TBSerialManager *fSerialManager = nil;
 
     // We have to close and reopen the port when we change the baud rate now
     if (oldBaudRate != newBaudRate) {
-        [fPort setBaudRate:115200];
-        [fPort closePort];
-        [fPort openPort:self error:nil];
+        [fPort setBaudRate:newBaudRate];
+        if ([fPort isOpen] == TRUE)
+        {
+            [fPort closePort];
+            [fPort openPort:self error:nil];
+        }
     }
 }
 
@@ -471,12 +476,14 @@ static TBSerialManager *fSerialManager = nil;
         [invocation setSelector:self.currentState];
         [invocation setArgument:&_serialBuffer atIndex:2];
         [invocation setTarget:self];
-        [invocation invoke];
+        [invocation performSelectorOnMainThread:@selector(invoke) withObject:nil waitUntilDone:YES];
         [invocation getReturnValue:&bytesConsumed];
         
-        // chop off consumed bytes
-        [self.serialBuffer replaceBytesInRange:NSMakeRange(0, bytesConsumed) withBytes:nil length:0];
-
+        if (bytesConsumed > 0)
+        {
+            // chop off consumed bytes
+            [self.serialBuffer replaceBytesInRange:NSMakeRange(0, bytesConsumed) withBytes:nil length:0];
+        }
     } while (bytesConsumed > 0 && [self.serialBuffer length] > 0);
     
     
@@ -486,7 +493,7 @@ static TBSerialManager *fSerialManager = nil;
 - (NSUInteger)OP_OPCODE:(NSData *)data;
 {
     u_char byte = *(u_char *)[data bytes];
-
+                    
     [self setupWatchdog];
 
     // Determine next action to take.
@@ -760,7 +767,7 @@ static TBSerialManager *fSerialManager = nil;
 - (void)resetState:(NSTimer *)theTimer
 {
     self.currentState = @selector(OP_OPCODE:);
-	[self invalidateWatchdog];
+    [self invalidateWatchdog];
 }
 
 

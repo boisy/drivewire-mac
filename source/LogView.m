@@ -104,8 +104,8 @@
 		logString = [NSString stringWithFormat:@"%@ %@\n", rightNow, logString];
 	}
 #endif
-    
-    [self performSelectorOnMainThread:@selector(updateLog:) withObject:logString waitUntilDone:YES];
+
+//    [self performSelectorOnMainThread:@selector(updateLog:) withObject:logString waitUntilDone:YES];
 }
 
 @end

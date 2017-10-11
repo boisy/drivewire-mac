@@ -105,7 +105,7 @@
 	}
 #endif
 
-//    [self performSelectorOnMainThread:@selector(updateLog:) withObject:logString waitUntilDone:YES];
+    [self performSelectorOnMainThread:@selector(updateLog:) withObject:logString waitUntilDone:NO];
 }
 
 @end

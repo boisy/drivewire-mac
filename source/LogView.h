@@ -10,7 +10,7 @@
 - (IBAction)clearLog:(id)sender;
 - (IBAction)copyLog:(id)sender;
 
-- (void)updateLog:(NSNotification *)note;
+- (void)updateLog:(NSString *)logString;
 - (void)update:(NSDictionary *)info;
 
 @end

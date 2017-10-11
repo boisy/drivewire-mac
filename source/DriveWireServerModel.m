@@ -462,8 +462,6 @@ static TBSerialManager *fSerialManager = nil;
     {
         self.serialBuffer = [NSMutableData data];
     }
-
-    TBDebug(@"Incoming bytes: %@", serialData);
     
     // append incoming data
     [self.serialBuffer appendData:serialData];

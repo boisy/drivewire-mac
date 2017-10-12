@@ -20,7 +20,7 @@
     IBOutlet NSDrawer *debugDrawer;
     IBOutlet NSButton *loggingSwitch;
     IBOutlet NSButton *statSwitch;
-	int lastPortSelected;
+	NSInteger lastPortSelected;
     NSWindowController *myWindowController;
 }
 

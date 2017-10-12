@@ -288,9 +288,9 @@
 - (IBAction)setCoCoType:(NSPopUpButton *)sender;
 {
     MachineType machineType = [sender selectedTag];
-   [self.dwModel setMachineType:machineType];
+    [self.dwModel setMachineType:machineType];
    
-   [self updateUIComponents];
+    [self updateUIComponents];
 }
 
 - (IBAction)setLogSwitch:(id)sender;

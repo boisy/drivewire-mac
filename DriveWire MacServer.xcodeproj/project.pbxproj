@@ -31,7 +31,6 @@
 		686CA4011AE1C4D100544862 /* VirtualScreenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 686CA4001AE1C4D100544862 /* VirtualScreenModel.m */; };
 		686CA4041AE1C4E000544862 /* VirtualScreenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 686CA4031AE1C4E000544862 /* VirtualScreenView.m */; };
 		686CA4071AE1C4EF00544862 /* VirtualScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 686CA4061AE1C4EF00544862 /* VirtualScreenController.m */; };
-		686CA40A1AE2726600544862 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 686CA4091AE2726600544862 /* GCDAsyncSocket.m */; };
 		686CA40C1AE272FE00544862 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 686CA40B1AE272FE00544862 /* Security.framework */; };
 		686CA44A1AE3E10100544862 /* NetworkWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 686CA4481AE3E10100544862 /* NetworkWindowController.m */; };
 		686CA44B1AE3E10100544862 /* NetworkWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686CA4491AE3E10100544862 /* NetworkWindowController.xib */; };
@@ -120,8 +119,6 @@
 		686CA4031AE1C4E000544862 /* VirtualScreenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualScreenView.m; path = source/VirtualScreenView.m; sourceTree = "<group>"; };
 		686CA4051AE1C4EF00544862 /* VirtualScreenController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualScreenController.h; path = source/VirtualScreenController.h; sourceTree = "<group>"; };
 		686CA4061AE1C4EF00544862 /* VirtualScreenController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualScreenController.m; path = source/VirtualScreenController.m; sourceTree = "<group>"; };
-		686CA4081AE2726600544862 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
-		686CA4091AE2726600544862 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		686CA40B1AE272FE00544862 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		686CA4471AE3E10100544862 /* NetworkWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkWindowController.h; path = source/NetworkWindowController.h; sourceTree = "<group>"; };
 		686CA4481AE3E10100544862 /* NetworkWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkWindowController.m; path = source/NetworkWindowController.m; sourceTree = "<group>"; };
@@ -200,7 +197,6 @@
 			isa = PBXGroup;
 			children = (
 				686CA4461AE3E0D600544862 /* Network Window */,
-				686CA4421AE3505600544862 /* Socket */,
 				686CA3FE1AE1C4AC00544862 /* VirtualScreen */,
 				6809AD790F6C086D000BB954 /* VirtualDrive */,
 				68C537050F6B509A00F39926 /* Printer Window */,
@@ -264,15 +260,6 @@
 				686CA4061AE1C4EF00544862 /* VirtualScreenController.m */,
 			);
 			name = VirtualScreen;
-			sourceTree = "<group>";
-		};
-		686CA4421AE3505600544862 /* Socket */ = {
-			isa = PBXGroup;
-			children = (
-				686CA4081AE2726600544862 /* GCDAsyncSocket.h */,
-				686CA4091AE2726600544862 /* GCDAsyncSocket.m */,
-			);
-			name = Socket;
 			sourceTree = "<group>";
 		};
 		686CA4461AE3E0D600544862 /* Network Window */ = {
@@ -446,7 +433,7 @@
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastUpgradeCheck = 0900;
 			};
 			buildConfigurationList = 68A78B4008A1452000865FD4 /* Build configuration list for PBXProject "DriveWire MacServer" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -574,7 +561,6 @@
 				68190D310F47011F00C4CDDD /* MemoryView.m in Sources */,
 				68A1F6AA1ADF59DF00A5B030 /* VirtualSerialChannel.m in Sources */,
 				68363D450F63182400CD8A1B /* PrinterWindowController.m in Sources */,
-				686CA40A1AE2726600544862 /* GCDAsyncSocket.m in Sources */,
 				68C5367B0F6B4E2400F39926 /* DebuggerWindowController.m in Sources */,
 				6879C0281ADFC0750033AF94 /* main.m in Sources */,
 				68C536B90F6B502200F39926 /* DisassemblerView.m in Sources */,
@@ -637,7 +623,31 @@
 		68A78B4108A1452000865FD4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -648,7 +658,30 @@
 		68A78B4208A1452000865FD4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = DWX;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -685,7 +718,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "DriveWire MacServer-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_CODE_SIGN_FLAGS = "--timestamp=none";
 				OTHER_LDFLAGS = (
@@ -696,6 +729,7 @@
 					AppKit,
 				);
 				PREBINDING = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tee-boy.drivewire";
 				PRODUCT_NAME = "DriveWire MacServer";
 				SDKROOT = macosx;
 				SHARED_PRECOMPS_DIR = "";
@@ -735,7 +769,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "DriveWire MacServer-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_CODE_SIGN_FLAGS = "--timestamp=none";
 				OTHER_LDFLAGS = (
@@ -746,6 +780,7 @@
 					AppKit,
 				);
 				PREBINDING = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tee-boy.drivewire";
 				PRODUCT_NAME = "DriveWire MacServer";
 				SDKROOT = macosx;
 				SHARED_PRECOMPS_DIR = "";

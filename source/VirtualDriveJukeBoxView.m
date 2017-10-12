@@ -25,7 +25,7 @@
 
 - (void)addSubview:(NSView *)view
 {
-    unsigned driveCount;
+    NSUInteger driveCount;
     NSRect   viewFrame;
     float    verticalPadding = 0.0f;
     NSRect   myFrame;

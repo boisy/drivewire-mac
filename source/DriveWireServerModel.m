@@ -355,7 +355,7 @@ static TBSerialManager *fSerialManager = nil;
 - (void)setMachineType:(MachineType)type
 {
 	_machineType = type;
-    int oldBaudRate = [fPort baudRate];
+    NSUInteger oldBaudRate = [fPort baudRate];
     int newBaudRate;
     
     switch (type)

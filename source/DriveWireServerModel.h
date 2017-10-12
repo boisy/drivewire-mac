@@ -108,7 +108,7 @@ typedef enum {
 	NSMutableDictionary     *registers;
 
 	// Server version
-	int						version;
+	NSUInteger				version;
 
 	// Response used for OP_READEX
     uint16_t                readexChecksum;

@@ -1639,7 +1639,14 @@ static TBSerialManager *fSerialManager = nil;
 
 - (VirtualSerialChannel *)channelWithNumber:(u_int8_t)number;
 {
-    return [self.serialChannels objectAtIndex:number];
+    VirtualSerialChannel *result = nil;
+    
+    if (number < [self.serialChannels count])
+    {
+        result = [self.serialChannels objectAtIndex:number];
+    }
+    
+    return result;
 }
 
 - (NSUInteger)OP_SERWRITEMP2:(NSData *)data;

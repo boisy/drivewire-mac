@@ -13,14 +13,18 @@
 #pragma mark -
 #pragma mark AT Command Handlers
 
-- (void)handleATCommand:(NSArray *)commandArray;
+- (NSError *)handleATCommand:(NSArray *)commandArray;
 {
+    NSError *error = nil;
+    
     // objectAtIndex:0 is the 'at'.... command -- we're interested in the characaters that follow it
     NSString *restOfATCommand = [[commandArray objectAtIndex:0] substringFromIndex:2];
     
     if ([restOfATCommand isEqualToString:@"z"])
     {
     }
+    
+    return error;
 }
 
 @end

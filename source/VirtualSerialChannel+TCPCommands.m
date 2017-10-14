@@ -13,27 +13,55 @@
 #pragma mark -
 #pragma mark TCP Command Handlers
 
-- (void)handleTCPConnect:(NSArray *)array;
+- (NSError *)handleTCPConnect:(NSArray *)array;
 {
+    NSError *error = nil;
     
+    if ([array count] >= 3)
+    {
+        NSString *host = [array objectAtIndex:1];
+        NSString *port = [array objectAtIndex:2];
+        
+        dispatch_queue_t dQ = dispatch_queue_create("delegate_queue", nil);
+        dispatch_queue_t sQ = dispatch_queue_create("socket_queue", nil);
+        
+        self.socket = [[GCDAsyncSocket alloc] initWithDelegate:self
+                                                 delegateQueue:dQ
+                                                   socketQueue:sQ];
+        [self.socket connectToHost:host onPort:[port integerValue] error:&error];
+    }
+    
+    return error;
 }
 
-- (void)handleTCPListen:(NSArray *)array;
+- (NSError *)handleTCPListen:(NSArray *)array;
 {
+    NSError *error = nil;
     
+    return error;
 }
 
-- (void)handleTCPJoin:(NSArray *)array;
+- (NSError *)handleTCPJoin:(NSArray *)array;
 {
+    NSError *error = nil;
     
+    return error;
 }
 
-- (void)handleTCPKill:(NSArray *)array;
+- (NSError *)handleTCPKill:(NSArray *)array;
 {
+    NSError *error = nil;
     
+    [self.socket disconnect];
+    self.socket = nil;
+
+    return error;
 }
-- (void)handleTCPCommand:(NSArray *)array;
+
+- (NSError *)handleTCPCommand:(NSArray *)array;
 {
+    NSError *error = nil;
+    
     NSDictionary *commandDictionary = @{@"connect" : @"handleTCPConnect:",
                                         @"listen"  : @"handleTCPListen:",
                                         @"join"    : @"handleTCPJoin:",
@@ -46,9 +74,11 @@
         if (nil != selectorString)
         {
             SEL selector = NSSelectorFromString(selectorString);
-            [self performSelector:selector withObject:[array subarrayWithRange:NSMakeRange(1, [array count] - 1)]];
+            error = [self performSelector:selector withObject:[array subarrayWithRange:NSMakeRange(1, [array count] - 1)]];
         }
     }
+    
+    return error;
 }
 
 @end

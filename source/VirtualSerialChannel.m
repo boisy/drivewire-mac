@@ -160,8 +160,10 @@ typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT}
 #pragma mark Top Level Command Handler
 
 // parse the string data represented by the passed NSData buffer
-- (void)parseTopLevelCommand:(NSData *)buffer;
+- (NSError *)parseTopLevelCommand:(NSData *)buffer;
 {
+    NSError *error = nil;
+    
     NSString *string = [[[NSString alloc] initWithData:buffer encoding:NSASCIIStringEncoding] lowercaseString];
     
     NSArray *array = [[string stringByTrimmingCharactersInSet:
@@ -183,9 +185,11 @@ typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT}
         if (nil != selectorString)
         {
             SEL selector = NSSelectorFromString(selectorString);
-            [self performSelector:selector withObject:array];
+            error = [self performSelector:selector withObject:array];
         }
     }
+    
+    return error;
 }
 
 

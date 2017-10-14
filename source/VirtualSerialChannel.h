@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CocoaAsyncSocket/GCDAsyncSocket.h>
 
 @class VirtualSerialChannel;
 
@@ -19,10 +20,11 @@
 
 @end
 
-@interface VirtualSerialChannel : NSObject
+@interface VirtualSerialChannel : NSObject <GCDAsyncSocketDelegate>
 
 @property (assign) NSUInteger number;
 @property (assign) NSUInteger port;
+@property (strong) GCDAsyncSocket *socket;
 @property (strong) NSMutableData *incomingBuffer; // incoming TO CoCo
 @property (strong) NSMutableData *outgoingBuffer; // outgoing FROM CoCo
 @property (assign) NSUInteger waitCounter;

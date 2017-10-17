@@ -716,6 +716,12 @@ static TBSerialManager *fSerialManager = nil;
     // Set WireBug state to FALSE
     [self setWirebugState:false];
 
+    // Reset all serial channels
+    for (VirtualSerialChannel *ch in self.serialChannels)
+    {
+        [ch close];
+    }
+    
     [self resetState:nil];
 }
 
@@ -730,7 +736,7 @@ static TBSerialManager *fSerialManager = nil;
 {
 	time_t currentClock;
 	struct tm *tpack;
-	char os9tpack[7];
+	char os9tpack[6];
 	
 	time(&currentClock);
 	tpack = localtime(&currentClock);
@@ -740,10 +746,10 @@ static TBSerialManager *fSerialManager = nil;
 	os9tpack[3] = tpack->tm_hour;
 	os9tpack[4] = tpack->tm_min;
 	os9tpack[5] = tpack->tm_sec;
-	os9tpack[6] = tpack->tm_wday;
+//	os9tpack[6] = tpack->tm_wday;
 	
 	// Send time packet to CoCo
-	[portDelegate writeData:[NSData dataWithBytes:os9tpack length:7]];
+	[portDelegate writeData:[NSData dataWithBytes:os9tpack length:6]];
 	
 	// Update log
 	[statistics setObject:@"OP_TIME" forKey:@"OpCode"];
@@ -1606,6 +1612,7 @@ static TBSerialManager *fSerialManager = nil;
         NSData *dataToRead = [channel getNumberOfBytes:bytesToRead];
 
         [portDelegate writeData:dataToRead];
+        NSLog(@"%@", dataToRead); 
     
         // Update log
         [statistics setObject:@"OP_SERREADM" forKey:@"OpCode"];

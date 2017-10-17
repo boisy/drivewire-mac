@@ -24,7 +24,7 @@
 
 @property (assign) NSUInteger number;
 @property (assign) NSUInteger port;
-@property (strong) GCDAsyncSocket *socket;
+@property (strong) GCDAsyncSocket *connectedSocket;
 @property (strong) NSMutableData *incomingBuffer; // incoming TO CoCo
 @property (strong) NSMutableData *outgoingBuffer; // outgoing FROM CoCo
 @property (assign) NSUInteger waitCounter;

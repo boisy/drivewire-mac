@@ -22,6 +22,9 @@
     
     if ([restOfATCommand isEqualToString:@"z"])
     {
+        NSData *data = [@"OK\x0A\x0D"
+                        dataUsingEncoding:NSASCIIStringEncoding];
+        [self.incomingBuffer appendData:data];
     }
     
     return error;

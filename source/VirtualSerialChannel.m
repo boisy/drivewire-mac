@@ -11,6 +11,7 @@
 #import "VirtualSerialChannel+TCPCommands.h"
 #import "VirtualSerialChannel+ATCommands.h"
 #import "GCDAsyncSocket.h"
+#import "NSString+DriveWire.h"
 
 #define READ_TIMEOUT   0.0
 #define WRITE_TIMEOUT   0.0
@@ -177,31 +178,13 @@ typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT}
 #pragma mark -
 #pragma mark Top Level Command Handler
 
-- (NSString *)removeBackspaces:(NSString *)string;
-{
-    NSString *result = [string copy];
-
-    for (int i = 0; i < [result length]; i++)
-    {
-        if ([result characterAtIndex:i] == '\b' && i > 0)
-        {
-            NSString *beforeBackspace = [result substringToIndex:i - 1];
-            NSString *restOfString = [result substringFromIndex:i + 1];
-            result = [NSString stringWithFormat:@"%@%@", beforeBackspace, restOfString];
-            i--;
-        }
-    }
-    
-    return result;
-}
-
 // parse the string data represented by the passed NSData buffer
 - (NSError *)parseTopLevelCommand:(NSData *)buffer;
 {
     NSError *error = nil;
     
     NSString *string = [[[NSString alloc] initWithData:buffer encoding:NSASCIIStringEncoding] lowercaseString];
-    string = [self removeBackspaces:string];
+    string = [string stringByProcessingBackspaces];
     
     NSArray *array = [[string stringByTrimmingCharactersInSet:
                       [NSCharacterSet whitespaceCharacterSet]] componentsSeparatedByString:@" "];

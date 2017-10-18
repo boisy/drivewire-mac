@@ -116,9 +116,21 @@
         NSFileHandle *file = [pipe fileHandleForReading];
         
         [task launch];
+
+        // setup a termination time
+        NSDate *terminateDate = [[NSDate date] dateByAddingTimeInterval:5.0];
+        while ((task != nil) && ([task isRunning]))
+        {
+            if ([[NSDate date] compare:(id)terminateDate] == NSOrderedDescending)
+            {
+                [task terminate];
+            }
+
+            [NSThread sleepForTimeInterval:1.0];
+        }
         
         NSData *data = [file readDataToEndOfFile];
-        
+
         if ([data length] > 0)
         {
             NSString *blob = [NSString stringWithCString:[data bytes] encoding:NSASCIIStringEncoding];

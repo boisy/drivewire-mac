@@ -26,6 +26,8 @@
 		68190D2E0F47011400C4CDDD /* RegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68190D2C0F47011400C4CDDD /* RegisterView.m */; };
 		68190D310F47011F00C4CDDD /* MemoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68190D300F47011F00C4CDDD /* MemoryView.m */; };
 		68363D450F63182400CD8A1B /* PrinterWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68363D440F63182400CD8A1B /* PrinterWindowController.m */; };
+		6842CEBE1F97B35B00A6F829 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6842CEBD1F97B35B00A6F829 /* Tests.m */; };
+		6842CEC71F97B53400A6F829 /* NSString+DriveWire.m in Sources */ = {isa = PBXBuildFile; fileRef = 6842CEC61F97B53400A6F829 /* NSString+DriveWire.m */; };
 		686CA3FB1AE1162500544862 /* Atari.png in Resources */ = {isa = PBXBuildFile; fileRef = 686CA3FA1AE1162500544862 /* Atari.png */; };
 		686CA3FD1AE11ED900544862 /* DriveWire-Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 686CA3FC1AE11ED900544862 /* DriveWire-Logo.png */; };
 		686CA4011AE1C4D100544862 /* VirtualScreenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 686CA4001AE1C4D100544862 /* VirtualScreenModel.m */; };
@@ -61,6 +63,16 @@
 		68C7AFAD1AE9C9CD005594CF /* VirtualSerialChannel+ATCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C7AFAC1AE9C9CD005594CF /* VirtualSerialChannel+ATCommands.m */; };
 		6AC18F9BDBD316170904674A /* libPods-DriveWire MacServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01892DFF2A9748149A1B0A3F /* libPods-DriveWire MacServer.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6842CEC01F97B35B00A6F829 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 68ADDE98096B723F002324CE;
+			remoteInfo = "DriveWire MacServer";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		01892DFF2A9748149A1B0A3F /* libPods-DriveWire MacServer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DriveWire MacServer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +121,11 @@
 		682F9F2A077BDB200003FDA4 /* PreferenceController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PreferenceController.m; sourceTree = "<group>"; };
 		68363D430F63182400CD8A1B /* PrinterWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrinterWindowController.h; sourceTree = "<group>"; };
 		68363D440F63182400CD8A1B /* PrinterWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrinterWindowController.m; sourceTree = "<group>"; };
+		6842CEBB1F97B35B00A6F829 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6842CEBD1F97B35B00A6F829 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		6842CEBF1F97B35B00A6F829 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6842CEC51F97B53400A6F829 /* NSString+DriveWire.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+DriveWire.h"; sourceTree = "<group>"; };
+		6842CEC61F97B53400A6F829 /* NSString+DriveWire.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+DriveWire.m"; sourceTree = "<group>"; };
 		685105F70966DA1C00AAEA3F /* VirtualDriveJukeBoxView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = VirtualDriveJukeBoxView.h; sourceTree = "<group>"; };
 		685105F80966DA1C00AAEA3F /* VirtualDriveJukeBoxView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = VirtualDriveJukeBoxView.m; sourceTree = "<group>"; };
 		686CA3FA1AE1162500544862 /* Atari.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Atari.png; path = assets/Atari.png; sourceTree = "<group>"; };
@@ -156,6 +173,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6842CEB81F97B35B00A6F829 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		68ADDE97096B723F002324CE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -176,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				68ADDE99096B723F002324CE /* DriveWire MacServer.app */,
+				6842CEBB1F97B35B00A6F829 /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -184,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				2A37F4ABFDCFA73011CA2CEA /* Classes */,
+				6842CEBC1F97B35B00A6F829 /* Tests */,
 				68DB155809683356005D9079 /* Frameworks */,
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				6882CEA5096B5BAF0065973D /* Resources */,
@@ -196,6 +222,8 @@
 		2A37F4ABFDCFA73011CA2CEA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6842CEC51F97B53400A6F829 /* NSString+DriveWire.h */,
+				6842CEC61F97B53400A6F829 /* NSString+DriveWire.m */,
 				686CA4461AE3E0D600544862 /* Network Window */,
 				686CA3FE1AE1C4AC00544862 /* VirtualScreen */,
 				6809AD790F6C086D000BB954 /* VirtualDrive */,
@@ -247,6 +275,15 @@
 			);
 			name = VirtualDrive;
 			path = source;
+			sourceTree = "<group>";
+		};
+		6842CEBC1F97B35B00A6F829 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				6842CEBD1F97B35B00A6F829 /* Tests.m */,
+				6842CEBF1F97B35B00A6F829 /* Info.plist */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		686CA3FE1AE1C4AC00544862 /* VirtualScreen */ = {
@@ -407,6 +444,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6842CEBA1F97B35B00A6F829 /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6842CEC41F97B35B00A6F829 /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				6842CEB71F97B35B00A6F829 /* Sources */,
+				6842CEB81F97B35B00A6F829 /* Frameworks */,
+				6842CEB91F97B35B00A6F829 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6842CEC11F97B35B00A6F829 /* PBXTargetDependency */,
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = 6842CEBB1F97B35B00A6F829 /* Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		68ADDE98096B723F002324CE /* DriveWire MacServer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 68ADDE9C096B723F002324CE /* Build configuration list for PBXNativeTarget "DriveWire MacServer" */;
@@ -434,6 +489,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0900;
+				TargetAttributes = {
+					6842CEBA1F97B35B00A6F829 = {
+						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = 9UKFRNS4PM;
+						ProvisioningStyle = Manual;
+						TestTargetID = 68ADDE98096B723F002324CE;
+					};
+					68ADDE98096B723F002324CE = {
+						DevelopmentTeam = 9UKFRNS4PM;
+					};
+				};
 			};
 			buildConfigurationList = 68A78B4008A1452000865FD4 /* Build configuration list for PBXProject "DriveWire MacServer" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -448,11 +514,19 @@
 			projectRoot = "";
 			targets = (
 				68ADDE98096B723F002324CE /* DriveWire MacServer */,
+				6842CEBA1F97B35B00A6F829 /* Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6842CEB91F97B35B00A6F829 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		68ADDE95096B723F002324CE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -541,6 +615,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6842CEB71F97B35B00A6F829 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6842CEBE1F97B35B00A6F829 /* Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		68ADDE96096B723F002324CE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -550,6 +632,7 @@
 				68ADDF8B096B7347002324CE /* LogView.m in Sources */,
 				68ADDF8D096B7347002324CE /* DriveWireDocument.m in Sources */,
 				68ADDF8F096B7347002324CE /* PreferenceController.m in Sources */,
+				6842CEC71F97B53400A6F829 /* NSString+DriveWire.m in Sources */,
 				68C7AFA71AE9C946005594CF /* VirtualSerialChannel+DWCommands.m in Sources */,
 				68ADDF91096B7347002324CE /* StatsView.m in Sources */,
 				68ADDF93096B7347002324CE /* VirtualDriveJukeBoxView.m in Sources */,
@@ -574,6 +657,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6842CEC11F97B35B00A6F829 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 68ADDE98096B723F002324CE /* DriveWire MacServer */;
+			targetProxy = 6842CEC01F97B35B00A6F829 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C165FFE840EACC02AAC07 /* InfoPlist.strings */ = {
@@ -620,6 +711,79 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		6842CEC21F97B35B00A6F829 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 9UKFRNS4PM;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.drivewire.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DriveWire MacServer.app/Contents/MacOS/DriveWire MacServer";
+			};
+			name = Debug;
+		};
+		6842CEC31F97B35B00A6F829 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 9UKFRNS4PM;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = org.drivewire.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DriveWire MacServer.app/Contents/MacOS/DriveWire MacServer";
+			};
+			name = Release;
+		};
 		68A78B4108A1452000865FD4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -693,10 +857,10 @@
 			baseConfigurationReference = 0763232A94623FD3213981B1 /* Pods-DriveWire MacServer.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 9UKFRNS4PM;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -746,10 +910,10 @@
 			baseConfigurationReference = BD40BD754E2481641C1DCDF9 /* Pods-DriveWire MacServer.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 9UKFRNS4PM;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -796,6 +960,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6842CEC41F97B35B00A6F829 /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6842CEC21F97B35B00A6F829 /* Debug */,
+				6842CEC31F97B35B00A6F829 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		68A78B4008A1452000865FD4 /* Build configuration list for PBXProject "DriveWire MacServer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

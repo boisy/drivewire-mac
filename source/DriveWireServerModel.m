@@ -1612,7 +1612,6 @@ static TBSerialManager *fSerialManager = nil;
         NSData *dataToRead = [channel getNumberOfBytes:bytesToRead];
 
         [portDelegate writeData:dataToRead];
-        NSLog(@"%@", dataToRead); 
     
         // Update log
         [statistics setObject:@"OP_SERREADM" forKey:@"OpCode"];

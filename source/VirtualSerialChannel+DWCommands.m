@@ -23,9 +23,10 @@
     
     if ([array count] > 0)
     {
-        NSDictionary *commandDictionary = @{@"cmd"     : @"handleDWSERVERCMD:",
-                                            @"dir"     : @"handleDWSERVERDIR:",
-                                            @"list"    : @"handleDWSERVERLIST:"
+        NSDictionary *commandDictionary = @{@"cmd"          : @"handleDWSERVERCMD:",
+                                            @"dir"          : @"handleDWSERVERDIR:",
+                                            @"list"         : @"handleDWSERVERLIST:",
+                                            @"terminate"    : @"handleDWSERVERTERMINATE:",
                                             };
 
         NSString *command = [array objectAtIndex:0];
@@ -42,12 +43,27 @@
     {
         // show help
         NSData *data = [@"dw server commands:\x0A\x0D"
-                        "    list <file>    - list contents of file\x0A\x0D"
-                        "    dir  <path>    - list the contents of the directory at path\x0A\x0D"
+                        "    list <file>       - list contents of file\x0A\x0D"
+                        "    dir  <path>       - list the contents of the directory at path\x0A\x0D"
+                        "    terminate [force] - shut down server\x0A\x0D"
                         dataUsingEncoding:NSASCIIStringEncoding];
         [self.incomingBuffer appendData:data];
     }
     
+    return error;
+}
+
+
+- (NSError *)handleDWSERVERTERMINATE:(NSArray *)array;
+{
+    NSError *error = nil;
+    
+    NSData *data = [@"Server shutdown requested.\x0A\x0D" dataUsingEncoding:NSASCIIStringEncoding];
+    
+    [self.incomingBuffer appendData:data];
+    
+    [NSApp performSelector:@selector(terminate:) withObject:nil afterDelay:5.0];
+
     return error;
 }
 

@@ -500,6 +500,7 @@
 					};
 					68ADDE98096B723F002324CE = {
 						DevelopmentTeam = 9UKFRNS4PM;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -859,7 +860,8 @@
 			baseConfigurationReference = 0763232A94623FD3213981B1 /* Pods-DriveWire MacServer.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 9UKFRNS4PM;
@@ -897,6 +899,7 @@
 				PREBINDING = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tee-boy.drivewire";
 				PRODUCT_NAME = "DriveWire MacServer";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SHARED_PRECOMPS_DIR = "";
 				WARNING_CFLAGS = (
@@ -912,7 +915,8 @@
 			baseConfigurationReference = BD40BD754E2481641C1DCDF9 /* Pods-DriveWire MacServer.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEVELOPMENT_TEAM = 9UKFRNS4PM;
@@ -948,6 +952,7 @@
 				PREBINDING = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tee-boy.drivewire";
 				PRODUCT_NAME = "DriveWire MacServer";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SHARED_PRECOMPS_DIR = "";
 				WARNING_CFLAGS = (

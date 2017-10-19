@@ -154,6 +154,7 @@
 		68ADDE99096B723F002324CE /* DriveWire MacServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DriveWire MacServer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68C494E00965F00500F9E265 /* DriveWire Disk Image.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "DriveWire Disk Image.icns"; path = "assets/DriveWire Disk Image.icns"; sourceTree = "<group>"; };
 		68C494E20965F01800F9E265 /* DriveWire Document.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "DriveWire Document.icns"; path = "assets/DriveWire Document.icns"; sourceTree = "<group>"; };
+		68C4C9501F98BB150077A72D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		68C535C80F6895A500F39926 /* DriveWireServerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriveWireServerModel.h; sourceTree = "<group>"; };
 		68C535D40F68971B00F39926 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/DriveWireDocument.xib; sourceTree = "<group>"; };
 		68C536790F6B4E2400F39926 /* DebuggerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebuggerWindowController.h; sourceTree = "<group>"; };
@@ -208,6 +209,7 @@
 		2A37F4AAFDCFA73011CA2CEA /* DriveWire */ = {
 			isa = PBXGroup;
 			children = (
+				68C4C9501F98BB150077A72D /* README.md */,
 				2A37F4ABFDCFA73011CA2CEA /* Classes */,
 				6842CEBC1F97B35B00A6F829 /* Tests */,
 				68DB155809683356005D9079 /* Frameworks */,

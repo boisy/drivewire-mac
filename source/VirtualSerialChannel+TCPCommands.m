@@ -25,10 +25,10 @@
         dispatch_queue_t dQ = dispatch_queue_create("delegate_queue", nil);
         dispatch_queue_t sQ = dispatch_queue_create("socket_queue", nil);
         
-        self.socket = [[GCDAsyncSocket alloc] initWithDelegate:self
+        self.connectedSocket = [[GCDAsyncSocket alloc] initWithDelegate:self
                                                  delegateQueue:dQ
                                                    socketQueue:sQ];
-        [self.socket connectToHost:host onPort:[port integerValue] error:&error];
+        [self.connectedSocket connectToHost:host onPort:[port integerValue] error:&error];
     }
     
     return error;
@@ -52,8 +52,8 @@
 {
     NSError *error = nil;
     
-    [self.socket disconnect];
-    self.socket = nil;
+    [self.connectedSocket disconnect];
+    self.connectedSocket = nil;
 
     return error;
 }

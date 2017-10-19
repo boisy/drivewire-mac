@@ -10,4 +10,6 @@
 
 @interface VirtualSerialChannel (ATCommands)
 
+- (NSError *)handleATCommand:(NSArray *)commandArray;
+
 @end

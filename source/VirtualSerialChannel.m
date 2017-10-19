@@ -11,6 +11,7 @@
 #import "VirtualSerialChannel+TCPCommands.h"
 #import "VirtualSerialChannel+ATCommands.h"
 #import "GCDAsyncSocket.h"
+#import "NSString+DriveWire.h"
 
 #define READ_TIMEOUT   0.0
 #define WRITE_TIMEOUT   0.0
@@ -19,10 +20,12 @@ enum {OUTGOING_DATA_WRITTEN};
 
 typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT} VirtualSerialMode;
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+
 @interface VirtualSerialChannel ()
 
 @property (strong) GCDAsyncSocket *serverSocket;
-@property (strong) GCDAsyncSocket *connectedSocket;
 @property (assign) VirtualSerialMode mode;
 
 @end
@@ -56,6 +59,22 @@ typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT}
     [self.delegate didConnect:self];
 }
 
+- (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port;
+{
+    NSData *data = [@"SUCCESS\x0D"
+                    dataUsingEncoding:NSASCIIStringEncoding];
+    [self.incomingBuffer appendData:data];
+}
+
+- (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err;
+{
+    if (err != nil && err.code != GCDAsyncSocketNoError && err.code != GCDAsyncSocketClosedError)
+    {
+        NSData *data = [@"FAIL 240\x0D"
+                    dataUsingEncoding:NSASCIIStringEncoding];
+        [self.incomingBuffer appendData:data];
+    }
+}
 
 #pragma mark -
 #pragma mark Virtual Port Management Methods
@@ -165,13 +184,13 @@ typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT}
     NSError *error = nil;
     
     NSString *string = [[[NSString alloc] initWithData:buffer encoding:NSASCIIStringEncoding] lowercaseString];
+    string = [string stringByProcessingBackspaces];
     
     NSArray *array = [[string stringByTrimmingCharactersInSet:
                       [NSCharacterSet whitespaceCharacterSet]] componentsSeparatedByString:@" "];
     
     // setup command array
     NSDictionary *commandDictionary = @{@"tcp" : @"handleTCPCommand:",
-                                        @"at"  : @"handleATCommand:",
                                         @"dw"  : @"handleDWCommand:"
                                };
 
@@ -186,6 +205,14 @@ typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT}
         {
             SEL selector = NSSelectorFromString(selectorString);
             error = [self performSelector:selector withObject:array];
+        }
+        else
+        {
+            command = [array objectAtIndex:0];
+            if ([command length] >=2 && [[command substringToIndex:2] isEqualToString:@"at"])
+            {
+                [self handleATCommand:array];
+            }
         }
     }
     
@@ -215,7 +242,9 @@ typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT}
 - (void)dealloc;
 {
     self.delegate = nil;
-    [self close];
+//    [self close];
 }
+
+#pragma clang diagnostic pop
 
 @end

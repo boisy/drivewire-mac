@@ -43,9 +43,9 @@
     {
         // show help
         NSData *data = [@"dw server commands:\x0A\x0D"
-                        "    list <file>       - list contents of file\x0A\x0D"
-                        "    dir  <path>       - list the contents of the directory at path\x0A\x0D"
-                        "    terminate [force] - shut down server\x0A\x0D"
+                        "    list <file or url> - list contents of file\x0A\x0D"
+                        "    dir  <path>        - list the contents of the directory at path\x0A\x0D"
+                        "    terminate [force]  - shut down server\x0A\x0D"
                         dataUsingEncoding:NSASCIIStringEncoding];
         [self.incomingBuffer appendData:data];
     }
@@ -77,18 +77,35 @@
         showHelp = FALSE;
         
         NSString *file = [array objectAtIndex:0];
-        if ([file characterAtIndex:0] != '/')
+        NSData *data;
+        
+        if( [file hasPrefix:@"http://"]  || [file hasPrefix:@"ftp://"] )
+        {
+            NSURL *url = [NSURL URLWithString:file];
+            data = [NSData dataWithContentsOfURL:url options:0 error:&error];
+        }
+        else if ([file characterAtIndex:0] != '/')
         {
             // assume this is relative to the home directory
             file = [NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), file];
+            data = [NSData dataWithContentsOfFile:file];
+        }
+        else
+        {
+            data = [NSData dataWithContentsOfFile:file];
         }
 
-        NSData *data = [NSData dataWithContentsOfFile:file];
         
         if (nil == data)
         {
-            data = [@"Error: file not found\x0A\x0D"
-                    dataUsingEncoding:NSASCIIStringEncoding];
+            if( nil == error)
+            {
+                data = [@"Error: file not found\x0A\x0D" dataUsingEncoding:NSASCIIStringEncoding];
+            }
+            else
+            {
+                data = [[NSString stringWithFormat:@"Error: %@\x0A\x0D", [error localizedDescription]] dataUsingEncoding:NSNonLossyASCIIStringEncoding];
+            }
         }
         
         [self.incomingBuffer appendData:data];
@@ -97,7 +114,7 @@
     if (showHelp == TRUE)
     {
         // show help
-        NSData *data = [@"Usage: dw server list <file>\x0A\x0D"
+        NSData *data = [@"Usage: dw server list <file or url>\x0A\x0D"
                         dataUsingEncoding:NSASCIIStringEncoding];
         [self.incomingBuffer appendData:data];
     }

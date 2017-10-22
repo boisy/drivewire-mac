@@ -156,6 +156,9 @@ static TBSerialManager *fSerialManager = nil;
                            [[VirtualSerialChannel alloc] initWithNumber:15 port:basePort + 15],
                            nil
                            ];
+    
+    [self.serialChannels makeObjectsPerformSelector:@selector(setDelegate:) withObject:self];
+    
     return;
 }
 

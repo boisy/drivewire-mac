@@ -7,6 +7,7 @@
 //
 
 #import "VirtualSerialChannel+DWCommands.h"
+#import "DriveWireServerModel.h"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
@@ -234,6 +235,81 @@
 - (NSError *)handleDWDISK:(NSArray *)array;
 {
     NSError *error = nil;
+    BOOL showHelp = TRUE;
+    
+    if ([array count] > 0)
+    {
+        NSDictionary *commandDictionary = @{@"show"          : @"handleDWDISKSHOW:",
+                                            };
+        
+        NSString *command = [array objectAtIndex:0];
+        NSString *selectorString = [commandDictionary objectForKey:command];
+        if (nil != selectorString)
+        {
+            SEL selector = NSSelectorFromString(selectorString);
+            error = [self performSelector:selector withObject:[array subarrayWithRange:NSMakeRange(1, [array count] - 1)]];
+            showHelp = FALSE;
+        }
+    }
+    
+    if (showHelp == TRUE)
+    {
+        // show help
+        NSData *data = [@"dw disk commands:\x0A\x0D"
+                        "    show [#] - Show current disk details\x0A\x0D"
+                        dataUsingEncoding:NSASCIIStringEncoding];
+        [self.incomingBuffer appendData:data];
+    }
+    
+    return error;
+}
+
+- (NSError *)handleDWDISKSHOW:(NSArray *)array;
+{
+    NSError *error = nil;
+
+    BOOL showHelp = TRUE;
+    
+    if ([array count] > 0)
+    {
+        showHelp = FALSE;
+        NSInteger requestedSlot = [[array objectAtIndex:0] integerValue];
+        
+        if( requestedSlot >=0 && requestedSlot <=4 )
+        {
+            DriveWireServerModel *dwsm = (DriveWireServerModel *)[self delegate];
+            NSArray *driveArray = dwsm.driveArray;
+            VirtualDriveController *controller = [driveArray objectAtIndex:requestedSlot];
+            
+            [self.incomingBuffer appendData:[[NSString stringWithFormat:@"Details for disk in drive #%lu\x0D\x0A", requestedSlot] dataUsingEncoding:NSASCIIStringEncoding]];
+
+            if( [controller isEmpty])
+            {
+                [self.incomingBuffer appendData:[@"Is empty\x0D\x0A" dataUsingEncoding:NSASCIIStringEncoding]];
+            }
+            else
+            {
+                [self.incomingBuffer appendData:[[NSString stringWithFormat:@"%@\x0D\x0A", [controller cartridgePath]] dataUsingEncoding:NSASCIIStringEncoding]];
+                
+                [self.incomingBuffer appendData:[[NSString stringWithFormat:@"Total Sectors Read: %d\x0D\x0A", controller.totalSectorsRead] dataUsingEncoding:NSASCIIStringEncoding]];
+                
+                [self.incomingBuffer appendData:[[NSString stringWithFormat:@"Total Sectors Written: %d\x0D\x0A", controller.totalSectorsWritten] dataUsingEncoding:NSASCIIStringEncoding]];
+            }
+        }
+        else
+        {
+            [self.incomingBuffer appendData:[@"Drive number out of range (0-3)\x0D\x0A" dataUsingEncoding:NSASCIIStringEncoding]];
+        }
+    }
+
+    if (showHelp == TRUE)
+    {
+        // show help
+        NSData *data = [@"Usage: dw disk show [#]:\x0A\x0D"
+                        "    Number is disk drive to show info for.\x0A\x0D"
+                        dataUsingEncoding:NSASCIIStringEncoding];
+        [self.incomingBuffer appendData:data];
+    }
     
     return error;
 }

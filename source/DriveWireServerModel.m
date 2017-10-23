@@ -1736,7 +1736,6 @@ static TBSerialManager *fSerialManager = nil;
     return result;
 }
 
-
 - (NSUInteger)OP_WIREBUG_READREGS_RESPONSE:(NSData *)data;
 {
     NSUInteger result = 0;
@@ -1813,7 +1812,6 @@ static TBSerialManager *fSerialManager = nil;
     return result;
 }
 
-
 - (NSUInteger)OP_WIREBUG_WRITEREGS_RESPONSE:(NSData *)data;
 {
     NSUInteger result = 0;
@@ -1822,7 +1820,6 @@ static TBSerialManager *fSerialManager = nil;
     
     return result;
 }
-
 
 - (NSUInteger)OP_WIREBUG_READMEM_RESPONSE:(NSData *)data;
 {
@@ -1850,7 +1847,6 @@ static TBSerialManager *fSerialManager = nil;
     return result;
 }
 
-
 - (NSUInteger)OP_WIREBUG_GO_RESPONSE:(NSData *)data;
 {
     NSUInteger result = 0;
@@ -1868,7 +1864,6 @@ static TBSerialManager *fSerialManager = nil;
     return result;
 }
 
-
 - (void)readRegisters
 {
 	u_char requestBuffer[24];
@@ -1880,7 +1875,6 @@ static TBSerialManager *fSerialManager = nil;
 	requestBuffer[23] = [self compute8BitChecksum:&requestBuffer[0] length:23];
 	[portDelegate writeData:[NSData dataWithBytes:requestBuffer length:24]];
 }
-
 
 - (void)readMemoryFrom:(int)start to:(int)end;
 {
@@ -1897,8 +1891,6 @@ static TBSerialManager *fSerialManager = nil;
 	[portDelegate writeData:[NSData dataWithBytes:requestBuffer length:24]];
 }
 
-
-
 - (void)goCoCo;
 {
 	u_char requestBuffer[24];
@@ -1913,7 +1905,8 @@ static TBSerialManager *fSerialManager = nil;
 	[self resetState:nil];
 }
 
-
+#pragma mark -
+#pragma mark VirtualSerialChannelDelegate Methods
 
 - (void)sendRunTarget
 {
@@ -1926,9 +1919,24 @@ static TBSerialManager *fSerialManager = nil;
     return;
 }
 
+- (void)didConnect:(VirtualSerialChannel *)channel;
+{
+    
+}
 
+- (void)didDisconnect:(VirtualSerialChannel *)channel;
+{
+    
+}
 
-#pragma mark NSCoding Protocol Methods
+- (void)didSendData:(VirtualSerialChannel *)channel;
+{
+    
+}
 
+- (void)didReceiveData:(VirtualSerialChannel *)channel;
+{
+    
+}
 
 @end

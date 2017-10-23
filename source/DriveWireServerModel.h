@@ -90,7 +90,7 @@ typedef enum {
 	@class DriveWireServerModel
 	This class encapsulates the entire DriveWire protocol.
 */
-@interface DriveWireServerModel : NSObject
+@interface DriveWireServerModel : NSObject <VirtualSerialChannelDelegate>
 {
 	TBSerialPort			*fPort;
 	NSMutableDictionary     *fSerialPortNames;

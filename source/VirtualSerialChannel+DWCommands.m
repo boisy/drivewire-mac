@@ -7,6 +7,7 @@
 //
 
 #import "VirtualSerialChannel+DWCommands.h"
+#import "NSString+DriveWire.h"
 #import "DriveWireServerModel.h"
 
 #pragma clang diagnostic push
@@ -240,6 +241,7 @@
     if ([array count] > 0)
     {
         NSDictionary *commandDictionary = @{@"show"          : @"handleDWDISKSHOW:",
+                                            @"eject"         : @"handleDWSDISKEJECT:",
                                             };
         
         NSString *command = [array objectAtIndex:0];
@@ -256,7 +258,58 @@
     {
         // show help
         NSData *data = [@"dw disk commands:\x0A\x0D"
-                        "    show [#] - Show current disk details\x0A\x0D"
+                        "    show [#]        - Show current disk details\x0A\x0D"
+                        "    eject {# | all} - Eject disk from drive #\x0A\x0D"
+                        dataUsingEncoding:NSASCIIStringEncoding];
+        [self.incomingBuffer appendData:data];
+    }
+    
+    return error;
+}
+
+- (NSError *)handleDWSDISKEJECT:(NSArray *)array;
+{
+    NSError *error = nil;
+    
+    BOOL showHelp = TRUE;
+    
+    if ([array count] > 0)
+    {
+        showHelp = FALSE;
+        NSString *parameter = [array objectAtIndex:0];
+        NSInteger requestedSlot = [parameter integerValue];
+        DriveWireServerModel *dwsm = (DriveWireServerModel *)[self delegate];
+        NSArray *driveArray = dwsm.driveArray;
+        
+        if( [parameter isEqualToString:@"all"] )
+        {
+            for( int i=0; i<4; i++ )
+            {
+                VirtualDriveController *controller = [driveArray objectAtIndex:i];
+                [controller ejectCartridge: self];
+            }
+            
+            [self.incomingBuffer appendData:[@"Ejected all disks.\x0D\x0A" dataUsingEncoding:NSASCIIStringEncoding]];
+           
+        }
+        else if( [parameter isInteger] && (requestedSlot >=0 && requestedSlot <=4) )
+        {
+            VirtualDriveController *controller = [driveArray objectAtIndex:requestedSlot];
+            [controller ejectCartridge: self];
+
+            [self.incomingBuffer appendData:[[NSString stringWithFormat:@ "Disk ejected from drive %lu.\x0D\x0A", requestedSlot] dataUsingEncoding:NSASCIIStringEncoding]];
+        }
+        else
+        {
+            [self.incomingBuffer appendData:[@"Drive number out of range (0-3), or not all\x0D\x0A" dataUsingEncoding:NSASCIIStringEncoding]];
+        }
+    }
+    
+    if (showHelp == TRUE)
+    {
+        // show help
+        NSData *data = [@"Usage: dw disk eject {# | all}:\x0A\x0D"
+                        "    Eject disk from drive #\x0A\x0D"
                         dataUsingEncoding:NSASCIIStringEncoding];
         [self.incomingBuffer appendData:data];
     }
@@ -267,7 +320,7 @@
 - (NSError *)handleDWDISKSHOW:(NSArray *)array;
 {
     NSError *error = nil;
-
+    
     BOOL showHelp = TRUE;
     
     if ([array count] > 0)
@@ -282,7 +335,7 @@
             VirtualDriveController *controller = [driveArray objectAtIndex:requestedSlot];
             
             [self.incomingBuffer appendData:[[NSString stringWithFormat:@"Details for disk in drive #%lu\x0D\x0A", requestedSlot] dataUsingEncoding:NSASCIIStringEncoding]];
-
+            
             if( [controller isEmpty])
             {
                 [self.incomingBuffer appendData:[@"Is empty\x0D\x0A" dataUsingEncoding:NSASCIIStringEncoding]];
@@ -301,7 +354,7 @@
             [self.incomingBuffer appendData:[@"Drive number out of range (0-3)\x0D\x0A" dataUsingEncoding:NSASCIIStringEncoding]];
         }
     }
-
+    
     if (showHelp == TRUE)
     {
         // show help

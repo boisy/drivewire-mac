@@ -35,4 +35,12 @@
     return result;
 }
 
+- (BOOL)isInteger;
+{
+    NSScanner* scan = [NSScanner scannerWithString:self];
+    int val;
+    return [scan scanInt:&val] && [scan isAtEnd];
+    // Steven Green, from stack overflow
+}
+
 @end

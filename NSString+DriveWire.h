@@ -10,5 +10,6 @@
 @interface NSString (DriveWire)
 
 - (NSString *)stringByProcessingBackspaces;
+- (BOOL)isInteger;
 
 @end

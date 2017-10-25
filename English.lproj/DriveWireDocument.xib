@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment version="1060" identifier="macosx"/>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -283,7 +283,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="677" height="165"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <size key="minSize" width="677" height="165"/>
+                                                        <size key="minSize" width="692" height="165"/>
                                                         <size key="maxSize" width="1397" height="10000000"/>
                                                         <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                     </textView>
@@ -322,12 +322,12 @@
                                         <popUpButton verticalHuggingPriority="750" misplaced="YES" id="n1Y-6A-hoF">
                                             <rect key="frame" x="80" y="2" width="208" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <popUpButtonCell key="cell" type="push" title="0 - Emergency" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="BXT-JC-CDQ">
+                                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="BXT-JC-CDQ">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="menu"/>
                                                 <menu key="menu" title="OtherViews" id="k0c-dV-S3O">
                                                     <items>
-                                                        <menuItem title="0 - Emergency" state="on" id="y4D-W1-9bW"/>
+                                                        <menuItem title="0 - Emergency" id="y4D-W1-9bW"/>
                                                         <menuItem title="1 - Alert" tag="1" id="EkC-GO-F9b"/>
                                                         <menuItem title="2 - Critical" tag="2" id="LUt-Im-tW6"/>
                                                         <menuItem title="3 - Error" tag="3" id="yxJ-KV-8Uy"/>

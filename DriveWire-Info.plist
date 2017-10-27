@@ -44,9 +44,9 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleHelpBookFolder</key>
-	<string>DriveWire MacServer Help</string>
+	<string>DriveWire Help</string>
 	<key>CFBundleHelpBookName</key>
-	<string>DriveWire MacServer Help</string>
+	<string>DriveWire Help</string>
 	<key>CFBundleIconFile</key>
 	<string>DriveWire Icon</string>
 	<key>CFBundleIdentifier</key>
@@ -55,10 +55,14 @@
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>tboy</string>
 	<key>CFBundleVersion</key>
-	<string>3.0</string>
+	<string>1</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.utilities</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

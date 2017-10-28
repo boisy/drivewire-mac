@@ -1,6 +1,6 @@
 //
 //  NetworkWindowController.m
-//  DriveWire MacServer
+//  DriveWire
 //
 //  Created by Boisy Pitre on 4/19/15.
 //

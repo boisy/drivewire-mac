@@ -43,7 +43,7 @@
 		68742E880F41B9EA0049FEF6 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68742E860F41B9EA0049FEF6 /* Cocoa.framework */; };
 		6879C0281ADFC0750033AF94 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6879C0271ADFC0750033AF94 /* main.m */; };
 		68A1F6AA1ADF59DF00A5B030 /* VirtualSerialChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A1F6A91ADF59DF00A5B030 /* VirtualSerialChannel.m */; };
-		68ABF6F309806CD600838EB9 /* DriveWire MacServer Help in Resources */ = {isa = PBXBuildFile; fileRef = 68ABF6CE09806CD600838EB9 /* DriveWire MacServer Help */; };
+		68ABF6F309806CD600838EB9 /* DriveWire Help in Resources */ = {isa = PBXBuildFile; fileRef = 68ABF6CE09806CD600838EB9 /* DriveWire Help */; };
 		68ADDF87096B7347002324CE /* DWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DBD1DE0964F1A900B011C5 /* DWAppDelegate.m */; };
 		68ADDF8B096B7347002324CE /* LogView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6812B39008AD13CE002B533A /* LogView.m */; };
 		68ADDF8D096B7347002324CE /* DriveWireDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* DriveWireDocument.m */; };
@@ -61,7 +61,7 @@
 		68C7AFA71AE9C946005594CF /* VirtualSerialChannel+DWCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C7AFA61AE9C946005594CF /* VirtualSerialChannel+DWCommands.m */; };
 		68C7AFAA1AE9C996005594CF /* VirtualSerialChannel+TCPCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C7AFA91AE9C996005594CF /* VirtualSerialChannel+TCPCommands.m */; };
 		68C7AFAD1AE9C9CD005594CF /* VirtualSerialChannel+ATCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C7AFAC1AE9C9CD005594CF /* VirtualSerialChannel+ATCommands.m */; };
-		6AC18F9BDBD316170904674A /* libPods-DriveWire MacServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01892DFF2A9748149A1B0A3F /* libPods-DriveWire MacServer.a */; };
+		94E43C06A59562DDAD6CF2B0 /* libPods-DriveWire.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 487F4A91F5C1CBD37CD4AFFE /* libPods-DriveWire.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,13 +75,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		01892DFF2A9748149A1B0A3F /* libPods-DriveWire MacServer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DriveWire MacServer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0763232A94623FD3213981B1 /* Pods-DriveWire MacServer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveWire MacServer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DriveWire MacServer/Pods-DriveWire MacServer.debug.xcconfig"; sourceTree = "<group>"; };
 		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2A37F4ACFDCFA73011CA2CEA /* DriveWireDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriveWireDocument.m; sourceTree = "<group>"; };
 		2A37F4AEFDCFA73011CA2CEA /* DriveWireDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriveWireDocument.h; sourceTree = "<group>"; };
 		2A37F4BAFDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		32DBCF750370BD2300C91783 /* DriveWire_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriveWire_Prefix.pch; sourceTree = "<group>"; };
+		435458113AA42290E98DB18A /* Pods-DriveWire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveWire.release.xcconfig"; path = "Pods/Target Support Files/Pods-DriveWire/Pods-DriveWire.release.xcconfig"; sourceTree = "<group>"; };
+		487F4A91F5C1CBD37CD4AFFE /* libPods-DriveWire.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DriveWire.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6805D7841AD583E800EA3B5F /* TeeBoy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TeeBoy.framework; sourceTree = "<group>"; };
 		680612D01ADFC85200B1C502 /* CoCo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CoCo1.png; path = assets/CoCo1.png; sourceTree = "<group>"; };
 		680612D11ADFC85200B1C502 /* CoCo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CoCo2.png; path = assets/CoCo2.png; sourceTree = "<group>"; };
@@ -109,6 +110,7 @@
 		6809AF3D0F6C0F81000BB954 /* greenled.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = greenled.jpg; path = assets/greenled.jpg; sourceTree = "<group>"; };
 		6812B39008AD13CE002B533A /* LogView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LogView.m; sourceTree = "<group>"; };
 		6812B39108AD13CE002B533A /* LogView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LogView.h; sourceTree = "<group>"; };
+		68150E111FA3D28300C516C9 /* DriveWire.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DriveWire.entitlements; sourceTree = "<group>"; };
 		68190D2C0F47011400C4CDDD /* RegisterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterView.m; sourceTree = "<group>"; };
 		68190D2D0F47011400C4CDDD /* RegisterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterView.h; sourceTree = "<group>"; };
 		68190D2F0F47011F00C4CDDD /* MemoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryView.h; sourceTree = "<group>"; };
@@ -150,8 +152,8 @@
 		6879C0271ADFC0750033AF94 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = source/main.m; sourceTree = "<group>"; };
 		68A1F6A81ADF59DF00A5B030 /* VirtualSerialChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualSerialChannel.h; sourceTree = "<group>"; };
 		68A1F6A91ADF59DF00A5B030 /* VirtualSerialChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualSerialChannel.m; sourceTree = "<group>"; };
-		68ABF6CF09806CD600838EB9 /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = "English.lproj/DriveWire MacServer Help"; sourceTree = "<group>"; };
-		68ADDE99096B723F002324CE /* DriveWire MacServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DriveWire MacServer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		68ABF6CF09806CD600838EB9 /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = "English.lproj/DriveWire Help"; sourceTree = "<group>"; };
+		68ADDE99096B723F002324CE /* DriveWire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DriveWire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68C494E00965F00500F9E265 /* DriveWire Disk Image.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "DriveWire Disk Image.icns"; path = "assets/DriveWire Disk Image.icns"; sourceTree = "<group>"; };
 		68C494E20965F01800F9E265 /* DriveWire Document.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "DriveWire Document.icns"; path = "assets/DriveWire Document.icns"; sourceTree = "<group>"; };
 		68C4C9501F98BB150077A72D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -169,7 +171,8 @@
 		68C7AFAC1AE9C9CD005594CF /* VirtualSerialChannel+ATCommands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VirtualSerialChannel+ATCommands.m"; sourceTree = "<group>"; };
 		68DBD1DE0964F1A900B011C5 /* DWAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = DWAppDelegate.m; sourceTree = "<group>"; };
 		68DBD1DF0964F1A900B011C5 /* DWAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = DWAppDelegate.h; sourceTree = "<group>"; };
-		8D15AC360486D014006FF6A4 /* DriveWire MacServer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DriveWire MacServer-Info.plist"; sourceTree = "<group>"; };
+		8D15AC360486D014006FF6A4 /* DriveWire-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DriveWire-Info.plist"; sourceTree = "<group>"; };
+		959227020E964D36700A544E /* Pods-DriveWire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveWire.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DriveWire/Pods-DriveWire.debug.xcconfig"; sourceTree = "<group>"; };
 		BD40BD754E2481641C1DCDF9 /* Pods-DriveWire MacServer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveWire MacServer.release.xcconfig"; path = "Pods/Target Support Files/Pods-DriveWire MacServer/Pods-DriveWire MacServer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -190,7 +193,7 @@
 				68742E880F41B9EA0049FEF6 /* Cocoa.framework in Frameworks */,
 				6809AD940F6C0974000BB954 /* IOKit.framework in Frameworks */,
 				6805D7851AD583E800EA3B5F /* TeeBoy.framework in Frameworks */,
-				6AC18F9BDBD316170904674A /* libPods-DriveWire MacServer.a in Frameworks */,
+				94E43C06A59562DDAD6CF2B0 /* libPods-DriveWire.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,7 +203,7 @@
 		19C28FB0FE9D524F11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				68ADDE99096B723F002324CE /* DriveWire MacServer.app */,
+				68ADDE99096B723F002324CE /* DriveWire.app */,
 				6842CEBB1F97B35B00A6F829 /* Tests.xctest */,
 			);
 			name = Products;
@@ -209,6 +212,7 @@
 		2A37F4AAFDCFA73011CA2CEA /* DriveWire */ = {
 			isa = PBXGroup;
 			children = (
+				68150E111FA3D28300C516C9 /* DriveWire.entitlements */,
 				68C4C9501F98BB150077A72D /* README.md */,
 				2A37F4ABFDCFA73011CA2CEA /* Classes */,
 				6842CEBC1F97B35B00A6F829 /* Tests */,
@@ -341,12 +345,12 @@
 				6809AEEE0F6C0DB6000BB954 /* driveface.jpg */,
 				6809AEF50F6C0DB6000BB954 /* eject.wav */,
 				6809AEF60F6C0DB6000BB954 /* insert.wav */,
-				68ABF6CE09806CD600838EB9 /* DriveWire MacServer Help */,
+				68ABF6CE09806CD600838EB9 /* DriveWire Help */,
 				68C494E20965F01800F9E265 /* DriveWire Document.icns */,
 				68C494E00965F00500F9E265 /* DriveWire Disk Image.icns */,
 				6872687908A97EDD00ADD1F0 /* DriveWire Icon.icns */,
 				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
-				8D15AC360486D014006FF6A4 /* DriveWire MacServer-Info.plist */,
+				8D15AC360486D014006FF6A4 /* DriveWire-Info.plist */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
 			);
 			name = Resources;
@@ -411,7 +415,7 @@
 				68742E850F41B9EA0049FEF6 /* AppKit.framework */,
 				68742E860F41B9EA0049FEF6 /* Cocoa.framework */,
 				6809AD930F6C0974000BB954 /* IOKit.framework */,
-				01892DFF2A9748149A1B0A3F /* libPods-DriveWire MacServer.a */,
+				487F4A91F5C1CBD37CD4AFFE /* libPods-DriveWire.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -439,6 +443,8 @@
 			children = (
 				0763232A94623FD3213981B1 /* Pods-DriveWire MacServer.debug.xcconfig */,
 				BD40BD754E2481641C1DCDF9 /* Pods-DriveWire MacServer.release.xcconfig */,
+				959227020E964D36700A544E /* Pods-DriveWire.debug.xcconfig */,
+				435458113AA42290E98DB18A /* Pods-DriveWire.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -464,9 +470,9 @@
 			productReference = 6842CEBB1F97B35B00A6F829 /* Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		68ADDE98096B723F002324CE /* DriveWire MacServer */ = {
+		68ADDE98096B723F002324CE /* DriveWire */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 68ADDE9C096B723F002324CE /* Build configuration list for PBXNativeTarget "DriveWire MacServer" */;
+			buildConfigurationList = 68ADDE9C096B723F002324CE /* Build configuration list for PBXNativeTarget "DriveWire" */;
 			buildPhases = (
 				3F4EAEAB8530F6DF36AC15E2 /* [CP] Check Pods Manifest.lock */,
 				68ADDE95096B723F002324CE /* Resources */,
@@ -479,9 +485,9 @@
 			);
 			dependencies = (
 			);
-			name = "DriveWire MacServer";
+			name = DriveWire;
 			productName = "DriveWire MacServer";
-			productReference = 68ADDE99096B723F002324CE /* DriveWire MacServer.app */;
+			productReference = 68ADDE99096B723F002324CE /* DriveWire.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -501,10 +507,15 @@
 					68ADDE98096B723F002324CE = {
 						DevelopmentTeam = 9UKFRNS4PM;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
-			buildConfigurationList = 68A78B4008A1452000865FD4 /* Build configuration list for PBXProject "DriveWire MacServer" */;
+			buildConfigurationList = 68A78B4008A1452000865FD4 /* Build configuration list for PBXProject "DriveWire" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -516,7 +527,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				68ADDE98096B723F002324CE /* DriveWire MacServer */,
+				68ADDE98096B723F002324CE /* DriveWire */,
 				6842CEBA1F97B35B00A6F829 /* Tests */,
 			);
 		};
@@ -540,7 +551,7 @@
 				68ADE05D096B7686002324CE /* Credits.rtf in Resources */,
 				686CA3FD1AE11ED900544862 /* DriveWire-Logo.png in Resources */,
 				68ADE05F096B7686002324CE /* InfoPlist.strings in Resources */,
-				68ABF6F309806CD600838EB9 /* DriveWire MacServer Help in Resources */,
+				68ABF6F309806CD600838EB9 /* DriveWire Help in Resources */,
 				68C535D50F68971B00F39926 /* DriveWireDocument.xib in Resources */,
 				6809AE020F6C0C30000BB954 /* VirtualDriveView.xib in Resources */,
 				6809AE070F6C0C4C000BB954 /* MainMenu.xib in Resources */,
@@ -573,7 +584,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DriveWire MacServer-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-DriveWire-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -586,7 +597,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-DriveWire MacServer/Pods-DriveWire MacServer-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-DriveWire/Pods-DriveWire-frameworks.sh",
 				"${PODS_ROOT}/TeeBoy/TeeBoy.framework",
 				"${PODS_ROOT}/TeeBoy/TeeBoy.framework.dSYM",
 			);
@@ -597,7 +608,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DriveWire MacServer/Pods-DriveWire MacServer-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DriveWire/Pods-DriveWire-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9FA43F8D23F1BD95E3BFDF64 /* [CP] Copy Pods Resources */ = {
@@ -612,7 +623,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DriveWire MacServer/Pods-DriveWire MacServer-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DriveWire/Pods-DriveWire-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -664,7 +675,7 @@
 /* Begin PBXTargetDependency section */
 		6842CEC11F97B35B00A6F829 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 68ADDE98096B723F002324CE /* DriveWire MacServer */;
+			target = 68ADDE98096B723F002324CE /* DriveWire */;
 			targetProxy = 6842CEC01F97B35B00A6F829 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -694,12 +705,12 @@
 			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
-		68ABF6CE09806CD600838EB9 /* DriveWire MacServer Help */ = {
+		68ABF6CE09806CD600838EB9 /* DriveWire Help */ = {
 			isa = PBXVariantGroup;
 			children = (
 				68ABF6CF09806CD600838EB9 /* English */,
 			);
-			name = "DriveWire MacServer Help";
+			name = "DriveWire Help";
 			sourceTree = "<group>";
 		};
 		68C535D30F68971B00F39926 /* DriveWireDocument.xib */ = {
@@ -749,7 +760,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.drivewire.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DriveWire MacServer.app/Contents/MacOS/DriveWire MacServer";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DriveWire MacServer.app/Contents/MacOS/DriveWire";
 			};
 			name = Debug;
 		};
@@ -783,7 +794,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.drivewire.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DriveWire MacServer.app/Contents/MacOS/DriveWire MacServer";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DriveWire MacServer.app/Contents/MacOS/DriveWire";
 			};
 			name = Release;
 		};
@@ -857,9 +868,10 @@
 		};
 		68ADDE9D096B723F002324CE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0763232A94623FD3213981B1 /* Pods-DriveWire MacServer.debug.xcconfig */;
+			baseConfigurationReference = 959227020E964D36700A544E /* Pods-DriveWire.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = DriveWire.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -884,7 +896,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "DriveWire MacServer-Info.plist";
+				INFOPLIST_FILE = "DriveWire-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
@@ -897,8 +909,8 @@
 					AppKit,
 				);
 				PREBINDING = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tee-boy.drivewire";
-				PRODUCT_NAME = "DriveWire MacServer";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tee-boy.DriveWire";
+				PRODUCT_NAME = DriveWire;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SHARED_PRECOMPS_DIR = "";
@@ -912,9 +924,10 @@
 		};
 		68ADDE9E096B723F002324CE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BD40BD754E2481641C1DCDF9 /* Pods-DriveWire MacServer.release.xcconfig */;
+			baseConfigurationReference = 435458113AA42290E98DB18A /* Pods-DriveWire.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = DriveWire.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -937,7 +950,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "DriveWire MacServer-Info.plist";
+				INFOPLIST_FILE = "DriveWire-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
@@ -950,8 +963,8 @@
 					AppKit,
 				);
 				PREBINDING = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tee-boy.drivewire";
-				PRODUCT_NAME = "DriveWire MacServer";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tee-boy.DriveWire";
+				PRODUCT_NAME = DriveWire;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SHARED_PRECOMPS_DIR = "";
@@ -976,7 +989,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		68A78B4008A1452000865FD4 /* Build configuration list for PBXProject "DriveWire MacServer" */ = {
+		68A78B4008A1452000865FD4 /* Build configuration list for PBXProject "DriveWire" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				68A78B4108A1452000865FD4 /* Debug */,
@@ -985,7 +998,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		68ADDE9C096B723F002324CE /* Build configuration list for PBXNativeTarget "DriveWire MacServer" */ = {
+		68ADDE9C096B723F002324CE /* Build configuration list for PBXNativeTarget "DriveWire" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				68ADDE9D096B723F002324CE /* Debug */,

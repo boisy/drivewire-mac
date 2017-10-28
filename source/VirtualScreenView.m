@@ -1,6 +1,6 @@
 //
 //  VirtualScreenView.m
-//  DriveWire MacServer
+//  DriveWire
 //
 //  Created by Boisy Pitre on 4/17/15.
 //

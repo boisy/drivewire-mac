@@ -1,6 +1,6 @@
 //
 //  NSString+DriveWire.m
-//  DriveWire MacServer
+//  DriveWire
 //
 //  Created by Boisy Pitre on 10/18/17.
 //

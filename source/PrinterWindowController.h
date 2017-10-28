@@ -1,6 +1,6 @@
 //
 //  PrinterWindowController.h
-//  DriveWire MacServer
+//  DriveWire
 //
 //  Created by Boisy Pitre on 3/7/09.
 //  Copyright 2009 __MyCompanyName__. All rights reserved.

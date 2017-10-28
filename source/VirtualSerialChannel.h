@@ -1,6 +1,6 @@
 //
 //  VirtualSerialChannel.h
-//  DriveWire MacServer
+//  DriveWire
 //
 //  Created by Boisy Pitre on 4/15/15.
 //

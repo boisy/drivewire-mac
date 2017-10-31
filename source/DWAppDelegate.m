@@ -2,6 +2,40 @@
 
 @implementation DWAppDelegate
 
+- (void)applicationWillFinishLaunching:(NSNotification *)aNotification;
+{
+    // Setup Sparkle
+    // Add menu item for update checking
+    NSMenu *mainMenu = [NSApp mainMenu];
+    NSMenu *appMenu = [[mainMenu itemAtIndex:0] submenu];
+    NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@"Check For Updates..." action:@selector(checkForUpdates:) keyEquivalent:@""];
+    [menuItem setTarget:self];
+    [appMenu insertItem:menuItem atIndex:1];
+
+    NSString *url = nil;
+    url = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"SUFeedURL"];
+    
+    [[SUUpdater sharedUpdater] setFeedURL:[NSURL URLWithString:url]];
+    [[SUUpdater sharedUpdater] setDelegate:self];
+}
+
+#pragma mark -
+#pragma mark Sparkle Methods
+
+- (BOOL)updaterShouldPromptForPermissionToCheckForUpdates:(SUUpdater *)bundle;
+{
+    return YES;
+}
+
+- (void)checkForUpdates:(id)sender;
+{
+    [[SUUpdater sharedUpdater] checkForUpdates:sender];
+}
+
+
+#pragma mark -
+#pragma mark Menu Methods
+
 - (IBAction)createBlankImageAction:(id)sender
 {
 	NSSavePanel *panel = [NSSavePanel savePanel];

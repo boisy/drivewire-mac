@@ -23,6 +23,7 @@
 		6809AF040F6C0DB6000BB954 /* insert.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6809AEF60F6C0DB6000BB954 /* insert.wav */; };
 		6809AF050F6C0DB6000BB954 /* redled.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6809AEF70F6C0DB6000BB954 /* redled.jpg */; };
 		6809AF3E0F6C0F81000BB954 /* greenled.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6809AF3D0F6C0F81000BB954 /* greenled.jpg */; };
+		68150E271FA8988000C516C9 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 68150E261FA8988000C516C9 /* dsa_pub.pem */; };
 		68190D2E0F47011400C4CDDD /* RegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68190D2C0F47011400C4CDDD /* RegisterView.m */; };
 		68190D310F47011F00C4CDDD /* MemoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68190D300F47011F00C4CDDD /* MemoryView.m */; };
 		68363D450F63182400CD8A1B /* PrinterWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68363D440F63182400CD8A1B /* PrinterWindowController.m */; };
@@ -111,6 +112,7 @@
 		6812B39008AD13CE002B533A /* LogView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LogView.m; sourceTree = "<group>"; };
 		6812B39108AD13CE002B533A /* LogView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LogView.h; sourceTree = "<group>"; };
 		68150E111FA3D28300C516C9 /* DriveWire.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DriveWire.entitlements; sourceTree = "<group>"; };
+		68150E261FA8988000C516C9 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		68190D2C0F47011400C4CDDD /* RegisterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterView.m; sourceTree = "<group>"; };
 		68190D2D0F47011400C4CDDD /* RegisterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterView.h; sourceTree = "<group>"; };
 		68190D2F0F47011F00C4CDDD /* MemoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryView.h; sourceTree = "<group>"; };
@@ -212,8 +214,9 @@
 		2A37F4AAFDCFA73011CA2CEA /* DriveWire */ = {
 			isa = PBXGroup;
 			children = (
-				68150E111FA3D28300C516C9 /* DriveWire.entitlements */,
 				68C4C9501F98BB150077A72D /* README.md */,
+				68150E261FA8988000C516C9 /* dsa_pub.pem */,
+				68150E111FA3D28300C516C9 /* DriveWire.entitlements */,
 				2A37F4ABFDCFA73011CA2CEA /* Classes */,
 				6842CEBC1F97B35B00A6F829 /* Tests */,
 				68DB155809683356005D9079 /* Frameworks */,
@@ -555,6 +558,7 @@
 				68C535D50F68971B00F39926 /* DriveWireDocument.xib in Resources */,
 				6809AE020F6C0C30000BB954 /* VirtualDriveView.xib in Resources */,
 				6809AE070F6C0C4C000BB954 /* MainMenu.xib in Resources */,
+				68150E271FA8988000C516C9 /* dsa_pub.pem in Resources */,
 				6809AEFB0F6C0DB6000BB954 /* drive.jpg in Resources */,
 				6809AEFC0F6C0DB6000BB954 /* driveface.jpg in Resources */,
 				680612D41ADFC85200B1C502 /* CoCo1.png in Resources */,
@@ -598,11 +602,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DriveWire/Pods-DriveWire-frameworks.sh",
+				"${PODS_ROOT}/Sparkle/Sparkle.framework",
+				"${PODS_ROOT}/Sparkle/Sparkle.framework.dSYM",
 				"${PODS_ROOT}/TeeBoy/TeeBoy.framework",
 				"${PODS_ROOT}/TeeBoy/TeeBoy.framework.dSYM",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sparkle.framework",
+				"${DWARF_DSYM_FOLDER_PATH}/Sparkle.framework.dSYM",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TeeBoy.framework",
 				"${DWARF_DSYM_FOLDER_PATH}/TeeBoy.framework.dSYM",
 			);

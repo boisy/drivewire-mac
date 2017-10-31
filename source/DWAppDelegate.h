@@ -1,8 +1,9 @@
 /* DWAppDelegate */
 
 #import <Cocoa/Cocoa.h>
+#import <Sparkle/Sparkle.h>
 
-@interface DWAppDelegate : NSObject
+@interface DWAppDelegate : NSObject <SUUpdaterDelegate>
 {
 }
 

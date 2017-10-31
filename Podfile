@@ -6,5 +6,6 @@ workspace 'DriveWire.xcworkspace'
 
 target 'DriveWire' do  
 	pod 'CocoaAsyncSocket'
+	pod 'Sparkle'
 	pod 'TeeBoy'
 end

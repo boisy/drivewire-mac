@@ -73,6 +73,8 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
-	<string>http://webpages.charter.net/boisy/dw.xml</string>
+	<string>http://downloads.weathersnoop.com/DriveWire-macOS.xml</string>
+	<key>SUPublicDSAKeyFile</key>
+	<string>dsa_pub.pem</string>
 </dict>
 </plist>

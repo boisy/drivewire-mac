@@ -6,7 +6,6 @@ if [ -z "$XCS_ARCHIVE" ]; then
     exit 1
 fi  
 marketingVersion="1.0.${XCS_INTEGRATION_NUMBER}"
-zip -r /tmp/xcs_archive ${XCS_ARCHIVE}
 cd "${XCS_ARCHIVE}/Products/Applications"
 zip -yr /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}.zip "DriveWire.app"
 scp /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}.zip administrator@downloads.weathersnoop.com:/Library/Server/Web/Data/Sites/downloads.weathersnoop.com

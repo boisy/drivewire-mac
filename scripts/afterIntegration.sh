@@ -1,6 +1,10 @@
 #!/bin/bash
 # After Integration Run Script
 # Called by the Xcode Bot
+if [ -z "$XCS_ARCHIVE" ]; then
+    echo "XCS_ARCHIVE is not set -- aborting"
+    exit 1
+fi  
 marketingVersion="1.0.${XCS_INTEGRATION_NUMBER}"
 cd "${XCS_ARCHIVE}/Products/Applications"
 pushd "DriveWire.app/Contents/Frameworks"

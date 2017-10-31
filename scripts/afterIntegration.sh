@@ -10,8 +10,6 @@ cd ../..
 zip -yr /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}_dSYMs.zip dSYMs
 scp /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}_dSYMs.zip administrator@downloads.weathersnoop.com:/Library/Server/Web/Data/Sites/downloads.weathersnoop.com
 
-cd ${XCS_SOURCE_DIR}
-
 # Setup variables to be used in sed
 signature=`scripts/sign_update.rb /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}.zip dsa_priv.pem`
 releaseDate=`date '+%a, %d %b %Y %T %z'`

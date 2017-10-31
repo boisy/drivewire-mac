@@ -481,6 +481,7 @@
 				68ADDE95096B723F002324CE /* Resources */,
 				68ADDE96096B723F002324CE /* Sources */,
 				68ADDE97096B723F002324CE /* Frameworks */,
+				68150E281FA8A27800C516C9 /* Set Build Number */,
 				730E88D4E8D2D859A2E46F73 /* [CP] Embed Pods Frameworks */,
 				9FA43F8D23F1BD95E3BFDF64 /* [CP] Copy Pods Resources */,
 			);
@@ -594,6 +595,20 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		68150E281FA8A27800C516C9 /* Set Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"the$XCS_INTEGRATION_NUMBER\" != \"the\" ]; then\necho \"Setting integration build number: $XCS_INTEGRATION_NUMBER\"\nxcrun agvtool new-version -all \"$XCS_INTEGRATION_NUMBER\"\nfi\n";
 		};
 		730E88D4E8D2D859A2E46F73 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

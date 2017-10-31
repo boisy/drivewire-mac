@@ -768,7 +768,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.drivewire.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DriveWire MacServer.app/Contents/MacOS/DriveWire";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DriveWire.app/Contents/MacOS/DriveWire";
 			};
 			name = Debug;
 		};
@@ -802,7 +802,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.drivewire.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DriveWire MacServer.app/Contents/MacOS/DriveWire";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DriveWire.app/Contents/MacOS/DriveWire";
 			};
 			name = Release;
 		};

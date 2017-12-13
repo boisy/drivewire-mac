@@ -7,14 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6805D7851AD583E800EA3B5F /* TeeBoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6805D7841AD583E800EA3B5F /* TeeBoy.framework */; };
 		680612D41ADFC85200B1C502 /* CoCo1.png in Resources */ = {isa = PBXBuildFile; fileRef = 680612D01ADFC85200B1C502 /* CoCo1.png */; };
 		680612D51ADFC85200B1C502 /* CoCo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 680612D11ADFC85200B1C502 /* CoCo2.png */; };
 		680612D61ADFC85200B1C502 /* CoCo3.png in Resources */ = {isa = PBXBuildFile; fileRef = 680612D21ADFC85200B1C502 /* CoCo3.png */; };
 		6809AD840F6C08A6000BB954 /* VirtualDriveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6809AD7F0F6C08A6000BB954 /* VirtualDriveController.m */; };
 		6809AD850F6C08A6000BB954 /* VirtualDriveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6809AD810F6C08A6000BB954 /* VirtualDriveModel.m */; };
 		6809AD860F6C08A6000BB954 /* VirtualDriveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6809AD830F6C08A6000BB954 /* VirtualDriveView.m */; };
-		6809AD940F6C0974000BB954 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6809AD930F6C0974000BB954 /* IOKit.framework */; };
 		6809AE020F6C0C30000BB954 /* VirtualDriveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6809AE010F6C0C30000BB954 /* VirtualDriveView.xib */; };
 		6809AE070F6C0C4C000BB954 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6809AE050F6C0C4C000BB954 /* MainMenu.xib */; };
 		6809AEFB0F6C0DB6000BB954 /* drive.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6809AEED0F6C0DB6000BB954 /* drive.jpg */; };
@@ -84,7 +82,6 @@
 		32DBCF750370BD2300C91783 /* DriveWire_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriveWire_Prefix.pch; sourceTree = "<group>"; };
 		435458113AA42290E98DB18A /* Pods-DriveWire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveWire.release.xcconfig"; path = "Pods/Target Support Files/Pods-DriveWire/Pods-DriveWire.release.xcconfig"; sourceTree = "<group>"; };
 		487F4A91F5C1CBD37CD4AFFE /* libPods-DriveWire.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DriveWire.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6805D7841AD583E800EA3B5F /* TeeBoy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TeeBoy.framework; sourceTree = "<group>"; };
 		680612D01ADFC85200B1C502 /* CoCo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CoCo1.png; path = assets/CoCo1.png; sourceTree = "<group>"; };
 		680612D11ADFC85200B1C502 /* CoCo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CoCo2.png; path = assets/CoCo2.png; sourceTree = "<group>"; };
 		680612D21ADFC85200B1C502 /* CoCo3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CoCo3.png; path = assets/CoCo3.png; sourceTree = "<group>"; };
@@ -95,7 +92,6 @@
 		6809AD810F6C08A6000BB954 /* VirtualDriveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualDriveModel.m; sourceTree = "<group>"; };
 		6809AD820F6C08A6000BB954 /* VirtualDriveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualDriveView.h; sourceTree = "<group>"; };
 		6809AD830F6C08A6000BB954 /* VirtualDriveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualDriveView.m; sourceTree = "<group>"; };
-		6809AD930F6C0974000BB954 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
 		6809AE010F6C0C30000BB954 /* VirtualDriveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VirtualDriveView.xib; sourceTree = "<group>"; };
 		6809AE060F6C0C4C000BB954 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		6809AEED0F6C0DB6000BB954 /* drive.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = drive.jpg; path = assets/drive.jpg; sourceTree = "<group>"; };
@@ -193,8 +189,6 @@
 				686CA40C1AE272FE00544862 /* Security.framework in Frameworks */,
 				68742E870F41B9EA0049FEF6 /* AppKit.framework in Frameworks */,
 				68742E880F41B9EA0049FEF6 /* Cocoa.framework in Frameworks */,
-				6809AD940F6C0974000BB954 /* IOKit.framework in Frameworks */,
-				6805D7851AD583E800EA3B5F /* TeeBoy.framework in Frameworks */,
 				94E43C06A59562DDAD6CF2B0 /* libPods-DriveWire.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,10 +408,8 @@
 			isa = PBXGroup;
 			children = (
 				686CA40B1AE272FE00544862 /* Security.framework */,
-				6805D7841AD583E800EA3B5F /* TeeBoy.framework */,
 				68742E850F41B9EA0049FEF6 /* AppKit.framework */,
 				68742E860F41B9EA0049FEF6 /* Cocoa.framework */,
-				6809AD930F6C0974000BB954 /* IOKit.framework */,
 				487F4A91F5C1CBD37CD4AFFE /* libPods-DriveWire.a */,
 			);
 			name = Frameworks;
@@ -513,7 +505,7 @@
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -894,7 +886,6 @@
 			baseConfigurationReference = 959227020E964D36700A544E /* Pods-DriveWire.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = DriveWire.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -950,7 +941,6 @@
 			baseConfigurationReference = 435458113AA42290E98DB18A /* Pods-DriveWire.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = DriveWire.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;

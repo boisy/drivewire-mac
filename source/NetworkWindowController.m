@@ -42,9 +42,11 @@
         [self.scrollView.contentView addSubview:vc.view];
     }
 
-//    NSSize scrollContentSize = self.scrollView.documentView.frame.size;
-//    scrollContentSize.height = totalHeight;
-//    [self.scrollView.documentView setFrameSize:scrollContentSize];
+    NSSize scrollContentSize = self.scrollView.documentView.frame.size;
+    scrollContentSize.height = totalHeight;
+    [self.scrollView.documentView setFrameSize:scrollContentSize];
+
+    // TODO: determine how to scroll view up to top
 }
 
 @end

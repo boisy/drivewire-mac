@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -131,19 +131,17 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="View" id="237">
                         <items>
-                            <menuItem title="WireBug" keyEquivalent="d" id="238">
+                            <menuItem title="WireBug" keyEquivalent="D" id="238">
                                 <connections>
                                     <action selector="viewWireBugWindow:" target="-1" id="255"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Network" id="256">
-                                <modifierMask key="keyEquivalentModifierMask"/>
+                            <menuItem title="Network" keyEquivalent="N" id="256">
                                 <connections>
                                     <action selector="viewNetworkWindow:" target="-1" id="259"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Printer" id="250">
-                                <modifierMask key="keyEquivalentModifierMask"/>
+                            <menuItem title="Virtual Printer" keyEquivalent="V" id="250">
                                 <connections>
                                     <action selector="viewPrinterWindow:" target="-1" id="254"/>
                                 </connections>
@@ -155,7 +153,7 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Disk" id="247">
                         <items>
-                            <menuItem title="Create Blank Image" keyEquivalent="b" id="248">
+                            <menuItem title="Create Blank Image" keyEquivalent="B" id="248">
                                 <connections>
                                     <action selector="createBlankImageAction:" target="242" id="249"/>
                                 </connections>

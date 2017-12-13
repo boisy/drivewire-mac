@@ -15,13 +15,11 @@
 
 + (void)initializeDefaults;
 {
-#if 0
     NSDictionary *initialValues = [NSDictionary dictionaryWithObjectsAndKeys:
                                    [NSNumber numberWithBool:TRUE], @"ApplePersistenceIgnoreState",
                                    nil];
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:initialValues];
-#endif
 }
 
 + (void)initialize;

@@ -12,6 +12,9 @@
 
 @interface NetworkConnectionViewController : NSViewController <VirtualSerialChannelDelegate>
 
+#define INCOMING_LED_TIMEOUT    0.2
+#define OUTGOING_LED_TIMEOUT    0.2
+
 @property (strong) NSString *name;
 @property (strong) NSString *status;
 @property (assign) IBOutlet TBLEDView *incomingLED;

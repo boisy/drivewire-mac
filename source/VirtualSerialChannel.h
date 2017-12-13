@@ -28,7 +28,7 @@
 @property (strong) NSMutableData *incomingBuffer; // incoming TO CoCo
 @property (strong) NSMutableData *outgoingBuffer; // outgoing FROM CoCo
 @property (assign) NSUInteger waitCounter;
-@property (assign) id<VirtualSerialChannelDelegate> delegate;
+@property (weak) id<VirtualSerialChannelDelegate> delegate;
 @property (assign) BOOL shouldClose;
 
 - (id)initWithNumber:(NSUInteger)number port:(NSUInteger)port;

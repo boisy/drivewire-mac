@@ -61,21 +61,35 @@
 - (NSError *)handleTCPCommand:(NSArray *)array;
 {
     NSError *error = nil;
-    
-    NSDictionary *commandDictionary = @{@"connect" : @"handleTCPConnect:",
-                                        @"listen"  : @"handleTCPListen:",
-                                        @"join"    : @"handleTCPJoin:",
-                                        @"kill"    : @"handleTCPKill:"};
-    
+    BOOL showHelp = TRUE;
+
     if ([array count] > 1)
     {
+        NSDictionary *commandDictionary = @{@"connect" : @"handleTCPConnect:",
+                                            @"listen"  : @"handleTCPListen:",
+                                            @"join"    : @"handleTCPJoin:",
+                                            @"kill"    : @"handleTCPKill:"};
+        
         NSString *command = [array objectAtIndex:1];
         NSString *selectorString = [commandDictionary objectForKey:command];
         if (nil != selectorString)
         {
             SEL selector = NSSelectorFromString(selectorString);
             error = [self performSelector:selector withObject:[array subarrayWithRange:NSMakeRange(1, [array count] - 1)]];
+            showHelp = FALSE;
         }
+    }
+    
+    if (showHelp == TRUE)
+    {
+        // show help
+        NSData *data = [@"tcp commands:\x0A\x0D"
+                        "    connect <server> <port> - connect to server @ port\x0A\x0D"
+                        "    listen <port>           - list on port\x0A\x0D"
+                        "    join                    - join\x0A\x0D"
+                        "    kill                    - kill\x0A\x0D"
+                        dataUsingEncoding:NSASCIIStringEncoding];
+        [self.incomingBuffer appendData:data];
     }
     
     return error;

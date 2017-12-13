@@ -32,9 +32,11 @@
     [super windowDidLoad];
 
     NSUInteger totalHeight = 0;
+    self.viewControllers = [NSMutableArray array];
     for (int i = 0; i < 15; i++)
     {
         NetworkConnectionViewController *vc = [[NetworkConnectionViewController alloc] initWithChannel:[self.virtualChannels objectAtIndex:15 - i]];
+        [self.viewControllers addObject:vc];
         NSRect frame = vc.view.frame;
         frame.origin.y = frame.size.height * i;
         totalHeight += frame.size.height;

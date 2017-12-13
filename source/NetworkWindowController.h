@@ -8,6 +8,7 @@
 
 @interface NetworkWindowController : NSWindowController
 
+@property (strong) NSMutableArray *viewControllers;
 @property (assign) IBOutlet NSScrollView *scrollView;
 
 - (id)initWithChannels:(NSArray *)channels;

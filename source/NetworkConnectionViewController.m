@@ -38,8 +38,8 @@
     [self.outgoingLED setOnColor:[NSColor redColor]];
     [self.incomingLED setOffColor:[NSColor blackColor]];
     [self.incomingLED setOnColor:[NSColor redColor]];
-    [self.incomingLED setBlinkTime:0.25];
-    [self.outgoingLED setBlinkTime:0.25];
+    [self.incomingLED setBlinkTime:INCOMING_LED_TIMEOUT];
+    [self.outgoingLED setBlinkTime:OUTGOING_LED_TIMEOUT];
 }
 
 - (void)viewDidLoad;
@@ -62,12 +62,16 @@
 
 - (void)didReceiveData:(VirtualSerialChannel *)channel;
 {
-    [self.incomingLED turnOn];
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [_incomingLED blink];
+    });
 }
 
 - (void)didSendData:(VirtualSerialChannel *)channel;
 {
-    [self.outgoingLED turnOn];
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [_outgoingLED blink];
+    });
 }
 
 @end

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,43 +18,53 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="360" height="400"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <value key="minSize" type="size" width="360" height="400"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="360" height="400"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="h77-D1-qae">
-                        <rect key="frame" x="0.0" y="-1" width="361" height="317"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h77-D1-qae">
+                        <rect key="frame" x="0.0" y="0.0" width="360" height="339"/>
                         <clipView key="contentView" id="lDK-rk-7ND">
-                            <rect key="frame" x="1" y="1" width="344" height="300"/>
+                            <rect key="frame" x="1" y="1" width="358" height="337"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <view id="4a8-Qh-bLh">
-                                    <rect key="frame" x="0.0" y="0.0" width="166" height="0.0"/>
+                                <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4a8-Qh-bLh">
+                                    <rect key="frame" x="0.0" y="0.0" width="165" height="22"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </subviews>
                         </clipView>
                         <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="aKk-Gn-nmX">
-                            <rect key="frame" x="1" y="301" width="344" height="15"/>
+                            <rect key="frame" x="1" y="322" width="358" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="dtr-Ud-KnH">
-                            <rect key="frame" x="345" y="1" width="15" height="300"/>
+                            <rect key="frame" x="343" y="1" width="16" height="337"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <button verticalHuggingPriority="750" id="ou5-m2-sDl">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ou5-m2-sDl">
                         <rect key="frame" x="14" y="352" width="76" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="64" id="1IP-WX-jpI"/>
+                            <constraint firstAttribute="height" constant="21" id="7ZV-yl-Nfp"/>
+                        </constraints>
                         <buttonCell key="cell" type="push" title="Reset" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zbc-7c-0UE">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="h77-D1-qae" secondAttribute="bottom" id="1c5-5j-ms8"/>
+                    <constraint firstItem="h77-D1-qae" firstAttribute="top" secondItem="ou5-m2-sDl" secondAttribute="bottom" constant="20" id="77y-BG-wm8"/>
+                    <constraint firstAttribute="trailing" secondItem="h77-D1-qae" secondAttribute="trailing" id="LBb-oH-Lma"/>
+                    <constraint firstItem="ou5-m2-sDl" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="eCH-Jh-otR"/>
+                    <constraint firstItem="h77-D1-qae" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="gM9-ef-HML"/>
+                    <constraint firstItem="ou5-m2-sDl" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="zHo-My-gBV"/>
+                </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>

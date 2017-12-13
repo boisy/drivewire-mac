@@ -13,10 +13,10 @@
 #import "GCDAsyncSocket.h"
 #import "NSString+DriveWire.h"
 
-#define READ_TIMEOUT   0.0
-#define WRITE_TIMEOUT   0.0
+#define READ_TIMEOUT   -1
+#define WRITE_TIMEOUT   -1
 
-enum {OUTGOING_DATA_WRITTEN};
+enum {WRITETAG_DATA_WRITTEN, READTAG_DATA_READ};
 
 typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT} VirtualSerialMode;
 
@@ -37,17 +37,24 @@ typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT}
 
 - (void)socket:(GCDAsyncSocket *)sender didReadData:(NSData *)data withTag:(long)tag;
 {
-    [self.incomingBuffer appendData:data];
-    [self.delegate didReceiveData:self];
+    switch (tag)
+    {
+        case READTAG_DATA_READ:
+            [self.incomingBuffer appendData:data];
+            [self.delegate didReceiveData:self];
+            [sender readDataWithTimeout:READ_TIMEOUT tag:READTAG_DATA_READ];
+            break;
+    }
 }
 
 - (void)socket:(GCDAsyncSocket *)sender didWriteDataWithTag:(long)tag;
 {
     switch (tag)
     {
-        case OUTGOING_DATA_WRITTEN:
+        case WRITETAG_DATA_WRITTEN:
             self.outgoingBuffer.length = 0;
             [self.delegate didSendData:self];
+            [self.connectedSocket readDataWithTimeout:READ_TIMEOUT tag:READTAG_DATA_READ];
             break;
     }
 }
@@ -55,8 +62,9 @@ typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT}
 - (void)socket:(GCDAsyncSocket *)sender didAcceptNewSocket:(GCDAsyncSocket *)newSocket;
 {
     self.connectedSocket = newSocket;
-    [self.connectedSocket writeData:self.outgoingBuffer withTimeout:WRITE_TIMEOUT tag:OUTGOING_DATA_WRITTEN];
+    [self.connectedSocket writeData:self.outgoingBuffer withTimeout:WRITE_TIMEOUT tag:WRITETAG_DATA_WRITTEN];
     [self.delegate didConnect:self];
+    self.mode = VMODE_TCP_SERVER;
 }
 
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port;
@@ -64,10 +72,13 @@ typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT}
     NSData *data = [@"SUCCESS\x0D"
                     dataUsingEncoding:NSASCIIStringEncoding];
     [self.incomingBuffer appendData:data];
+    self.mode = VMODE_TCP_CLIENT;
+    [self.connectedSocket readDataWithTimeout:READ_TIMEOUT tag:READTAG_DATA_READ];
 }
 
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err;
 {
+    self.mode = VMODE_COMMAND;
     if (err != nil && err.code != GCDAsyncSocketNoError && err.code != GCDAsyncSocketClosedError)
     {
         NSData *data = [@"FAIL 240\x0D"
@@ -94,8 +105,12 @@ typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT}
     self.outgoingBuffer = nil;
     
     [self.serverSocket disconnect];
-    [self.delegate didDisconnect:self];
+//    [self.delegate didDisconnect:self];
     self.serverSocket = nil;
+
+    [self.connectedSocket disconnect];
+    [self.delegate didDisconnect:self];
+    self.connectedSocket = nil;
 }
 
 - (BOOL)hasData;
@@ -155,11 +170,12 @@ typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT}
             break;
             
         case VMODE_PASSTHRU:
-            [self.connectedSocket writeData:self.outgoingBuffer withTimeout:WRITE_TIMEOUT tag:OUTGOING_DATA_WRITTEN];
+            [self.connectedSocket writeData:self.outgoingBuffer withTimeout:WRITE_TIMEOUT tag:WRITETAG_DATA_WRITTEN];
             break;
             
         case VMODE_TCP_CLIENT:
             [self.outgoingBuffer appendBytes:&byte length:1];
+            [self.connectedSocket writeData:self.outgoingBuffer withTimeout:WRITE_TIMEOUT tag:WRITETAG_DATA_WRITTEN];
             break;
             
         case VMODE_TCP_SERVER:
@@ -171,7 +187,7 @@ typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT}
 - (void)putBytes:(u_char *)bytes length:(NSUInteger)length;
 {
     [self.outgoingBuffer appendBytes:bytes length:length];
-    [self.connectedSocket writeData:self.outgoingBuffer withTimeout:WRITE_TIMEOUT tag:OUTGOING_DATA_WRITTEN];
+    [self.connectedSocket writeData:self.outgoingBuffer withTimeout:WRITE_TIMEOUT tag:WRITETAG_DATA_WRITTEN];
 }
 
 
@@ -195,7 +211,7 @@ typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT}
                                };
 
     // append SUCCESS line
-    [self.incomingBuffer appendData:[@"S\x0D" dataUsingEncoding:NSASCIIStringEncoding]];
+//    [self.incomingBuffer appendData:[@"S\x0D" dataUsingEncoding:NSASCIIStringEncoding]];
     
     if ([array count] > 0)
     {

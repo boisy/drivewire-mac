@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CocoaAsyncSocket/GCDAsyncSocket.h>
 
+#define READ_TIMEOUT   -1
+#define WRITE_TIMEOUT   -1
+
+enum {WRITETAG_DATA_WRITTEN, READTAG_DATA_READ};
+
 @class VirtualSerialChannel;
 
 @protocol VirtualSerialChannelDelegate
@@ -20,16 +25,27 @@
 
 @end
 
+typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT} VirtualSerialMode;
+
+@interface GlobalChannelArray : NSMutableArray
+
++ (NSMutableArray *)sharedArray;
+
+@end
+
 @interface VirtualSerialChannel : NSObject <GCDAsyncSocketDelegate>
 
 @property (assign) NSUInteger number;
 @property (assign) NSUInteger port;
-@property (strong) GCDAsyncSocket *connectedSocket;
+@property (strong) GCDAsyncSocket *clientSocket; // for outgoing connection
+@property (strong) NSMutableArray *listenSockets;
+@property (strong) GCDAsyncSocket *serverSocket;
 @property (strong) NSMutableData *incomingBuffer; // incoming TO CoCo
 @property (strong) NSMutableData *outgoingBuffer; // outgoing FROM CoCo
 @property (assign) NSUInteger waitCounter;
 @property (weak) id<VirtualSerialChannelDelegate> delegate;
 @property (assign) BOOL shouldClose;
+@property (assign) VirtualSerialMode mode;
 
 - (id)initWithNumber:(NSUInteger)number port:(NSUInteger)port;
 

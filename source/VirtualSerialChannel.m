@@ -13,20 +13,22 @@
 #import "GCDAsyncSocket.h"
 #import "NSString+DriveWire.h"
 
-#define READ_TIMEOUT   -1
-#define WRITE_TIMEOUT   -1
-
-enum {WRITETAG_DATA_WRITTEN, READTAG_DATA_READ};
-
-typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT} VirtualSerialMode;
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
-@interface VirtualSerialChannel ()
+@implementation GlobalChannelArray
 
-@property (strong) GCDAsyncSocket *serverSocket;
-@property (assign) VirtualSerialMode mode;
++ (NSMutableArray *)sharedArray;
+{
+    static NSMutableArray *sharedGlobalChannelArray = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedGlobalChannelArray = [[NSMutableArray alloc] init];
+    });
+    return sharedGlobalChannelArray;
+}
+
 
 @end
 
@@ -54,17 +56,25 @@ typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT}
         case WRITETAG_DATA_WRITTEN:
             self.outgoingBuffer.length = 0;
             [self.delegate didSendData:self];
-            [self.connectedSocket readDataWithTimeout:READ_TIMEOUT tag:READTAG_DATA_READ];
+            [sender readDataWithTimeout:READ_TIMEOUT tag:READTAG_DATA_READ];
             break;
     }
 }
 
 - (void)socket:(GCDAsyncSocket *)sender didAcceptNewSocket:(GCDAsyncSocket *)newSocket;
 {
-    self.connectedSocket = newSocket;
-    [self.connectedSocket writeData:self.outgoingBuffer withTimeout:WRITE_TIMEOUT tag:WRITETAG_DATA_WRITTEN];
+    [newSocket writeData:self.outgoingBuffer withTimeout:WRITE_TIMEOUT tag:WRITETAG_DATA_WRITTEN];
     [self.delegate didConnect:self];
     self.mode = VMODE_TCP_SERVER;
+//    self.serverSocket = newSocket;
+    [[GlobalChannelArray sharedArray] addObject:newSocket];
+
+    // announce new connection
+    NSUInteger i = [[GlobalChannelArray sharedArray] indexOfObject:newSocket];
+    NSString *announce = [NSString stringWithFormat:@"%lu %d\x0D", (unsigned long)i, newSocket.localPort];
+    NSData *data = [announce dataUsingEncoding:NSASCIIStringEncoding];
+    [self.incomingBuffer appendData:data];
+    [sender readDataWithTimeout:READ_TIMEOUT tag:READTAG_DATA_READ];
 }
 
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port;
@@ -73,7 +83,7 @@ typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT}
                     dataUsingEncoding:NSASCIIStringEncoding];
     [self.incomingBuffer appendData:data];
     self.mode = VMODE_TCP_CLIENT;
-    [self.connectedSocket readDataWithTimeout:READ_TIMEOUT tag:READTAG_DATA_READ];
+    [sock readDataWithTimeout:READ_TIMEOUT tag:READTAG_DATA_READ];
 }
 
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err;
@@ -104,13 +114,23 @@ typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT}
     self.incomingBuffer = nil;
     self.outgoingBuffer = nil;
     
+    for (GCDAsyncSocket *sock in self.listenSockets)
+    {
+        [sock disconnect];
+    }
+    
+    if ([[GlobalChannelArray sharedArray] containsObject:self.serverSocket])
+    {
+        NSUInteger connectionNumber = [[GlobalChannelArray sharedArray] indexOfObject:self.serverSocket];
+        [[GlobalChannelArray sharedArray] replaceObjectAtIndex:connectionNumber withObject:[NSNull null]];
+    }
+
     [self.serverSocket disconnect];
 //    [self.delegate didDisconnect:self];
     self.serverSocket = nil;
 
-    [self.connectedSocket disconnect];
+    [self.clientSocket disconnect];
     [self.delegate didDisconnect:self];
-    self.connectedSocket = nil;
 }
 
 - (BOOL)hasData;
@@ -170,24 +190,38 @@ typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT}
             break;
             
         case VMODE_PASSTHRU:
-            [self.connectedSocket writeData:self.outgoingBuffer withTimeout:WRITE_TIMEOUT tag:WRITETAG_DATA_WRITTEN];
+        {
+            [self.outgoingBuffer appendBytes:&byte length:1];
+            [self.serverSocket writeData:self.outgoingBuffer withTimeout:WRITE_TIMEOUT tag:WRITETAG_DATA_WRITTEN];
             break;
+        }
             
         case VMODE_TCP_CLIENT:
             [self.outgoingBuffer appendBytes:&byte length:1];
-            [self.connectedSocket writeData:self.outgoingBuffer withTimeout:WRITE_TIMEOUT tag:WRITETAG_DATA_WRITTEN];
+            [self.clientSocket writeData:self.outgoingBuffer withTimeout:WRITE_TIMEOUT tag:WRITETAG_DATA_WRITTEN];
             break;
             
         case VMODE_TCP_SERVER:
-            [self.outgoingBuffer appendBytes:&byte length:1];
+            if (byte == '\x0D')
+            {
+                // we have a complete command -- parse it
+                [self parseTopLevelCommand:self.outgoingBuffer];
+                [self.outgoingBuffer setLength:0];
+            }
+            else
+            {
+                [self.outgoingBuffer appendBytes:&byte length:1];
+            }
             break;
     }
 }
 
 - (void)putBytes:(u_char *)bytes length:(NSUInteger)length;
 {
-    [self.outgoingBuffer appendBytes:bytes length:length];
-    [self.connectedSocket writeData:self.outgoingBuffer withTimeout:WRITE_TIMEOUT tag:WRITETAG_DATA_WRITTEN];
+    for (int i = 0; i < length; i++)
+    {
+        [self putByte:bytes[i]];
+    }
 }
 
 

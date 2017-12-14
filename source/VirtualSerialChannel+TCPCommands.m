@@ -25,10 +25,10 @@
         dispatch_queue_t dQ = dispatch_queue_create("delegate_queue", nil);
         dispatch_queue_t sQ = dispatch_queue_create("socket_queue", nil);
         
-        self.connectedSocket = [[GCDAsyncSocket alloc] initWithDelegate:self
+        self.clientSocket = [[GCDAsyncSocket alloc] initWithDelegate:self
                                                  delegateQueue:dQ
                                                    socketQueue:sQ];
-        [self.connectedSocket connectToHost:host onPort:[port integerValue] error:&error];
+        [self.clientSocket connectToHost:host onPort:[port integerValue] error:&error];
     }
     
     return error;
@@ -38,12 +38,67 @@
 {
     NSError *error = nil;
     
+    if ([array count] >= 2)
+    {
+        NSString *port = [array objectAtIndex:1];
+        
+        dispatch_queue_t dQ = dispatch_queue_create("delegate_queue", nil);
+        dispatch_queue_t sQ = dispatch_queue_create("socket_queue", nil);
+        
+        GCDAsyncSocket *listenSocket = [[GCDAsyncSocket alloc] initWithDelegate:self
+                                                          delegateQueue:dQ
+                                                            socketQueue:sQ];
+        BOOL ok = [listenSocket acceptOnPort:[port integerValue] error:&error];
+        if (ok != YES)
+        {
+            NSData *data = [@"FAIL\x0A\x0D" dataUsingEncoding:NSASCIIStringEncoding];
+            [self.incomingBuffer appendData:data];
+        }
+        else
+        {
+            if (self.listenSockets == nil)
+            {
+                self.listenSockets = [NSMutableArray array];
+            }
+            
+            [self.listenSockets addObject:listenSocket];
+            NSData *data = [@"SUCCESS\x0A\x0D" dataUsingEncoding:NSASCIIStringEncoding];
+            [self.incomingBuffer appendData:data];
+        }
+    }
+    
     return error;
 }
 
 - (NSError *)handleTCPJoin:(NSArray *)array;
 {
     NSError *error = nil;
+    
+    if ([array count] >= 2)
+    {
+        NSString *connection = [array objectAtIndex:1];
+        NSUInteger connectionNumber = [connection intValue];
+        
+        if ([[GlobalChannelArray sharedArray] count] > connectionNumber)
+        {
+            GCDAsyncSocket *socket = [[GlobalChannelArray sharedArray] objectAtIndex:connectionNumber];
+            
+            if ([socket isKindOfClass:[GCDAsyncSocket class]])
+            {
+                self.serverSocket = socket;
+                self.serverSocket.delegate = self;
+                NSData *data = [@"SUCCESS\x0A\x0D" dataUsingEncoding:NSASCIIStringEncoding];
+                [self.incomingBuffer appendData:data];
+                self.mode = VMODE_PASSTHRU;
+                [socket readDataWithTimeout:READ_TIMEOUT tag:READTAG_DATA_READ];
+            }
+            else
+            {
+                NSData *data = [@"FAIL\x0A\x0D" dataUsingEncoding:NSASCIIStringEncoding];
+                [self.incomingBuffer appendData:data];
+            }
+        }
+    }
     
     return error;
 }
@@ -52,9 +107,26 @@
 {
     NSError *error = nil;
     
-    [self.connectedSocket disconnect];
-    self.connectedSocket = nil;
-
+    if ([array count] >= 2)
+    {
+        NSString *connection = [array objectAtIndex:1];
+        NSUInteger connectionNumber = [connection integerValue];
+        
+        if ([[GlobalChannelArray sharedArray] count] > connectionNumber)
+        {
+            GCDAsyncSocket *socket = [[GlobalChannelArray sharedArray] objectAtIndex:connectionNumber];
+            if ([socket isKindOfClass:[GCDAsyncSocket class]])
+            {
+                [socket disconnect];
+                [[GlobalChannelArray sharedArray] replaceObjectAtIndex:connectionNumber withObject:[NSNull null]];
+            }
+        }
+        else
+        {
+            
+        }
+    }
+    
     return error;
 }
 

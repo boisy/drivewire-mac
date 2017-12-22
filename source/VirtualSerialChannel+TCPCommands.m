@@ -64,6 +64,19 @@
             [self.listenSockets addObject:listenSocket];
             NSData *data = [@"SUCCESS\x0A\x0D" dataUsingEncoding:NSASCIIStringEncoding];
             [self.incomingBuffer appendData:data];
+
+            // process parameters, if any...
+            if ([array count] >= 3)
+            {
+                for (int i = 2; i < [array count]; i++)
+                {
+                    NSString *parameter = [array objectAtIndex:i];
+                    if ([parameter isEqualToString:@"telnet"])
+                    {
+                        self.telnetMode = YES;
+                    }
+                }
+            }
         }
     }
     
@@ -90,6 +103,7 @@
                 NSData *data = [@"SUCCESS\x0A\x0D" dataUsingEncoding:NSASCIIStringEncoding];
                 [self.incomingBuffer appendData:data];
                 self.mode = VMODE_PASSTHRU;
+                self.telnetMode = FALSE;
                 [socket readDataWithTimeout:READ_TIMEOUT tag:READTAG_DATA_READ];
             }
             else

@@ -17,6 +17,33 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
+@interface NSData (RemoveCRLF)
+
+- (NSData *)dataWithoutLineFeeds;
+
+@end
+
+@implementation NSData (RemoveCRLF)
+
+- (NSData *)dataWithoutLineFeeds;
+{
+    NSMutableData *result = [NSMutableData data];
+    
+    const char *bytes = [self bytes];
+    for (int i = 0; i < [self length]; i++)
+    {
+        if (bytes[i] != '\x0A')
+        {
+            [result appendBytes:bytes + i length:1];
+        }
+    }
+    
+    return result;
+}
+
+@end
+
+
 @implementation GlobalChannelArray
 
 + (NSMutableArray *)sharedArray;
@@ -42,8 +69,17 @@
     switch (tag)
     {
         case READTAG_DATA_READ:
+            if (self.telnetMode == TRUE || 1 == 1)
+            {
+                // be wary of the CRLF followed by <NUL>
+                data = [data dataWithoutLineFeeds];
+            }
             [self.incomingBuffer appendData:data];
             [self.delegate didReceiveData:self];
+            [sender readDataWithTimeout:READ_TIMEOUT tag:READTAG_DATA_READ];
+            break;
+
+        case READTAG_TELNET_COMMAND_RESPONSES_READ:
             [sender readDataWithTimeout:READ_TIMEOUT tag:READTAG_DATA_READ];
             break;
     }
@@ -58,15 +94,24 @@
             [self.delegate didSendData:self];
             [sender readDataWithTimeout:READ_TIMEOUT tag:READTAG_DATA_READ];
             break;
+            
+        case WRITETAG_TELNET_COMMANDS_WRITTEN:
+            [sender readDataToLength:[self.telnetCommands length] withTimeout:-1 tag:READTAG_TELNET_COMMAND_RESPONSES_READ];
+            break;
     }
 }
 
 - (void)socket:(GCDAsyncSocket *)sender didAcceptNewSocket:(GCDAsyncSocket *)newSocket;
 {
-    [newSocket writeData:self.outgoingBuffer withTimeout:WRITE_TIMEOUT tag:WRITETAG_DATA_WRITTEN];
+    // ask telnet to turn off echo
+    if (self.telnetMode == TRUE)
+    {
+//        [newSocket writeData:self.telnetCommands withTimeout:-1 tag:WRITETAG_TELNET_COMMANDS_WRITTEN];
+    }
+
+//    [newSocket writeData:self.outgoingBuffer withTimeout:WRITE_TIMEOUT tag:WRITETAG_DATA_WRITTEN];
     [self.delegate didConnect:self];
     self.mode = VMODE_TCP_SERVER;
-//    self.serverSocket = newSocket;
     [[GlobalChannelArray sharedArray] addObject:newSocket];
 
     // announce new connection
@@ -75,6 +120,7 @@
     NSData *data = [announce dataUsingEncoding:NSASCIIStringEncoding];
     [self.incomingBuffer appendData:data];
     [sender readDataWithTimeout:READ_TIMEOUT tag:READTAG_DATA_READ];
+    
 }
 
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port;
@@ -126,7 +172,6 @@
     }
 
     [self.serverSocket disconnect];
-//    [self.delegate didDisconnect:self];
     self.serverSocket = nil;
 
     [self.clientSocket disconnect];
@@ -189,17 +234,14 @@
             }
             break;
             
+        case VMODE_TCP_CLIENT:
         case VMODE_PASSTHRU:
         {
-            [self.outgoingBuffer appendBytes:&byte length:1];
-            [self.serverSocket writeData:self.outgoingBuffer withTimeout:WRITE_TIMEOUT tag:WRITETAG_DATA_WRITTEN];
+            NSData *d = [NSData dataWithBytes:&byte length:1];
+//            [self.outgoingBuffer appendBytes:&byte length:1];
+            [self.serverSocket writeData:d withTimeout:WRITE_TIMEOUT tag:WRITETAG_DATA_WRITTEN];
             break;
         }
-            
-        case VMODE_TCP_CLIENT:
-            [self.outgoingBuffer appendBytes:&byte length:1];
-            [self.clientSocket writeData:self.outgoingBuffer withTimeout:WRITE_TIMEOUT tag:WRITETAG_DATA_WRITTEN];
-            break;
             
         case VMODE_TCP_SERVER:
             if (byte == '\x0D')
@@ -244,9 +286,6 @@
                                         @"dw"  : @"handleDWCommand:"
                                };
 
-    // append SUCCESS line
-//    [self.incomingBuffer appendData:[@"S\x0D" dataUsingEncoding:NSASCIIStringEncoding]];
-    
     if ([array count] > 0)
     {
         NSString *command = [array objectAtIndex:0];
@@ -284,6 +323,8 @@
         
         NSError *error = nil;
         [self.serverSocket acceptOnPort:self.port error:&error];
+        
+        self.telnetCommands = [NSData dataWithBytes:"\xFF\xFB\x01\xFF\xFB\x03" length:6];
     }
     
     return self;
@@ -292,7 +333,6 @@
 - (void)dealloc;
 {
     self.delegate = nil;
-//    [self close];
 }
 
 #pragma clang diagnostic pop

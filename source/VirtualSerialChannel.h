@@ -12,7 +12,7 @@
 #define READ_TIMEOUT   -1
 #define WRITE_TIMEOUT   -1
 
-enum {WRITETAG_DATA_WRITTEN, READTAG_DATA_READ};
+enum {WRITETAG_DATA_WRITTEN, READTAG_DATA_READ, WRITETAG_TELNET_COMMANDS_WRITTEN, READTAG_TELNET_COMMAND_RESPONSES_READ};
 
 @class VirtualSerialChannel;
 
@@ -35,6 +35,7 @@ typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT}
 
 @interface VirtualSerialChannel : NSObject <GCDAsyncSocketDelegate>
 
+@property (assign) BOOL telnetMode;
 @property (assign) NSUInteger number;
 @property (assign) NSUInteger port;
 @property (strong) GCDAsyncSocket *clientSocket; // for outgoing connection
@@ -46,6 +47,7 @@ typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT}
 @property (weak) id<VirtualSerialChannelDelegate> delegate;
 @property (assign) BOOL shouldClose;
 @property (assign) VirtualSerialMode mode;
+@property (strong) NSData *telnetCommands;
 
 - (id)initWithNumber:(NSUInteger)number port:(NSUInteger)port;
 

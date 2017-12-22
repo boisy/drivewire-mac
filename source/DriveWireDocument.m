@@ -158,7 +158,7 @@
 	}	
 	
 	// Add the statsView as an observer of statistics messages
-	[nc addObserver:statsView selector:@selector(updateStats:) name:@"DWStats" object:self.dwModel];
+//	[nc addObserver:statsView selector:@selector(updateStats:) name:@"DWStats" object:self.dwModel];
 
 	// Add the logView as an observer of TBLog messages
     [nc addObserver:logView selector:@selector(update:) name:kTBLogNotification object:nil];
@@ -168,23 +168,6 @@
 	
 //   [debugDrawer open];
    
-    // Hide logging if its not turned on
-    NSWindow *documentWindow = [myWindowController window];
-    NSRect frame = [documentWindow frame];
-    if ([self.dwModel logState] == FALSE)
-    {
-        frame.size.height -= [[logView superview] frame].size.height + 30;
-        frame.origin.y += [[logView superview] frame].size.height + 30;
-    }
-   
-    // Hide statistics if its not turned on
-    if ([self.dwModel statState] == FALSE)
-    {
-        frame.size.width -= [[statsView superview] frame].size.width + 20;
-    }
-
-    [documentWindow setFrame:frame display:TRUE animate:FALSE];
-
     [machineTypePopupButton selectItemWithTag:self.dwModel.machineType];
     [self updateUIComponents];
 }
@@ -289,48 +272,6 @@
     [self.dwModel setMachineType:machineType];
    
     [self updateUIComponents];
-}
-
-- (IBAction)setLogSwitch:(id)sender;
-{
-   NSButton *b = (NSButton *)sender;
-   [self.dwModel setLogState:[b state]];
-
-   NSWindow *documentWindow = [myWindowController window];
-   NSRect frame = [documentWindow frame];
-   if ([b state] == TRUE)
-   {
-      frame.size.height += [[logView superview] frame].size.height + 30;
-      frame.origin.y -= [[logView superview] frame].size.height + 30;
-   }
-   else
-   {
-      frame.size.height -= [[logView superview] frame].size.height + 30;
-      frame.origin.y += [[logView superview] frame].size.height + 30;
-   }
-   [documentWindow setFrame:frame display:TRUE animate:TRUE];
-
-   [self updateUIComponents];
-}
-
-- (IBAction)setStatsSwitch:(id)sender;
-{
-   NSButton *b = (NSButton *)sender;
-   [self.dwModel setStatState:[b state]];
-
-   NSWindow *documentWindow = [myWindowController window];
-   NSRect frame = [documentWindow frame];
-   if ([b state] == TRUE)
-   {
-      frame.size.width += [[statsView superview] frame].size.width + 20;
-   }
-   else
-   {
-      frame.size.width -= [[statsView superview]  frame].size.width + 20;
-   }
-   [documentWindow setFrame:frame display:TRUE animate:TRUE];
-
-   [self updateUIComponents];
 }
 
 - (IBAction)goCoCo:(id)sender;

@@ -19,6 +19,7 @@
     [[SUUpdater sharedUpdater] setDelegate:self];
 }
 
+
 #pragma mark -
 #pragma mark Sparkle Methods
 

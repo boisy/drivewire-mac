@@ -12,12 +12,10 @@
                 <outlet property="debuggerWindowController" destination="2441" id="2523"/>
                 <outlet property="driveView" destination="2152" id="2452"/>
                 <outlet property="logView" destination="527" id="2446"/>
-                <outlet property="loggingSwitch" destination="2312" id="2451"/>
                 <outlet property="machineImageView" destination="2471" id="2473"/>
                 <outlet property="machineTypePopupButton" destination="2461" id="2470"/>
                 <outlet property="printerWindowController" destination="2319" id="2453"/>
                 <outlet property="serialPortButton" destination="2153" id="2447"/>
-                <outlet property="statSwitch" destination="2303" id="2450"/>
                 <outlet property="statsView" destination="103" id="2449"/>
                 <outlet property="window" destination="5" id="18"/>
             </connections>
@@ -34,19 +32,19 @@
                 <rect key="frame" x="0.0" y="0.0" width="769" height="612"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <box borderType="line" title="Statistics" id="2116">
-                        <rect key="frame" x="504" y="294" width="248" height="307"/>
+                    <box misplaced="YES" borderType="line" title="Statistics" id="2116">
+                        <rect key="frame" x="488" y="294" width="264" height="307"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="060-Yc-VOq">
-                            <rect key="frame" x="1" y="1" width="246" height="291"/>
+                            <rect key="frame" x="1" y="1" width="262" height="291"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <customView id="103" customClass="StatsView">
-                                    <rect key="frame" x="9" y="7" width="229" height="282"/>
+                                <customView misplaced="YES" id="103" customClass="StatsView">
+                                    <rect key="frame" x="9" y="7" width="240" height="282"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField verticalHuggingPriority="750" id="709">
-                                            <rect key="frame" x="15" y="0.0" width="92" height="22"/>
+                                        <textField verticalHuggingPriority="750" misplaced="YES" id="709">
+                                            <rect key="frame" x="15" y="1" width="92" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" id="2142">
                                                 <font key="font" metaFont="system"/>
@@ -56,8 +54,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" id="708">
-                                            <rect key="frame" x="112" y="3" width="108" height="22"/>
+                                        <textField verticalHuggingPriority="750" misplaced="YES" id="708">
+                                            <rect key="frame" x="112" y="3" width="116" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="2141">
                                                 <font key="font" metaFont="system"/>
@@ -65,8 +63,8 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" id="707">
-                                            <rect key="frame" x="112" y="31" width="108" height="22"/>
+                                        <textField verticalHuggingPriority="750" misplaced="YES" id="707">
+                                            <rect key="frame" x="112" y="31" width="116" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="2140">
                                                 <font key="font" metaFont="system"/>
@@ -74,8 +72,8 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" id="706">
-                                            <rect key="frame" x="15" y="27" width="92" height="22"/>
+                                        <textField verticalHuggingPriority="750" misplaced="YES" id="706">
+                                            <rect key="frame" x="15" y="29" width="92" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="% Reads OK:" id="2139">
                                                 <font key="font" metaFont="system"/>
@@ -83,8 +81,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" id="705">
-                                            <rect key="frame" x="112" y="59" width="108" height="22"/>
+                                        <textField verticalHuggingPriority="750" misplaced="YES" id="705">
+                                            <rect key="frame" x="112" y="59" width="116" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="2138">
                                                 <font key="font" metaFont="system"/>
@@ -92,8 +90,8 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" id="704">
-                                            <rect key="frame" x="112" y="87" width="108" height="22"/>
+                                        <textField verticalHuggingPriority="750" misplaced="YES" id="704">
+                                            <rect key="frame" x="112" y="87" width="116" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="2137">
                                                 <font key="font" metaFont="system"/>
@@ -101,8 +99,8 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" id="703">
-                                            <rect key="frame" x="15" y="56" width="92" height="22"/>
+                                        <textField verticalHuggingPriority="750" misplaced="YES" id="703">
+                                            <rect key="frame" x="15" y="57" width="92" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" id="2136">
                                                 <font key="font" metaFont="system"/>
@@ -112,8 +110,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" id="702">
-                                            <rect key="frame" x="15" y="86" width="92" height="22"/>
+                                        <textField verticalHuggingPriority="750" misplaced="YES" id="702">
+                                            <rect key="frame" x="15" y="85" width="92" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" id="2135">
                                                 <font key="font" metaFont="system"/>
@@ -123,8 +121,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" id="701">
-                                            <rect key="frame" x="112" y="115" width="108" height="22"/>
+                                        <textField verticalHuggingPriority="750" misplaced="YES" id="701">
+                                            <rect key="frame" x="112" y="115" width="116" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="2134">
                                                 <font key="font" metaFont="system"/>
@@ -132,8 +130,8 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" id="700">
-                                            <rect key="frame" x="112" y="143" width="108" height="22"/>
+                                        <textField verticalHuggingPriority="750" misplaced="YES" id="700">
+                                            <rect key="frame" x="112" y="143" width="116" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="2133">
                                                 <font key="font" metaFont="system"/>
@@ -141,8 +139,8 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" id="699">
-                                            <rect key="frame" x="112" y="171" width="108" height="22"/>
+                                        <textField verticalHuggingPriority="750" misplaced="YES" id="699">
+                                            <rect key="frame" x="112" y="171" width="116" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="2132">
                                                 <font key="font" metaFont="system"/>
@@ -150,8 +148,8 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" id="698">
-                                            <rect key="frame" x="112" y="199" width="108" height="22"/>
+                                        <textField verticalHuggingPriority="750" misplaced="YES" id="698">
+                                            <rect key="frame" x="112" y="199" width="116" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="2131">
                                                 <font key="font" metaFont="system"/>
@@ -159,8 +157,8 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" id="697">
-                                            <rect key="frame" x="112" y="227" width="108" height="22"/>
+                                        <textField verticalHuggingPriority="750" misplaced="YES" id="697">
+                                            <rect key="frame" x="112" y="227" width="116" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="2130">
                                                 <font key="font" metaFont="system"/>
@@ -168,8 +166,8 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" id="696">
-                                            <rect key="frame" x="112" y="255" width="108" height="22"/>
+                                        <textField verticalHuggingPriority="750" misplaced="YES" id="696">
+                                            <rect key="frame" x="112" y="255" width="116" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="2129">
                                                 <font key="font" metaFont="system"/>
@@ -177,8 +175,8 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" id="695">
-                                            <rect key="frame" x="15" y="112" width="92" height="22"/>
+                                        <textField verticalHuggingPriority="750" misplaced="YES" id="695">
+                                            <rect key="frame" x="15" y="113" width="92" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" id="2128">
                                                 <font key="font" metaFont="system"/>
@@ -188,8 +186,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" id="694">
-                                            <rect key="frame" x="15" y="136" width="92" height="22"/>
+                                        <textField verticalHuggingPriority="750" misplaced="YES" id="694">
+                                            <rect key="frame" x="15" y="141" width="92" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Last GetStat:" id="2127">
                                                 <font key="font" metaFont="system"/>
@@ -197,8 +195,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" id="693">
-                                            <rect key="frame" x="1" y="168" width="106" height="22"/>
+                                        <textField verticalHuggingPriority="750" misplaced="YES" id="693">
+                                            <rect key="frame" x="1" y="169" width="106" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Sectors Written:" id="2126">
                                                 <font key="font" metaFont="system"/>
@@ -206,8 +204,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" id="691">
-                                            <rect key="frame" x="28" y="224" width="79" height="22"/>
+                                        <textField verticalHuggingPriority="750" misplaced="YES" id="691">
+                                            <rect key="frame" x="28" y="225" width="79" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Last LSN:" id="2124">
                                                 <font key="font" metaFont="system"/>
@@ -215,8 +213,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" id="2459">
-                                            <rect key="frame" x="6" y="199" width="96" height="22"/>
+                                        <textField verticalHuggingPriority="750" misplaced="YES" id="2459">
+                                            <rect key="frame" x="6" y="197" width="96" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Sectors Read:" id="2460">
                                                 <font key="font" metaFont="system"/>
@@ -224,8 +222,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" id="690">
-                                            <rect key="frame" x="13" y="252" width="94" height="22"/>
+                                        <textField verticalHuggingPriority="750" misplaced="YES" id="690">
+                                            <rect key="frame" x="13" y="253" width="94" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Last OpCode:" id="2123">
                                                 <font key="font" metaFont="system"/>
@@ -250,19 +248,100 @@
                             </subviews>
                         </view>
                     </box>
-                    <box borderType="line" title="Logging" id="2147">
-                        <rect key="frame" x="17" y="16" width="735" height="258"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <view key="contentView" id="jMv-0D-ubq">
-                            <rect key="frame" x="1" y="1" width="733" height="242"/>
+                    <box borderType="line" title="Disk and Port Control" id="2150">
+                        <rect key="frame" x="17" y="294" width="469" height="307"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <view key="contentView" id="CYa-Rv-pkn">
+                            <rect key="frame" x="1" y="1" width="467" height="291"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <customView id="527" customClass="LogView">
-                                    <rect key="frame" x="10" y="14" width="705" height="218"/>
+                                <imageView id="2154">
+                                    <rect key="frame" x="260" y="225" width="204" height="68"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DriveWire-Logo" id="2155"/>
+                                </imageView>
+                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="2471">
+                                    <rect key="frame" x="260" y="14" width="205" height="130"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="CoCo1" id="2472"/>
+                                </imageView>
+                                <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" id="2479">
+                                    <rect key="frame" x="11" y="13" width="240" height="269"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <clipView key="contentView" id="Xrf-zP-maD">
+                                        <rect key="frame" x="1" y="1" width="238" height="267"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <customView id="2152" customClass="VirtualDriveJukeBoxView">
+                                                <rect key="frame" x="0.0" y="0.0" width="242" height="267"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </customView>
+                                        </subviews>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </clipView>
+                                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="2481">
+                                        <rect key="frame" x="-100" y="-100" width="223" height="15"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </scroller>
+                                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="2482">
+                                        <rect key="frame" x="-100" y="-100" width="15" height="252"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </scroller>
+                                </scrollView>
+                                <popUpButton verticalHuggingPriority="750" misplaced="YES" id="2153">
+                                    <rect key="frame" x="261" y="192" width="200" height="26"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <popUpButtonCell key="cell" type="push" title="Select A Port" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="2159" id="2156">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="menu"/>
+                                        <menu key="menu" title="OtherViews" id="2157">
+                                            <items>
+                                                <menuItem title="Select A Port" state="on" id="2159"/>
+                                                <menuItem title="Item2" id="2158"/>
+                                                <menuItem title="Item3" id="2160"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                    <connections>
+                                        <action selector="setSerialPort:" target="-2" id="2456"/>
+                                    </connections>
+                                </popUpButton>
+                                <popUpButton verticalHuggingPriority="750" misplaced="YES" id="2461">
+                                    <rect key="frame" x="260" y="162" width="201" height="26"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <popUpButtonCell key="cell" type="push" title="Atari Liber809 @ 57.6K" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="2469" id="2462">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="menu"/>
+                                        <menu key="menu" title="OtherViews" id="2463">
+                                            <items>
+                                                <menuItem title="CoCo 1 @ 38.4K" tag="1" id="2465"/>
+                                                <menuItem title="CoCo 1 @ 57.6K" tag="2" id="2468"/>
+                                                <menuItem title="CoCo 2 @ 57.6K" tag="3" id="2466"/>
+                                                <menuItem title="CoCo 3 @ 115.2K" tag="4" id="2464"/>
+                                                <menuItem title="Atari Liber809 @ 57.6K" state="on" tag="5" id="2469"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                    <connections>
+                                        <action selector="setCoCoType:" target="-2" id="2474"/>
+                                    </connections>
+                                </popUpButton>
+                            </subviews>
+                        </view>
+                    </box>
+                    <box misplaced="YES" borderType="line" title="Logging" id="2147">
+                        <rect key="frame" x="17" y="16" width="469" height="274"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <view key="contentView" id="jMv-0D-ubq">
+                            <rect key="frame" x="1" y="1" width="467" height="258"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <customView misplaced="YES" id="527" customClass="LogView">
+                                    <rect key="frame" x="10" y="14" width="439" height="233"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" id="534">
-                                            <rect key="frame" x="633" y="-2" width="73" height="32"/>
+                                            <rect key="frame" x="367" y="-2" width="73" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                             <buttonCell key="cell" type="push" title="Copy" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="2144">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -273,17 +352,17 @@
                                             </connections>
                                         </button>
                                         <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="529">
-                                            <rect key="frame" x="6" y="46" width="694" height="167"/>
+                                            <rect key="frame" x="6" y="46" width="428" height="182"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <clipView key="contentView" id="xBk-9a-EW2">
-                                                <rect key="frame" x="1" y="1" width="692" height="165"/>
+                                                <rect key="frame" x="1" y="1" width="426" height="180"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="530">
-                                                        <rect key="frame" x="0.0" y="0.0" width="677" height="165"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="411" height="180"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <size key="minSize" width="692" height="165"/>
+                                                        <size key="minSize" width="426" height="180"/>
                                                         <size key="maxSize" width="1397" height="10000000"/>
                                                         <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                     </textView>
@@ -295,12 +374,12 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="2145">
-                                                <rect key="frame" x="677" y="1" width="16" height="165"/>
+                                                <rect key="frame" x="411" y="1" width="16" height="180"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                         </scrollView>
                                         <button verticalHuggingPriority="750" id="531">
-                                            <rect key="frame" x="560" y="-2" width="73" height="32"/>
+                                            <rect key="frame" x="294" y="-2" width="73" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                             <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="2143">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -311,7 +390,7 @@
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="vfR-U0-Bel">
-                                            <rect key="frame" x="10" y="7" width="66" height="17"/>
+                                            <rect key="frame" x="4" y="8" width="66" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Log Level:" id="LsL-GA-oje">
                                                 <font key="font" metaFont="system"/>
@@ -320,7 +399,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <popUpButton verticalHuggingPriority="750" misplaced="YES" id="n1Y-6A-hoF">
-                                            <rect key="frame" x="80" y="2" width="208" height="26"/>
+                                            <rect key="frame" x="74" y="3" width="208" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="BXT-JC-CDQ">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -350,107 +429,12 @@
                             </subviews>
                         </view>
                     </box>
-                    <box borderType="line" title="Disk and Port Control" id="2150">
-                        <rect key="frame" x="17" y="294" width="469" height="307"/>
+                    <box autoresizesSubviews="NO" misplaced="YES" borderType="line" title="Network" id="mAR-lP-m3d">
+                        <rect key="frame" x="488" y="16" width="264" height="274"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <view key="contentView" id="CYa-Rv-pkn">
-                            <rect key="frame" x="1" y="1" width="467" height="291"/>
+                        <view key="contentView" id="8Ia-t4-Eym">
+                            <rect key="frame" x="1" y="1" width="262" height="258"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <popUpButton verticalHuggingPriority="750" id="2153">
-                                    <rect key="frame" x="261" y="174" width="206" height="26"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <popUpButtonCell key="cell" type="push" title="Select A Port" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="2159" id="2156">
-                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="menu"/>
-                                        <menu key="menu" title="OtherViews" id="2157">
-                                            <items>
-                                                <menuItem title="Select A Port" state="on" id="2159"/>
-                                                <menuItem title="Item2" id="2158"/>
-                                                <menuItem title="Item3" id="2160"/>
-                                            </items>
-                                        </menu>
-                                    </popUpButtonCell>
-                                    <connections>
-                                        <action selector="setSerialPort:" target="-2" id="2456"/>
-                                    </connections>
-                                </popUpButton>
-                                <imageView id="2154">
-                                    <rect key="frame" x="260" y="225" width="204" height="68"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DriveWire-Logo" id="2155"/>
-                                </imageView>
-                                <button id="2303">
-                                    <rect key="frame" x="374" y="207" width="79" height="18"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <buttonCell key="cell" type="check" title="Statistics" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="2304">
-                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <action selector="setStatsSwitch:" target="-2" id="2457"/>
-                                    </connections>
-                                </button>
-                                <button id="2312">
-                                    <rect key="frame" x="264" y="207" width="73" height="18"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <buttonCell key="cell" type="check" title="Logging" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="2313">
-                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <action selector="setLogSwitch:" target="-2" id="2458"/>
-                                    </connections>
-                                </button>
-                                <popUpButton verticalHuggingPriority="750" id="2461">
-                                    <rect key="frame" x="260" y="144" width="207" height="26"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <popUpButtonCell key="cell" type="push" title="Atari Liber809 @ 57.6K" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="2469" id="2462">
-                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="menu"/>
-                                        <menu key="menu" title="OtherViews" id="2463">
-                                            <items>
-                                                <menuItem title="CoCo 1 @ 38.4K" tag="1" id="2465"/>
-                                                <menuItem title="CoCo 1 @ 57.6K" tag="2" id="2468"/>
-                                                <menuItem title="CoCo 2 @ 57.6K" tag="3" id="2466"/>
-                                                <menuItem title="CoCo 3 @ 115.2K" tag="4" id="2464"/>
-                                                <menuItem title="Atari Liber809 @ 57.6K" state="on" tag="5" id="2469"/>
-                                            </items>
-                                        </menu>
-                                    </popUpButtonCell>
-                                    <connections>
-                                        <action selector="setCoCoType:" target="-2" id="2474"/>
-                                    </connections>
-                                </popUpButton>
-                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="2471">
-                                    <rect key="frame" x="260" y="14" width="205" height="130"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="CoCo1" id="2472"/>
-                                </imageView>
-                                <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" id="2479">
-                                    <rect key="frame" x="11" y="13" width="240" height="269"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <clipView key="contentView" id="Xrf-zP-maD">
-                                        <rect key="frame" x="1" y="1" width="238" height="267"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <subviews>
-                                            <customView id="2152" customClass="VirtualDriveJukeBoxView">
-                                                <rect key="frame" x="0.0" y="0.0" width="242" height="267"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                            </customView>
-                                        </subviews>
-                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                    </clipView>
-                                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="2481">
-                                        <rect key="frame" x="-100" y="-100" width="223" height="15"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                    </scroller>
-                                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="2482">
-                                        <rect key="frame" x="-100" y="-100" width="15" height="252"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                    </scroller>
-                                </scrollView>
-                            </subviews>
                         </view>
                     </box>
                 </subviews>

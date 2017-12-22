@@ -37,8 +37,6 @@
 
 - (void)updateUIComponents;
 - (IBAction)setCoCoType:(id)sender;
-- (IBAction)setLogSwitch:(id)sender;
-- (IBAction)setStatsSwitch:(id)sender;
 - (IBAction)setSerialPort:(id)sender;
 - (void)driveNotification:(NSNotification *)note;
 - (IBAction)goCoCo:(id)sender;

@@ -8,15 +8,16 @@
 
 #import "DriveWireServerModel.h"
 
-
 #define MODULE_HASHTAG "DriveWireServer"
+
+NSString *const kDriveWireStatusNotification = @"com.drivewire.DriveWireStatusNotification";
 
 @interface DriveWireServerModel ()
 
 // Protocol management variables
 @property (assign) SEL						currentState;
 @property (assign) Boolean					validateWithCRC;
-@property (assign) NSTimer					*watchDog;
+@property (weak)   NSTimer					*watchDog;
 
 @property (strong) NSMutableData *serialBuffer;
 
@@ -32,6 +33,17 @@
 #define MAX_TIME_BEFORE_RESET 0.5
 
 static TBSerialManager *fSerialManager = nil;
+
+
+#pragma mark -
+#pragma mark Private Methods
+
+- (void)postStatistics:(NSDictionary *)dictionary;
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDriveWireStatusNotification
+                                                        object:self
+                                                      userInfo:@{@"statistics" : dictionary}];
+}
 
 
 #pragma mark -
@@ -137,45 +149,30 @@ static TBSerialManager *fSerialManager = nil;
     
     // Setup array of 16 serial data buffers
     NSUInteger basePort = 6809;
-    self.serialChannels = [NSArray arrayWithObjects:
-                           [[VirtualSerialChannel alloc] initWithNumber:0 port:basePort + 0],
-                           [[VirtualSerialChannel alloc] initWithNumber:1 port:basePort + 1],
-                           [[VirtualSerialChannel alloc] initWithNumber:2 port:basePort + 2],
-                           [[VirtualSerialChannel alloc] initWithNumber:3 port:basePort + 3],
-                           [[VirtualSerialChannel alloc] initWithNumber:4 port:basePort + 4],
-                           [[VirtualSerialChannel alloc] initWithNumber:5 port:basePort + 5],
-                           [[VirtualSerialChannel alloc] initWithNumber:6 port:basePort + 6],
-                           [[VirtualSerialChannel alloc] initWithNumber:7 port:basePort + 7],
-                           [[VirtualSerialChannel alloc] initWithNumber:8 port:basePort + 8],
-                           [[VirtualSerialChannel alloc] initWithNumber:9 port:basePort + 9],
-                           [[VirtualSerialChannel alloc] initWithNumber:10 port:basePort + 10],
-                           [[VirtualSerialChannel alloc] initWithNumber:11 port:basePort + 11],
-                           [[VirtualSerialChannel alloc] initWithNumber:12 port:basePort + 12],
-                           [[VirtualSerialChannel alloc] initWithNumber:13 port:basePort + 13],
-                           [[VirtualSerialChannel alloc] initWithNumber:14 port:basePort + 14],
-                           [[VirtualSerialChannel alloc] initWithNumber:15 port:basePort + 15],
-                           nil
-                           ];
-    
-    [self.serialChannels makeObjectsPerformSelector:@selector(setDelegate:) withObject:self];
-    
+    self.serialChannels = [NSMutableArray array];
+    for (i = 1; i < 17; i++)
+    {
+        VirtualSerialChannel *channel = [[VirtualSerialChannel alloc] initWithModel:self number:i port:basePort + i];
+        [self.serialChannels addObject:channel];
+    }
+
     return;
 }
 
 - (id)init
 {
-	return [self initWithVersion:DW_DEFAULT_VERSION];
+    return [self initWithDocument:nil version:DW_DEFAULT_VERSION];
 }
 
-- (id)initWithVersion:(int)versionNumber;
+- (id)initWithDocument:(NSDocument *)document version:(int)versionNumber;
 {
 	if ((self = [super init]))
 	{
 		int32_t i;
 		
-		TBDebug(@"DriveWireServerModel initWithVersion:%d", versionNumber);
-		
-		// Allocate our array of drives	
+        TBDebug(@"DriveWireServerModel initWithDocument:%@ version:%d", document, versionNumber);
+        
+        // Allocate our array of drives
 		driveArray = [[NSMutableArray alloc] init];
 
 		for (i = 0; i < 4; i++)
@@ -215,7 +212,7 @@ static TBSerialManager *fSerialManager = nil;
         savedPort = [coder decodeObjectForKey:@"port"];
         self.statState = [coder decodeBoolForKey:@"statState"];
         self.logState = [coder decodeBoolForKey:@"logState"];
-        self.machineType = [coder decodeIntegerForKey:@"machineType"];
+        self.machineType = [coder decodeIntForKey:@"machineType"];
         
         [self initCommon];
         
@@ -276,7 +273,6 @@ static TBSerialManager *fSerialManager = nil;
 - (void)invalidateWatchdog;
 {
     [self.watchDog invalidate];
-    self.watchDog = nil;
 }
 
 
@@ -630,14 +626,14 @@ static TBSerialManager *fSerialManager = nil;
 - (void)OP_NOP;
 {
     [statistics setObject:@"OP_NOP" forKey:@"OpCode"];
-    [self.delegate updateInfoView:statistics];
+    [self postStatistics:statistics];
     [self resetState:nil];
 }
 
 - (void)OP_PRINTFLUSH;
 {
 	[statistics setObject:@"OP_PRINTFLUSH" forKey:@"OpCode"];
-    [self.delegate updateInfoView:statistics];
+    [self postStatistics:statistics];
     [self flushPrinterBuffer];
     [self resetState:nil];
 }
@@ -658,8 +654,8 @@ static TBSerialManager *fSerialManager = nil;
 	
 	[statistics setObject:@"OP_DWINIT" forKey:@"OpCode"];
 	[statistics setObject:[NSString stringWithFormat:@"%d", byte] forKey:@"Byte"];
-	[self.delegate updateInfoView:statistics];
-	
+    [self postStatistics:statistics];
+
 	// send response
 	[portDelegate writeData:[NSData dataWithBytes:"\x00" length:1]];
 
@@ -675,8 +671,8 @@ static TBSerialManager *fSerialManager = nil;
     [printBuffer appendBytes:&byte length:1];
     [statistics setObject:@"OP_PRINT" forKey:@"OpCode"];
     [statistics setObject:[NSString stringWithFormat:@"%d", byte] forKey:@"Byte"];
-    [self.delegate updateInfoView:statistics];
-   
+    [self postStatistics:statistics];
+
     if ([printBuffer length] > MAX_SIZE_BEFORE_PRINTING)
     {
         [self flushPrinterBuffer];
@@ -690,14 +686,14 @@ static TBSerialManager *fSerialManager = nil;
 - (void)OP_INIT
 {
 	[statistics setObject:@"OP_INIT" forKey:@"OpCode"];
-    [self.delegate updateInfoView:statistics];
+    [self postStatistics:statistics];
     [self resetState:nil];
 }
 
 - (void)OP_TERM
 {
 	[statistics setObject:@"OP_TERM" forKey:@"OpCode"];
-    [self.delegate updateInfoView:statistics];
+    [self postStatistics:statistics];
     [self resetState:nil];
 }
 
@@ -714,7 +710,7 @@ static TBSerialManager *fSerialManager = nil;
 	[statistics setObject:@"NONE" forKey:@"SetStat"];
 	[statistics setObject:@"0" forKey:@"Error"];
 	[statistics setObject:@"00000" forKey:@"Checksum"];
-    [self.delegate updateInfoView:statistics];
+    [self postStatistics:statistics];
 
     // Set WireBug state to FALSE
     [self setWirebugState:false];
@@ -731,7 +727,7 @@ static TBSerialManager *fSerialManager = nil;
 - (void)OP_RESYNC
 {
 	[statistics setObject:@"OP_RESYNC" forKey:@"OpCode"];
-    [self.delegate updateInfoView:statistics];
+    [self postStatistics:statistics];
     [self resetState:nil];
 }
 
@@ -756,7 +752,7 @@ static TBSerialManager *fSerialManager = nil;
 	
 	// Update log
 	[statistics setObject:@"OP_TIME" forKey:@"OpCode"];
-	[self.delegate updateInfoView:statistics];
+    [self postStatistics:statistics];
 
     [self resetState:nil];
 }
@@ -889,8 +885,8 @@ static TBSerialManager *fSerialManager = nil;
 			
 			[statistics setObject:[NSString stringWithFormat:@"%d", response] forKey:@"Error"];
 			[statistics setObject:[NSString stringWithFormat:@"%d", myChecksum] forKey:@"Checksum"];
-			[self.delegate updateInfoView:statistics];
-			
+            [self postStatistics:statistics];
+
 			// Send Checksum on to CoCo
 			b[0] = myChecksum >> 8;
 			b[1] = myChecksum & 0xFF;
@@ -1006,7 +1002,7 @@ static TBSerialManager *fSerialManager = nil;
 
             [statistics setObject:[NSString stringWithFormat:@"%d", readexResponse] forKey:@"Error"];
             [statistics setObject:[NSString stringWithFormat:@"%d", readexChecksum] forKey:@"Checksum"];
-            [self.delegate updateInfoView:statistics];
+            [self postStatistics:statistics];
         }
 
         if (0 == readexResponse)
@@ -1142,7 +1138,7 @@ static TBSerialManager *fSerialManager = nil;
 
             [statistics setObject:[NSString stringWithFormat:@"%d", response] forKey:@"Error"];
             [statistics setObject:[NSString stringWithFormat:@"%d", myChecksum] forKey:@"Checksum"];
-            [self.delegate updateInfoView:statistics];
+            [self postStatistics:statistics];
         }
 
         // Send response to CoCo.
@@ -1191,7 +1187,7 @@ static TBSerialManager *fSerialManager = nil;
 			[statistics setObject:NSStringFromSelector(self.currentState) forKey:@"OpCode"];
             [statistics setObject:[NSString stringWithFormat:@"%d", driveNumber] forKey:@"DriveNumber"];
 			[statistics setObject:[self statCodeToString:statCode] forKey:whichStat];
-            [self.delegate updateInfoView:statistics];
+            [self postStatistics:statistics];
 
 			// Process specific stat codes (Version 3 and greater)
 			if ([whichStat isEqualToString:@"SetStat"] == YES)
@@ -1357,8 +1353,8 @@ static TBSerialManager *fSerialManager = nil;
         result = nameobj_size;
         
 		[statistics setObject:@"OP_NAMEOBJ_MOUNT" forKey:@"OpCode"];
-		[self.delegate updateInfoView:statistics];
-		
+        [self postStatistics:statistics];
+
 		// build the path to the named object
         NSData *namedObjectData = [data subdataWithRange:NSMakeRange(0, nameobj_size)];
         NSString *namedObject = [NSString stringWithCString:[namedObjectData bytes] encoding:NSUTF8StringEncoding];
@@ -1411,8 +1407,8 @@ static TBSerialManager *fSerialManager = nil;
     
     // Update log
     [statistics setObject:@"OP_SERINIT" forKey:@"OpCode"];
-    [self.delegate updateInfoView:statistics];
-    
+    [self postStatistics:statistics];
+
     [self resetState:nil];
     
     return result;
@@ -1431,8 +1427,8 @@ static TBSerialManager *fSerialManager = nil;
     
     // Update log
     [statistics setObject:@"OP_SERTERM" forKey:@"OpCode"];
-    [self.delegate updateInfoView:statistics];
-    
+    [self postStatistics:statistics];
+
     [self resetState:nil];
     
     return result;
@@ -1451,8 +1447,8 @@ static TBSerialManager *fSerialManager = nil;
         
         // Update log
         [statistics setObject:@"OP_SERGETSTAT" forKey:@"OpCode"];
-        [self.delegate updateInfoView:statistics];
-        
+        [self postStatistics:statistics];
+
         [self resetState:nil];
     }
     
@@ -1470,8 +1466,8 @@ static TBSerialManager *fSerialManager = nil;
         
         // Update log
         [statistics setObject:@"OP_SERSETSTAT" forKey:@"OpCode"];
-        [self.delegate updateInfoView:statistics];
-        
+        [self postStatistics:statistics];
+
         [self resetState:nil];
     }
     
@@ -1502,24 +1498,30 @@ static TBSerialManager *fSerialManager = nil;
             case 0x29: // SS.Open
                 // open channel
             {
-                VirtualSerialChannel *channel = [self channelWithNumber:channelNumber];
+                VirtualSerialChannel *channel = [self channelWithNumber:channelNumber - 1];
                 [channel open];
+                [[NSNotificationCenter defaultCenter] postNotificationName:kVirtualChannelConnectedNotification
+                                                                    object:self
+                                                                  userInfo:@{@"channel" : channel}];
                 break;
             }
 
             case 0x2A: // SS.Close
                 // close channel
             {
-                VirtualSerialChannel *channel = [self channelWithNumber:channelNumber];
+                VirtualSerialChannel *channel = [self channelWithNumber:channelNumber - 1];
                 [channel close];
+                [[NSNotificationCenter defaultCenter] postNotificationName:kVirtualChannelDisconnectedNotification
+                                                                    object:self
+                                                                  userInfo:@{@"channel" : channel}];
                 break;
             }
         }
 
         // Update log
         [statistics setObject:@"OP_SERSETSTAT" forKey:@"OpCode"];
-        [self.delegate updateInfoView:statistics];
-        
+        [self postStatistics:statistics];
+
         [self resetState:nil];
     }
     
@@ -1566,8 +1568,8 @@ static TBSerialManager *fSerialManager = nil;
     
     // Update log
     [statistics setObject:@"OP_SERREAD" forKey:@"OpCode"];
-    [self.delegate updateInfoView:statistics];
-    
+    [self postStatistics:statistics];
+
     [self resetState:nil];
 }
 
@@ -1584,14 +1586,14 @@ static TBSerialManager *fSerialManager = nil;
         
         NSUInteger channelNumber = bytes[0];
         
-        VirtualSerialChannel *channel = [self channelWithNumber:channelNumber];
+        VirtualSerialChannel *channel = [self channelWithNumber:channelNumber - 1];
         [channel putByte:bytes[1]];
     }
     
     // Update log
     [statistics setObject:@"OP_SERWRITE" forKey:@"OpCode"];
-    [self.delegate updateInfoView:statistics];
-    
+    [self postStatistics:statistics];
+
     [self resetState:nil];
     
     return result;
@@ -1611,15 +1613,15 @@ static TBSerialManager *fSerialManager = nil;
         NSUInteger channelNumber = bytes[0];
         NSUInteger bytesToRead = bytes[1];
         
-        VirtualSerialChannel *channel = [self channelWithNumber:channelNumber];
+        VirtualSerialChannel *channel = [self channelWithNumber:channelNumber - 1];
         NSData *dataToRead = [channel getNumberOfBytes:bytesToRead];
 
         [portDelegate writeData:dataToRead];
     
         // Update log
         [statistics setObject:@"OP_SERREADM" forKey:@"OpCode"];
-        [self.delegate updateInfoView:statistics];
-        
+        [self postStatistics:statistics];
+
         [self resetState:nil];
     }
     
@@ -1666,18 +1668,18 @@ static TBSerialManager *fSerialManager = nil;
     {
         u_char *bytes = (u_char *)[data bytes];
         
-        // We read 2 bytes into this buffer (1 byte drive number, 1 getstat code)
+        // We read 2 bytes into this buffer (channel number and data byte)
         result = self.serwritemBytesFollowing;
         
         NSUInteger channelNumber = self.serwritemChannelNumber;
         
-        VirtualSerialChannel *channel = [self channelWithNumber:channelNumber];
+        VirtualSerialChannel *channel = [self channelWithNumber:channelNumber - 1];
         [channel putBytes:bytes length:result];
         
         // Update log
         [statistics setObject:@"OP_SERWRITE" forKey:@"OpCode"];
-        [self.delegate updateInfoView:statistics];
-        
+        [self postStatistics:statistics];
+
         [self resetState:nil];
     }
     
@@ -1693,13 +1695,13 @@ static TBSerialManager *fSerialManager = nil;
     // We read 1 bytes into this buffer (data byte)
     result = 1;
     
-    VirtualSerialChannel *channel = [self channelWithNumber:self.fastwriteChannel];
+    VirtualSerialChannel *channel = [self channelWithNumber:self.fastwriteChannel - 1];
     [channel putByte:bytes[0]];
     
     // Update log
     [statistics setObject:@"OP_FASTWRITE" forKey:@"OpCode"];
-    [self.delegate updateInfoView:statistics];
-    
+    [self postStatistics:statistics];
+
     [self resetState:nil];
 
     return result;
@@ -1721,7 +1723,7 @@ static TBSerialManager *fSerialManager = nil;
         result = 23;
         
         [statistics setObject:@"OP_WIREBUG" forKey:@"OpCode"];
-        [self.delegate updateInfoView:statistics];
+        [self postStatistics:statistics];
 
         wirebugCoCoType = bytes[0];
         wirebugCPUType = bytes[1];

@@ -19,7 +19,6 @@
     if (self = [super initWithNibName:@"NetworkConnectionView" bundle:[NSBundle bundleForClass:[self class]]])
     {
         self.channel = channel;
-        self.channel.delegate = self;
         [self loadView];
     }
     

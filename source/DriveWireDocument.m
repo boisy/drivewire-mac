@@ -53,12 +53,6 @@
 	// Remove observer of printer messages
 	[nc removeObserver:self.printerWindowController name:@"DWPrint" object:self.dwModel];
    
-	// Remove observer of statistics messages
-	[nc removeObserver:statsView name:@"DWStats" object:self.dwModel];
-		
-	// Remove observer of log messages
-	[nc removeObserver:logView name:kTBLogNotification object:nil];
-	
 	for (int i = 0; i < [driveArray count]; i++)
 	{
 		// Remove ourself as an observer of cartridge insert/eject messages for each drive
@@ -89,7 +83,7 @@
 
     if (self.dwModel == nil)
     {
-        self.dwModel = [[DriveWireServerModel alloc] init];
+        self.dwModel = [[DriveWireServerModel alloc] initWithDocument:self version:DW_DEFAULT_VERSION];
     }
     
     [self.dwModel setDelegate:self];
@@ -157,30 +151,15 @@
 		TBDebug(@"Observing for object: 0x%@", [driveArray objectAtIndex:i]);
 	}	
 	
-	// Add the statsView as an observer of statistics messages
-//	[nc addObserver:statsView selector:@selector(updateStats:) name:@"DWStats" object:self.dwModel];
-
-	// Add the logView as an observer of TBLog messages
-    [nc addObserver:logView selector:@selector(update:) name:kTBLogNotification object:nil];
-
     // Add the printerWindowController as an observer of print messages
     [nc addObserver:self.printerWindowController selector:@selector(updatePrintBuffer:) name:@"DWPrint" object:self.dwModel];
-	
-//   [debugDrawer open];
-   
+    
     [machineTypePopupButton selectItemWithTag:self.dwModel.machineType];
     [self updateUIComponents];
 }
 
 
 #pragma mark DriveWire Protocol Delegate Methods
-
-- (void)updateInfoView:(NSDictionary *)info;
-{
-//    [logView update:info];
-    [statsView performSelectorOnMainThread:@selector(update:) withObject:info waitUntilDone:NO];
-//    [statsView update:info];
-}
 
 - (void)updateMemoryView:(NSDictionary *)info;
 {
@@ -199,9 +178,6 @@
 
 - (void)updateUIComponents;
 {
-    [loggingSwitch setState:[self.dwModel logState]];
-    [statSwitch setState:[self.dwModel statState]];
-
     switch ([self.dwModel machineType])
     {
         case MachineTypeCoCo1_38_4:
@@ -276,7 +252,6 @@
 
 - (IBAction)goCoCo:(id)sender;
 {
-   [debugDrawer close];
    [self.dwModel goCoCo];
 }
 

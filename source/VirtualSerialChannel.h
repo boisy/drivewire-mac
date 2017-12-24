@@ -12,18 +12,15 @@
 #define READ_TIMEOUT   -1
 #define WRITE_TIMEOUT   -1
 
+FOUNDATION_EXPORT NSString *const kVirtualChannelConnectedNotification;
+FOUNDATION_EXPORT NSString *const kVirtualChannelDisconnectedNotification;
+FOUNDATION_EXPORT NSString *const kVirtualChannelDataSentNotification;
+FOUNDATION_EXPORT NSString *const kVirtualChannelDataReceivedNotification;
+FOUNDATION_EXPORT NSString *const kVirtualChannelEjectDiskNotification;
+
 enum {WRITETAG_DATA_WRITTEN, READTAG_DATA_READ, WRITETAG_TELNET_COMMANDS_WRITTEN, READTAG_TELNET_COMMAND_RESPONSES_READ};
 
 @class VirtualSerialChannel;
-
-@protocol VirtualSerialChannelDelegate
-
-- (void)didConnect:(VirtualSerialChannel *)channel;
-- (void)didDisconnect:(VirtualSerialChannel *)channel;
-- (void)didSendData:(VirtualSerialChannel *)channel;
-- (void)didReceiveData:(VirtualSerialChannel *)channel;
-
-@end
 
 typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT} VirtualSerialMode;
 
@@ -44,12 +41,12 @@ typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT}
 @property (strong) NSMutableData *incomingBuffer; // incoming TO CoCo
 @property (strong) NSMutableData *outgoingBuffer; // outgoing FROM CoCo
 @property (assign) NSUInteger waitCounter;
-@property (weak) id<VirtualSerialChannelDelegate> delegate;
 @property (assign) BOOL shouldClose;
 @property (assign) VirtualSerialMode mode;
 @property (strong) NSData *telnetCommands;
+@property (weak) id model;
 
-- (id)initWithNumber:(NSUInteger)number port:(NSUInteger)port;
+- (id)initWithModel:(id)model number:(NSUInteger)number port:(NSUInteger)port;
 
 - (BOOL)hasData;
 - (NSUInteger)availableToRead;

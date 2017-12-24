@@ -10,7 +10,7 @@
 #import <TeeBoy/TBLEDView.h>
 #import "VirtualSerialChannel.h"
 
-@interface NetworkConnectionViewController : NSViewController <VirtualSerialChannelDelegate>
+@interface NetworkConnectionViewController : NSViewController
 
 #define INCOMING_LED_TIMEOUT    0.2
 #define OUTGOING_LED_TIMEOUT    0.2

@@ -1,30 +1,38 @@
-#import "StatsView.h"
+#import "StatsViewController.h"
+#import "DriveWireServerModel.h"
+#import "DriveWireDocument.h"
 
-@implementation StatsView
+@implementation StatsViewController
 
-- (id)initWithFrame:(NSRect)frameRect
+- (void)viewWillAppear;
 {
-	if ((self = [super initWithFrame:frameRect]) != nil)
-	{
-	}
-	
-	return self;
+    [super viewWillAppear];
+    DriveWireDocument *document = self.view.window.windowController.document;
+    DriveWireServerModel *model = document.dwModel;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(update:)
+                                                 name:kDriveWireStatusNotification
+                                               object:model];
 }
 
-- (void)dealloc
+- (void)viewWillDisappear;
 {
-}
-
-- (void)awakeFromNib
-{
+    [super viewWillDisappear];
+    DriveWireDocument *document = self.view.window.windowController.document;
+    DriveWireServerModel *model = document.dwModel;
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kDriveWireStatusNotification
+                                                  object:model];
 }
 
 - (void)drawRect:(NSRect)rect
 {
 }
 
-- (void)update:(NSDictionary *)info;
+- (void)update:(NSNotification *)note;
 {
+    NSDictionary *info = [note.userInfo objectForKey:@"statistics"];
+    
 	[lastOpCode setStringValue:[info objectForKey:@"OpCode"]];
 	[lastLSN setStringValue:[info objectForKey:@"LSN"]];
 	[sectorsRead setStringValue:[info objectForKey:@"ReadCount"]];

@@ -1,6 +1,6 @@
-#import "LogView.h"
+#import "LogViewController.h"
 
-@implementation LogView
+@implementation LogViewController
 
 - (void)updateLog:(NSString *)logString;
 {
@@ -13,26 +13,26 @@
 }
 
 
-#pragma mark -
-#pragma mark Init/Dealloc Methods
-
-- (id)initWithFrame:(NSRect)frameRect;
+- (void)viewWillAppear;
 {
-    if ((self = [super initWithFrame:frameRect]) != nil)
-	{
-	}
+    [super viewWillAppear];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(update:)
+                                                 name:kTBLogNotification
+                                               object:nil];
+}
 
-	return self;
+- (void)viewWillDisappear;
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kTBLogNotification
+                                                  object:nil];
 }
 
 - (void)awakeFromNib;
 {
     [logTextView setEditable:FALSE];
     [logTextView setContinuousSpellCheckingEnabled:FALSE];
-}
-
-- (void)dealloc
-{
 }
 
 - (void)drawRect:(NSRect)rect;

@@ -8,7 +8,6 @@
 
 #import "VirtualSerialChannel+DWCommands.h"
 #import "NSString+DriveWire.h"
-#import "DriveWireServerModel.h"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
@@ -277,8 +276,10 @@
     {
         showHelp = FALSE;
         NSString *parameter = [array objectAtIndex:0];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kVirtualChannelEjectDiskNotification object:parameter];
+
+#if 0
         NSInteger requestedSlot = [parameter integerValue];
-        DriveWireServerModel *dwsm = (DriveWireServerModel *)[self delegate];
         NSArray *driveArray = dwsm.driveArray;
         
         if( [parameter isEqualToString:@"all"] )
@@ -303,6 +304,7 @@
         {
             [self.incomingBuffer appendData:[@"Drive number out of range (0-3), or not all\x0D\x0A" dataUsingEncoding:NSASCIIStringEncoding]];
         }
+#endif
     }
     
     if (showHelp == TRUE)
@@ -326,6 +328,7 @@
     if ([array count] > 0)
     {
         showHelp = FALSE;
+#if 0
         NSInteger requestedSlot = [[array objectAtIndex:0] integerValue];
         
         if( requestedSlot >=0 && requestedSlot <=4 )
@@ -353,6 +356,7 @@
         {
             [self.incomingBuffer appendData:[@"Drive number out of range (0-3)\x0D\x0A" dataUsingEncoding:NSASCIIStringEncoding]];
         }
+#endif
     }
     
     if (showHelp == TRUE)

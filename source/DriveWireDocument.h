@@ -6,8 +6,8 @@
 #import "PrinterWindowController.h"
 #import "DebuggerWindowController.h"
 #import "NetworkWindowController.h"
-#import "LogView.h"
-#import "StatsView.h"
+#import "LogViewController.h"
+#import "StatsViewController.h"
 
 @interface DriveWireDocument : NSDocument <DriveWireDelegate>
 {
@@ -15,11 +15,6 @@
     IBOutlet NSPopUpButton *serialPortButton;
     IBOutlet NSPopUpButton *machineTypePopupButton;
     IBOutlet NSImageView *machineImageView;
-	IBOutlet LogView	*logView;
-	IBOutlet StatsView	*statsView;
-    IBOutlet NSDrawer *debugDrawer;
-    IBOutlet NSButton *loggingSwitch;
-    IBOutlet NSButton *statSwitch;
 	NSInteger lastPortSelected;
     NSWindowController *myWindowController;
 }
@@ -30,7 +25,6 @@
 @property (assign) IBOutlet PrinterWindowController *printerWindowController;
 @property (strong) NetworkWindowController *networkWindowController;
 
-- (void)updateInfoView:(NSDictionary *)info;
 - (void)updateMemoryView:(NSDictionary *)info;
 - (void)updateRegisterView:(NSDictionary *)info;
 - (void)updatePrinterView:(NSDictionary *)info;

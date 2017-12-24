@@ -20,6 +20,8 @@
 #import "VirtualDriveController.h"
 #import "VirtualSerialChannel.h"
 
+FOUNDATION_EXPORT NSString *const kDriveWireStatusNotification;
+
 #define DW_DEFAULT_VERSION       3
 
 #define	_OP_NOP                 '\0'
@@ -71,7 +73,6 @@
 
 @protocol DriveWireDelegate
 
-- (void)updateInfoView:(NSDictionary *)info;
 - (void)updateMemoryView:(NSDictionary *)info;
 - (void)updateRegisterView:(NSDictionary *)info;
 - (void)updatePrinterView:(NSDictionary *)info;
@@ -90,7 +91,7 @@ typedef enum {
 	@class DriveWireServerModel
 	This class encapsulates the entire DriveWire protocol.
 */
-@interface DriveWireServerModel : NSObject <VirtualSerialChannelDelegate>
+@interface DriveWireServerModel : NSObject
 {
 	TBSerialPort			*fPort;
 	NSMutableDictionary     *fSerialPortNames;
@@ -133,7 +134,7 @@ typedef enum {
 @property (assign) BOOL logState;
 @property (assign) BOOL wirebugState;
 @property (assign) id<DriveWireDelegate> delegate;
-@property (strong) NSArray *serialChannels;
+@property (strong) NSMutableArray *serialChannels;
 @property (assign) u_int16_t memAddress;
 
 /*!
@@ -143,10 +144,10 @@ typedef enum {
 - (id)init;
 
 /*!
-	@method initWithVersion
-	@abstract Initializes the object with a specific DriveWire version.
+    @method initWithDocument:version
+	@abstract Initializes the object with a specific DriveWire document & version.
  */
-- (id)initWithVersion:(int)versionNumber;
+- (id)initWithDocument:(NSDocument *)document version:(int)versionNumber;
 
 /*!
 	@method driveArray

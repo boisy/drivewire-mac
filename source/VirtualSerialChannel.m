@@ -13,6 +13,11 @@
 #import "GCDAsyncSocket.h"
 #import "NSString+DriveWire.h"
 
+NSString *const kVirtualChannelConnectedNotification = @"com.drivewire.VirtualChannelConnectedNotification";
+NSString *const kVirtualChannelDisconnectedNotification = @"com.drivewire.VirtualChannelDisconnectedNotification";
+NSString *const kVirtualChannelDataSentNotification = @"com.drivewire.VirtualChannelDataSentNotification";
+NSString *const kVirtualChannelDataReceivedNotification = @"com.drivewire.VirtualChannelDataReceivedNotification";
+NSString *const kVirtualChannelEjectDiskNotification = @"com.drivewire.VirtualChannelEjectDiskNotification";
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
@@ -75,7 +80,9 @@
                 data = [data dataWithoutLineFeeds];
             }
             [self.incomingBuffer appendData:data];
-            [self.delegate didReceiveData:self];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kVirtualChannelDataReceivedNotification
+                                                                object:self.model
+                                                              userInfo:@{@"channel" : self}];
             [sender readDataWithTimeout:READ_TIMEOUT tag:READTAG_DATA_READ];
             break;
 
@@ -91,7 +98,6 @@
     {
         case WRITETAG_DATA_WRITTEN:
             self.outgoingBuffer.length = 0;
-            [self.delegate didSendData:self];
             [sender readDataWithTimeout:READ_TIMEOUT tag:READTAG_DATA_READ];
             break;
             
@@ -110,7 +116,9 @@
     }
 
 //    [newSocket writeData:self.outgoingBuffer withTimeout:WRITE_TIMEOUT tag:WRITETAG_DATA_WRITTEN];
-    [self.delegate didConnect:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kVirtualChannelConnectedNotification
+                                                        object:self.model
+                                                      userInfo:@{@"channel" : self}];
     self.mode = VMODE_TCP_SERVER;
     [[GlobalChannelArray sharedArray] addObject:newSocket];
 
@@ -175,7 +183,9 @@
     self.serverSocket = nil;
 
     [self.clientSocket disconnect];
-    [self.delegate didDisconnect:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kVirtualChannelDisconnectedNotification
+                                                        object:self.model
+                                                      userInfo:@{@"channel" : self}];
 }
 
 - (BOOL)hasData;
@@ -196,6 +206,9 @@
     {
         result = *(u_char *)[self.incomingBuffer bytes];
         [self.incomingBuffer replaceBytesInRange:NSMakeRange(0, 1) withBytes:nil length:0];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kVirtualChannelDataReceivedNotification
+                                                            object:self.model
+                                                          userInfo:@{@"channel" : self}];
     }
     
     return result;
@@ -203,6 +216,9 @@
 
 - (NSData *)getNumberOfBytes:(NSUInteger)count;
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kVirtualChannelDataReceivedNotification
+                                                        object:self.model
+                                                      userInfo:@{@"channel" : self}];
     NSData *result = nil;
     NSUInteger available = [self availableToRead];
     if (count > available)
@@ -219,6 +235,9 @@
 
 - (void)putByte:(u_char)byte;
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kVirtualChannelDataSentNotification
+                                                        object:self.model
+                                                      userInfo:@{@"channel" : self}];
     switch (self.mode)
     {
         case VMODE_COMMAND:
@@ -312,10 +331,11 @@
 #pragma mark -
 #pragma mark Init/Dealloc Methods
 
-- (id)initWithNumber:(NSUInteger)number port:(NSUInteger)port;
+- (id)initWithModel:(id)model number:(NSUInteger)number port:(NSUInteger)port;
 {
     if (self = [super init])
     {
+        self.model = model;
         self.number = number;
         self.port = port;
         
@@ -332,7 +352,6 @@
 
 - (void)dealloc;
 {
-    self.delegate = nil;
 }
 
 #pragma clang diagnostic pop

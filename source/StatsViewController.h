@@ -2,7 +2,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface StatsView : NSView
+@interface StatsViewController : NSViewController
 {
 	// Cumulative Stats
 	IBOutlet NSTextField		*lastOpCode;

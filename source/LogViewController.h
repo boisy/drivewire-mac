@@ -1,8 +1,8 @@
-/* LogView */
+/* LogViewController */
 
 #import <Cocoa/Cocoa.h>
 
-@interface LogView : NSView
+@interface LogViewController : NSViewController
 {
     IBOutlet NSTextView *logTextView;
 }

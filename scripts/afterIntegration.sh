@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -v
 # After Integration Run Script
 # Called by the Xcode Bot
 if [ -z "$XCS_ARCHIVE" ]; then

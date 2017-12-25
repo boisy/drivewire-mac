@@ -18,7 +18,7 @@ signature=`scripts/sign_update.rb /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}.zip d
 releaseDate=`date '+%a, %d %b %Y %T %z'`
 length=`stat -f "%z" /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}.zip`
 
-sed -e "s?__BUNDLEVERSION__?${XCS_INTEGRATION_NUMBER}?" DriveWireAppcast.xml | sed -e "s/__SIGNATURE__/$signature/" | sed -e "s?__LENGTH__?$length?" | sed -e "s?__VERSION__?$marketingVersion?" | sed -e "s?__RELEASEDATE__?$releaseDate?" > /tmp/DriveWireAppcast.xml
+sed -e "s?__BUNDLEVERSION__?${XCS_INTEGRATION_NUMBER}?" DriveWireAppcast.xml | sed -e "s!__SIGNATURE__!$signature!" | sed -e "s?__LENGTH__?$length?" | sed -e "s?__VERSION__?$marketingVersion?" | sed -e "s?__RELEASEDATE__?$releaseDate?" > /tmp/DriveWireAppcast.xml
 
 # copy changelog
 git config --global user.email "boisy.pitre@tee-boy.com"

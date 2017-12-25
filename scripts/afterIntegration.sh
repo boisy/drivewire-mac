@@ -14,11 +14,11 @@ zip -yr /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}_dSYMs.zip dSYMs
 scp /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}_dSYMs.zip administrator@downloads.weathersnoop.com:/Library/Server/Web/Data/Sites/downloads.weathersnoop.com
 
 # Setup variables to be used in sed
-signature=`scripts/sign_update.rb /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}.zip dsa_priv.pem`
+signature=`scripts/sign_update.rb /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}.zip dsa_priv.pem | tr -d '\n'`
 releaseDate=`date '+%a, %d %b %Y %T %z'`
 length=`stat -f "%z" /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}.zip`
 
-sed -e "s?__BUNDLEVERSION__?${XCS_INTEGRATION_NUMBER}?" DriveWireAppcast.xml | sed -e "s/__SIGNATURE__/$signature/" | tr -d '\n' | sed -e "s?__LENGTH__?$length?" | sed -e "s?__VERSION__?$marketingVersion?" | sed -e "s?__RELEASEDATE__?$releaseDate?" > /tmp/DriveWireAppcast.xml
+sed -e "s?__BUNDLEVERSION__?${XCS_INTEGRATION_NUMBER}?" DriveWireAppcast.xml | sed -e "s/__SIGNATURE__/$signature/" | sed -e "s?__LENGTH__?$length?" | sed -e "s?__VERSION__?$marketingVersion?" | sed -e "s?__RELEASEDATE__?$releaseDate?" > /tmp/DriveWireAppcast.xml
 
 # copy changelog
 git config --global user.email "boisy.pitre@tee-boy.com"

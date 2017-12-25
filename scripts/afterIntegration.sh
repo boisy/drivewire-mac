@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -v
 # After Integration Run Script
 # Called by the Xcode Bot
 if [ -z "$XCS_ARCHIVE" ]; then
@@ -6,10 +6,10 @@ if [ -z "$XCS_ARCHIVE" ]; then
     exit 1
 fi  
 marketingVersion="1.0.${XCS_INTEGRATION_NUMBER}"
-cd "${XCS_ARCHIVE}/Products/Applications"
+pushd "${XCS_ARCHIVE}/Products/Applications"
 zip -yr /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}.zip "DriveWire.app"
 scp /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}.zip administrator@downloads.weathersnoop.com:/Library/Server/Web/Data/Sites/downloads.weathersnoop.com
-cd ../..
+popd
 zip -yr /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}_dSYMs.zip dSYMs
 scp /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}_dSYMs.zip administrator@downloads.weathersnoop.com:/Library/Server/Web/Data/Sites/downloads.weathersnoop.com
 

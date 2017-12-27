@@ -160,19 +160,24 @@
 
 - (BOOL)insertCartridge:(NSString *)cartridge
 {
+    BOOL result = NO;
+    
 	TBInfo(@"Inserting Cartridge");
 	
 	if (cartridge != nil)
 	{
-		[model insertCartridge:cartridge];
+		result = [model insertCartridge:cartridge];
 		
-		[diskLabel setStringValue:[cartridge lastPathComponent]];
-		[diskLabel setEditable:NO];
-		[driveDoor setHidden:NO];
-		[diskLabel setHidden:NO];
+        if (result == YES)
+        {
+            [diskLabel setStringValue:[cartridge lastPathComponent]];
+            [diskLabel setEditable:NO];
+            [driveDoor setHidden:NO];
+            [diskLabel setHidden:NO];
+        }
 	}
 
-	return YES;
+	return result;
 }
 
 - (IBAction)ejectCartridge:(id)object
@@ -182,6 +187,13 @@
 	[model ejectCartridge];
 	[driveDoor setHidden:YES];
 	[diskLabel setHidden:YES];
+}
+
+- (IBAction)resetCartridge:(id)object
+{
+    TBInfo(@"Resetting Cartridge");
+    
+    [model resetCartridge];
 }
 
 - (BOOL)isEmpty

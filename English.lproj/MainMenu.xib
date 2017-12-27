@@ -136,11 +136,6 @@
                                     <action selector="viewWireBugWindow:" target="-1" id="255"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Network" keyEquivalent="N" id="256">
-                                <connections>
-                                    <action selector="viewNetworkWindow:" target="-1" id="259"/>
-                                </connections>
-                            </menuItem>
                             <menuItem title="Virtual Printer" keyEquivalent="V" id="250">
                                 <connections>
                                     <action selector="viewPrinterWindow:" target="-1" id="254"/>

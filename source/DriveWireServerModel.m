@@ -496,6 +496,10 @@ static TBSerialManager *fSerialManager = nil;
     // Determine next action to take.
     switch (byte)
     {
+        case _OP_SERREAD:
+            [self OP_SERREAD];
+            break;
+            
         case _OP_NOP:
             [self OP_NOP];
 			break;
@@ -577,10 +581,6 @@ static TBSerialManager *fSerialManager = nil;
             
         case _OP_SERSETSTAT:
             self.currentState = @selector(OP_SERSETSTAT:);
-            break;
-            
-        case _OP_SERREAD:
-            [self OP_SERREAD];
             break;
             
         case _OP_SERREADM:

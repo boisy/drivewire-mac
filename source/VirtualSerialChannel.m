@@ -17,6 +17,7 @@ NSString *const kVirtualChannelConnectedNotification = @"com.drivewire.VirtualCh
 NSString *const kVirtualChannelDisconnectedNotification = @"com.drivewire.VirtualChannelDisconnectedNotification";
 NSString *const kVirtualChannelDataSentNotification = @"com.drivewire.VirtualChannelDataSentNotification";
 NSString *const kVirtualChannelDataReceivedNotification = @"com.drivewire.VirtualChannelDataReceivedNotification";
+NSString *const kVirtualChannelInsertDiskNotification = @"com.drivewire.VirtualChannelInsertDiskNotification";
 NSString *const kVirtualChannelEjectDiskNotification = @"com.drivewire.VirtualChannelEjectDiskNotification";
 
 #pragma clang diagnostic push
@@ -161,6 +162,9 @@ NSString *const kVirtualChannelEjectDiskNotification = @"com.drivewire.VirtualCh
     self.outgoingBuffer = [NSMutableData data];
     
     self.mode = VMODE_COMMAND;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kVirtualChannelConnectedNotification
+                                                        object:self
+                                                      userInfo:@{@"channel" : self}];
 }
 
 - (void)close;
@@ -352,6 +356,37 @@ NSString *const kVirtualChannelEjectDiskNotification = @"com.drivewire.VirtualCh
 
 - (void)dealloc;
 {
+}
+
+- (NSString *)modeName;
+{
+    NSString *result = @"";
+    
+    if (self.incomingBuffer == nil && self.outgoingBuffer == nil)
+    {
+        result = @"Disconnected";
+    }
+    else
+    switch (self.mode)
+    {
+        case VMODE_COMMAND:
+            result = @"Command";
+            break;
+            
+        case VMODE_TCP_SERVER:
+            result = @"TCP Server";
+            break;
+            
+        case VMODE_PASSTHRU:
+            result = @"Passthrough";
+            break;
+            
+        case VMODE_TCP_CLIENT:
+            result = @"TCP Client";
+            break;
+    }
+    
+    return result;
 }
 
 #pragma clang diagnostic pop

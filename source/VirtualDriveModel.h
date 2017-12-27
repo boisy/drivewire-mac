@@ -91,6 +91,12 @@ typedef enum {LED_OFF, LED_READ, LED_WRITE} ledState;
 - (void)ejectCartridge;
 
 /*!
+ @method resetCartridge
+ @abstract Forces the reset of the cartridge, if any, in the virtual drive. If the vitual drive is empty, this method has no effect.
+ */
+- (void)resetCartridge;
+
+/*!
 	@method cartridgeLabel
 	@abstract Returns the name of the cartridge that is currently inserted in the virtual drive.  If the drive is empty, nil will be returned.
 	@result An NSString pointer to the name on the cartridge label.

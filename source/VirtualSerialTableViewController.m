@@ -1,15 +1,15 @@
 //
-//  NetworkTableViewController.m
+//  VirtualSerialTableViewController.m
 //  DriveWire
 //
 //  Created by Boisy Pitre on 12/22/17.
 //
 
-#import "NetworkTableViewController.h"
+#import "VirtualSerialTableViewController.h"
 #import "DriveWireDocument.h"
 #import <TeeBoy/TBLEDView.h>
 
-@implementation NetworkTableViewController
+@implementation VirtualSerialTableViewController
 
 #pragma mark -
 #pragma mark Notification Methods
@@ -22,7 +22,7 @@
                                      viewAtColumn:1
                                      row:channel.number - 1
                                      makeIfNecessary:NO];
-        selectedCell.textField.stringValue = @"Connected";
+        selectedCell.textField.stringValue = channel.modeName;
     });
 }
 

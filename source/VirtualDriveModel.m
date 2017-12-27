@@ -179,6 +179,24 @@ static int instanceCount = 0;
     return;
 }
 
+- (void)resetCartridge
+{
+    // Determine if this object's file handle is valid.
+    if (cartridgeHandle != nil)
+    {
+        // There's a disk in the drive -- reset it
+        [cartridgeHandle closeFile];
+        cartridgeHandle = [NSFileHandle fileHandleForUpdatingAtPath:cartridgePath];
+
+        // Reset cartridge specific counts
+        sectorReadCount = 0;
+        sectorWriteCount = 0;
+        
+    }
+    
+    return;
+}
+
 - (BOOL)isEmpty
 {
     BOOL result = FALSE;

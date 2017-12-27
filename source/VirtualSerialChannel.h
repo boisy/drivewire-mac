@@ -16,6 +16,7 @@ FOUNDATION_EXPORT NSString *const kVirtualChannelConnectedNotification;
 FOUNDATION_EXPORT NSString *const kVirtualChannelDisconnectedNotification;
 FOUNDATION_EXPORT NSString *const kVirtualChannelDataSentNotification;
 FOUNDATION_EXPORT NSString *const kVirtualChannelDataReceivedNotification;
+FOUNDATION_EXPORT NSString *const kVirtualChannelInsertDiskNotification;
 FOUNDATION_EXPORT NSString *const kVirtualChannelEjectDiskNotification;
 
 enum {WRITETAG_DATA_WRITTEN, READTAG_DATA_READ, WRITETAG_TELNET_COMMANDS_WRITTEN, READTAG_TELNET_COMMAND_RESPONSES_READ};
@@ -57,5 +58,7 @@ typedef enum {VMODE_COMMAND, VMODE_PASSTHRU, VMODE_TCP_SERVER, VMODE_TCP_CLIENT}
 
 - (void)open;
 - (void)close;
+
+- (NSString *)modeName;
 
 @end

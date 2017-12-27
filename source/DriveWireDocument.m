@@ -60,7 +60,6 @@
 		[nc removeObserver:self name:@"cartridgeWasEjected" object:[driveArray objectAtIndex:i]];
 	}
     
-    [self removeWindowController:self.networkWindowController];
     [self removeWindowController:self.printerWindowController];
     [self removeWindowController:self.debuggerWindowController];
 }
@@ -89,8 +88,6 @@
     [self.dwModel setDelegate:self];
     
     // add our window controllers
-    self.networkWindowController = [[NetworkWindowController alloc] initWithChannels:self.dwModel.serialChannels];
-    [self addWindowController:self.networkWindowController];
     [self addWindowController:self.printerWindowController];
     [self addWindowController:self.debuggerWindowController];
     
@@ -263,11 +260,6 @@
 - (void)viewPrinterWindow:(id)sender;
 {
     [self.printerWindowController showWindow:self];
-}
-
-- (void)viewNetworkWindow:(id)sender;
-{
-    [self.networkWindowController showWindow:self];
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "VirtualSerialChannel+DWCommands.h"
 #import "NSString+DriveWire.h"
+#import "DriveWireServerModel.h"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
@@ -16,6 +17,91 @@
 
 #pragma mark -
 #pragma mark DW Command Handlers
+
+- (NSError *)handleDWPORTSHOW:(NSArray *)array;
+{
+    NSError *error = nil;
+    
+    BOOL showHelp = TRUE;
+    
+    if ([array count] > 0)
+    {
+        showHelp = FALSE;
+        NSString *parameter = [array objectAtIndex:0];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kVirtualChannelEjectDiskNotification object:parameter];
+        
+        NSInteger requestedSlot = [parameter integerValue];
+        DriveWireServerModel *dwsm = (DriveWireServerModel *)self.model;
+        NSArray *serialArray = dwsm.serialChannels;
+        
+        if ([parameter isEqualToString:@"all"])
+        {
+            [self.incomingBuffer appendData:[@"Port   Status\x0D\x0A" dataUsingEncoding:NSASCIIStringEncoding]];
+            [self.incomingBuffer appendData:[@"-----  --------------------------------------\x0D\x0A" dataUsingEncoding:NSASCIIStringEncoding]];
+            for (VirtualSerialChannel *channel in serialArray)
+            {
+                NSString *line = [NSString stringWithFormat:@"%5lu  %@\x0D\x0A", (unsigned long)channel.number, [channel modeName]];
+                [self.incomingBuffer appendData:[line dataUsingEncoding:NSASCIIStringEncoding]];
+            }
+            
+        }
+        else if( [parameter isInteger] && (requestedSlot >= 0 && requestedSlot < [serialArray count]) )
+        {
+            VirtualSerialChannel *channel = [serialArray objectAtIndex:requestedSlot];
+            
+            NSString *line = [NSString stringWithFormat:@"%5lu  %@\x0D\x0A", (unsigned long)channel.number, [channel modeName]];
+            [self.incomingBuffer appendData:[line dataUsingEncoding:NSASCIIStringEncoding]];
+        }
+        else
+        {
+            [self.incomingBuffer appendData:[@"Port # out of range, or not all\x0D\x0A" dataUsingEncoding:NSASCIIStringEncoding]];
+        }
+    }
+    
+    if (showHelp == TRUE)
+    {
+        // show help
+        NSData *data = [@"Usage: dw port show {# | all}:\x0A\x0D"
+                        "    Show status of port #\x0A\x0D"
+                        dataUsingEncoding:NSASCIIStringEncoding];
+        [self.incomingBuffer appendData:data];
+    }
+    
+    return error;
+}
+
+- (NSError *)handleDWPORT:(NSArray *)array;
+{
+    NSError *error = nil;
+    BOOL showHelp = TRUE;
+    
+    if ([array count] > 0)
+    {
+        NSDictionary *commandDictionary = @{@"show"          : @"handleDWPORTSHOW:",
+                                            };
+
+        NSString *command = [array objectAtIndex:0];
+        NSString *selectorString = [commandDictionary objectForKey:command];
+        if (nil != selectorString)
+        {
+            SEL selector = NSSelectorFromString(selectorString);
+            error = [self performSelector:selector withObject:[array subarrayWithRange:NSMakeRange(1, [array count] - 1)]];
+            showHelp = FALSE;
+        }
+    }
+    
+    if (showHelp == TRUE)
+    {
+        // show help
+        NSData *data = [@"dw port commands:\x0A\x0D"
+                        "    show     - show the status of the ports\x0A\x0D"
+                        dataUsingEncoding:NSASCIIStringEncoding];
+        [self.incomingBuffer appendData:data];
+    }
+    
+    return error;
+}
+
 
 - (NSError *)handleDWSERVER:(NSArray *)array;
 {
@@ -29,7 +115,7 @@
                                             @"list"         : @"handleDWSERVERLIST:",
                                             @"terminate"    : @"handleDWSERVERTERMINATE:",
                                             };
-
+        
         NSString *command = [array objectAtIndex:0];
         NSString *selectorString = [commandDictionary objectForKey:command];
         if (nil != selectorString)
@@ -240,7 +326,9 @@
     if ([array count] > 0)
     {
         NSDictionary *commandDictionary = @{@"show"          : @"handleDWDISKSHOW:",
+                                            @"insert"        : @"handleDWSDISKINSERT:",
                                             @"eject"         : @"handleDWSDISKEJECT:",
+                                            @"reset"         : @"handleDWSDISKRESET:",
                                             };
         
         NSString *command = [array objectAtIndex:0];
@@ -257,8 +345,59 @@
     {
         // show help
         NSData *data = [@"dw disk commands:\x0A\x0D"
-                        "    show [#]        - Show current disk details\x0A\x0D"
-                        "    eject {# | all} - Eject disk from drive #\x0A\x0D"
+                        "    show   [#]       - Show current disk details\x0A\x0D"
+                        "    insert {# file}  - Insert file into drive #\x0A\x0D"
+                        "    eject  {# | all} - Eject disk from drive #\x0A\x0D"
+                        "    reset  {# | all} - Reset (reopen) disk in drive #\x0A\x0D"
+                        dataUsingEncoding:NSASCIIStringEncoding];
+        [self.incomingBuffer appendData:data];
+    }
+    
+    return error;
+}
+
+- (NSError *)handleDWSDISKINSERT:(NSArray *)array;
+{
+    NSError *error = nil;
+    
+    BOOL showHelp = TRUE;
+    
+    if ([array count] > 1)
+    {
+        showHelp = FALSE;
+        NSString *parameter = [array objectAtIndex:0];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kVirtualChannelInsertDiskNotification object:parameter];
+        
+        NSInteger requestedSlot = [parameter integerValue];
+        DriveWireServerModel *dwsm = (DriveWireServerModel *)self.model;
+        NSArray *driveArray = dwsm.driveArray;
+        
+        if ([parameter isInteger] && (requestedSlot >= 0 && requestedSlot < [driveArray count]))
+        {
+            NSString *file = [array objectAtIndex:1];
+            VirtualDriveController *controller = [driveArray objectAtIndex:requestedSlot];
+            BOOL success = [controller insertCartridge:file];
+
+            if (success == YES)
+            {
+                [self.incomingBuffer appendData:[[NSString stringWithFormat:@ "Disk inserted into drive %lu.\x0D\x0A", requestedSlot] dataUsingEncoding:NSASCIIStringEncoding]];
+            }
+            else
+            {
+                [self.incomingBuffer appendData:[[NSString stringWithFormat:@ "Error: disk not inserted into drive %lu.\x0D\x0A", requestedSlot] dataUsingEncoding:NSASCIIStringEncoding]];
+            }
+        }
+        else
+        {
+            [self.incomingBuffer appendData:[@"Drive number out of range, or not all\x0D\x0A" dataUsingEncoding:NSASCIIStringEncoding]];
+        }
+    }
+    
+    if (showHelp == TRUE)
+    {
+        // show help
+        NSData *data = [@"Usage: dw disk insert {#} {file}:\x0A\x0D"
+                        "    Insert file into virtual disk drive #\x0A\x0D"
                         dataUsingEncoding:NSASCIIStringEncoding];
         [self.incomingBuffer appendData:data];
     }
@@ -277,34 +416,32 @@
         showHelp = FALSE;
         NSString *parameter = [array objectAtIndex:0];
         [[NSNotificationCenter defaultCenter] postNotificationName:kVirtualChannelEjectDiskNotification object:parameter];
-
-#if 0
+        
         NSInteger requestedSlot = [parameter integerValue];
+        DriveWireServerModel *dwsm = (DriveWireServerModel *)self.model;
         NSArray *driveArray = dwsm.driveArray;
         
         if( [parameter isEqualToString:@"all"] )
         {
-            for( int i=0; i<4; i++ )
+            for (VirtualDriveController *controller in driveArray)
             {
-                VirtualDriveController *controller = [driveArray objectAtIndex:i];
                 [controller ejectCartridge: self];
             }
             
             [self.incomingBuffer appendData:[@"Ejected all disks.\x0D\x0A" dataUsingEncoding:NSASCIIStringEncoding]];
-           
+            
         }
-        else if( [parameter isInteger] && (requestedSlot >=0 && requestedSlot <=4) )
+        else if( [parameter isInteger] && (requestedSlot >= 0 && requestedSlot < [driveArray count]) )
         {
             VirtualDriveController *controller = [driveArray objectAtIndex:requestedSlot];
             [controller ejectCartridge: self];
-
+            
             [self.incomingBuffer appendData:[[NSString stringWithFormat:@ "Disk ejected from drive %lu.\x0D\x0A", requestedSlot] dataUsingEncoding:NSASCIIStringEncoding]];
         }
         else
         {
-            [self.incomingBuffer appendData:[@"Drive number out of range (0-3), or not all\x0D\x0A" dataUsingEncoding:NSASCIIStringEncoding]];
+            [self.incomingBuffer appendData:[@"Drive number out of range, or not all\x0D\x0A" dataUsingEncoding:NSASCIIStringEncoding]];
         }
-#endif
     }
     
     if (showHelp == TRUE)
@@ -312,6 +449,57 @@
         // show help
         NSData *data = [@"Usage: dw disk eject {# | all}:\x0A\x0D"
                         "    Eject disk from drive #\x0A\x0D"
+                        dataUsingEncoding:NSASCIIStringEncoding];
+        [self.incomingBuffer appendData:data];
+    }
+    
+    return error;
+}
+
+- (NSError *)handleDWSDISKRESET:(NSArray *)array;
+{
+    NSError *error = nil;
+    
+    BOOL showHelp = TRUE;
+    
+    if ([array count] > 0)
+    {
+        showHelp = FALSE;
+        NSString *parameter = [array objectAtIndex:0];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kVirtualChannelEjectDiskNotification object:parameter];
+        
+        NSInteger requestedSlot = [parameter integerValue];
+        DriveWireServerModel *dwsm = (DriveWireServerModel *)self.model;
+        NSArray *driveArray = dwsm.driveArray;
+        
+        if( [parameter isEqualToString:@"all"] )
+        {
+            for (VirtualDriveController *controller in driveArray)
+            {
+                [controller resetCartridge:self];
+            }
+            
+            [self.incomingBuffer appendData:[@"Reset all disks.\x0D\x0A" dataUsingEncoding:NSASCIIStringEncoding]];
+            
+        }
+        else if ([parameter isInteger] && (requestedSlot >= 0 && requestedSlot < [driveArray count]))
+        {
+            VirtualDriveController *controller = [driveArray objectAtIndex:requestedSlot];
+            [controller resetCartridge:self];
+            
+            [self.incomingBuffer appendData:[[NSString stringWithFormat:@ "Disk reset in drive %lu.\x0D\x0A", requestedSlot] dataUsingEncoding:NSASCIIStringEncoding]];
+        }
+        else
+        {
+            [self.incomingBuffer appendData:[@"Drive number out of range, or not all\x0D\x0A" dataUsingEncoding:NSASCIIStringEncoding]];
+        }
+    }
+    
+    if (showHelp == TRUE)
+    {
+        // show help
+        NSData *data = [@"Usage: dw disk reset {# | all}:\x0A\x0D"
+                        "    Reset disk in drive #\x0A\x0D"
                         dataUsingEncoding:NSASCIIStringEncoding];
         [self.incomingBuffer appendData:data];
     }
@@ -328,13 +516,14 @@
     if ([array count] > 0)
     {
         showHelp = FALSE;
-#if 0
+
         NSInteger requestedSlot = [[array objectAtIndex:0] integerValue];
         
-        if( requestedSlot >=0 && requestedSlot <=4 )
+        DriveWireServerModel *dwsm = (DriveWireServerModel *)self.model;
+        NSArray *driveArray = dwsm.driveArray;
+
+        if (requestedSlot >= 0 && requestedSlot < [driveArray count])
         {
-            DriveWireServerModel *dwsm = (DriveWireServerModel *)[self delegate];
-            NSArray *driveArray = dwsm.driveArray;
             VirtualDriveController *controller = [driveArray objectAtIndex:requestedSlot];
             
             [self.incomingBuffer appendData:[[NSString stringWithFormat:@"Details for disk in drive #%lu\x0D\x0A", requestedSlot] dataUsingEncoding:NSASCIIStringEncoding]];
@@ -354,9 +543,8 @@
         }
         else
         {
-            [self.incomingBuffer appendData:[@"Drive number out of range (0-3)\x0D\x0A" dataUsingEncoding:NSASCIIStringEncoding]];
+            [self.incomingBuffer appendData:[@"Drive number out of range\x0D\x0A" dataUsingEncoding:NSASCIIStringEncoding]];
         }
-#endif
     }
     
     if (showHelp == TRUE)
@@ -384,9 +572,10 @@
     BOOL showHelp = TRUE;
 
     NSDictionary *commandDictionary = @{@"disk"    : @"handleDWDISK:",
-                                        @"ui"      : @"handleDWUI:",
+                                        @"port"    : @"handleDWPORT:",
                                         @"test"    : @"handleDWTEST:",
-                                        @"server"  : @"handleDWSERVER:"
+                                        @"server"  : @"handleDWSERVER:",
+                                        @"ui"      : @"handleDWUI:",
                                         };
     
     if ([array count] > 1)
@@ -406,7 +595,9 @@
         // only 'dw' command, send help
         NSData *data = [@"dw commands:\x0A\x0D"
                         "    disk        - commands related to disk images\x0A\x0D"
+                        "    port        - commands related to the virtual serial ports\x0A\x0D"
                         "    server      - commands related to the server\x0A\x0D"
+                        "    test        - commands related to testing\x0A\x0D"
                         "    ui          - commands related to the user interface\x0A\x0D"
                         dataUsingEncoding:NSASCIIStringEncoding];
         [self.incomingBuffer appendData:data];

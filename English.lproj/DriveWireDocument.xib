@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -270,7 +269,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <clipView key="contentView" id="Xrf-zP-maD">
                                         <rect key="frame" x="1" y="1" width="238" height="267"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <customView id="2152" customClass="VirtualDriveJukeBoxView">
                                                 <rect key="frame" x="0.0" y="0.0" width="242" height="267"/>
@@ -356,13 +355,13 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <clipView key="contentView" id="xBk-9a-EW2">
                                                 <rect key="frame" x="1" y="1" width="426" height="180"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="530">
                                                         <rect key="frame" x="0.0" y="0.0" width="411" height="180"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <size key="minSize" width="411" height="180"/>
+                                                        <size key="minSize" width="426" height="180"/>
                                                         <size key="maxSize" width="1397" height="10000000"/>
                                                         <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                     </textView>
@@ -441,7 +440,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <clipView key="contentView" id="GM6-bT-dXJ">
                                         <rect key="frame" x="1" y="0.0" width="220" height="217"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowSizeStyle="automatic" headerView="DFg-5i-QAi" viewBased="YES" id="ZgZ-sh-skT">
                                                 <rect key="frame" x="0.0" y="0.0" width="222" height="194"/>
@@ -2622,7 +2621,7 @@
                 <outlet property="window" destination="2431" id="2524"/>
             </connections>
         </customObject>
-        <customObject id="82Z-wA-mzB" customClass="NetworkTableViewController">
+        <customObject id="82Z-wA-mzB" customClass="VirtualSerialTableViewController">
             <connections>
                 <outlet property="tableView" destination="ZgZ-sh-skT" id="x7t-jX-00V"/>
             </connections>
@@ -2648,7 +2647,7 @@
                 <outlet property="view" destination="527" id="FuA-EW-AKl"/>
             </connections>
         </customObject>
-        <customObject id="mMs-Qe-S8k" customClass="NetworkTableViewController">
+        <customObject id="mMs-Qe-S8k" customClass="VirtualSerialTableViewController">
             <connections>
                 <outlet property="tableView" destination="ZgZ-sh-skT" id="pP9-75-Eli"/>
                 <outlet property="view" destination="ZgZ-sh-skT" id="wod-Ev-3xK"/>

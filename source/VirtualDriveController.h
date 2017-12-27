@@ -60,6 +60,7 @@
 - (IBAction)selectAndInsertCartridge:(id)object;
 - (BOOL)insertCartridge:(NSString *)cartridge;
 - (IBAction)ejectCartridge:(id)object;
+- (IBAction)resetCartridge:(id)object;
 - (NSString *)cartridgeLabel;
 - (NSString *)cartridgePath;
 

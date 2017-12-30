@@ -19,6 +19,7 @@
 #import <TeeBoy/TBSerialManager.h>
 #import "VirtualDriveController.h"
 #import "VirtualSerialChannel.h"
+#import "VirtualScreenWindowController.h"
 
 FOUNDATION_EXPORT NSString *const kDriveWireStatusNotification;
 
@@ -135,6 +136,7 @@ typedef enum {
 @property (assign) BOOL wirebugState;
 @property (assign) id<DriveWireDelegate> delegate;
 @property (strong) NSMutableArray *serialChannels;
+@property (strong) NSMutableArray *screens;
 @property (assign) u_int16_t memAddress;
 
 /*!

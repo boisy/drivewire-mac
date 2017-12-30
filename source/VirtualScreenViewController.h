@@ -6,6 +6,8 @@
 //
 //
 
-@interface VirtualScreenController : NSObject
+@interface VirtualScreenViewController : NSViewController
+
+- (void)putCharacter:(u_char)character;
 
 @end

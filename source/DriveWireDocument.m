@@ -7,6 +7,7 @@
 //
 
 #import "DriveWireDocument.h"
+#import "VirtualScreenWindowController.h"
 
 #define MODULE_HASHTAG "DriveWireDocument"
 
@@ -51,8 +52,10 @@
 	NSMutableArray *driveArray = [self.dwModel driveArray];
 	
 	// Remove observer of printer messages
-	[nc removeObserver:self.printerWindowController name:@"DWPrint" object:self.dwModel];
-   
+    [nc removeObserver:self.printerWindowController name:@"DWPrint" object:self.dwModel];
+    [nc removeObserver:self name:kVirtualScreenOpenedNotification object:self.dwModel];
+    [nc removeObserver:self name:kVirtualScreenClosedNotification object:self.dwModel];
+
 	for (int i = 0; i < [driveArray count]; i++)
 	{
 		// Remove ourself as an observer of cartridge insert/eject messages for each drive
@@ -146,8 +149,18 @@
 		[nc addObserver:self selector:@selector(driveNotification:) name:@"cartridgeWasInserted" object:[driveArray objectAtIndex:i]];
 		[nc addObserver:self selector:@selector(driveNotification:) name:@"cartridgeWasEjected" object:[driveArray objectAtIndex:i]];
 		TBDebug(@"Observing for object: 0x%@", [driveArray objectAtIndex:i]);
-	}	
-	
+	}
+    
+    [nc addObserver:self
+           selector:@selector(screenOpened:)
+               name:kVirtualScreenOpenedNotification
+             object:self.dwModel];
+    
+    [nc addObserver:self
+           selector:@selector(screenClosed:)
+               name:kVirtualScreenClosedNotification
+             object:self.dwModel];
+    
     // Add the printerWindowController as an observer of print messages
     [nc addObserver:self.printerWindowController selector:@selector(updatePrintBuffer:) name:@"DWPrint" object:self.dwModel];
     
@@ -260,6 +273,20 @@
 - (void)viewPrinterWindow:(id)sender;
 {
     [self.printerWindowController showWindow:self];
+}
+
+- (void)screenOpened:(NSNotification *)note;
+{
+    VirtualScreenWindowController *screen = [note.userInfo objectForKey:@"screen"];
+    [self addWindowController:screen];
+    [screen showWindow:self];
+}
+
+- (void)screenClosed:(NSNotification *)note;
+{
+    VirtualScreenWindowController *screen = [note.userInfo objectForKey:@"screen"];
+    [screen close];
+    [self removeWindowController:screen];
 }
 
 @end

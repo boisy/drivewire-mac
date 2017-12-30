@@ -156,6 +156,13 @@ static TBSerialManager *fSerialManager = nil;
         [self.serialChannels addObject:channel];
     }
 
+    self.screens = [NSMutableArray array];
+    for (i = 1; i < 17; i++)
+    {
+        VirtualScreenWindowController *screen = [[VirtualScreenWindowController alloc] initWithModel:self number:i port:basePort + i];
+        [self.screens addObject:screen];
+    }
+    
     return;
 }
 
@@ -169,7 +176,7 @@ static TBSerialManager *fSerialManager = nil;
 	if ((self = [super init]))
 	{
 		int32_t i;
-		
+        
         TBDebug(@"DriveWireServerModel initWithDocument:%@ version:%d", document, versionNumber);
         
         // Allocate our array of drives
@@ -615,11 +622,18 @@ static TBSerialManager *fSerialManager = nil;
     
     if (byte >= 0x80 && byte <= 0x8E)
     {
-        // FASTWRITE
+        // FASTWRITE serial
         self.fastwriteChannel = byte & 0x0F;
         self.currentState = @selector(OP_FASTWRITE:);
     }
-    
+    else
+    if (byte >= 0x91 && byte <= 0x9E)
+    {
+        // FASTWRITE virtual screen
+        self.fastwriteChannel = byte & 0x0F;
+        self.currentState = @selector(OP_FASTWRITE_VirtualScreen:);
+    }
+
     return 1;
 }
 
@@ -719,6 +733,13 @@ static TBSerialManager *fSerialManager = nil;
     for (VirtualSerialChannel *ch in self.serialChannels)
     {
         [ch close];
+    }
+    
+    // Close all virtual screens
+    for (VirtualScreenWindowController *vs in self.screens)
+    {
+        [vs close];
+        [vs reset];
     }
     
     [self resetState:nil];
@@ -1400,9 +1421,15 @@ static TBSerialManager *fSerialManager = nil;
     
     u_char *bytes = (u_char *)[data bytes];
     
-    if (*bytes > 127)
+    if (*bytes > 16)
     {
-        // virtual window
+        // Virtual Screen
+        int channelNumber = *bytes;
+        
+        VirtualScreenWindowController *screen = [self screenWithNumber:channelNumber - 17];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kVirtualScreenOpenedNotification
+                                                            object:self
+                                                          userInfo:@{@"screen" : screen}];
     }
     
     // Update log
@@ -1420,9 +1447,15 @@ static TBSerialManager *fSerialManager = nil;
     
     u_char *bytes = (u_char *)[data bytes];
     
-    if (*bytes > 127)
+    if (*bytes > 16)
     {
-        // virtual window
+        // Virtual Screen
+        int channelNumber = *bytes;
+        
+        VirtualScreenWindowController *screen = [self screenWithNumber:channelNumber - 17];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kVirtualScreenClosedNotification
+                                                            object:self
+                                                          userInfo:@{@"screen" : screen}];
     }
     
     // Update log
@@ -1498,22 +1531,37 @@ static TBSerialManager *fSerialManager = nil;
             case 0x29: // SS.Open
                 // open channel
             {
-                VirtualSerialChannel *channel = [self channelWithNumber:channelNumber - 1];
-                [channel open];
-                [[NSNotificationCenter defaultCenter] postNotificationName:kVirtualChannelConnectedNotification
-                                                                    object:self
-                                                                  userInfo:@{@"channel" : channel}];
+                if (channelNumber > 16)
+                {
+                    // Virtual Screen
+                }
+                else
+                {
+                    VirtualSerialChannel *channel = [self channelWithNumber:channelNumber - 1];
+                    [channel open];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kVirtualChannelConnectedNotification
+                                                                        object:self
+                                                                      userInfo:@{@"channel" : channel}];
+                }
                 break;
             }
 
             case 0x2A: // SS.Close
                 // close channel
             {
-                VirtualSerialChannel *channel = [self channelWithNumber:channelNumber - 1];
-                [channel close];
-                [[NSNotificationCenter defaultCenter] postNotificationName:kVirtualChannelDisconnectedNotification
+                if (channelNumber > 16)
+                {
+                    // Virtual Screen
+                }
+                else
+                {
+                    VirtualSerialChannel *channel = [self channelWithNumber:channelNumber - 1];
+                    [channel close];
+                    [[NSNotificationCenter defaultCenter]
+                        postNotificationName:kVirtualChannelDisconnectedNotification
                                                                     object:self
                                                                   userInfo:@{@"channel" : channel}];
+                }
                 break;
             }
         }
@@ -1660,6 +1708,18 @@ static TBSerialManager *fSerialManager = nil;
     return result;
 }
 
+- (VirtualScreenWindowController *)screenWithNumber:(u_int8_t)number;
+{
+    VirtualScreenWindowController *result = nil;
+    
+    if (number < [self.screens count])
+    {
+        result = [self.screens objectAtIndex:number];
+    }
+    
+    return result;
+}
+
 - (NSUInteger)OP_SERWRITEMP2:(NSData *)data;
 {
     NSUInteger result = 0;
@@ -1706,6 +1766,28 @@ static TBSerialManager *fSerialManager = nil;
 
     return result;
 }
+
+- (NSUInteger)OP_FASTWRITE_VirtualScreen:(NSData *)data;
+{
+    NSUInteger result = 0;
+    
+    u_char *bytes = (u_char *)[data bytes];
+    
+    // We read 1 bytes into this buffer (data byte)
+    result = 1;
+    
+    VirtualScreenWindowController *screen = [self screenWithNumber:self.fastwriteChannel - 1];
+    [screen putByte:bytes[0]];
+    
+    // Update log
+    [statistics setObject:@"OP_FASTWRITE" forKey:@"OpCode"];
+    [self postStatistics:statistics];
+    
+    [self resetState:nil];
+    
+    return result;
+}
+
 
 
 #pragma mark -

@@ -7,6 +7,16 @@ This is the official DriveWire server for macOS.
 ## AppleScript Support
 You can use AppleScript to communicate with DriveWire server for macOS.
 
+### Set the machine type:
+```AppleScript
+tell application "DriveWire"
+    tell server of first document
+    -- valid choices are: coco1, coco2, coco3, atari
+        set machine to coco2
+    end tell
+end tell
+```
+
 ### Eject the virtual disk in drive 3:
 
 ```AppleScript
@@ -26,4 +36,4 @@ tell application "DriveWire"
     end tell
 end tell
 ```
-Note that the /insert/ command will first eject any virtual disk from the drive before inserting the new one.
+Note that the *insert* command will first eject any virtual disk from the drive before inserting the new one.

@@ -14,7 +14,8 @@ zip -yr /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}_dSYMs.zip dSYMs
 scp /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}_dSYMs.zip administrator@downloads.weathersnoop.com:/Library/Server/Web/Data/Sites/downloads.weathersnoop.com
 
 # Setup variables to be used in sed
-signature=`scripts/sign_update.rb /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}.zip dsa_priv.pem | tr -d '\n'`
+scp administrator@tandycolorcomputer.com:DriveWire_dsa_priv.pem /tmp
+signature=`scripts/sign_update.rb /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}.zip /tmp/DriveWire_dsa_priv.pem | tr -d '\n'`
 releaseDate=`date '+%a, %d %b %Y %T %z'`
 length=`stat -f "%z" /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}.zip`
 

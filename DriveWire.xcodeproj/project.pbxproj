@@ -21,7 +21,6 @@
 		6809AF040F6C0DB6000BB954 /* insert.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6809AEF60F6C0DB6000BB954 /* insert.wav */; };
 		6809AF050F6C0DB6000BB954 /* redled.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6809AEF70F6C0DB6000BB954 /* redled.jpg */; };
 		6809AF3E0F6C0F81000BB954 /* greenled.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6809AF3D0F6C0F81000BB954 /* greenled.jpg */; };
-		68150E271FA8988000C516C9 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 68150E261FA8988000C516C9 /* dsa_pub.pem */; };
 		68190D2E0F47011400C4CDDD /* RegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68190D2C0F47011400C4CDDD /* RegisterView.m */; };
 		68190D310F47011F00C4CDDD /* MemoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68190D300F47011F00C4CDDD /* MemoryView.m */; };
 		68363D450F63182400CD8A1B /* PrinterWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68363D440F63182400CD8A1B /* PrinterWindowController.m */; };
@@ -58,6 +57,7 @@
 		68C7AFAA1AE9C996005594CF /* VirtualSerialChannel+TCPCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C7AFA91AE9C996005594CF /* VirtualSerialChannel+TCPCommands.m */; };
 		68C7AFAD1AE9C9CD005594CF /* VirtualSerialChannel+ATCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C7AFAC1AE9C9CD005594CF /* VirtualSerialChannel+ATCommands.m */; };
 		68D291EF1FFE6BE10015B8DC /* DriveWire.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 68D291EE1FFE6BE10015B8DC /* DriveWire.sdef */; };
+		68D292191FFED1600015B8DC /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 68D292181FFED1600015B8DC /* dsa_pub.pem */; };
 		68EDF1A91FED45D8000FD52D /* VirtualSerialTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EDF1A81FED45D8000FD52D /* VirtualSerialTableViewController.m */; };
 		94E43C06A59562DDAD6CF2B0 /* libPods-DriveWire.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 487F4A91F5C1CBD37CD4AFFE /* libPods-DriveWire.a */; };
 /* End PBXBuildFile section */
@@ -106,8 +106,7 @@
 		6809AF3D0F6C0F81000BB954 /* greenled.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = greenled.jpg; path = assets/greenled.jpg; sourceTree = "<group>"; };
 		6812B39008AD13CE002B533A /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
 		6812B39108AD13CE002B533A /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
-		68150E111FA3D28300C516C9 /* DriveWire.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DriveWire.entitlements; sourceTree = "<group>"; };
-		68150E261FA8988000C516C9 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
+		68150E111FA3D28300C516C9 /* source */ = {isa = PBXFileReference; lastKnownFileType = folder; path = source; sourceTree = "<group>"; };
 		68190D2C0F47011400C4CDDD /* RegisterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterView.m; sourceTree = "<group>"; };
 		68190D2D0F47011400C4CDDD /* RegisterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterView.h; sourceTree = "<group>"; };
 		68190D2F0F47011F00C4CDDD /* MemoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryView.h; sourceTree = "<group>"; };
@@ -123,8 +122,8 @@
 		6842CEBB1F97B35B00A6F829 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6842CEBD1F97B35B00A6F829 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		6842CEBF1F97B35B00A6F829 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6842CEC51F97B53400A6F829 /* NSString+DriveWire.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+DriveWire.h"; sourceTree = "<group>"; };
-		6842CEC61F97B53400A6F829 /* NSString+DriveWire.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+DriveWire.m"; sourceTree = "<group>"; };
+		6842CEC51F97B53400A6F829 /* NSString+DriveWire.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSString+DriveWire.h"; path = "source/NSString+DriveWire.h"; sourceTree = "<group>"; };
+		6842CEC61F97B53400A6F829 /* NSString+DriveWire.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSString+DriveWire.m"; path = "source/NSString+DriveWire.m"; sourceTree = "<group>"; };
 		685105F70966DA1C00AAEA3F /* VirtualDriveJukeBoxView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = VirtualDriveJukeBoxView.h; sourceTree = "<group>"; };
 		685105F80966DA1C00AAEA3F /* VirtualDriveJukeBoxView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = VirtualDriveJukeBoxView.m; sourceTree = "<group>"; };
 		686CA3FA1AE1162500544862 /* Atari.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Atari.png; path = assets/Atari.png; sourceTree = "<group>"; };
@@ -161,12 +160,13 @@
 		68C7AFA91AE9C996005594CF /* VirtualSerialChannel+TCPCommands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VirtualSerialChannel+TCPCommands.m"; sourceTree = "<group>"; };
 		68C7AFAB1AE9C9CD005594CF /* VirtualSerialChannel+ATCommands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VirtualSerialChannel+ATCommands.h"; sourceTree = "<group>"; };
 		68C7AFAC1AE9C9CD005594CF /* VirtualSerialChannel+ATCommands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VirtualSerialChannel+ATCommands.m"; sourceTree = "<group>"; };
-		68D291EE1FFE6BE10015B8DC /* DriveWire.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DriveWire.sdef; sourceTree = "<group>"; };
+		68D291EE1FFE6BE10015B8DC /* DriveWire.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = DriveWire.sdef; path = source/DriveWire.sdef; sourceTree = "<group>"; };
+		68D292181FFED1600015B8DC /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = source/dsa_pub.pem; sourceTree = "<group>"; };
 		68DBD1DE0964F1A900B011C5 /* DWAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = DWAppDelegate.m; sourceTree = "<group>"; };
 		68DBD1DF0964F1A900B011C5 /* DWAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = DWAppDelegate.h; sourceTree = "<group>"; };
 		68EDF1A71FED45D8000FD52D /* VirtualSerialTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VirtualSerialTableViewController.h; path = source/VirtualSerialTableViewController.h; sourceTree = "<group>"; };
 		68EDF1A81FED45D8000FD52D /* VirtualSerialTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = VirtualSerialTableViewController.m; path = source/VirtualSerialTableViewController.m; sourceTree = "<group>"; };
-		8D15AC360486D014006FF6A4 /* DriveWire-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DriveWire-Info.plist"; sourceTree = "<group>"; };
+		8D15AC360486D014006FF6A4 /* DriveWire-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "DriveWire-Info.plist"; path = "source/DriveWire-Info.plist"; sourceTree = "<group>"; };
 		959227020E964D36700A544E /* Pods-DriveWire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveWire.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DriveWire/Pods-DriveWire.debug.xcconfig"; sourceTree = "<group>"; };
 		BD40BD754E2481641C1DCDF9 /* Pods-DriveWire MacServer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveWire MacServer.release.xcconfig"; path = "Pods/Target Support Files/Pods-DriveWire MacServer/Pods-DriveWire MacServer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -206,8 +206,8 @@
 			isa = PBXGroup;
 			children = (
 				68C4C9501F98BB150077A72D /* README.md */,
-				68150E261FA8988000C516C9 /* dsa_pub.pem */,
-				68150E111FA3D28300C516C9 /* DriveWire.entitlements */,
+				68D292181FFED1600015B8DC /* dsa_pub.pem */,
+				68150E111FA3D28300C516C9 /* source */,
 				68D291EE1FFE6BE10015B8DC /* DriveWire.sdef */,
 				2A37F4ABFDCFA73011CA2CEA /* Classes */,
 				6842CEBC1F97B35B00A6F829 /* Tests */,
@@ -546,7 +546,7 @@
 				68C535D50F68971B00F39926 /* DriveWireDocument.xib in Resources */,
 				6809AE020F6C0C30000BB954 /* VirtualDriveView.xib in Resources */,
 				6809AE070F6C0C4C000BB954 /* MainMenu.xib in Resources */,
-				68150E271FA8988000C516C9 /* dsa_pub.pem in Resources */,
+				68D292191FFED1600015B8DC /* dsa_pub.pem in Resources */,
 				6809AEFB0F6C0DB6000BB954 /* drive.jpg in Resources */,
 				6809AEFC0F6C0DB6000BB954 /* driveface.jpg in Resources */,
 				68D291EF1FFE6BE10015B8DC /* DriveWire.sdef in Resources */,
@@ -904,7 +904,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "DriveWire-Info.plist";
+				INFOPLIST_FILE = "source/DriveWire-Info.plist";
 				INSTALL_PATH = /Applications;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
@@ -957,7 +957,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "DriveWire-Info.plist";
+				INFOPLIST_FILE = "source/DriveWire-Info.plist";
 				INSTALL_PATH = /Applications;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;

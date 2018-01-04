@@ -2052,6 +2052,11 @@ static TBSerialManager *fSerialManager = nil;
         VirtualDriveController *drv = [self.driveArray objectAtIndex:driveNumber];
         [drv ejectCartridge:self];
     }
+    else
+    {
+        [command setScriptErrorNumber:-9000];
+        [command setScriptErrorString:@"Invalid drive number."];
+    }
 }
 
 - (void)handleInsertCommand:(NSScriptCommand *)command;
@@ -2068,6 +2073,16 @@ static TBSerialManager *fSerialManager = nil;
             [drv ejectCartridge:self];
             [drv insertCartridge:file];
         }
+        else
+        {
+            [command setScriptErrorNumber:-9000];
+            [command setScriptErrorString:@"Invalid drive number."];
+        }
+    }
+    else
+    {
+        [command setScriptErrorNumber:-9001];
+        [command setScriptErrorString:@"Disk image file doesn't exist."];
     }
 }
 

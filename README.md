@@ -1,7 +1,5 @@
-# DriveWire
-This is the official DriveWire server for macOS.
-
-### DriveWire Specification: https://sourceforge.net/p/drivewireserver/wiki/DriveWire_Specification/
+# DriveWire Server for macOS
+This is the official DriveWire server for macOS. Integrations are performed as commits are made, and Sparkle is used for in-app updating. You can download the [latest build here](http://downloads.weathersnoop.com/DriveWire.zip).
 
 
 ## AppleScript Support
@@ -31,11 +29,11 @@ end tell
 ```AppleScript
 tell application "DriveWire"
     tell server of first document
+    -- Note that the insert command ejects any virtual disk from the drive before inserting the new one.
         insert image POSIX path of ("/Users/boisy/mydisk.dsk") into drive 0
     end tell
 end tell
 ```
-Note that the *insert* command will first eject any virtual disk from the drive before inserting the new one.
 
 ### Create a new document, set the machine type to CoCo 2, and insert a few disk images:
 ```AppleScript
@@ -48,5 +46,8 @@ tell application "DriveWire"
     end tell
 end tell
 ```
+
+## DriveWire Specification
+This server follows the specifications [found here]( https://sourceforge.net/p/drivewireserver/wiki/DriveWire_Specification/).
 
 

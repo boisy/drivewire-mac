@@ -22,6 +22,7 @@
 #import "VirtualScreenWindowController.h"
 
 FOUNDATION_EXPORT NSString *const kDriveWireStatusNotification;
+FOUNDATION_EXPORT NSString *const kMachineTypeSelectedNotification;
 
 #define DW_DEFAULT_VERSION       3
 
@@ -81,11 +82,11 @@ FOUNDATION_EXPORT NSString *const kDriveWireStatusNotification;
 @end
 
 typedef enum {
-    MachineTypeCoCo1_38_4 = 1,
-    MachineTypeCoCo1_57_6,
-    MachineTypeCoCo2_57_6,
-    MachineTypeCoCo3_115_2,
-    MachineTypeAtariLiber809_57_6,
+    MachineTypeCoCo1_38_4 = 'C138',
+    MachineTypeCoCo1_57_6 = 'C156',
+    MachineTypeCoCo2_57_6 = 'C257',
+    MachineTypeCoCo3_115_2 = 'C315',
+    MachineTypeAtariLiber809_57_6 = 'At57',
 } MachineType;
 
 /*!
@@ -138,6 +139,7 @@ typedef enum {
 @property (strong) NSMutableArray *serialChannels;
 @property (strong) NSMutableArray *screens;
 @property (assign) u_int16_t memAddress;
+@property (assign) NSObject *scriptingContainer;
 
 /*!
 	@method init
@@ -185,6 +187,9 @@ typedef enum {
 - (MachineType)machineType;
 
 - (void)goCoCo;
+
+- (void)handleInsertCommand:(NSScriptCommand *)command;
+- (void)handleEjectCommand:(NSScriptCommand *)command;
 
 @end
 

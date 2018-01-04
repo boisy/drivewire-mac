@@ -51,6 +51,8 @@
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	NSMutableArray *driveArray = [self.dwModel driveArray];
 	
+    [nc removeObserver:self name:kMachineTypeSelectedNotification object:self.dwModel];
+
 	// Remove observer of printer messages
     [nc removeObserver:self.printerWindowController name:@"DWPrint" object:self.dwModel];
     [nc removeObserver:self name:kVirtualScreenOpenedNotification object:self.dwModel];
@@ -86,6 +88,7 @@
     if (self.dwModel == nil)
     {
         self.dwModel = [[DriveWireServerModel alloc] initWithDocument:self version:DW_DEFAULT_VERSION];
+        self.dwModel.scriptingContainer = self;
     }
     
     [self.dwModel setDelegate:self];
@@ -166,6 +169,10 @@
     
     [machineTypePopupButton selectItemWithTag:self.dwModel.machineType];
     [self updateUIComponents];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(machineSelected:) name:kMachineTypeSelectedNotification
+                                               object:self.dwModel];
 }
 
 
@@ -247,15 +254,39 @@
 	[self updateChangeCount:NSChangeDone];
 }
 
+- (void)machineSelected:(NSNotification *)note;
+{
+    NSUInteger tag = [[[note userInfo] objectForKey:@"machine"] integerValue];
+    [machineTypePopupButton selectItemWithTag:tag];
+    [self updateUIComponents];
+}
+
 - (void)driveNotification:(NSNotification *)note;
 {
-	[self updateChangeCount:NSChangeDone];
+    [self updateChangeCount:NSChangeDone];
 }
 
 - (IBAction)setCoCoType:(NSPopUpButton *)sender;
 {
-    MachineType machineType = [sender selectedTag];
-    [self.dwModel setMachineType:machineType];
+    NSUInteger index = [sender selectedTag];
+    switch (index)
+    {
+        case 0:
+            [self.dwModel setMachineType:MachineTypeCoCo1_38_4];
+            break;
+        case 1127297848:
+            [self.dwModel setMachineType:MachineTypeCoCo1_57_6];
+            break;
+        case 1127363895:
+            [self.dwModel setMachineType:MachineTypeCoCo2_57_6];
+            break;
+        case 1127428405:
+            [self.dwModel setMachineType:MachineTypeCoCo3_115_2];
+            break;
+        case 1098134839:
+            [self.dwModel setMachineType:MachineTypeAtariLiber809_57_6];
+            break;
+    }
    
     [self updateUIComponents];
 }
@@ -287,6 +318,30 @@
     VirtualScreenWindowController *screen = [note.userInfo objectForKey:@"screen"];
     [screen close];
     [self removeWindowController:screen];
+}
+
+#pragma mark -
+#pragma mark AppleScript Support Methods
+
+- (DriveWireServerModel *)model;
+{
+    return self.dwModel;
+}
+
+- (DriveWireServerModel *)server;
+{
+    return self.dwModel;
+}
+
+// Conformance to the NSObject(WS4AgentPlugInScriptingContainer) informal protocol.
+- (NSScriptObjectSpecifier *)objectSpecifierForModel:(DriveWireServerModel *)model;
+{
+    NSScriptObjectSpecifier *objectSpecifier = [self objectSpecifier];
+    //    return [[NSIndexSpecifier alloc] initWithContainerClassDescription:[objectSpecifier keyClassDescription] containerSpecifier:objectSpecifier key:@"agent" index:0];
+    //    return [[NSUniqueIDSpecifier alloc] initWithContainerClassDescription:[objectSpecifier keyClassDescription] containerSpecifier:objectSpecifier key:@"agent" uniqueID:@"X1"];
+    //    return [[NSNameSpecifier alloc] initWithContainerClassDescription:[objectSpecifier keyClassDescription] containerSpecifier:objectSpecifier key:@"agent" name:agent.stationName];
+    NSPropertySpecifier *specifier = [[NSPropertySpecifier alloc] initWithContainerSpecifier:objectSpecifier key:@"model"];
+    return specifier;
 }
 
 @end

@@ -11,6 +11,14 @@
 #define MODULE_HASHTAG "DriveWireServer"
 
 NSString *const kDriveWireStatusNotification = @"com.drivewire.DriveWireStatusNotification";
+NSString *const kMachineTypeSelectedNotification = @"com.drivewire.MachineTypeSelectionNotification";
+
+@interface NSObject(DriveWireServerScriptingContainer)
+
+// An informal protocol to which scriptable containers of WS4AgentPlugIn must conform.
+- (NSScriptObjectSpecifier *)objectSpecifierForModel:(DriveWireServerModel *)model;
+
+@end
 
 @interface DriveWireServerModel ()
 
@@ -391,6 +399,11 @@ static TBSerialManager *fSerialManager = nil;
             [fPort openPort:self error:nil];
         }
     }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kMachineTypeSelectedNotification
+                                                        object:self
+                                                      userInfo:@{@"machine" : [NSNumber numberWithInteger:type]}];
+
 }
 
 - (NSString *)serialPort
@@ -2021,6 +2034,41 @@ static TBSerialManager *fSerialManager = nil;
 - (void)didReceiveData:(VirtualSerialChannel *)channel;
 {
     
+}
+
+#pragma mark -
+#pragma mark AppleScript Support
+
+- (NSScriptObjectSpecifier *)objectSpecifier;
+{
+    return [self.scriptingContainer objectSpecifierForModel:self];
+}
+
+- (void)handleEjectCommand:(NSScriptCommand *)command;
+{
+    NSUInteger driveNumber = [[command.arguments objectForKey:@"drive"] integerValue];
+    if (driveNumber < [self.driveArray count])
+    {
+        VirtualDriveController *drv = [self.driveArray objectAtIndex:driveNumber];
+        [drv ejectCartridge:self];
+    }
+}
+
+- (void)handleInsertCommand:(NSScriptCommand *)command;
+{
+    NSUInteger driveNumber = [[command.arguments objectForKey:@"drive"] integerValue];
+    NSURL *fileURL = [command.arguments objectForKey:@"fileURL"];
+    NSString *file = [fileURL relativePath];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:file] == YES)
+    {
+        if (driveNumber < [self.driveArray count])
+        {
+            VirtualDriveController *drv = [self.driveArray objectAtIndex:driveNumber];
+            [drv ejectCartridge:self];
+            [drv insertCartridge:file];
+        }
+    }
 }
 
 @end

@@ -309,16 +309,16 @@
                                 <popUpButton verticalHuggingPriority="750" misplaced="YES" id="2461">
                                     <rect key="frame" x="260" y="162" width="201" height="26"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <popUpButtonCell key="cell" type="push" title="Atari Liber809 @ 57.6K" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="2469" id="2462">
+                                    <popUpButtonCell key="cell" type="push" title="Atari Liber809 @ 57.6K" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1098134839" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="2469" id="2462">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="menu"/>
                                         <menu key="menu" title="OtherViews" id="2463">
                                             <items>
-                                                <menuItem title="CoCo 1 @ 38.4K" tag="1" id="2465"/>
+                                                <menuItem title="CoCo 1 @ 38.4K" tag="1127297848" id="2465"/>
                                                 <menuItem title="CoCo 1 @ 57.6K" tag="2" id="2468"/>
-                                                <menuItem title="CoCo 2 @ 57.6K" tag="3" id="2466"/>
-                                                <menuItem title="CoCo 3 @ 115.2K" tag="4" id="2464"/>
-                                                <menuItem title="Atari Liber809 @ 57.6K" state="on" tag="5" id="2469"/>
+                                                <menuItem title="CoCo 2 @ 57.6K" tag="1127363895" id="2466"/>
+                                                <menuItem title="CoCo 3 @ 115.2K" tag="1127428405" id="2464"/>
+                                                <menuItem title="Atari Liber809 @ 57.6K" state="on" tag="1098134839" id="2469"/>
                                             </items>
                                         </menu>
                                     </popUpButtonCell>
@@ -615,13 +615,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="fHV-xZ-gb5">
                             <rect key="frame" x="1" y="1" width="546" height="364"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="2328">
                                     <rect key="frame" x="0.0" y="0.0" width="531" height="364"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="546" height="364"/>
+                                    <size key="minSize" width="531" height="364"/>
                                     <size key="maxSize" width="1079" height="10000000"/>
                                     <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                 </textView>
@@ -1063,13 +1063,13 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <clipView key="contentView" id="Xx6-3t-AN7">
                                                         <rect key="frame" x="1" y="1" width="299" height="463"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="2293">
                                                                 <rect key="frame" x="0.0" y="0.0" width="284" height="463"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <size key="minSize" width="299" height="463"/>
+                                                                <size key="minSize" width="284" height="463"/>
                                                                 <size key="maxSize" width="687" height="10000000"/>
                                                                 <attributedString key="textStorage">
                                                                     <fragment content="Lorem ipsum dolor sit er ">
@@ -1853,13 +1853,13 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <clipView key="contentView" id="O6c-M6-7YE">
                                                         <rect key="frame" x="1" y="1" width="365" height="247"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="2267">
                                                                 <rect key="frame" x="0.0" y="0.0" width="350" height="247"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <size key="minSize" width="365" height="247"/>
+                                                                <size key="minSize" width="350" height="247"/>
                                                                 <size key="maxSize" width="717" height="10000000"/>
                                                                 <attributedString key="textStorage">
                                                                     <fragment content="Lorem ipsum dolor sit er ">

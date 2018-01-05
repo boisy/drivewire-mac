@@ -73,7 +73,7 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
-	<string>http://downloads.weathersnoop.com/DriveWireAppcast.xml</string>
+	<string>http://downloads.tandycolorcomputer.com/DriveWireAppcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 	<key>NSAppleScriptEnabled</key>

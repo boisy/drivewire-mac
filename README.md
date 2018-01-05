@@ -2,6 +2,24 @@
 This is the official DriveWire server for macOS. Integrations are performed as commits are made, and Sparkle is used for in-app updating. You can download the [latest build here](http://downloads.tandycolorcomputer.com/DriveWire.zip).
 
 
+## Obtaining Dependency Frameworks with CocoaPods
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Xcode projects which automates and simplifies the process of using 3rd-party libraries. You can install it with the following command:
+
+```bash
+$ sudo gem install cocoapods
+```
+
+## Building
+
+Once you have installed CocoaPods, run the following command:
+
+```bash
+$ pod install
+```
+
+This will fetch the required frameworks and create the DriveWire.xcworkspace file. You can open the workspace file in Xcode and build the server. Use Xcode 9 or later.
+
 ## AppleScript Support
 You can use AppleScript to communicate with DriveWire server for macOS using the Script Editor application on the Mac. This is convenient if you want to automate your disk image creation and test workflow. Below are several "recipes" that you can use. Note that each script accesses the "first document" but you can also reference a document by name if you have more than one opened.
 

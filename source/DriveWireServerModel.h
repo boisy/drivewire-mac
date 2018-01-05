@@ -23,6 +23,7 @@
 
 FOUNDATION_EXPORT NSString *const kDriveWireStatusNotification;
 FOUNDATION_EXPORT NSString *const kMachineTypeSelectedNotification;
+FOUNDATION_EXPORT NSString *const kSerialPortChangedNotification;
 
 #define DW_DEFAULT_VERSION       3
 
@@ -190,6 +191,7 @@ typedef enum {
 
 - (void)handleInsertCommand:(NSScriptCommand *)command;
 - (void)handleEjectCommand:(NSScriptCommand *)command;
+- (void)handleChangePortCommand:(NSScriptCommand *)command;
 
 @end
 

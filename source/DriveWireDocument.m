@@ -52,6 +52,7 @@
 	NSMutableArray *driveArray = [self.dwModel driveArray];
 	
     [nc removeObserver:self name:kMachineTypeSelectedNotification object:self.dwModel];
+    [nc removeObserver:self name:kSerialPortChangedNotification object:self.dwModel];
 
 	// Remove observer of printer messages
     [nc removeObserver:self.printerWindowController name:@"DWPrint" object:self.dwModel];
@@ -173,6 +174,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(machineSelected:) name:kMachineTypeSelectedNotification
                                                object:self.dwModel];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(portChanged:) name:kSerialPortChangedNotification
+                                               object:self.dwModel];
 }
 
 
@@ -252,6 +257,13 @@
 	lastPortSelected = [sender indexOfSelectedItem];
 
 	[self updateChangeCount:NSChangeDone];
+}
+
+- (void)portChanged:(NSNotification *)note;
+{
+    TBSerialPort *p = [[note userInfo] objectForKey:@"port"];
+    [serialPortButton selectItemWithTitle:p.serviceName];
+    [self updateUIComponents];
 }
 
 - (void)machineSelected:(NSNotification *)note;

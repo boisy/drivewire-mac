@@ -41,6 +41,9 @@
             <responds-to name="eject">
                 <cocoa method="handleEjectCommand:"/>
             </responds-to>
+            <responds-to name="change to">
+                <cocoa method="handleChangePortCommand:"/>
+            </responds-to>
         </class>
         <command name="insert" code="DrvWStrt" description="Insert a disk image into a virtual drive.">
             <direct-parameter type="server"/>
@@ -58,6 +61,13 @@
             <parameter name="drive" code="DNum" description="The drive number.">
                 <type type="integer"/>
                 <cocoa key="drive"/>
+            </parameter>
+        </command>
+        <command name="change to" code="DrvWChPr" description="Set the serial port.">
+            <direct-parameter type="server"/>
+            <parameter name="port" code="SPrt" description="The serial port name.">
+                <type type="text"/>
+                <cocoa key="port"/>
             </parameter>
         </command>
 	</suite>

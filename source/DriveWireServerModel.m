@@ -12,6 +12,7 @@
 
 NSString *const kDriveWireStatusNotification = @"com.drivewire.DriveWireStatusNotification";
 NSString *const kMachineTypeSelectedNotification = @"com.drivewire.MachineTypeSelectionNotification";
+NSString *const kSerialPortChangedNotification = @"com.drivewire.SerialPortChangedNotification";
 
 @interface NSObject(DriveWireServerScriptingContainer)
 
@@ -294,8 +295,10 @@ static TBSerialManager *fSerialManager = nil;
 // This method communicates with the serial manager to reserve a specific
 // communications port.  It returns YES if the port was successfully
 // reserved, or NO if it wasn't.
-- (Boolean)setCommPort:(NSString *)selectedPort;
+- (BOOL)setCommPort:(NSString *)selectedPort;
 {
+    BOOL result = FALSE;
+    
 	TBSerialPort *newPort;
 	
 	// If we're asked to set the same serial port we have set, return YES
@@ -342,7 +345,16 @@ static TBSerialManager *fSerialManager = nil;
     [fPort setDelegate:self];
 	[self setPortDelegate:fPort];
     
-    return [fPort openPort:self error:&error];
+    
+    result = [fPort openPort:self error:&error];
+    
+    if (result == YES)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kSerialPortChangedNotification
+                                                            object:self
+                                                          userInfo:@{@"port" : fPort}];
+    }
+    return result;
 }
 
 - (id)portDelegate
@@ -403,7 +415,6 @@ static TBSerialManager *fSerialManager = nil;
     [[NSNotificationCenter defaultCenter] postNotificationName:kMachineTypeSelectedNotification
                                                         object:self
                                                       userInfo:@{@"machine" : [NSNumber numberWithInteger:type]}];
-
 }
 
 - (NSString *)serialPort
@@ -2083,6 +2094,18 @@ static TBSerialManager *fSerialManager = nil;
     {
         [command setScriptErrorNumber:-9001];
         [command setScriptErrorString:@"Disk image file doesn't exist."];
+    }
+}
+
+- (void)handleChangePortCommand:(NSScriptCommand *)command;
+{
+    NSString *portName = [command.arguments objectForKey:@"port"];
+    
+    BOOL result = [self setCommPort:portName];
+    if (result == NO)
+    {
+        [command setScriptErrorNumber:-9002];
+        [command setScriptErrorString:@"Serial port doesn't exist."];
     }
 }
 

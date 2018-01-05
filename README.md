@@ -44,12 +44,13 @@ tell application "DriveWire"
 end tell
 ```
 
-### Insert virtual disk "mydisk.dsk" into drive 0:
+### Insert virtual disk "mydisk.dsk" into drive 0 and set the serial port:
 ```AppleScript
 tell application "DriveWire"
     tell server of first document
         -- the insert command ejects any virtual disk from the drive before inserting the new one
         insert image POSIX path of ("/Users/boisy/mydisk.dsk") into drive 0
+        change to port "usbserial-FT079LCRB"
     end tell
 end tell
 ```

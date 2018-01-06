@@ -191,7 +191,6 @@ static int instanceCount = 0;
         // Reset cartridge specific counts
         sectorReadCount = 0;
         sectorWriteCount = 0;
-        
     }
     
     return;

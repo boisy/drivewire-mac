@@ -191,6 +191,7 @@ typedef enum {
 
 - (void)handleInsertCommand:(NSScriptCommand *)command;
 - (void)handleEjectCommand:(NSScriptCommand *)command;
+- (void)handleReloadCommand:(NSScriptCommand *)command;
 - (void)handleChangePortCommand:(NSScriptCommand *)command;
 
 @end

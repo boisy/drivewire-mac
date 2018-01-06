@@ -29,7 +29,6 @@
 		686CA3FB1AE1162500544862 /* Atari.png in Resources */ = {isa = PBXBuildFile; fileRef = 686CA3FA1AE1162500544862 /* Atari.png */; };
 		686CA3FD1AE11ED900544862 /* DriveWire-Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 686CA3FC1AE11ED900544862 /* DriveWire-Logo.png */; };
 		686CA4041AE1C4E000544862 /* VirtualScreenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 686CA4031AE1C4E000544862 /* VirtualScreenView.m */; };
-		686CA4071AE1C4EF00544862 /* VirtualScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 686CA4061AE1C4EF00544862 /* VirtualScreenViewController.m */; };
 		686CA40C1AE272FE00544862 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 686CA40B1AE272FE00544862 /* Security.framework */; };
 		68742C370F41A78E0049FEF6 /* DriveWireServerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 68742C360F41A78E0049FEF6 /* DriveWireServerModel.m */; };
 		68742E870F41B9EA0049FEF6 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68742E850F41B9EA0049FEF6 /* AppKit.framework */; };
@@ -58,6 +57,7 @@
 		68C7AFAD1AE9C9CD005594CF /* VirtualSerialChannel+ATCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C7AFAC1AE9C9CD005594CF /* VirtualSerialChannel+ATCommands.m */; };
 		68D291EF1FFE6BE10015B8DC /* DriveWire.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 68D291EE1FFE6BE10015B8DC /* DriveWire.sdef */; };
 		68D292191FFED1600015B8DC /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 68D292181FFED1600015B8DC /* dsa_pub.pem */; };
+		68D2921B20012BC40015B8DC /* VirtualScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 686CA4061AE1C4EF00544862 /* VirtualScreenViewController.m */; };
 		68EDF1A91FED45D8000FD52D /* VirtualSerialTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EDF1A81FED45D8000FD52D /* VirtualSerialTableViewController.m */; };
 		94E43C06A59562DDAD6CF2B0 /* libPods-DriveWire.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 487F4A91F5C1CBD37CD4AFFE /* libPods-DriveWire.a */; };
 /* End PBXBuildFile section */
@@ -659,9 +659,9 @@
 				6842CEC71F97B53400A6F829 /* NSString+DriveWire.m in Sources */,
 				68C7AFA71AE9C946005594CF /* VirtualSerialChannel+DWCommands.m in Sources */,
 				68ADDF91096B7347002324CE /* StatsViewController.m in Sources */,
+				68D2921B20012BC40015B8DC /* VirtualScreenViewController.m in Sources */,
 				68ADDF93096B7347002324CE /* VirtualDriveJukeBoxView.m in Sources */,
 				68742C370F41A78E0049FEF6 /* DriveWireServerModel.m in Sources */,
-				686CA4071AE1C4EF00544862 /* VirtualScreenViewController.m in Sources */,
 				68190D2E0F47011400C4CDDD /* RegisterView.m in Sources */,
 				68190D310F47011F00C4CDDD /* MemoryView.m in Sources */,
 				68A1F6AA1ADF59DF00A5B030 /* VirtualSerialChannel.m in Sources */,

@@ -6,6 +6,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "VirtualScreenView.h"
 
 FOUNDATION_EXPORT NSString *const kVirtualScreenOpenedNotification;
 FOUNDATION_EXPORT NSString *const kVirtualScreenClosedNotification;

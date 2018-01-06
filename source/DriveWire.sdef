@@ -41,6 +41,9 @@
             <responds-to name="eject">
                 <cocoa method="handleEjectCommand:"/>
             </responds-to>
+            <responds-to name="reload">
+                <cocoa method="handleReloadCommand:"/>
+            </responds-to>
             <responds-to name="change to">
                 <cocoa method="handleChangePortCommand:"/>
             </responds-to>
@@ -57,6 +60,13 @@
             </parameter>
         </command>
         <command name="eject" code="DrvWStop" description="Eject a disk image from a virtual drive.">
+            <direct-parameter type="server"/>
+            <parameter name="drive" code="DNum" description="The drive number.">
+                <type type="integer"/>
+                <cocoa key="drive"/>
+            </parameter>
+        </command>
+        <command name="reload" code="DrvWStop" description="Reload a disk image in virtual drive.">
             <direct-parameter type="server"/>
             <parameter name="drive" code="DNum" description="The drive number.">
                 <type type="integer"/>

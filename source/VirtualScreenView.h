@@ -20,6 +20,8 @@
 
 @interface VirtualScreenView : NSView
 
+@property (assign) NSUInteger number;
+@property (assign) BOOL shouldClose;
 @property (strong) NSColor *backgroundColor;
 @property (strong) NSColor *cursorColor;
 @property (strong) NSColor *fontColor;
@@ -29,8 +31,12 @@
 //@property (strong) NSMutableData *screenBuffer;
 @property (assign) SEL characterProcessor;
 @property (assign) u_char nextByte;
+@property (assign) NSUInteger waitCounter;
+@property (strong) NSMutableData *incomingBuffer;
 
 - (void)putCharacter:(u_char)character;
+- (NSUInteger)availableToRead;
+- (u_char)getByte;
 
 - (void)reset;
 

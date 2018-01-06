@@ -1604,7 +1604,8 @@ static TBSerialManager *fSerialManager = nil;
 {
     u_char response[2] = {0, 0};
     VirtualSerialChannel *channel = nil;
-    
+    VirtualScreenView *screen = nil;
+
     for (channel in self.serialChannels)
     {
         NSUInteger length = [channel availableToRead];
@@ -1622,6 +1623,7 @@ static TBSerialManager *fSerialManager = nil;
                 response[1] = length > 16 ? 16 : (u_int8_t)length;
                 channel.waitCounter = 0;
             }
+            break;
         }
         else
         {
@@ -1632,6 +1634,39 @@ static TBSerialManager *fSerialManager = nil;
                 channel.shouldClose = FALSE;
                 response[0] = 0x10;
                 response[1] = channel.number;
+            }
+        }
+    }
+    
+    for (VirtualScreenWindowController *windowController in self.screens)
+    {
+        screen = [[(VirtualScreenView *)windowController.window.contentView subviews] objectAtIndex:0];
+        NSUInteger length = [screen availableToRead];
+        if (length > 0)
+        {
+            if (length > 0)
+            {
+                response[0] = (u_char)([screen number] + 1) | 0x40;
+                response[1] = [screen getByte];
+                screen.waitCounter = 0;
+            }
+            else
+            {
+                response[0] = (u_char)([screen number] + 1) | 0x60;
+                response[1] = length > 16 ? 16 : (u_int8_t)length;
+                screen.waitCounter = 0;
+            }
+            break;
+        }
+        else
+        {
+            screen.waitCounter++;
+            
+            if (screen.shouldClose == TRUE)
+            {
+                screen.shouldClose = FALSE;
+                response[0] = 0x60;
+                response[1] = screen.number;
             }
         }
     }
@@ -2055,21 +2090,6 @@ static TBSerialManager *fSerialManager = nil;
     return [self.scriptingContainer objectSpecifierForModel:self];
 }
 
-- (void)handleEjectCommand:(NSScriptCommand *)command;
-{
-    NSUInteger driveNumber = [[command.arguments objectForKey:@"drive"] integerValue];
-    if (driveNumber < [self.driveArray count])
-    {
-        VirtualDriveController *drv = [self.driveArray objectAtIndex:driveNumber];
-        [drv ejectCartridge:self];
-    }
-    else
-    {
-        [command setScriptErrorNumber:-9000];
-        [command setScriptErrorString:@"Invalid drive number."];
-    }
-}
-
 - (void)handleInsertCommand:(NSScriptCommand *)command;
 {
     NSUInteger driveNumber = [[command.arguments objectForKey:@"drive"] integerValue];
@@ -2094,6 +2114,36 @@ static TBSerialManager *fSerialManager = nil;
     {
         [command setScriptErrorNumber:-9001];
         [command setScriptErrorString:@"Disk image file doesn't exist."];
+    }
+}
+
+- (void)handleEjectCommand:(NSScriptCommand *)command;
+{
+    NSUInteger driveNumber = [[command.arguments objectForKey:@"drive"] integerValue];
+    if (driveNumber < [self.driveArray count])
+    {
+        VirtualDriveController *drv = [self.driveArray objectAtIndex:driveNumber];
+        [drv ejectCartridge:self];
+    }
+    else
+    {
+        [command setScriptErrorNumber:-9000];
+        [command setScriptErrorString:@"Invalid drive number."];
+    }
+}
+
+- (void)handleReloadCommand:(NSScriptCommand *)command;
+{
+    NSUInteger driveNumber = [[command.arguments objectForKey:@"drive"] integerValue];
+    if (driveNumber < [self.driveArray count])
+    {
+        VirtualDriveController *drv = [self.driveArray objectAtIndex:driveNumber];
+        [drv resetCartridge:self];
+    }
+    else
+    {
+        [command setScriptErrorNumber:-9000];
+        [command setScriptErrorString:@"Invalid drive number."];
     }
 }
 

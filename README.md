@@ -55,6 +55,18 @@ tell application "DriveWire"
 end tell
 ```
 
+### Reload the virtual disk in drive 0:
+This command is useful if you have altered the contents of the underlying disk image and want the server to detect those changes.
+
+```AppleScript
+tell application "DriveWire"
+    tell server of first document
+    -- the insert command ejects any virtual disk from the drive before inserting the new one
+        reload drive 0
+    end tell
+end tell
+```
+
 ### Create a new document, set the machine type to CoCo 2, and insert a few disk images:
 ```AppleScript
 tell application "DriveWire"

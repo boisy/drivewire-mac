@@ -55,6 +55,7 @@
     self.cursorColor = [NSColor blackColor];
     self.fontColor = [NSColor blackColor];
     self.characterProcessor = @selector(nonEscapeCharacter);
+    self.incomingBuffer = [NSMutableData new];
     [self clearDisplay];
 }
 
@@ -298,4 +299,45 @@
     self.characterProcessor = @selector(nonEscapeCharacter);
 }
 
+- (BOOL)acceptsFirstResponder;
+{
+    return YES;
+}
+
+- (void)keyDown:(NSEvent *)theEvent
+{
+    NSString  *characters = [theEvent characters];
+    char  c = [characters characterAtIndex: 0];
+    [self.incomingBuffer appendBytes:&c length:1];
+}
+
+- (NSUInteger)availableToRead;
+{
+//    return [self.incomingBuffer length];
+    return [self.incomingBuffer length];
+}
+
+- (u_char)getByte;
+{
+    u_char result = 0;
+    
+#if 0
+    if ([self hasData])
+    {
+        result = *(u_char *)[self.incomingBuffer bytes];
+        [self.incomingBuffer replaceBytesInRange:NSMakeRange(0, 1) withBytes:nil length:0];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kVirtualChannelDataReceivedNotification
+                                                            object:self.model
+                                                          userInfo:@{@"channel" : self}];
+    }
+    
+    return result;
+#endif
+    result = *(u_char *)[self.incomingBuffer bytes];
+    [self.incomingBuffer replaceBytesInRange:NSMakeRange(0, 1) withBytes:nil length:0];
+    
+    return result;
+}
+
 @end
+

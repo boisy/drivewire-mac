@@ -72,7 +72,7 @@
 {
     [super viewWillAppear];
     DriveWireDocument *document = self.view.window.windowController.document;
-    DriveWireServerModel *model = document.dwModel;
+    DriveWireServerModel *model = document.server;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(channelConnected:) name:kVirtualChannelConnectedNotification
                                                object:model];
@@ -91,7 +91,7 @@
 {
     [super viewWillDisappear];
     DriveWireDocument *document = self.view.window.windowController.document;
-    DriveWireServerModel *model = document.dwModel;
+    DriveWireServerModel *model = document.server;
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kVirtualChannelConnectedNotification
                                                   object:model];
@@ -108,8 +108,8 @@
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView;
 {
-    DriveWireDocument *d = self.tableView.window.windowController.document;
-    return [d.dwModel.serialChannels count];
+    DriveWireDocument *document = self.tableView.window.windowController.document;
+    return [document.server.serialChannels count];
 }
 
 - (NSView *)tableView:(NSTableView *)tableView
@@ -120,7 +120,8 @@
     NSTableCellView *result = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
     
     // There is no existing cell to reuse so create a new one
-    if (result == nil) {
+    if (result == nil)
+    {
         
     }
     
@@ -131,20 +132,18 @@
     
     if ([tableColumn.identifier isEqualToString:@"no"])
     {
-        VirtualSerialChannel *channel = [d.dwModel.serialChannels objectAtIndex:row];
+        VirtualSerialChannel *channel = [d.server.serialChannels objectAtIndex:row];
         result.textField.stringValue = [NSString stringWithFormat:@"%ld", channel.number];
     }
     else
     if ([tableColumn.identifier isEqualToString:@"state"])
     {
-        VirtualSerialChannel *channel = [d.dwModel.serialChannels objectAtIndex:row];
         result.textField.stringValue = @"Disconnected";
     
     }
     else
     if ([tableColumn.identifier isEqualToString:@"read"])
     {
-        VirtualSerialChannel *channel = [d.dwModel.serialChannels objectAtIndex:row];
         TBLEDView *v = [[result subviews] objectAtIndex:0];
         [v blink];
     }

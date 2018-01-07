@@ -13,14 +13,17 @@
 
 - (void)awakeFromNib
 {
-	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-	[nc addObserver:self selector:@selector(registerNotification:) name:@"wirebugRegisters" object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(registerNotification:)
+                                                 name:@"wirebugRegisters"
+                                               object:nil];
 }
 
 - (void)dealloc
 {
-	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-	[nc removeObserver:self name:@"wirebugRegisters" object:self];
+	[[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"wirebugRegisters"
+                                                  object:self];
 }
 
 - (void)drawRect:(NSRect)rect

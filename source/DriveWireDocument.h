@@ -1,6 +1,5 @@
 /* DriveWireDocument */
 
-#import <Cocoa/Cocoa.h>
 #import "VirtualDriveJukeBoxView.h"
 #import "DriveWireServerModel.h"
 #import "PrinterWindowController.h"
@@ -9,16 +8,14 @@
 #import "StatsViewController.h"
 
 @interface DriveWireDocument : NSDocument <DriveWireDelegate>
-{
-    IBOutlet VirtualDriveJukeBoxView *driveView;
-    IBOutlet NSPopUpButton *serialPortButton;
-    IBOutlet NSPopUpButton *machineTypePopupButton;
-    IBOutlet NSImageView *machineImageView;
-	NSInteger lastPortSelected;
-    NSWindowController *myWindowController;
-}
 
-@property (strong) DriveWireServerModel *dwModel;
+@property (weak) IBOutlet VirtualDriveJukeBoxView *driveView;
+@property (weak) IBOutlet NSPopUpButton *serialPortButton;
+@property (weak) IBOutlet NSPopUpButton *machineTypePopupButton;
+@property (weak) IBOutlet NSImageView *machineImageView;
+@property (strong) NSWindowController *myWindowController;
+@property (assign) NSInteger lastPortSelected;
+@property (strong) DriveWireServerModel *server;
 @property (strong) TBLog *log;
 @property (assign) IBOutlet DebuggerWindowController *debuggerWindowController;
 @property (assign) IBOutlet PrinterWindowController *printerWindowController;

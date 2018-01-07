@@ -8,7 +8,7 @@
 {
     [super viewWillAppear];
     DriveWireDocument *document = self.view.window.windowController.document;
-    DriveWireServerModel *model = document.dwModel;
+    DriveWireServerModel *model = document.server;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(update:)
                                                  name:kDriveWireStatusNotification
@@ -19,7 +19,7 @@
 {
     [super viewWillDisappear];
     DriveWireDocument *document = self.view.window.windowController.document;
-    DriveWireServerModel *model = document.dwModel;
+    DriveWireServerModel *model = document.server;
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kDriveWireStatusNotification
                                                   object:model];

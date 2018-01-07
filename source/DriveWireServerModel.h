@@ -183,7 +183,7 @@ typedef enum {
 - (void)setMemAddress:(u_int16_t)new_address;
 
 - (void)setMachineType:(MachineType)machine;
-- (Boolean)setCommPort:(NSString *)thePort;
+- (BOOL)setCommPort:(NSString *)thePort;
 - (NSString *)serialPort;
 - (MachineType)machineType;
 

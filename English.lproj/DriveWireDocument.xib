@@ -11,12 +11,10 @@
             <connections>
                 <outlet property="debuggerWindowController" destination="2441" id="2523"/>
                 <outlet property="driveView" destination="2152" id="2452"/>
-                <outlet property="logView" destination="527" id="2446"/>
                 <outlet property="machineImageView" destination="2471" id="2473"/>
                 <outlet property="machineTypePopupButton" destination="2461" id="2470"/>
                 <outlet property="printerWindowController" destination="2319" id="2453"/>
                 <outlet property="serialPortButton" destination="2153" id="2447"/>
-                <outlet property="statsView" destination="103" id="2449"/>
                 <outlet property="window" destination="5" id="18"/>
             </connections>
         </customObject>
@@ -232,18 +230,6 @@
                                             </textFieldCell>
                                         </textField>
                                     </subviews>
-                                    <connections>
-                                        <outlet property="lastGetStat" destination="700" id="714"/>
-                                        <outlet property="lastLSN" destination="697" id="711"/>
-                                        <outlet property="lastOpCode" destination="696" id="710"/>
-                                        <outlet property="lastSetStat" destination="701" id="715"/>
-                                        <outlet property="sectorsReRead" destination="704" id="716"/>
-                                        <outlet property="sectorsReWritten" destination="705" id="717"/>
-                                        <outlet property="sectorsRead" destination="698" id="712"/>
-                                        <outlet property="sectorsReadOk" destination="707" id="718"/>
-                                        <outlet property="sectorsWritten" destination="699" id="713"/>
-                                        <outlet property="sectorsWrittenOk" destination="708" id="719"/>
-                                    </connections>
                                 </customView>
                             </subviews>
                         </view>

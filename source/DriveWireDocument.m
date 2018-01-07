@@ -17,7 +17,7 @@
 + (void)initializeDefaults;
 {
     NSDictionary *initialValues = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   [NSNumber numberWithBool:TRUE], @"ApplePersistenceIgnoreState",
+                                   [NSNumber numberWithBool:FALSE], @"ApplePersistenceIgnoreState",
                                    nil];
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:initialValues];
@@ -31,6 +31,7 @@
         [DriveWireDocument initializeDefaults];
     }
 }
+
 
 #pragma mark -
 #pragma mark Init/Dealloc
@@ -49,15 +50,15 @@
 - (void)dealloc;
 {
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-	NSMutableArray *driveArray = [self.dwModel driveArray];
+	NSMutableArray *driveArray = [self.server driveArray];
 	
-    [nc removeObserver:self name:kMachineTypeSelectedNotification object:self.dwModel];
-    [nc removeObserver:self name:kSerialPortChangedNotification object:self.dwModel];
+    [nc removeObserver:self name:kMachineTypeSelectedNotification object:self.server];
+    [nc removeObserver:self name:kSerialPortChangedNotification object:self.server];
 
 	// Remove observer of printer messages
-    [nc removeObserver:self.printerWindowController name:@"DWPrint" object:self.dwModel];
-    [nc removeObserver:self name:kVirtualScreenOpenedNotification object:self.dwModel];
-    [nc removeObserver:self name:kVirtualScreenClosedNotification object:self.dwModel];
+    [nc removeObserver:self.printerWindowController name:@"DWPrint" object:self.server];
+    [nc removeObserver:self name:kVirtualScreenOpenedNotification object:self.server];
+    [nc removeObserver:self name:kVirtualScreenClosedNotification object:self.server];
 
 	for (int i = 0; i < [driveArray count]; i++)
 	{
@@ -84,15 +85,15 @@
 	
     [aController setShouldCloseDocument:YES];
     
-    myWindowController = aController;
+    self.myWindowController = aController;
 
-    if (self.dwModel == nil)
+    if (self.server == nil)
     {
-        self.dwModel = [[DriveWireServerModel alloc] initWithDocument:self version:DW_DEFAULT_VERSION];
-        self.dwModel.scriptingContainer = self;
+        self.server = [[DriveWireServerModel alloc] initWithDocument:self version:DW_DEFAULT_VERSION];
+        self.server.scriptingContainer = self;
     }
     
-    [self.dwModel setDelegate:self];
+    [self.server setDelegate:self];
     
     // add our window controllers
     [self addWindowController:self.printerWindowController];
@@ -105,22 +106,22 @@
 	NSMutableDictionary *portNames = [[TBSerialManager defaultManager] availablePorts] ;
 
 	// Remove all items from the port button
-	[serialPortButton removeAllItems];
+	[self.serialPortButton removeAllItems];
 	
 	// Get the selected serial port, if any
-	currentPort = [self.dwModel serialPort];
+	currentPort = [self.server serialPort];
    
 	// Iterate through the list of names and add each to the list
 	{
 		NSEnumerator *e = [portNames keyEnumerator];
 		NSString *n;
 		
-		[serialPortButton addItemWithTitle:@"No Device"];
+		[self.serialPortButton addItemWithTitle:@"No Device"];
 
 		while ((n = [e nextObject]))
 		{
 			TBDebug(@"%@ is available\n", n);
-			[serialPortButton addItemWithTitle:n];
+			[self.serialPortButton addItemWithTitle:n];
 			if (currentPort != nil && [currentPort compare:n] == NSOrderedSame)
 			{
 				portTitle = n;
@@ -131,23 +132,23 @@
 	// Select the model's port, if not nil, else select the 0th indexed item ("No Device")
 	if (portTitle == nil)
 	{
-		[serialPortButton selectItemAtIndex:0];
-		lastPortSelected = 0;
+		[self.serialPortButton selectItemAtIndex:0];
+		self.lastPortSelected = 0;
 	}
 	else
 	{
-		[serialPortButton selectItemWithTitle:portTitle];
-		lastPortSelected = [serialPortButton indexOfSelectedItem];
+		[self.serialPortButton selectItemWithTitle:portTitle];
+		self.lastPortSelected = [self.serialPortButton indexOfSelectedItem];
 	}
 
 	// Get the array of drives from the Document Model
-	NSMutableArray *driveArray = [self.dwModel driveArray];
+	NSMutableArray *driveArray = [self.server driveArray];
 	
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	
 	for (i = 0; i < [driveArray count]; i++)
 	{
-		[driveView addSubview:[[driveArray objectAtIndex:i] view]];
+		[self.driveView addSubview:[[driveArray objectAtIndex:i] view]];
 
 		// Add ourself as an observer of cartridge insert/eject messages for each drive
 		[nc addObserver:self selector:@selector(driveNotification:) name:@"cartridgeWasInserted" object:[driveArray objectAtIndex:i]];
@@ -158,26 +159,26 @@
     [nc addObserver:self
            selector:@selector(screenOpened:)
                name:kVirtualScreenOpenedNotification
-             object:self.dwModel];
+             object:self.server];
     
     [nc addObserver:self
            selector:@selector(screenClosed:)
                name:kVirtualScreenClosedNotification
-             object:self.dwModel];
+             object:self.server];
     
     // Add the printerWindowController as an observer of print messages
-    [nc addObserver:self.printerWindowController selector:@selector(updatePrintBuffer:) name:@"DWPrint" object:self.dwModel];
+    [nc addObserver:self.printerWindowController selector:@selector(updatePrintBuffer:) name:@"DWPrint" object:self.server];
     
-    [machineTypePopupButton selectItemWithTag:self.dwModel.machineType];
+    [self.machineTypePopupButton selectItemWithTag:self.server.machineType];
     [self updateUIComponents];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(machineSelected:) name:kMachineTypeSelectedNotification
-                                               object:self.dwModel];
+                                               object:self.server];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(portChanged:) name:kSerialPortChangedNotification
-                                               object:self.dwModel];
+                                               object:self.server];
 }
 
 
@@ -200,46 +201,46 @@
 
 - (void)updateUIComponents;
 {
-    switch ([self.dwModel machineType])
+    switch ([self.server machineType])
     {
         case MachineTypeCoCo1_38_4:
         case MachineTypeCoCo1_57_6:
-            [machineImageView setImage:[NSImage imageNamed:@"CoCo1"]];
+            [self.machineImageView setImage:[NSImage imageNamed:@"CoCo1"]];
             break;
 
         case MachineTypeCoCo2_57_6:
-            [machineImageView setImage:[NSImage imageNamed:@"CoCo2"]];
+            [self.machineImageView setImage:[NSImage imageNamed:@"CoCo2"]];
             break;
            
         case MachineTypeCoCo3_115_2:
         default:
-            [machineImageView setImage:[NSImage imageNamed:@"CoCo3"]];
+            [self.machineImageView setImage:[NSImage imageNamed:@"CoCo3"]];
             break;
 
         case MachineTypeAtariLiber809_57_6:
-            [machineImageView setImage:[NSImage imageNamed:@"Atari"]];
+            [self.machineImageView setImage:[NSImage imageNamed:@"Atari"]];
             break;
     }
 }
 
 - (NSData *)dataRepresentationOfType:(NSString *)aType;
 {
-    return [NSKeyedArchiver archivedDataWithRootObject:self.dwModel];
+    return [NSKeyedArchiver archivedDataWithRootObject:self.server];
 }
 
 - (BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)aType;
 {
-	self.dwModel = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+	self.server = [NSKeyedUnarchiver unarchiveObjectWithData:data];
 	
 	return YES;
 }
 
 - (IBAction)setSerialPort:(id)sender;
 {
-	NSString *thePort = [serialPortButton titleOfSelectedItem];
+	NSString *thePort = [self.serialPortButton titleOfSelectedItem];
 	
 	// Ask the Document Model to open thePort
-	if ([self.dwModel setCommPort:thePort] == NO)
+	if ([self.server setCommPort:thePort] == NO)
 	{
 		NSAlert *errorAlert = [NSAlert alertWithMessageText:@"Communications Error"
 											   defaultButton:@"OK"
@@ -249,12 +250,12 @@
 		
 		[errorAlert runModal];
 		
-		[serialPortButton selectItemAtIndex:lastPortSelected];
+		[self.serialPortButton selectItemAtIndex:self.lastPortSelected];
 		
 		return;
 	}
 	
-	lastPortSelected = [sender indexOfSelectedItem];
+	self.lastPortSelected = [sender indexOfSelectedItem];
 
 	[self updateChangeCount:NSChangeDone];
 }
@@ -262,14 +263,14 @@
 - (void)portChanged:(NSNotification *)note;
 {
     TBSerialPort *p = [[note userInfo] objectForKey:@"port"];
-    [serialPortButton selectItemWithTitle:p.serviceName];
+    [self.serialPortButton selectItemWithTitle:p.serviceName];
     [self updateUIComponents];
 }
 
 - (void)machineSelected:(NSNotification *)note;
 {
     NSUInteger tag = [[[note userInfo] objectForKey:@"machine"] integerValue];
-    [machineTypePopupButton selectItemWithTag:tag];
+    [self.machineTypePopupButton selectItemWithTag:tag];
     [self updateUIComponents];
 }
 
@@ -284,19 +285,19 @@
     switch (index)
     {
         case 0:
-            [self.dwModel setMachineType:MachineTypeCoCo1_38_4];
+            [self.server setMachineType:MachineTypeCoCo1_38_4];
             break;
         case 1127297848:
-            [self.dwModel setMachineType:MachineTypeCoCo1_57_6];
+            [self.server setMachineType:MachineTypeCoCo1_57_6];
             break;
         case 1127363895:
-            [self.dwModel setMachineType:MachineTypeCoCo2_57_6];
+            [self.server setMachineType:MachineTypeCoCo2_57_6];
             break;
         case 1127428405:
-            [self.dwModel setMachineType:MachineTypeCoCo3_115_2];
+            [self.server setMachineType:MachineTypeCoCo3_115_2];
             break;
         case 1098134839:
-            [self.dwModel setMachineType:MachineTypeAtariLiber809_57_6];
+            [self.server setMachineType:MachineTypeAtariLiber809_57_6];
             break;
     }
    
@@ -305,7 +306,7 @@
 
 - (IBAction)goCoCo:(id)sender;
 {
-   [self.dwModel goCoCo];
+   [self.server goCoCo];
 }
 
 - (void)viewWireBugWindow:(id)sender;
@@ -317,6 +318,10 @@
 {
     [self.printerWindowController showWindow:self];
 }
+
+
+#pragma mark -
+#pragma mark Notification Methods
 
 - (void)screenOpened:(NSNotification *)note;
 {
@@ -332,26 +337,14 @@
     [self removeWindowController:screen];
 }
 
+
 #pragma mark -
 #pragma mark AppleScript Support Methods
-
-- (DriveWireServerModel *)model;
-{
-    return self.dwModel;
-}
-
-- (DriveWireServerModel *)server;
-{
-    return self.dwModel;
-}
 
 // Conformance to the NSObject(WS4AgentPlugInScriptingContainer) informal protocol.
 - (NSScriptObjectSpecifier *)objectSpecifierForModel:(DriveWireServerModel *)model;
 {
     NSScriptObjectSpecifier *objectSpecifier = [self objectSpecifier];
-    //    return [[NSIndexSpecifier alloc] initWithContainerClassDescription:[objectSpecifier keyClassDescription] containerSpecifier:objectSpecifier key:@"agent" index:0];
-    //    return [[NSUniqueIDSpecifier alloc] initWithContainerClassDescription:[objectSpecifier keyClassDescription] containerSpecifier:objectSpecifier key:@"agent" uniqueID:@"X1"];
-    //    return [[NSNameSpecifier alloc] initWithContainerClassDescription:[objectSpecifier keyClassDescription] containerSpecifier:objectSpecifier key:@"agent" name:agent.stationName];
     NSPropertySpecifier *specifier = [[NSPropertySpecifier alloc] initWithContainerSpecifier:objectSpecifier key:@"model"];
     return specifier;
 }

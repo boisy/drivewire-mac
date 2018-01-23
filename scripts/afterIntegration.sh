@@ -8,7 +8,7 @@ fi
 marketingVersion="1.0.${XCS_INTEGRATION_NUMBER}"
 pushd "${XCS_ARCHIVE}/Products/Applications"
 zip -yr /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}.zip "DriveWire.app"
-scp /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}.zip administrator@downloads.tandycolorcomputer.com:/Library/Server/Web/Data/Sites/downloads.weathersnoop.com
+scp /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}.zip administrator@downloads.tandycolorcomputer.com:/Library/Server/Web/Data/Sites/downloads.tandycolorcomputer.com
 popd
 #zip -yr /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}_dSYMs.zip dSYMs
 #scp /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}_dSYMs.zip administrator@downloads.tandycolorcomputer.com:/Library/Server/Web/Data/Sites/downloads.tandycolorcomputer.com

@@ -10,8 +10,8 @@ pushd "${XCS_ARCHIVE}/Products/Applications"
 zip -yr /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}.zip "DriveWire.app"
 scp /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}.zip administrator@downloads.tandycolorcomputer.com:/Library/Server/Web/Data/Sites/downloads.weathersnoop.com
 popd
-zip -yr /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}_dSYMs.zip dSYMs
-scp /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}_dSYMs.zip administrator@downloads.tandycolorcomputer.com:/Library/Server/Web/Data/Sites/downloads.tandycolorcomputer.com
+#zip -yr /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}_dSYMs.zip dSYMs
+#scp /tmp/DriveWire_${XCS_INTEGRATION_NUMBER}_dSYMs.zip administrator@downloads.tandycolorcomputer.com:/Library/Server/Web/Data/Sites/downloads.tandycolorcomputer.com
 
 # Setup variables to be used in sed
 scp administrator@tandycolorcomputer.com:DriveWire_dsa_priv.pem /tmp
@@ -37,4 +37,4 @@ scp /tmp/DriveWireAppcast.xml administrator@downloads.tandycolorcomputer.com:/Li
 # soft link
 ssh -l administrator downloads.tandycolorcomputer.com "cd /Library/Server/Web/Data/Sites/downloads.tandycolorcomputer.com; rm DriveWire.zip; ln -s DriveWire_${XCS_INTEGRATION_NUMBER}.zip DriveWire.zip"
 
-ssh -l administrator downloads.tandycolorcomputer.com "cd /Library/Server/Web/Data/Sites/downloads.tandycolorcomputer.com; rm DriveWire_dSYMs.zip; ln -s DriveWire_${XCS_INTEGRATION_NUMBER}_dSYMs.zip DriveWire_dSYMs.zip"
+#ssh -l administrator downloads.tandycolorcomputer.com "cd /Library/Server/Web/Data/Sites/downloads.tandycolorcomputer.com; rm DriveWire_dSYMs.zip; ln -s DriveWire_${XCS_INTEGRATION_NUMBER}_dSYMs.zip DriveWire_dSYMs.zip"

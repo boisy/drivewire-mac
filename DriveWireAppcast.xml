@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
    <channel>
       <title>DriveWire Changelog</title>
-      <link>http://downloads.weathersnoop.com/DriveWireAppcast.xml</link>
+      <link>http://downloads.tandycolorcomputer.com/DriveWireAppcast.xml</link>
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
 		<item>
 			<title>Version __VERSION__</title>
 			<sparkle:releaseNotesLink>
-					http://downloads.weathersnoop.com/DriveWire_ChangeLog.html
+					http://downloads.tandycolorcomputer.com/DriveWire_ChangeLog.html
 			</sparkle:releaseNotesLink>
 			<pubDate>__RELEASEDATE__</pubDate>
-			<enclosure url="http://downloads.weathersnoop.com/DriveWire.zip"
+			<enclosure url="http://downloads.tandycolorcomputer.com/DriveWire.zip"
 						sparkle:version="__BUNDLEVERSION__"
 						sparkle:shortVersionString="__VERSION__"
 						sparkle:dsaSignature="__SIGNATURE__"

@@ -1,9 +1,13 @@
 #import "DWAppDelegate.h"
+#import "PFMoveApplication.h"
 
 @implementation DWAppDelegate
 
 - (void)applicationWillFinishLaunching:(NSNotification *)aNotification;
 {
+    // Prompt user to move to applications folder
+    PFMoveToApplicationsFolderIfNecessary();
+    
     // Setup Sparkle
     // Add menu item for update checking
     NSMenu *mainMenu = [NSApp mainMenu];

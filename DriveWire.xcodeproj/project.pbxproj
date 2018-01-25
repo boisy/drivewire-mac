@@ -59,6 +59,7 @@
 		68D292191FFED1600015B8DC /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 68D292181FFED1600015B8DC /* dsa_pub.pem */; };
 		68D2921B20012BC40015B8DC /* VirtualScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 686CA4061AE1C4EF00544862 /* VirtualScreenViewController.m */; };
 		68EDF1A91FED45D8000FD52D /* VirtualSerialTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EDF1A81FED45D8000FD52D /* VirtualSerialTableViewController.m */; };
+		68F6099A201A0208002449CB /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F60998201A0208002449CB /* PFMoveApplication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		94E43C06A59562DDAD6CF2B0 /* libPods-DriveWire.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 487F4A91F5C1CBD37CD4AFFE /* libPods-DriveWire.a */; };
 /* End PBXBuildFile section */
 
@@ -166,6 +167,8 @@
 		68DBD1DF0964F1A900B011C5 /* DWAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = DWAppDelegate.h; sourceTree = "<group>"; };
 		68EDF1A71FED45D8000FD52D /* VirtualSerialTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VirtualSerialTableViewController.h; path = source/VirtualSerialTableViewController.h; sourceTree = "<group>"; };
 		68EDF1A81FED45D8000FD52D /* VirtualSerialTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = VirtualSerialTableViewController.m; path = source/VirtualSerialTableViewController.m; sourceTree = "<group>"; };
+		68F60998201A0208002449CB /* PFMoveApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PFMoveApplication.m; path = source/PFMoveApplication.m; sourceTree = "<group>"; };
+		68F60999201A0208002449CB /* PFMoveApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PFMoveApplication.h; path = source/PFMoveApplication.h; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* DriveWire-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "DriveWire-Info.plist"; path = "source/DriveWire-Info.plist"; sourceTree = "<group>"; };
 		959227020E964D36700A544E /* Pods-DriveWire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveWire.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DriveWire/Pods-DriveWire.debug.xcconfig"; sourceTree = "<group>"; };
 		BD40BD754E2481641C1DCDF9 /* Pods-DriveWire MacServer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveWire MacServer.release.xcconfig"; path = "Pods/Target Support Files/Pods-DriveWire MacServer/Pods-DriveWire MacServer.release.xcconfig"; sourceTree = "<group>"; };
@@ -225,6 +228,8 @@
 			children = (
 				6842CEC51F97B53400A6F829 /* NSString+DriveWire.h */,
 				6842CEC61F97B53400A6F829 /* NSString+DriveWire.m */,
+				68F60999201A0208002449CB /* PFMoveApplication.h */,
+				68F60998201A0208002449CB /* PFMoveApplication.m */,
 				686CA4461AE3E0D600544862 /* Network Window */,
 				686CA3FE1AE1C4AC00544862 /* VirtualScreen */,
 				6809AD790F6C086D000BB954 /* VirtualDrive */,
@@ -662,6 +667,7 @@
 				68D2921B20012BC40015B8DC /* VirtualScreenViewController.m in Sources */,
 				68ADDF93096B7347002324CE /* VirtualDriveJukeBoxView.m in Sources */,
 				68742C370F41A78E0049FEF6 /* DriveWireServerModel.m in Sources */,
+				68F6099A201A0208002449CB /* PFMoveApplication.m in Sources */,
 				68190D2E0F47011400C4CDDD /* RegisterView.m in Sources */,
 				68190D310F47011F00C4CDDD /* MemoryView.m in Sources */,
 				68A1F6AA1ADF59DF00A5B030 /* VirtualSerialChannel.m in Sources */,

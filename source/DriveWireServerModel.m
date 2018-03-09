@@ -694,8 +694,8 @@ static TBSerialManager *fSerialManager = nil;
 	[statistics setObject:[NSString stringWithFormat:@"%d", byte] forKey:@"Byte"];
     [self postStatistics:statistics];
 
-	// send response
-	[portDelegate writeData:[NSData dataWithBytes:"\x00" length:1]];
+	// send response 0x04 indicating DriveWire 4 support
+	[portDelegate writeData:[NSData dataWithBytes:"\x04" length:1]];
 
     [self resetState:nil];
    

@@ -60,7 +60,7 @@
 	<key>CFBundleSignature</key>
 	<string>tboy</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>99999</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>NSAppTransportSecurity</key>

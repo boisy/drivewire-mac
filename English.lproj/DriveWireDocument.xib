@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="DriveWireDocument">
             <connections>
+                <outlet property="baudRatePopupButton" destination="2461" id="2470"/>
                 <outlet property="debuggerWindowController" destination="2441" id="2523"/>
                 <outlet property="driveView" destination="2152" id="2452"/>
-                <outlet property="machineImageView" destination="2471" id="2473"/>
-                <outlet property="machineTypePopupButton" destination="2461" id="2470"/>
                 <outlet property="printerWindowController" destination="2319" id="2453"/>
                 <outlet property="serialPortButton" destination="2153" id="2447"/>
                 <outlet property="window" destination="5" id="18"/>
@@ -246,11 +245,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DriveWire-Logo" id="2155"/>
                                 </imageView>
-                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="2471">
-                                    <rect key="frame" x="260" y="14" width="205" height="130"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="CoCo1" id="2472"/>
-                                </imageView>
                                 <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" id="2479">
                                     <rect key="frame" x="11" y="13" width="240" height="269"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -295,16 +289,15 @@
                                 <popUpButton verticalHuggingPriority="750" misplaced="YES" id="2461">
                                     <rect key="frame" x="260" y="162" width="201" height="26"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <popUpButtonCell key="cell" type="push" title="Atari Liber809 @ 57.6K" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1098134839" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="2469" id="2462">
+                                    <popUpButtonCell key="cell" type="push" title="38,400 bps" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" tag="38400" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="2465" id="2462">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="menu"/>
                                         <menu key="menu" title="OtherViews" id="2463">
                                             <items>
-                                                <menuItem title="CoCo 1 @ 38.4K" tag="1127297848" id="2465"/>
-                                                <menuItem title="CoCo 1 @ 57.6K" tag="2" id="2468"/>
-                                                <menuItem title="CoCo 2 @ 57.6K" tag="1127363895" id="2466"/>
-                                                <menuItem title="CoCo 3 @ 115.2K" tag="1127428405" id="2464"/>
-                                                <menuItem title="Atari Liber809 @ 57.6K" state="on" tag="1098134839" id="2469"/>
+                                                <menuItem title="38,400 bps" tag="38400" id="2465"/>
+                                                <menuItem title="57,600 bps" tag="57600" id="2468"/>
+                                                <menuItem title="115,200 bps" tag="115200" id="2466"/>
+                                                <menuItem title="230,400 bps" tag="230400" id="2464"/>
                                             </items>
                                         </menu>
                                     </popUpButtonCell>
@@ -2659,7 +2652,6 @@
         </customObject>
     </objects>
     <resources>
-        <image name="CoCo1" width="512" height="416"/>
         <image name="DriveWire-Logo" width="365" height="97"/>
     </resources>
 </document>

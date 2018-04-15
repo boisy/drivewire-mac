@@ -3,13 +3,6 @@
 <dictionary xmlns:xi="http://www.w3.org/2003/XInclude">
     <xi:include href="file:///System/Library/ScriptingDefinitions/CocoaStandard.sdef" xpointer="xpointer(/dictionary/suite)"/>
 	<suite name="DriveWire Suite" code="DWr4" description="Classes just for the DriveWire application.">
-        <enumeration name="machine" code="HWKn">
-            <enumerator name="none" code="DWNn" description="No kind."/>
-            <enumerator name="coco1" code="C138" description="TRS-80 Color Computer."/>
-            <enumerator name="coco2" code="C257" description="Radio Shack Color Computer 2."/>
-            <enumerator name="coco3" code="C315" description="Tandy Color Computer 3."/>
-            <enumerator name="atari" code="At57" description="Atari 8-bit with Liber809."/>
-        </enumeration>
         <class name="application" code="capp" description="DriveWire application class." inherits="application">
             <cocoa class="NSApplication"/>
         </class>
@@ -32,8 +25,8 @@
 		</class>
         <class name="server" code="srvr" description="A DriveWire server object.">
             <cocoa class="DriveWireServerModel"/>
-            <property name="machine" code="HWKn" type="machine" description="The type of machine." access="rw">
-                <cocoa key="machineType"/>
+            <property name="baud" code="HWKn" type="integer" description="The baud rate." access="rw">
+                <cocoa key="baudRate"/>
             </property>
             <responds-to name="insert">
                 <cocoa method="handleInsertCommand:"/>

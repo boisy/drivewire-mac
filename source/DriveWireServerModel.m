@@ -11,7 +11,7 @@
 #define MODULE_HASHTAG "DriveWireServer"
 
 NSString *const kDriveWireStatusNotification = @"com.drivewire.DriveWireStatusNotification";
-NSString *const kMachineTypeSelectedNotification = @"com.drivewire.MachineTypeSelectionNotification";
+NSString *const kBaudRateSelectedNotification = @"com.drivewire.BaudRateSelectionNotification";
 NSString *const kSerialPortChangedNotification = @"com.drivewire.SerialPortChangedNotification";
 
 @interface NSObject(DriveWireServerScriptingContainer)
@@ -38,6 +38,8 @@ NSString *const kSerialPortChangedNotification = @"com.drivewire.SerialPortChang
 @end
 
 @implementation DriveWireServerModel
+
+@synthesize baudRate = _baudRate;
 
 #define MAX_TIME_BEFORE_RESET 0.5
 
@@ -205,7 +207,7 @@ static TBSerialManager *fSerialManager = nil;
         self.statState = FALSE;
         self.logState = FALSE;
         self.wirebugState = FALSE;
-		[self setMachineType:MachineTypeCoCo3_115_2];
+		[self setBaudRate:115200];
         self.memAddress = 0;
 
 		fCurrentPort = nil;
@@ -228,15 +230,14 @@ static TBSerialManager *fSerialManager = nil;
         savedPort = [coder decodeObjectForKey:@"port"];
         self.statState = [coder decodeBoolForKey:@"statState"];
         self.logState = [coder decodeBoolForKey:@"logState"];
-        self.machineType = [coder decodeIntForKey:@"machineType"];
+        NSUInteger br = [coder decodeIntForKey:@"baudRate"]; if (br == 0) { br = 115200; }
         
         [self initCommon];
         
         fCurrentPort = nil;
         
         [self setCommPort:savedPort];
-        
-        [self setMachineType:_machineType];
+        self.baudRate = br;
     }
     
     return self;
@@ -250,7 +251,7 @@ static TBSerialManager *fSerialManager = nil;
     [coder encodeObject:fCurrentPort forKey:@"port"];
     [coder encodeBool:self.statState forKey:@"statState"];
     [coder encodeBool:self.logState forKey:@"logState"];
-    [coder encodeInteger:self.machineType forKey:@"machineType"];
+    [coder encodeInteger:self.baudRate forKey:@"baudRate"];
 }
 
 - (void)dealloc
@@ -336,7 +337,7 @@ static TBSerialManager *fSerialManager = nil;
 	[fSerialManager releasePort:fCurrentPort];
 	fCurrentPort = selectedPort;
 	fPort = newPort;
-    [self setMachineType:_machineType];  // force the setting of the baud rate
+    [self setBaudRate:self.baudRate];  // force the setting of the baud rate
     [fPort setInputLogging:true];
     [fPort setOutputLogging:true];
     [fPort setDTRState:FALSE];
@@ -373,34 +374,16 @@ static TBSerialManager *fSerialManager = nil;
 	return driveArray;
 }
 
-- (MachineType)machineType;
+- (NSUInteger)baudRate;
 {
-    return _machineType;
+    return _baudRate;
 }
 
-- (void)setMachineType:(MachineType)type
+- (void)setBaudRate:(NSUInteger)baud
 {
-	_machineType = type;
+	_baudRate = baud;
     NSUInteger oldBaudRate = [fPort baudRate];
-    int newBaudRate;
-    
-    switch (type)
-    {
-        case MachineTypeCoCo1_38_4:
-            newBaudRate = 38400;
-            break;
-           
-        case MachineTypeCoCo1_57_6:
-        case MachineTypeCoCo2_57_6:
-        case MachineTypeAtariLiber809_57_6:
-            newBaudRate = 57600;
-            break;
-            
-        case MachineTypeCoCo3_115_2:
-        default:
-            newBaudRate = 115200;
-            break;
-    }
+    NSUInteger newBaudRate = baud;
 
     // We have to close and reopen the port when we change the baud rate now
     if (oldBaudRate != newBaudRate) {
@@ -412,9 +395,9 @@ static TBSerialManager *fSerialManager = nil;
         }
     }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:kMachineTypeSelectedNotification
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBaudRateSelectedNotification
                                                         object:self
-                                                      userInfo:@{@"machine" : [NSNumber numberWithInteger:type]}];
+                                                      userInfo:@{@"baudRate" : [NSNumber numberWithInteger:baud]}];
 }
 
 - (NSString *)serialPort

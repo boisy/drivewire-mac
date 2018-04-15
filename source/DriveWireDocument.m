@@ -52,7 +52,7 @@
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	NSMutableArray *driveArray = [self.server driveArray];
 	
-    [nc removeObserver:self name:kMachineTypeSelectedNotification object:self.server];
+    [nc removeObserver:self name:kBaudRateSelectedNotification object:self.server];
     [nc removeObserver:self name:kSerialPortChangedNotification object:self.server];
 
 	// Remove observer of printer messages
@@ -169,11 +169,11 @@
     // Add the printerWindowController as an observer of print messages
     [nc addObserver:self.printerWindowController selector:@selector(updatePrintBuffer:) name:@"DWPrint" object:self.server];
     
-    [self.machineTypePopupButton selectItemWithTag:self.server.machineType];
+    [self.baudRatePopupButton selectItemWithTag:self.server.baudRate];
     [self updateUIComponents];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(machineSelected:) name:kMachineTypeSelectedNotification
+                                             selector:@selector(machineSelected:) name:kBaudRateSelectedNotification
                                                object:self.server];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -201,26 +201,6 @@
 
 - (void)updateUIComponents;
 {
-    switch ([self.server machineType])
-    {
-        case MachineTypeCoCo1_38_4:
-        case MachineTypeCoCo1_57_6:
-            [self.machineImageView setImage:[NSImage imageNamed:@"CoCo1"]];
-            break;
-
-        case MachineTypeCoCo2_57_6:
-            [self.machineImageView setImage:[NSImage imageNamed:@"CoCo2"]];
-            break;
-           
-        case MachineTypeCoCo3_115_2:
-        default:
-            [self.machineImageView setImage:[NSImage imageNamed:@"CoCo3"]];
-            break;
-
-        case MachineTypeAtariLiber809_57_6:
-            [self.machineImageView setImage:[NSImage imageNamed:@"Atari"]];
-            break;
-    }
 }
 
 - (NSData *)dataRepresentationOfType:(NSString *)aType;
@@ -269,8 +249,8 @@
 
 - (void)machineSelected:(NSNotification *)note;
 {
-    NSUInteger tag = [[[note userInfo] objectForKey:@"machine"] integerValue];
-    [self.machineTypePopupButton selectItemWithTag:tag];
+    NSUInteger tag = [[[note userInfo] objectForKey:@"baudRate"] integerValue];
+    [self.baudRatePopupButton selectItemWithTag:tag];
     [self updateUIComponents];
 }
 
@@ -281,25 +261,8 @@
 
 - (IBAction)setCoCoType:(NSPopUpButton *)sender;
 {
-    NSUInteger index = [sender selectedTag];
-    switch (index)
-    {
-        case 0:
-            [self.server setMachineType:MachineTypeCoCo1_38_4];
-            break;
-        case 1127297848:
-            [self.server setMachineType:MachineTypeCoCo1_57_6];
-            break;
-        case 1127363895:
-            [self.server setMachineType:MachineTypeCoCo2_57_6];
-            break;
-        case 1127428405:
-            [self.server setMachineType:MachineTypeCoCo3_115_2];
-            break;
-        case 1098134839:
-            [self.server setMachineType:MachineTypeAtariLiber809_57_6];
-            break;
-    }
+    NSUInteger tag = [sender selectedTag];
+    [self.server setBaudRate:tag];
    
     [self updateUIComponents];
 }

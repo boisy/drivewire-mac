@@ -1,18 +1,24 @@
 PODS:
-  - CocoaAsyncSocket (7.6.2)
-  - Sparkle (1.18.1)
-  - TeeBoy (4.0.311)
+  - CocoaAsyncSocket (7.6.3)
+  - Sparkle (1.19.0)
+  - TeeBoy (4.0.312)
 
 DEPENDENCIES:
   - CocoaAsyncSocket
   - Sparkle
   - TeeBoy
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - CocoaAsyncSocket
+    - Sparkle
+    - TeeBoy
+
 SPEC CHECKSUMS:
-  CocoaAsyncSocket: 3541e024f48c54b251638ef72d51dd42808de932
-  Sparkle: 06ea33170007c5937ee54da481b4481af98fac79
-  TeeBoy: 19da29bd7ac2aff3204cdf6219ba06c8dbfa1287
+  CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
+  Sparkle: 8486d2493599665e466b5076e72b28849776e32f
+  TeeBoy: e22f7985dc49cb7168372f07b17bf30532a14b9e
 
 PODFILE CHECKSUM: 5afcb2b249d499cc86c775bd8e6e78f27a5f9148
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0

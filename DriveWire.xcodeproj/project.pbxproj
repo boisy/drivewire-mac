@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		680612D41ADFC85200B1C502 /* CoCo1.png in Resources */ = {isa = PBXBuildFile; fileRef = 680612D01ADFC85200B1C502 /* CoCo1.png */; };
-		680612D51ADFC85200B1C502 /* CoCo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 680612D11ADFC85200B1C502 /* CoCo2.png */; };
-		680612D61ADFC85200B1C502 /* CoCo3.png in Resources */ = {isa = PBXBuildFile; fileRef = 680612D21ADFC85200B1C502 /* CoCo3.png */; };
 		6809AD840F6C08A6000BB954 /* VirtualDriveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6809AD7F0F6C08A6000BB954 /* VirtualDriveController.m */; };
 		6809AD850F6C08A6000BB954 /* VirtualDriveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6809AD810F6C08A6000BB954 /* VirtualDriveModel.m */; };
 		6809AD860F6C08A6000BB954 /* VirtualDriveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6809AD830F6C08A6000BB954 /* VirtualDriveView.m */; };
@@ -26,7 +23,6 @@
 		68363D450F63182400CD8A1B /* PrinterWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68363D440F63182400CD8A1B /* PrinterWindowController.m */; };
 		6842CEBE1F97B35B00A6F829 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6842CEBD1F97B35B00A6F829 /* Tests.m */; };
 		6842CEC71F97B53400A6F829 /* NSString+DriveWire.m in Sources */ = {isa = PBXBuildFile; fileRef = 6842CEC61F97B53400A6F829 /* NSString+DriveWire.m */; };
-		686CA3FB1AE1162500544862 /* Atari.png in Resources */ = {isa = PBXBuildFile; fileRef = 686CA3FA1AE1162500544862 /* Atari.png */; };
 		686CA3FD1AE11ED900544862 /* DriveWire-Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 686CA3FC1AE11ED900544862 /* DriveWire-Logo.png */; };
 		686CA4041AE1C4E000544862 /* VirtualScreenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 686CA4031AE1C4E000544862 /* VirtualScreenView.m */; };
 		686CA40C1AE272FE00544862 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 686CA40B1AE272FE00544862 /* Security.framework */; };
@@ -82,9 +78,6 @@
 		32DBCF750370BD2300C91783 /* DriveWire_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriveWire_Prefix.pch; sourceTree = "<group>"; };
 		435458113AA42290E98DB18A /* Pods-DriveWire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveWire.release.xcconfig"; path = "Pods/Target Support Files/Pods-DriveWire/Pods-DriveWire.release.xcconfig"; sourceTree = "<group>"; };
 		487F4A91F5C1CBD37CD4AFFE /* libPods-DriveWire.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DriveWire.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		680612D01ADFC85200B1C502 /* CoCo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CoCo1.png; path = assets/CoCo1.png; sourceTree = "<group>"; };
-		680612D11ADFC85200B1C502 /* CoCo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CoCo2.png; path = assets/CoCo2.png; sourceTree = "<group>"; };
-		680612D21ADFC85200B1C502 /* CoCo3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CoCo3.png; path = assets/CoCo3.png; sourceTree = "<group>"; };
 		680612D31ADFC85200B1C502 /* Machines.psd */ = {isa = PBXFileReference; lastKnownFileType = file; name = Machines.psd; path = assets/Machines.psd; sourceTree = "<group>"; };
 		6809AD7E0F6C08A6000BB954 /* VirtualDriveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualDriveController.h; sourceTree = "<group>"; };
 		6809AD7F0F6C08A6000BB954 /* VirtualDriveController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualDriveController.m; sourceTree = "<group>"; };
@@ -127,7 +120,6 @@
 		6842CEC61F97B53400A6F829 /* NSString+DriveWire.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSString+DriveWire.m"; path = "source/NSString+DriveWire.m"; sourceTree = "<group>"; };
 		685105F70966DA1C00AAEA3F /* VirtualDriveJukeBoxView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = VirtualDriveJukeBoxView.h; sourceTree = "<group>"; };
 		685105F80966DA1C00AAEA3F /* VirtualDriveJukeBoxView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = VirtualDriveJukeBoxView.m; sourceTree = "<group>"; };
-		686CA3FA1AE1162500544862 /* Atari.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Atari.png; path = assets/Atari.png; sourceTree = "<group>"; };
 		686CA3FC1AE11ED900544862 /* DriveWire-Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "DriveWire-Logo.png"; path = "assets/DriveWire-Logo.png"; sourceTree = "<group>"; };
 		686CA4021AE1C4E000544862 /* VirtualScreenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualScreenView.h; path = source/VirtualScreenView.h; sourceTree = "<group>"; };
 		686CA4031AE1C4E000544862 /* VirtualScreenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualScreenView.m; path = source/VirtualScreenView.m; sourceTree = "<group>"; };
@@ -331,10 +323,6 @@
 			isa = PBXGroup;
 			children = (
 				680612CF1ADFC82C00B1C502 /* Source Assets */,
-				680612D01ADFC85200B1C502 /* CoCo1.png */,
-				680612D11ADFC85200B1C502 /* CoCo2.png */,
-				680612D21ADFC85200B1C502 /* CoCo3.png */,
-				686CA3FA1AE1162500544862 /* Atari.png */,
 				6809AE050F6C0C4C000BB954 /* MainMenu.xib */,
 				6809AF3D0F6C0F81000BB954 /* greenled.jpg */,
 				6809AEF70F6C0DB6000BB954 /* redled.jpg */,
@@ -475,7 +463,6 @@
 				68ADDE97096B723F002324CE /* Frameworks */,
 				68150E281FA8A27800C516C9 /* Set Build Number */,
 				730E88D4E8D2D859A2E46F73 /* [CP] Embed Pods Frameworks */,
-				9FA43F8D23F1BD95E3BFDF64 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -556,14 +543,10 @@
 				6809AEFC0F6C0DB6000BB954 /* driveface.jpg in Resources */,
 				68D291EF1FFE6BE10015B8DC /* DriveWire.sdef in Resources */,
 				68B69B141FF3D28A0062080D /* VirtualScreenWindowController.xib in Resources */,
-				680612D41ADFC85200B1C502 /* CoCo1.png in Resources */,
-				686CA3FB1AE1162500544862 /* Atari.png in Resources */,
 				6809AF030F6C0DB6000BB954 /* eject.wav in Resources */,
 				6809AF040F6C0DB6000BB954 /* insert.wav in Resources */,
 				6809AF050F6C0DB6000BB954 /* redled.jpg in Resources */,
-				680612D51ADFC85200B1C502 /* CoCo2.png in Resources */,
 				6809AF3E0F6C0F81000BB954 /* greenled.jpg in Resources */,
-				680612D61ADFC85200B1C502 /* CoCo3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,21 +607,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DriveWire/Pods-DriveWire-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9FA43F8D23F1BD95E3BFDF64 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DriveWire/Pods-DriveWire-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

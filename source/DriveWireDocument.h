@@ -11,8 +11,7 @@
 
 @property (weak) IBOutlet VirtualDriveJukeBoxView *driveView;
 @property (weak) IBOutlet NSPopUpButton *serialPortButton;
-@property (weak) IBOutlet NSPopUpButton *machineTypePopupButton;
-@property (weak) IBOutlet NSImageView *machineImageView;
+@property (weak) IBOutlet NSPopUpButton *baudRatePopupButton;
 @property (strong) NSWindowController *myWindowController;
 @property (assign) NSInteger lastPortSelected;
 @property (strong) DriveWireServerModel *server;

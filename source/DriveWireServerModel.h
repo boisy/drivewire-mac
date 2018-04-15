@@ -22,7 +22,7 @@
 #import "VirtualScreenWindowController.h"
 
 FOUNDATION_EXPORT NSString *const kDriveWireStatusNotification;
-FOUNDATION_EXPORT NSString *const kMachineTypeSelectedNotification;
+FOUNDATION_EXPORT NSString *const kBaudRateSelectedNotification;
 FOUNDATION_EXPORT NSString *const kSerialPortChangedNotification;
 
 #define DW_DEFAULT_VERSION       3
@@ -82,14 +82,6 @@ FOUNDATION_EXPORT NSString *const kSerialPortChangedNotification;
 
 @end
 
-typedef enum {
-    MachineTypeCoCo1_38_4 = 'C138',
-    MachineTypeCoCo1_57_6 = 'C156',
-    MachineTypeCoCo2_57_6 = 'C257',
-    MachineTypeCoCo3_115_2 = 'C315',
-    MachineTypeAtariLiber809_57_6 = 'At57',
-} MachineType;
-
 /*!
 	@class DriveWireServerModel
 	This class encapsulates the entire DriveWire protocol.
@@ -99,8 +91,6 @@ typedef enum {
 	TBSerialPort			*fPort;
 	NSMutableDictionary     *fSerialPortNames;
 	NSString                *fCurrentPort;
-	
-	MachineType				_machineType;
 
 	NSMutableArray			*driveArray;
 	NSFileHandle			*portDelegate;
@@ -133,6 +123,7 @@ typedef enum {
     NSMutableData           *printBuffer;
 }
 
+@property (assign) NSUInteger baudRate;
 @property (assign) BOOL statState;
 @property (assign) BOOL logState;
 @property (assign) BOOL wirebugState;
@@ -182,10 +173,8 @@ typedef enum {
  */
 - (void)setMemAddress:(u_int16_t)new_address;
 
-- (void)setMachineType:(MachineType)machine;
 - (BOOL)setCommPort:(NSString *)thePort;
 - (NSString *)serialPort;
-- (MachineType)machineType;
 
 - (void)goCoCo;
 

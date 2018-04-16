@@ -230,14 +230,13 @@ static TBSerialManager *fSerialManager = nil;
         savedPort = [coder decodeObjectForKey:@"port"];
         self.statState = [coder decodeBoolForKey:@"statState"];
         self.logState = [coder decodeBoolForKey:@"logState"];
-        NSUInteger br = [coder decodeIntForKey:@"baudRate"]; if (br == 0) { br = 115200; }
+        _baudRate = [coder decodeIntForKey:@"baudRate"]; if (_baudRate == 0) { _baudRate = 115200; }
         
         [self initCommon];
         
         fCurrentPort = nil;
         
         [self setCommPort:savedPort];
-        self.baudRate = br;
     }
     
     return self;
@@ -340,7 +339,7 @@ static TBSerialManager *fSerialManager = nil;
     [self setBaudRate:self.baudRate];  // force the setting of the baud rate
     [fPort setInputLogging:YES];
     [fPort setOutputLogging:YES];
-    [fPort setDTRState:NO];
+    [fPort setDTRState:YES];
     [fPort setHardwareHandshaking:NO];
 
     [fPort setDelegate:self];

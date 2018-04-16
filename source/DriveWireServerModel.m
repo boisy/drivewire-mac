@@ -338,9 +338,9 @@ static TBSerialManager *fSerialManager = nil;
 	fCurrentPort = selectedPort;
 	fPort = newPort;
     [self setBaudRate:self.baudRate];  // force the setting of the baud rate
-    [fPort setInputLogging:true];
-    [fPort setOutputLogging:true];
-    [fPort setDTRState:FALSE];
+    [fPort setInputLogging:YES];
+    [fPort setOutputLogging:YES];
+    [fPort setDTRState:NO];
     [fPort setHardwareHandshaking:NO];
 
     [fPort setDelegate:self];

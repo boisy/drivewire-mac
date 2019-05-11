@@ -139,13 +139,18 @@
     if ([tableColumn.identifier isEqualToString:@"state"])
     {
         result.textField.stringValue = @"Disconnected";
-    
     }
     else
     if ([tableColumn.identifier isEqualToString:@"read"])
     {
         TBLEDView *v = [[result subviews] objectAtIndex:0];
         [v blink];
+    }
+    else
+    if ([tableColumn.identifier isEqualToString:@"port"])
+    {
+        VirtualSerialChannel *channel = [d.server.serialChannels objectAtIndex:row];
+        result.textField.stringValue = [NSString stringWithFormat:@"%ld", channel.port];
     }
 
     // Return the result

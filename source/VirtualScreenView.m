@@ -45,18 +45,128 @@
     }
     
     self.nextCharacterPosition = NSZeroPoint;
+    
+    // clear screen
+    if (self.screenRep == nil)
+    {
+        self.screenRep = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:nil pixelsWide:self.frame.size.width pixelsHigh:self.frame.size.height bitsPerSample:8 samplesPerPixel:4 hasAlpha:YES isPlanar:NO colorSpaceName:NSDeviceRGBColorSpace bytesPerRow:0 bitsPerPixel:32];
+    }
+    
+    NSGraphicsContext *context = [NSGraphicsContext graphicsContextWithBitmapImageRep:self.screenRep];
+    [NSGraphicsContext saveGraphicsState];
+    [NSGraphicsContext setCurrentContext:context];
+    
+    [self.backgroundColor set];
+    NSRect dirtyRect = NSMakeRect(0, 0, self.frame.size.width, self.frame.size.height);
+    NSRectFill(dirtyRect);
+    
+    [NSGraphicsContext restoreGraphicsState];
+
     [self setNeedsDisplay:YES];
+}
+
+- (void)resetScreen;
+{
+    self.backgroundColor = [NSColor greenColor];
+    self.cursorColor = [NSColor blackColor];
+    self.fontColor = [NSColor blackColor];
+    self.shouldDrawCursor = TRUE;
+    [self clearDisplay];
 }
 
 - (void)reset;
 {
     self.screenSize = NSMakeSize(80, 24);
-    self.backgroundColor = [NSColor greenColor];
-    self.cursorColor = [NSColor blackColor];
-    self.fontColor = [NSColor blackColor];
     self.characterProcessor = @selector(nonEscapeCharacter);
     self.incomingBuffer = [NSMutableData new];
-    [self clearDisplay];
+    [self resetScreen];
+}
+
+- (void)drawCursorAtPosition:(NSUInteger)i;
+{
+    if (self.shouldDrawCursor == FALSE)
+    {
+        return;
+    }
+    
+    if (self.screenRep == nil)
+    {
+        self.screenRep = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:nil pixelsWide:self.frame.size.width pixelsHigh:self.frame.size.height bitsPerSample:8 samplesPerPixel:4 hasAlpha:YES isPlanar:NO colorSpaceName:NSDeviceRGBColorSpace bytesPerRow:0 bitsPerPixel:32];
+    }
+    
+    NSGraphicsContext *context = [NSGraphicsContext graphicsContextWithBitmapImageRep:self.screenRep];
+    [NSGraphicsContext saveGraphicsState];
+    [NSGraphicsContext setCurrentContext:context];
+    
+    NSSize charSize = NSMakeSize(self.frame.size.width / self.screenSize.width, self.frame.size.height / self.screenSize.height);
+
+    // draw cursor
+    NSUInteger column = self.nextCharacterPosition.x;
+    NSUInteger row = self.nextCharacterPosition.y;
+    NSRect rectToDraw = NSMakeRect(pixelXPosition(column), pixelYPosition(row), charSize.width, charSize.height);
+    [self.cursorColor setFill];
+    NSRectFill(rectToDraw);
+
+    [NSGraphicsContext restoreGraphicsState];
+}
+
+- (void)eraseCursorAtPosition:(NSUInteger)i;
+{
+    if (self.screenRep == nil)
+    {
+        self.screenRep = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:nil pixelsWide:self.frame.size.width pixelsHigh:self.frame.size.height bitsPerSample:8 samplesPerPixel:4 hasAlpha:YES isPlanar:NO colorSpaceName:NSDeviceRGBColorSpace bytesPerRow:0 bitsPerPixel:32];
+    }
+    
+    NSGraphicsContext *context = [NSGraphicsContext graphicsContextWithBitmapImageRep:self.screenRep];
+    [NSGraphicsContext saveGraphicsState];
+    [NSGraphicsContext setCurrentContext:context];
+    
+    NSSize charSize = NSMakeSize(self.frame.size.width / self.screenSize.width, self.frame.size.height / self.screenSize.height);
+    
+    // erase cursor
+    NSUInteger column = self.nextCharacterPosition.x;
+    NSUInteger row = self.nextCharacterPosition.y;
+    NSRect rectToDraw = NSMakeRect(pixelXPosition(column), pixelYPosition(row), charSize.width, charSize.height);
+    [self.backgroundColor setFill];
+    rectToDraw = NSInsetRect(rectToDraw, -2, -2);
+    NSRectFill(rectToDraw);
+    
+    [NSGraphicsContext restoreGraphicsState];
+}
+
+- (void)drawCharacterAtPosition:(NSUInteger)i
+{
+    if (self.screenRep == nil)
+    {
+        self.screenRep = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:nil pixelsWide:self.frame.size.width pixelsHigh:self.frame.size.height bitsPerSample:8 samplesPerPixel:4 hasAlpha:YES isPlanar:NO colorSpaceName:NSDeviceRGBColorSpace bytesPerRow:0 bitsPerPixel:32];
+    }
+    
+    NSGraphicsContext *context = [NSGraphicsContext graphicsContextWithBitmapImageRep:self.screenRep];
+    [NSGraphicsContext saveGraphicsState];
+    [NSGraphicsContext setCurrentContext:context];
+    
+    NSSize charSize = NSMakeSize(self.frame.size.width / self.screenSize.width, self.frame.size.height / self.screenSize.height);
+    VirtualScreenCharacter *c = [self.screen objectAtIndex:i];
+    [c.backgroundColor setFill];
+    char ch = c.character;
+
+    NSUInteger column = i % (int)self.screenSize.width;
+    NSUInteger row = i / self.screenSize.width;
+    NSRect rectToDraw = NSMakeRect(pixelXPosition(column), pixelYPosition(row), charSize.width, charSize.height);
+    rectToDraw = NSInsetRect(rectToDraw, -2, -2);
+    NSRectFill(rectToDraw);
+        
+    if (ch != 0x00)
+    {
+        NSDictionary *attributes = @{NSFontAttributeName : [NSFont fontWithName:@"Courier New" size:charSize.height * .8],
+                                     NSForegroundColorAttributeName : c.foregroundColor,
+                                     NSBackgroundColorAttributeName : c.backgroundColor,
+                                     NSBaselineOffsetAttributeName : @1.0
+                                     };
+        [[NSString stringWithFormat:@"%c", ch] drawInRect:rectToDraw withAttributes:attributes];
+    }
+
+    [NSGraphicsContext restoreGraphicsState];
 }
 
 - (id)initWithFrame:(NSRect)frame;
@@ -79,13 +189,13 @@
     return self;
 }
 
-- (void)drawRect:(NSRect)dirtyRect {
-
+- (void)updateVirtualScreen:(NSRect)screenRect;
+{
     // draw background color
     NSSize charSize = NSMakeSize(self.frame.size.width / self.screenSize.width, self.frame.size.height / self.screenSize.height);
-
-//    char *bytes = (char *)[self.screenBuffer bytes];
-//    for (int i = 0; i < [self.screenBuffer length]; i++)
+    
+    //    char *bytes = (char *)[self.screenBuffer bytes];
+    //    for (int i = 0; i < [self.screenBuffer length]; i++)
     for (int i = 0; i < self.screenSize.width * self.screenSize.height; i++)
     {
         VirtualScreenCharacter *c = [self.screen objectAtIndex:i];
@@ -93,7 +203,7 @@
         {
             // clear screen
             [c.backgroundColor set];
-            NSRectFill(dirtyRect);
+            NSRectFill(screenRect);
         }
         [c.backgroundColor setFill];
         char ch = c.character;
@@ -104,7 +214,7 @@
             NSRect rectToDraw = NSMakeRect(pixelXPosition(column), pixelYPosition(row), charSize.width, charSize.height);
             
             NSRectFill(rectToDraw);
-
+            
             NSDictionary *attributes = @{NSFontAttributeName : [NSFont fontWithName:@"Courier New" size:10.0],
                                          NSForegroundColorAttributeName : c.foregroundColor,
                                          NSBackgroundColorAttributeName : c.backgroundColor,
@@ -120,7 +230,14 @@
     NSRect rectToDraw = NSMakeRect(pixelXPosition(column), pixelYPosition(row), charSize.width, charSize.height);
     [self.cursorColor setFill];
     NSRectFill(rectToDraw);
-    [super drawRect:dirtyRect];
+}
+
+- (void)drawRect:(NSRect)dirtyRect;
+{
+    if (self.screenRep)
+    {
+        [self.screenRep drawInRect:self.bounds];
+    }
 }
 
 - (void)incrementYPosition;
@@ -175,26 +292,36 @@
 
 - (void)nonEscapeCharacter;
 {
+    NSUInteger location = self.nextCharacterPosition.y * self.screenSize.width + self.nextCharacterPosition.x;
+    
     if (self.nextByte >= 0x20)
     {
-        NSUInteger location = self.nextCharacterPosition.y * self.screenSize.width + self.nextCharacterPosition.x;
         VirtualScreenCharacter *ch = [self.screen objectAtIndex:location];
         ch.foregroundColor = self.fontColor;
         ch.backgroundColor = self.backgroundColor;
         ch.character = self.nextByte;
+        [self drawCharacterAtPosition:location];
         [self incrementXPosition];
+        location = self.nextCharacterPosition.y * self.screenSize.width + self.nextCharacterPosition.x;
+        [self drawCursorAtPosition:location];
         [self setNeedsDisplay:YES];
     }
     else
     {
         switch (self.nextByte)
         {
+            case 0x05:
+                self.characterProcessor = @selector(hex05_1Character);
+                break;
+                
             case 0x0C:
                 [self clearDisplay];
                 break;
                 
             case 0x0D:
+                [self eraseCursorAtPosition:location];
                 [self incrementYPosition];
+                [self drawCursorAtPosition:location];
                 [self setNeedsDisplay:YES];
                 break;
                 
@@ -212,11 +339,78 @@
     }
 }
 
+/* display 1b 20 2 0 0 50 18 20 3 1 */
+- (void)dwsetType;
+{
+    self.characterProcessor = @selector(dwsetX);
+}
+
+- (void)dwsetX;
+{
+    self.characterProcessor = @selector(dwsetY);
+}
+
+- (void)dwsetY;
+{
+    self.characterProcessor = @selector(dwsetWidth);
+}
+
+- (void)dwsetWidth;
+{
+    self.characterProcessor = @selector(dwsetHeight);
+}
+
+- (void)dwsetHeight;
+{
+    self.characterProcessor = @selector(dwsetForeground);
+}
+
+- (void)dwsetForeground;
+{
+    self.characterProcessor = @selector(dwsetBackground);
+}
+
+- (void)dwsetBackground;
+{
+    self.characterProcessor = @selector(dwsetBorder);
+}
+
+- (void)dwsetBorder;
+{
+    self.characterProcessor = @selector(nonEscapeCharacter);
+}
+
+- (void)hex05_1Character;
+{
+    // character following 05
+    switch (self.nextByte)
+    {
+        case 0x20:
+            self.shouldDrawCursor = FALSE;
+            break;
+
+        case 0x21:
+            self.shouldDrawCursor = TRUE;
+            break;
+    }
+
+    self.characterProcessor = @selector(nonEscapeCharacter);
+}
+            
 - (void)escape1Character;
 {
     // character following 1b
     switch (self.nextByte)
     {
+        case 0x20:
+            self.characterProcessor = @selector(dwsetType);
+            break;
+            
+        case 0x24:
+            [self resetScreen];
+            self.characterProcessor = @selector(nonEscapeCharacter);
+            break;
+            
         case 0x32:
             self.characterProcessor = @selector(screenForegroundColor);
             break;
@@ -313,7 +507,6 @@
 
 - (NSUInteger)availableToRead;
 {
-//    return [self.incomingBuffer length];
     return [self.incomingBuffer length];
 }
 
@@ -321,18 +514,6 @@
 {
     u_char result = 0;
     
-#if 0
-    if ([self hasData])
-    {
-        result = *(u_char *)[self.incomingBuffer bytes];
-        [self.incomingBuffer replaceBytesInRange:NSMakeRange(0, 1) withBytes:nil length:0];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kVirtualChannelDataReceivedNotification
-                                                            object:self.model
-                                                          userInfo:@{@"channel" : self}];
-    }
-    
-    return result;
-#endif
     result = *(u_char *)[self.incomingBuffer bytes];
     [self.incomingBuffer replaceBytesInRange:NSMakeRange(0, 1) withBytes:nil length:0];
     

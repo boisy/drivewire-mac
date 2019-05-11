@@ -506,126 +506,6 @@ static TBSerialManager *fSerialManager = nil;
                     
     [self setupWatchdog];
 
-    // Determine next action to take.
-    switch (byte)
-    {
-        case _OP_SERREAD:
-            [self OP_SERREAD];
-            break;
-            
-        case _OP_NOP:
-            [self OP_NOP];
-			break;
-            
-        case _OP_TIME:
-            [self OP_TIME];
-			break;
-            
-        case _OP_PRINT:
-            self.currentState = @selector(OP_PRINT:);
-            break;
-            
-       case _OP_PRINTFLUSH:
-            [self OP_PRINTFLUSH];
-            break;
-          
-		case _OP_INIT:
-            [self OP_INIT];
-            break;
-            
-        case _OP_TERM:
-            [self OP_TERM];
-            break;
-            
-        case _OP_READ:
-            self.currentState = @selector(OP_READ:);
-            break;
-            
-        case _OP_READEX:
-            self.currentState = @selector(OP_READEX:);
-            break;
-            
-        case _OP_REREAD:
-            self.currentState = @selector(OP_REREAD:);
-            break;
-			
-        case _OP_REREADEX:
-		case '?':
-            self.currentState = @selector(OP_REREADEX:);
-            break;
-			
-        case _OP_WRITE:
-            self.currentState = @selector(OP_WRITE:);
-            break;
-            
-        case _OP_REWRITE:
-            self.currentState = @selector(OP_REWRITE:);
-          break;
-			
-        case _OP_GETSTAT:
-            self.currentState = @selector(OP_GETSTAT:);
-            break;
-			
-        case _OP_SETSTAT:
-            self.currentState = @selector(OP_SETSTAT:);
-            break;
-			
-        case _OP_RESET1:
-        case _OP_RESET2:
-        case _OP_RESET3:
-            [self OP_RESET];
-			break;
-			
-		case _OP_NAMEOBJ_MOUNT:
-            self.currentState = @selector(OP_NAMEOBJ_MOUNT:);
-            break;
-			
-        case _OP_SERINIT:
-            self.currentState = @selector(OP_SERINIT:);
-            break;
-            
-        case _OP_SERTERM:
-            self.currentState = @selector(OP_SERTERM:);
-            break;
-            
-        case _OP_SERGETSTAT:
-            self.currentState = @selector(OP_SERGETSTAT:);
-            break;
-            
-        case _OP_SERSETSTAT:
-            self.currentState = @selector(OP_SERSETSTAT:);
-            break;
-            
-        case _OP_SERREADM:
-            self.currentState = @selector(OP_SERREADM:);
-            break;
-            
-        case _OP_SERWRITE:
-            self.currentState = @selector(OP_SERWRITE:);
-            break;
-            
-        case _OP_SERWRITEM:
-            self.currentState = @selector(OP_SERWRITEM:);
-            break;
-            
-		case _OP_DWINIT:
-            self.currentState = @selector(OP_DWINIT:);
-			break;
-			
-// WireBug Section
-		case _OP_WIREBUG_MODE:
-            self.currentState = @selector(OP_WIREBUG_MODE:);
-            break;
-#if 0
-			
-        case _OP_RESYNC:
-#endif
-        default:
-            // Resync in case of bad data transfer
-            [self OP_RESYNC];
-            break;
-    }
-    
     if (byte >= 0x80 && byte <= 0x8E)
     {
         // FASTWRITE serial
@@ -639,7 +519,129 @@ static TBSerialManager *fSerialManager = nil;
         self.fastwriteChannel = byte & 0x0F;
         self.currentState = @selector(OP_FASTWRITE_VirtualScreen:);
     }
-
+    else
+    {
+        // Determine next action to take.
+        switch (byte)
+        {
+            case _OP_SERREAD:
+                [self OP_SERREAD];
+                break;
+                
+            case _OP_NOP:
+                [self OP_NOP];
+                break;
+                
+            case _OP_TIME:
+                [self OP_TIME];
+                break;
+                
+            case _OP_PRINT:
+                self.currentState = @selector(OP_PRINT:);
+                break;
+                
+           case _OP_PRINTFLUSH:
+                [self OP_PRINTFLUSH];
+                break;
+              
+            case _OP_INIT:
+                [self OP_INIT];
+                break;
+                
+            case _OP_TERM:
+                [self OP_TERM];
+                break;
+                
+            case _OP_READ:
+                self.currentState = @selector(OP_READ:);
+                break;
+                
+            case _OP_READEX:
+                self.currentState = @selector(OP_READEX:);
+                break;
+                
+            case _OP_REREAD:
+                self.currentState = @selector(OP_REREAD:);
+                break;
+                
+            case _OP_REREADEX:
+            case '?':
+                self.currentState = @selector(OP_REREADEX:);
+                break;
+                
+            case _OP_WRITE:
+                self.currentState = @selector(OP_WRITE:);
+                break;
+                
+            case _OP_REWRITE:
+                self.currentState = @selector(OP_REWRITE:);
+              break;
+                
+            case _OP_GETSTAT:
+                self.currentState = @selector(OP_GETSTAT:);
+                break;
+                
+            case _OP_SETSTAT:
+                self.currentState = @selector(OP_SETSTAT:);
+                break;
+                
+            case _OP_RESET1:
+            case _OP_RESET2:
+            case _OP_RESET3:
+                [self OP_RESET];
+                break;
+                
+            case _OP_NAMEOBJ_MOUNT:
+                self.currentState = @selector(OP_NAMEOBJ_MOUNT:);
+                break;
+                
+            case _OP_SERINIT:
+                self.currentState = @selector(OP_SERINIT:);
+                break;
+                
+            case _OP_SERTERM:
+                self.currentState = @selector(OP_SERTERM:);
+                break;
+                
+            case _OP_SERGETSTAT:
+                self.currentState = @selector(OP_SERGETSTAT:);
+                break;
+                
+            case _OP_SERSETSTAT:
+                self.currentState = @selector(OP_SERSETSTAT:);
+                break;
+                
+            case _OP_SERREADM:
+                self.currentState = @selector(OP_SERREADM:);
+                break;
+                
+            case _OP_SERWRITE:
+                self.currentState = @selector(OP_SERWRITE:);
+                break;
+                
+            case _OP_SERWRITEM:
+                self.currentState = @selector(OP_SERWRITEM:);
+                break;
+                
+            case _OP_DWINIT:
+                self.currentState = @selector(OP_DWINIT:);
+                break;
+                
+    // WireBug Section
+            case _OP_WIREBUG_MODE:
+                self.currentState = @selector(OP_WIREBUG_MODE:);
+                break;
+    #if 0
+                
+            case _OP_RESYNC:
+    #endif
+            default:
+                // Resync in case of bad data transfer
+                [self OP_RESYNC];
+                break;
+        }
+    }
+    
     return 1;
 }
 
@@ -1529,6 +1531,9 @@ static TBSerialManager *fSerialManager = nil;
         
         switch (statCode)
         {
+            case 0x1b: // SS.Relea
+                break;
+
             case 0x28: // SS.ComSt
                 // gotta read 26 more bytes for SS.ComSt
                 self.currentState = @selector(OP_SERSETSTAT_SS_COMST:);
@@ -1543,7 +1548,7 @@ static TBSerialManager *fSerialManager = nil;
                 }
                 else
                 {
-                    VirtualSerialChannel *channel = [self channelWithNumber:channelNumber - 1];
+                    VirtualSerialChannel *channel = [self channelWithNumber:channelNumber];
                     [channel open];
                     [[NSNotificationCenter defaultCenter] postNotificationName:kVirtualChannelConnectedNotification
                                                                         object:self
@@ -1561,7 +1566,7 @@ static TBSerialManager *fSerialManager = nil;
                 }
                 else
                 {
-                    VirtualSerialChannel *channel = [self channelWithNumber:channelNumber - 1];
+                    VirtualSerialChannel *channel = [self channelWithNumber:channelNumber];
                     [channel close];
                     [[NSNotificationCenter defaultCenter]
                         postNotificationName:kVirtualChannelDisconnectedNotification
@@ -1595,13 +1600,13 @@ static TBSerialManager *fSerialManager = nil;
         {
             if (length == 1)
             {
-                response[0] = (u_char)([channel number] + 1);
+                response[0] = (u_char)([channel number]);
                 response[1] = [channel getByte];
                 channel.waitCounter = 0;
             }
             else
             {
-                response[0] = (u_char)([channel number] + 1) | 0x10;
+                response[0] = (u_char)([channel number]) | 0x10;
                 response[1] = length > 16 ? 16 : (u_int8_t)length;
                 channel.waitCounter = 0;
             }
@@ -1628,13 +1633,13 @@ static TBSerialManager *fSerialManager = nil;
         {
             if (length > 0)
             {
-                response[0] = (u_char)([screen number] + 1) | 0x40;
+                response[0] = (u_char)(windowController.number) | 0x40;
                 response[1] = [screen getByte];
                 screen.waitCounter = 0;
             }
             else
             {
-                response[0] = (u_char)([screen number] + 1) | 0x60;
+                response[0] = (u_char)(windowController.number) | 0x60;
                 response[1] = length > 16 ? 16 : (u_int8_t)length;
                 screen.waitCounter = 0;
             }
@@ -1648,7 +1653,7 @@ static TBSerialManager *fSerialManager = nil;
             {
                 screen.shouldClose = FALSE;
                 response[0] = 0x60;
-                response[1] = screen.number;
+                response[1] = windowController.number;
             }
         }
     }
@@ -1675,7 +1680,7 @@ static TBSerialManager *fSerialManager = nil;
         
         NSUInteger channelNumber = bytes[0];
         
-        VirtualSerialChannel *channel = [self channelWithNumber:channelNumber - 1];
+        VirtualSerialChannel *channel = [self channelWithNumber:channelNumber];
         [channel putByte:bytes[1]];
     }
     
@@ -1702,7 +1707,7 @@ static TBSerialManager *fSerialManager = nil;
         NSUInteger channelNumber = bytes[0];
         NSUInteger bytesToRead = bytes[1];
         
-        VirtualSerialChannel *channel = [self channelWithNumber:channelNumber - 1];
+        VirtualSerialChannel *channel = [self channelWithNumber:channelNumber];
         NSData *dataToRead = [channel getNumberOfBytes:bytesToRead];
 
         [portDelegate writeData:dataToRead];
@@ -1774,7 +1779,7 @@ static TBSerialManager *fSerialManager = nil;
         
         NSUInteger channelNumber = self.serwritemChannelNumber;
         
-        VirtualSerialChannel *channel = [self channelWithNumber:channelNumber - 1];
+        VirtualSerialChannel *channel = [self channelWithNumber:channelNumber];
         [channel putBytes:bytes length:result];
         
         // Update log
@@ -1796,7 +1801,7 @@ static TBSerialManager *fSerialManager = nil;
     // We read 1 bytes into this buffer (data byte)
     result = 1;
     
-    VirtualSerialChannel *channel = [self channelWithNumber:self.fastwriteChannel - 1];
+    VirtualSerialChannel *channel = [self channelWithNumber:self.fastwriteChannel];
     [channel putByte:bytes[0]];
     
     // Update log
@@ -1817,7 +1822,7 @@ static TBSerialManager *fSerialManager = nil;
     // We read 1 bytes into this buffer (data byte)
     result = 1;
     
-    VirtualScreenWindowController *screen = [self screenWithNumber:self.fastwriteChannel - 1];
+    VirtualScreenWindowController *screen = [self screenWithNumber:self.fastwriteChannel];
     [screen putByte:bytes[0]];
     
     // Update log

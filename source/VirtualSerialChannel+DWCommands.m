@@ -45,9 +45,9 @@
             }
             
         }
-        else if( [parameter isInteger] && (requestedSlot >= 0 && requestedSlot < [serialArray count]) )
+        else if( [parameter isInteger] && (requestedSlot > 0 && requestedSlot < [serialArray count]) )
         {
-            VirtualSerialChannel *channel = [serialArray objectAtIndex:requestedSlot];
+            VirtualSerialChannel *channel = [serialArray objectAtIndex:requestedSlot - 1];
             
             NSString *line = [NSString stringWithFormat:@"%5lu  %@\x0D\x0A", (unsigned long)channel.number, [channel modeName]];
             [self.incomingBuffer appendData:[line dataUsingEncoding:NSASCIIStringEncoding]];

@@ -197,7 +197,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2A37F4AAFDCFA73011CA2CEA /* DriveWire */ = {
+		2A37F4AAFDCFA73011CA2CEA = {
 			isa = PBXGroup;
 			children = (
 				68C4C9501F98BB150077A72D /* README.md */,
@@ -503,9 +503,10 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
+				English,
 				en,
 			);
-			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* DriveWire */;
+			mainGroup = 2A37F4AAFDCFA73011CA2CEA;
 			productRefGroup = 19C28FB0FE9D524F11CA2CBB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -591,7 +592,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-DriveWire/Pods-DriveWire-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-DriveWire/Pods-DriveWire-frameworks.sh",
 				"${PODS_ROOT}/Sparkle/Sparkle.framework",
 				"${PODS_ROOT}/Sparkle/Sparkle.framework.dSYM",
 				"${PODS_ROOT}/TeeBoy/TeeBoy.framework",
@@ -606,7 +607,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DriveWire/Pods-DriveWire-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DriveWire/Pods-DriveWire-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

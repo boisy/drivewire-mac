@@ -22,7 +22,7 @@
 //  $Id: VirtualDriveView.m,v 1.1 2009/03/14 16:27:43 boisy Exp $
 //------------------------------------------------------------------------------------------------*/
 
-#import <VirtualDriveView.h>
+#import "VirtualDriveView.h"
 
 
 @implementation VirtualDriveView

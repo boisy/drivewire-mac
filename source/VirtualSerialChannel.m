@@ -341,13 +341,17 @@ NSString *const kVirtualChannelEjectDiskNotification = @"com.drivewire.VirtualCh
     {
         self.model = model;
         self.number = number;
-        self.port = port;
         
         self.serverSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
         
         NSError *error = nil;
-        [self.serverSocket acceptOnPort:self.port error:&error];
-        
+
+        do {
+            [self.serverSocket acceptOnPort:port++ error:&error];
+        } while (error != nil && error.code == 48);
+
+        self.port = port - 1;
+
         self.telnetCommands = [NSData dataWithBytes:"\xFF\xFB\x01\xFF\xFB\x03" length:6];
     }
     
@@ -356,6 +360,7 @@ NSString *const kVirtualChannelEjectDiskNotification = @"com.drivewire.VirtualCh
 
 - (void)dealloc;
 {
+    [self close];
 }
 
 - (NSString *)modeName;

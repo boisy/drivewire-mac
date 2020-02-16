@@ -93,7 +93,7 @@
     [self setFrame: myFrame];
 #endif
 
-    TBDebug(@"view: %@, frame: %@, my frame: %@", view, NSStringFromRect([view frame]), NSStringFromRect([self frame]));
+    BGPDebug(@"view: %@, frame: %@, my frame: %@", view, NSStringFromRect([view frame]), NSStringFromRect([self frame]));
 }
 #endif
 

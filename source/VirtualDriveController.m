@@ -78,7 +78,7 @@
 {
 	if ([NSBundle loadNibNamed:@"VirtualDriveView" owner:self] == NO)
 	{
-		TBDebug(@"We've got a load Nib problem\n");
+		BGPDebug(@"We've got a load Nib problem\n");
 	}
    
     // set ourself as the delegate of the model
@@ -162,7 +162,7 @@
 {
     BOOL result = NO;
     
-	TBInfo(@"Inserting Cartridge");
+	BGPInfo(@"Inserting Cartridge");
 	
 	if (cartridge != nil)
 	{
@@ -182,7 +182,7 @@
 
 - (IBAction)ejectCartridge:(id)object
 {
-	TBInfo(@"Ejecting Cartridge");
+	BGPInfo(@"Ejecting Cartridge");
 	
 	[model ejectCartridge];
 	[driveDoor setHidden:YES];
@@ -191,7 +191,7 @@
 
 - (IBAction)resetCartridge:(id)object
 {
-    TBInfo(@"Resetting Cartridge");
+    BGPInfo(@"Resetting Cartridge");
     
     [model resetCartridge];
 }
@@ -207,14 +207,14 @@
 
 - (NSData *)readSectors:(uint32_t)lsn forCount:(uint32_t)count
 {
-	TBDebug(@"readSectors LSN[%d] Count[%d]", lsn, count);
+	BGPDebug(@"readSectors LSN[%d] Count[%d]", lsn, count);
 	
 	return [model readSectors:lsn forCount:count];
 }
 
 - (void)writeSectors:(uint32_t)lsn forCount:(uint32_t)count sectors:(NSData *)sectors
 {
-	TBDebug(@"writeSectors LSN[%d] Count[%d]", lsn, count);
+	BGPDebug(@"writeSectors LSN[%d] Count[%d]", lsn, count);
 	
     [model writeSectors:lsn forCount:count withData:sectors];
 }

@@ -41,7 +41,7 @@
     if (self = [super init])
 	{
 		// All of our initialization is done in windowControllerDidLoadNib
-        self.log = [TBLog sharedLog];
+        self.log = [BGPLog sharedLog];
 	}
 
     return self;
@@ -103,7 +103,7 @@
     [super windowControllerDidLoadNib:aController];
 	
     // Request the array of ports from the Document Model	
-	NSMutableDictionary *portNames = [[TBSerialManager defaultManager] availablePorts] ;
+	NSMutableDictionary *portNames = [[BGPSerialManager defaultManager] availablePorts] ;
 
 	// Remove all items from the port button
 	[self.serialPortButton removeAllItems];
@@ -120,7 +120,7 @@
 
 		while ((n = [e nextObject]))
 		{
-			TBDebug(@"%@ is available\n", n);
+			BGPDebug(@"%@ is available\n", n);
 			[self.serialPortButton addItemWithTitle:n];
 			if (currentPort != nil && [currentPort compare:n] == NSOrderedSame)
 			{
@@ -153,7 +153,7 @@
 		// Add ourself as an observer of cartridge insert/eject messages for each drive
 		[nc addObserver:self selector:@selector(driveNotification:) name:@"cartridgeWasInserted" object:[driveArray objectAtIndex:i]];
 		[nc addObserver:self selector:@selector(driveNotification:) name:@"cartridgeWasEjected" object:[driveArray objectAtIndex:i]];
-		TBDebug(@"Observing for object: 0x%@", [driveArray objectAtIndex:i]);
+		BGPDebug(@"Observing for object: 0x%@", [driveArray objectAtIndex:i]);
 	}
     
     [nc addObserver:self
@@ -242,8 +242,15 @@
 
 - (void)portChanged:(NSNotification *)note;
 {
-    TBSerialPort *p = [[note userInfo] objectForKey:@"port"];
-    [self.serialPortButton selectItemWithTitle:p.serviceName];
+    BGPSerialPort *p = [[note userInfo] objectForKey:@"port"];
+    if ([p isKindOfClass:[NSNull class]])
+    {
+        [self.serialPortButton selectItemWithTitle:@"No Device"];
+    }
+    else
+    {
+        [self.serialPortButton selectItemWithTitle:p.serviceName];
+    }
     [self updateUIComponents];
 }
 

@@ -7,7 +7,7 @@
 
 #import "VirtualSerialTableViewController.h"
 #import "DriveWireDocument.h"
-#import <TeeBoy/TBLEDView.h>
+#import "BGPLEDView.h"
 
 @implementation VirtualSerialTableViewController
 
@@ -46,7 +46,7 @@
                                      viewAtColumn:2
                                      row:channel.number - 1
                                      makeIfNecessary:NO];
-        TBLEDView *v = [[selectedCell subviews] objectAtIndex:0];
+        BGPLEDView *v = [[selectedCell subviews] objectAtIndex:0];
         [v blink];
     });
 }
@@ -59,7 +59,7 @@
                                      viewAtColumn:3
                                      row:channel.number - 1
                                      makeIfNecessary:NO];
-        TBLEDView *v = [[selectedCell subviews] objectAtIndex:0];
+        BGPLEDView *v = [[selectedCell subviews] objectAtIndex:0];
         [v blink];
     });
 }
@@ -143,7 +143,7 @@
     else
     if ([tableColumn.identifier isEqualToString:@"read"])
     {
-        TBLEDView *v = [[result subviews] objectAtIndex:0];
+        BGPLEDView *v = [[result subviews] objectAtIndex:0];
         [v blink];
     }
     else

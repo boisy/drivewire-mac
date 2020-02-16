@@ -1,45 +1,26 @@
-/*--------------------------------------------------------------------------------------------------
-//
-//   File Name   :   BGPSerialManager.h
-//
-//   Description :   Serial manager.
-//
 //--------------------------------------------------------------------------------------------------
 //
-//  Copyright (c) 2007 Tee-Boy
+//  Copyright (c) 2007 Boisy G. Pitre
 //
 //  This source code and specific concepts contained herein are Confidential
-//  Information and Property of Tee-Boy.
-//  Distribution is prohibited without written permission of Tee-Boy.
+//  Information and Property of Boisy G. Pitre.
+//  Distribution is prohibited without written permission of Boisy G. Pitre.
 //
 //--------------------------------------------------------------------------------------------------
-//
-//  Tee-Boy                                http://www.tee-boy.com/
-//  441 Saint Paul Avenue
-//  Opelousas, LA  70570                   info@tee-boy.com
-//
-//--------------------------------------------------------------------------------------------------
-//  $Id: BGPSerialManager.h,v 1.2 2009/10/22 23:44:11 boisy Exp $
-//------------------------------------------------------------------------------------------------*/
+
 
 /*!
 	@header BGPSerialManager.h
 	@copyright BP
-	@abstract
-	@discussion
+	@abstract Serial device manager class.
+	@discussion BGPSerialManager manages the serial devices on a system.
 	@updated 2007-06-25
  */
 
 #import <Foundation/Foundation.h>
 
-#include <unistd.h>
-#include <fcntl.h>
-#include <errno.h>
-#include <paths.h>
-#include <termios.h>
-#include <sysexits.h>
-#include <sys/param.h>
-#include "BGPSerialPort.h"
+#import "BGPLog.h"
+#import "BGPSerialPort.h"
 
 	
 /*!
@@ -51,9 +32,15 @@
 {
 	NSMutableDictionary		*portList;
 	Boolean					allowedToRun;
-	NSLock					*serialLock;
 }
 
+
+/*!
+ @method defaultManager
+ @abstract Returns a global, default manager
+ @result The pointer to the initialized manager (same for all calls).
+ */
++ (BGPSerialManager *)defaultManager;
 
 /*!
 	@method init
@@ -93,19 +80,22 @@
 	@discussion Reserving a serial port marks that port as being in use. It
 	cannot be reserved again until it is released with <i>releasePort</i>.
 	If the passed port name is already reserved, then <i>nil</i> is returned.
+    The port's owner is marked, but the port is not opened upon reserve.
 	@param name Pointer to the port name to reserve.
 	@param object Pointer to the object which will "own" the port.
+	@param error The address of a pointer to an error object.
 	@result id of the port if it was properly reserved; nil if not.
  */
-- (BGPSerialPort *)reservePort:(NSString *)name forOwner:(id)object;
+- (BGPSerialPort *)reservePort:(NSString *)name forOwner:(id)object error:(NSError **)error;
 
 
 /*!
 	@method releasePort
 	@abstract Releases a previously reserved port.
 	@discussion This method will release a previously reserved port so that
-	it can be claimed by another thread.  If the passed port name is already
+	it can be claimed by another object.  If the passed port name is already
 	released, then this method does nothing.
+	If the port was opened, it is closed upon release.
 	@param name Pointer to the port name to release.
 	@result YES if the port was properly released; NO if not.
  */
@@ -118,11 +108,27 @@
 	@discussion Applications that use serial ports are typically interested
 	in allowing the user to select from a list of available ports on the
 	system. This method returns an NSDictionary that contains key/value
-	pairs of the port name/device name of each serial port on the system,
-	whether they are reserved or not.
+	pairs of the port name/BGPSerialPort of non-reserved serial ports on the system.
 	@result A dictionary containing the port name as key and device name as
-	value.
-*/
-+ (NSMutableDictionary *)availablePorts;
+	value EXCEPT for Bluetooth-PDA-Sync and Bluetooth-Modem. Those two are
+	stripped out.
+ */
+- (NSMutableDictionary *)availablePorts;
+
+/*!
+ @method findPortThatRespondsWith:toMessage:withBaudRate:withinTimeInterval:
+ @abstract Returns the port that has a specific response to a message at a specified baudrate within a specific time
+ @discussion This method attempts to locate a specific port that will respond
+ to a message. Use this method when you want to find a port that is connected
+ to a unique piece of hardware.
+ Note that if a port is not open, it will be scanned, even if it is reserved.
+ @result A dictionary containing the port name as key and device name as
+ value EXCEPT for Bluetooth-PDA-Sync and Bluetooth-Modem. Those two are
+ stripped out.
+ */
+- (NSString *)findPortThatRespondsWith:(NSData *)response
+							 toMessage:(NSData *)message 
+						  withBaudRate:(NSUInteger)baudRate
+					withinTimeInterval:(NSTimeInterval)timeInterval;
 
 @end

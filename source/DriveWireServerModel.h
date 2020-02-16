@@ -15,8 +15,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <TeeBoy/TBSerialPort.h>
-#import <TeeBoy/TBSerialManager.h>
+#import "BGPSerialPort.h"
+#import "BGPSerialManager.h"
 #import "VirtualDriveController.h"
 #import "VirtualSerialChannel.h"
 #import "VirtualScreenWindowController.h"
@@ -86,9 +86,9 @@ FOUNDATION_EXPORT NSString *const kSerialPortChangedNotification;
 	@class DriveWireServerModel
 	This class encapsulates the entire DriveWire protocol.
 */
-@interface DriveWireServerModel : NSObject
+@interface DriveWireServerModel : NSObject <BGPSerialPortDelegate>
 {
-	TBSerialPort			*fPort;
+	BGPSerialPort			*fPort;
 	NSMutableDictionary     *fSerialPortNames;
 	NSString                *fCurrentPort;
 

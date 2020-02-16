@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------------------------------------------
 //
-//   File Name   :   TBSerialManager.m
+//   File Name   :   BGPSerialManager.m
 //
 //   Description :   Serial port manager.
 //
@@ -19,24 +19,24 @@
 //  Opelousas, LA  70570                   info@tee-boy.com
 //
 //--------------------------------------------------------------------------------------------------
-//  $Id: TBSerialManager.m,v 1.3 2015/04/08 12:09:58 boisy Exp $
+//  $Id: BGPSerialManager.m,v 1.3 2015/04/08 12:09:58 boisy Exp $
 //------------------------------------------------------------------------------------------------*/
 /*!
-	@header TBSerialManager.h
+	@header BGPSerialManager.h
 	@copyright BP
 	@updated 2005-05-29
 	@meta http-equiv=”refresh” content=”0;http://www.apple.com”
  */
 
 
-#import "TBSerialManager.h"
+#import "BGPSerialManager.h"
 #import <IOKit/serial/IOSerialKeys.h>
 
 #include <sys/param.h>
 #include <sysexits.h>
 #include <pthread.h>
 
-@implementation TBSerialManager
+@implementation BGPSerialManager
 
 - (id)init;
 {
@@ -50,22 +50,22 @@
 		portList = [[NSMutableDictionary alloc] init];
 		
 		// get an dictionary of all ports and their device names.
-        portsISee = [[TBSerialManager availablePorts] retain];
+        portsISee = [[BGPSerialManager availablePorts] retain];
 
 		oEnumerator = [portsISee objectEnumerator];
 		kEnumerator = [portsISee keyEnumerator];
 
-		// sift through each port and create a TBSerialPort
+		// sift through each port and create a BGPSerialPort
 		while ((kValue = [kEnumerator nextObject]))
 		{
-			TBSerialPort *port;
+			BGPSerialPort *port;
 			
 			oValue = [oEnumerator nextObject];
 
 #ifdef DEBUG
 			NSLog(@"Device name '%@' for port '%@'", oValue, kValue);
 #endif
-			port = [[TBSerialPort alloc] initWithDeviceName:oValue serviceName:kValue];
+			port = [[BGPSerialPort alloc] initWithDeviceName:oValue serviceName:kValue];
 			[portList setValue:port forKey:kValue];
 			[port release];
 		}
@@ -79,7 +79,7 @@
 - (void)dealloc;
 {
 	NSEnumerator *e = [portList objectEnumerator];
-	TBSerialPort *p;
+	BGPSerialPort *p;
 	
 	while ((p = [e nextObject]))
 	{
@@ -105,7 +105,7 @@
 
 - (BOOL)isPortAvailable:(NSString *)name;
 {
-	TBSerialPort *port = [portList objectForKey:name];
+	BGPSerialPort *port = [portList objectForKey:name];
 	
 	if ([port owner] == nil)
 	{
@@ -118,10 +118,10 @@
 #pragma mark -
 #pragma mark Action methods
 
-- (TBSerialPort *)reservePort:(NSString *)name forOwner:(id)object;
+- (BGPSerialPort *)reservePort:(NSString *)name forOwner:(id)object;
 {
 	NSError *error = nil;
-	TBSerialPort *port = [portList objectForKey:name];
+	BGPSerialPort *port = [portList objectForKey:name];
 	
 	if ([port owner] == nil)
 	{
@@ -140,7 +140,7 @@
 
 - (BOOL)releasePort:(NSString *)name;
 {
-	TBSerialPort *port = [portList objectForKey:name];
+	BGPSerialPort *port = [portList objectForKey:name];
 	
 	return [port closePort];
 }

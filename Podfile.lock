@@ -1,24 +1,29 @@
 PODS:
   - CocoaAsyncSocket (7.6.3)
-  - Sparkle (1.21.3)
-  - TeeBoy (4.0.312)
+  - CocoaLumberjack (3.4.2):
+    - CocoaLumberjack/Default (= 3.4.2)
+    - CocoaLumberjack/Extensions (= 3.4.2)
+  - CocoaLumberjack/Default (3.4.2)
+  - CocoaLumberjack/Extensions (3.4.2):
+    - CocoaLumberjack/Default
+  - Sparkle (1.23.0)
 
 DEPENDENCIES:
   - CocoaAsyncSocket
+  - CocoaLumberjack
   - Sparkle
-  - TeeBoy
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - CocoaAsyncSocket
+    - CocoaLumberjack
     - Sparkle
-    - TeeBoy
 
 SPEC CHECKSUMS:
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
-  Sparkle: 3f75576db8b0265adef36c43249d747f22d0b708
-  TeeBoy: e22f7985dc49cb7168372f07b17bf30532a14b9e
+  CocoaLumberjack: db7cc9e464771f12054c22ff6947c5a58d43a0fd
+  Sparkle: 55b1a87ba69d56913375a281546b7c82dec95bb0
 
-PODFILE CHECKSUM: 5afcb2b249d499cc86c775bd8e6e78f27a5f9148
+PODFILE CHECKSUM: 116ede906adf2ee42e22e20a9b36e0466615d20f
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.8.4

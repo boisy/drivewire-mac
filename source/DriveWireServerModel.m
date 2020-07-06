@@ -43,7 +43,7 @@ NSString *const kSerialPortChangedNotification = @"com.drivewire.SerialPortChang
 
 #define MAX_TIME_BEFORE_RESET 0.5
 
-static TBSerialManager *fSerialManager = nil;
+static BGPSerialManager *fSerialManager = nil;
 
 
 #pragma mark -
@@ -146,11 +146,11 @@ static TBSerialManager *fSerialManager = nil;
     
     if (fSerialManager == nil)
     {
-        fSerialManager = [[TBSerialManager alloc] init];		
+        fSerialManager = [[BGPSerialManager alloc] init];		
     }
     
     // Set up the devices
-    fSerialPortNames = [[TBSerialManager defaultManager] availablePorts];
+    fSerialPortNames = [[BGPSerialManager defaultManager] availablePorts];
     
     // Set up state variables
     [self resetState:nil];
@@ -188,7 +188,7 @@ static TBSerialManager *fSerialManager = nil;
 	{
 		int32_t i;
         
-        TBDebug(@"DriveWireServerModel initWithDocument:%@ version:%d", document, versionNumber);
+        BGPDebug(@"DriveWireServerModel initWithDocument:%@ version:%d", document, versionNumber);
         
         // Allocate our array of drives
 		driveArray = [[NSMutableArray alloc] init];
@@ -257,7 +257,7 @@ static TBSerialManager *fSerialManager = nil;
 {
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     
-    TBDebug(@"DriveWireServerModel dealloc");
+    BGPDebug(@"DriveWireServerModel dealloc");
     
     // Remove ourself as observer from any notifications
     [nc removeObserver:self];
@@ -299,7 +299,7 @@ static TBSerialManager *fSerialManager = nil;
 {
     BOOL result = FALSE;
     
-	TBSerialPort *newPort;
+	BGPSerialPort *newPort;
 	
 	// If we're asked to set the same serial port we have set, return YES
 	if ([selectedPort compare:fCurrentPort] == NSOrderedSame)
@@ -313,7 +313,11 @@ static TBSerialManager *fSerialManager = nil;
 		[fSerialManager releasePort:fCurrentPort];
 		fCurrentPort = nil;
 		
-		return YES;
+        [[NSNotificationCenter defaultCenter] postNotificationName:kSerialPortChangedNotification
+                                                            object:self
+                                                          userInfo:@{@"port" : [NSNull null]}];
+
+        return YES;
 	}
 	
 	// If the port passed is not available, return NO
@@ -337,9 +341,7 @@ static TBSerialManager *fSerialManager = nil;
 	fCurrentPort = selectedPort;
 	fPort = newPort;
     [self setBaudRate:self.baudRate];  // force the setting of the baud rate
-    [fPort setInputLogging:YES];
-    [fPort setOutputLogging:YES];
-    [fPort setDTRState:YES];
+    [fPort setPortUsingDictionary:@{kBGPSerialPortDTR : @TRUE}];
     [fPort setHardwareHandshaking:NO];
 
     [fPort setDelegate:self];
@@ -365,7 +367,7 @@ static TBSerialManager *fSerialManager = nil;
 - (void)setPortDelegate:(id)handler
 {
 	portDelegate = handler;
-	TBDebug(@"Now listening for data from device %@\n", [handler serviceName]);
+	BGPDebug(@"Now listening for data from device %@\n", [handler serviceName]);
 }
 
 - (NSMutableArray *)driveArray
@@ -465,8 +467,8 @@ static TBSerialManager *fSerialManager = nil;
 #pragma mark -
 #pragma mark Data Processing Routines
 
-// TBSerialPort data callback method
-- (void)serialPort:(TBSerialPort *)sender didReceiveData:(NSData *)serialData;
+// BGPSerialPort data callback method
+- (void)serialPort:(BGPSerialPort *)sender didReceiveData:(NSData *)serialData;
 {
     NSUInteger bytesConsumed = 0;
     
@@ -985,7 +987,7 @@ static TBSerialManager *fSerialManager = nil;
             }
             else
             {
-               TBDebug(@"Writing zero bytes sector");
+               BGPDebug(@"Writing zero bytes sector");
                 // If [sectorBuffer bytes] == NULL, then the DSK manager
                 // read past the end of the file.  This is ok because
                 // OS-9's view of the disk may be larger than the physical
@@ -2137,12 +2139,20 @@ static TBSerialManager *fSerialManager = nil;
 - (void)handleChangePortCommand:(NSScriptCommand *)command;
 {
     NSString *portName = [command.arguments objectForKey:@"port"];
-    
-    BOOL result = [self setCommPort:portName];
-    if (result == NO)
+
+    if ([portName isEqualToString:@""])
     {
-        [command setScriptErrorNumber:-9002];
-        [command setScriptErrorString:@"Serial port doesn't exist."];
+        [self setCommPort:@"No Device"];
+    }
+
+    else
+    {
+        BOOL result = [self setCommPort:portName];
+        if (result == NO)
+        {
+            [command setScriptErrorNumber:-9002];
+            [command setScriptErrorString:@"Serial port doesn't exist."];
+        }
     }
 }
 

@@ -15,7 +15,7 @@
 @property (strong) NSWindowController *myWindowController;
 @property (assign) NSInteger lastPortSelected;
 @property (strong) DriveWireServerModel *server;
-@property (strong) TBLog *log;
+@property (strong) BGPLog *log;
 @property (assign) IBOutlet DebuggerWindowController *debuggerWindowController;
 @property (assign) IBOutlet PrinterWindowController *printerWindowController;
 

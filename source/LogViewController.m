@@ -18,14 +18,14 @@
     [super viewWillAppear];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(update:)
-                                                 name:kTBLogNotification
+                                                 name:kBGPLogNotification
                                                object:nil];
 }
 
 - (void)viewWillDisappear;
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:kTBLogNotification
+                                                    name:kBGPLogNotification
                                                   object:nil];
 }
 

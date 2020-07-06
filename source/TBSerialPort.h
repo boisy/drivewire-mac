@@ -15,9 +15,9 @@
 //--------------------------------------------------------------------------------------------------
 
 /*!
- @header TBSerialPort.h
+ @header BGPSerialPort.h
  @abstract Header file for Serial Port access
- @discussion Include TBSerialPort.h to access the class for serial port access.
+ @discussion Include BGPSerialPort.h to access the class for serial port access.
  @copyright Tee-Boy
  @updated 2007-06-25
  */
@@ -28,22 +28,22 @@
 #include <sys/ioctl.h>
 #include <termios.h>
 
-@class TBSerialPort;
+@class BGPSerialPort;
 
-@protocol TBSerialPortDelegate
+@protocol BGPSerialPortDelegate
 
-- (void)serialPort:(TBSerialPort *)port didReceiveData:(NSData *)data;
+- (void)serialPort:(BGPSerialPort *)port didReceiveData:(NSData *)data;
 
 @end
 
 /*!
- @interface TBSerialPort
+ @interface BGPSerialPort
  @abstract Serial Port access class
  @discussion This class manages provides access to all available serial port
  devices.  It has been designed to provide a clear and concise interface
  for applications that need serial communication services.
  */
-@interface TBSerialPort : NSObject
+@interface BGPSerialPort : NSObject
 {
 	int				_fd;				// file descriptor to path of serial device
 	id				_owner;				// owner of the port
@@ -55,7 +55,7 @@
 	BOOL			_logIncomingBytes;
 	BOOL			_logOutgoingBytes;
     BOOL            _threadIsRunning;
-	id<TBSerialPortDelegate>				_delegate;
+	id<BGPSerialPortDelegate>				_delegate;
 }
 
 /*!

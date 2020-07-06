@@ -14,12 +14,12 @@
 //
 //--------------------------------------------------------------------------------------------------
 
-#define MODULE_HASHTAG  "TBSerialPort"
-#import "TBSerialPort.h"
+#define MODULE_HASHTAG  "BGPSerialPort"
+#import "BGPSerialPort.h"
 
 //#define DEBUG
 
-@implementation TBSerialPort
+@implementation BGPSerialPort
 
 #pragma mark -
 #pragma mark Init/Dealloc Methods

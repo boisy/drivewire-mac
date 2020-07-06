@@ -72,16 +72,16 @@ static int instanceCount = 0;
 	{
 //      NSBundle *myFrameworkBundle = [NSBundle bundleWithIdentifier:@"com.tee-boy.VirtualDrive"];
         NSBundle *myFrameworkBundle = [NSBundle bundleForClass:[self class]];
-        TBDebug(@"myFrameworksBundle = %@", [myFrameworkBundle description]);
+        BGPDebug(@"myFrameworksBundle = %@", [myFrameworkBundle description]);
 
         NSString *insertSoundPath = [myFrameworkBundle pathForResource:@"insert" ofType:@"wav"];
         insertSound = [[NSSound alloc] initWithContentsOfFile:insertSoundPath byReference:YES];
-        TBDebug(@"insertSoundPath = %@, insertSound = 0x%@", insertSoundPath, insertSound);
+        BGPDebug(@"insertSoundPath = %@, insertSound = 0x%@", insertSoundPath, insertSound);
 		[insertSound setDelegate:self];
       
         NSString *ejectSoundPath = [myFrameworkBundle pathForResource:@"eject" ofType:@"wav"];
         ejectSound = [[NSSound alloc] initWithContentsOfFile:ejectSoundPath byReference:YES];
-        TBDebug(@"ejectSoundPath = %@, ejectSound = 0x%@", ejectSoundPath, ejectSound);
+        BGPDebug(@"ejectSoundPath = %@, ejectSound = 0x%@", ejectSoundPath, ejectSound);
 	}
 	
 	instanceCount++;

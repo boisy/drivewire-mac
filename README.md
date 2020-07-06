@@ -24,12 +24,11 @@ This will fetch the required frameworks and create the DriveWire.xcworkspace fil
 You can use AppleScript to communicate with DriveWire server for macOS using the Script Editor application on the Mac. This is convenient if you want to automate your disk image creation and test workflow. Below are several "recipes" that you can use. Note that each script accesses the "first document" but you can also reference a document by name if you have more than one opened.
 
 
-### Set the machine type:
+### Set the baud rate:
 ```AppleScript
 tell application "DriveWire"
     tell server of first document
-        -- valid choices are: coco1, coco2, coco3, atari
-        set machine to coco2
+        set baudRate to 57600
     end tell
 end tell
 ```
@@ -67,12 +66,24 @@ tell application "DriveWire"
 end tell
 ```
 
-### Create a new document, set the machine type to CoCo 2, and insert a few disk images:
+### Turn off the serial port:
+Sometimes you need to get DriveWire out of the way and not control the serial port.
+
+```AppleScript
+tell application "DriveWire"
+    tell server of first document
+    -- turn off the serial port
+        change to port "" 
+    end tell
+end tell
+```
+
+### Create a new document, set the baud rate to 57,600 bits per second, and insert a few disk images:
 ```AppleScript
 tell application "DriveWire"
     set newDocument to make new document
     tell server of newDocument
-        set machine to coco2
+        set baudrate to 57600
         -- an error is returned if the drive number is illegal or the path does not exist
         insert image POSIX path of ("/Users/boisy/nitros9.dsk") into drive 0
         insert image POSIX path of ("/Users/boisy/utilities.dsk") into drive 1

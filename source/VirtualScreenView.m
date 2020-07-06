@@ -34,9 +34,46 @@
 #define pixelXPosition(x) ((x % (int)self.screenSize.width) * charSize.width)
 #define pixelYPosition(y) (self.frame.size.height - charSize.height - (row * charSize.height))
 
+- (void)constructFontBitmapWithFont:(NSFont *)font;
+{
+    // compute glyph width
+    self.font = font;
+    NSRect glyphRect = font.boundingRectForFont;
+    
+    self.fontBitmap = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:nil
+                                                                  pixelsWide:glyphRect.size.width * 256
+                                                                  pixelsHigh:glyphRect.size.height
+                                                               bitsPerSample:8
+                                                             samplesPerPixel:4
+                                                                    hasAlpha:YES
+                                                                    isPlanar:NO
+                                                              colorSpaceName:NSDeviceRGBColorSpace
+                                                                 bytesPerRow:0
+                                                                bitsPerPixel:32];
+    
+    NSGraphicsContext *context = [NSGraphicsContext graphicsContextWithBitmapImageRep:self.fontBitmap];
+    [NSGraphicsContext saveGraphicsState];
+    [NSGraphicsContext setCurrentContext:context];
+    
+    [self.backgroundColor set];
+
+    NSDictionary *attributes = @{NSFontAttributeName : font,
+                                 NSForegroundColorAttributeName : self.fontColor,
+                                 NSBackgroundColorAttributeName : self.backgroundColor,
+                                 NSBaselineOffsetAttributeName : @1.0
+                                 };
+
+    for (int i = 0; i < 256; i++)
+    {
+        NSRect rectToDraw = NSMakeRect(i * glyphRect.size.width, 0, glyphRect.size.width, glyphRect.size.height);
+        [[NSString stringWithFormat:@"%c", i] drawInRect:rectToDraw withAttributes:attributes];
+    }
+
+    [NSGraphicsContext restoreGraphicsState];
+}
+
 - (void)clearDisplay;
 {
-//    self.screenBuffer = [NSMutableData dataWithLength:self.screenSize.width * self.screenSize.height];
     self.screen = [NSMutableArray arrayWithCapacity:self.screenSize.width * self.screenSize.height];
     for (int i = 0; i < self.screenSize.width * self.screenSize.height; i++)
     {
@@ -80,6 +117,7 @@
     self.characterProcessor = @selector(nonEscapeCharacter);
     self.incomingBuffer = [NSMutableData new];
     [self resetScreen];
+    [self constructFontBitmapWithFont:[NSFont systemFontOfSize:12.0]];
 }
 
 - (void)drawCursorAtPosition:(NSUInteger)i;
@@ -158,12 +196,17 @@
         
     if (ch != 0x00)
     {
+#if 0
         NSDictionary *attributes = @{NSFontAttributeName : [NSFont fontWithName:@"Courier New" size:charSize.height * .8],
                                      NSForegroundColorAttributeName : c.foregroundColor,
                                      NSBackgroundColorAttributeName : c.backgroundColor,
                                      NSBaselineOffsetAttributeName : @1.0
                                      };
         [[NSString stringWithFormat:@"%c", ch] drawInRect:rectToDraw withAttributes:attributes];
+#else
+        NSRect sourceRect = self.font.boundingRectForFont;
+        sourceRect.origin.x = ch * sourceRect.size.width;
+#endif
     }
 
     [NSGraphicsContext restoreGraphicsState];

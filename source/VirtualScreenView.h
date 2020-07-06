@@ -35,6 +35,8 @@
 @property (strong) NSMutableData *incomingBuffer;
 @property (strong) NSImage *screenImage;
 @property (strong) NSBitmapImageRep *screenRep;
+@property (strong) NSBitmapImageRep *fontBitmap;
+@property (strong) NSFont *font;
 
 - (void)putCharacter:(u_char)character;
 - (NSUInteger)availableToRead;

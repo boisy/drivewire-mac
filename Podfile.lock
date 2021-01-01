@@ -1,12 +1,12 @@
 PODS:
-  - CocoaAsyncSocket (7.6.3)
+  - CocoaAsyncSocket (7.6.5)
   - CocoaLumberjack (3.4.2):
     - CocoaLumberjack/Default (= 3.4.2)
     - CocoaLumberjack/Extensions (= 3.4.2)
   - CocoaLumberjack/Default (3.4.2)
   - CocoaLumberjack/Extensions (3.4.2):
     - CocoaLumberjack/Default
-  - Sparkle (1.23.0)
+  - Sparkle (1.24.0)
 
 DEPENDENCIES:
   - CocoaAsyncSocket
@@ -20,10 +20,10 @@ SPEC REPOS:
     - Sparkle
 
 SPEC CHECKSUMS:
-  CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
+  CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   CocoaLumberjack: db7cc9e464771f12054c22ff6947c5a58d43a0fd
-  Sparkle: 55b1a87ba69d56913375a281546b7c82dec95bb0
+  Sparkle: 270cd27377bf04e9c128af06e3a22d0f572d6ee3
 
 PODFILE CHECKSUM: 116ede906adf2ee42e22e20a9b36e0466615d20f
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.0

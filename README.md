@@ -1,5 +1,5 @@
 # DriveWire Server for macOS
-This is the official DriveWire server for macOS. Integrations are performed as commits are made, and Sparkle is used for in-app updating. You can download the [latest build here](http://downloads.tandycolorcomputer.com/DriveWire.zip).
+This is the official DriveWire server for macOS. Integrations are performed as commits are made, and Sparkle is used for in-app updating.
 
 
 ## Obtaining Dependency Frameworks with CocoaPods

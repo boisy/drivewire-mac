@@ -55,6 +55,32 @@
 		68ACA74825D7576F00AEED84 /* VirtualDriveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68ACA72225D7576F00AEED84 /* VirtualDriveController.m */; };
 		68ACA74925D7576F00AEED84 /* VirtualDriveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA72325D7576F00AEED84 /* VirtualDriveView.xib */; };
 		68ACA74A25D7576F00AEED84 /* VirtualDriveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 68ACA72425D7576F00AEED84 /* VirtualDriveModel.m */; };
+		68ACA77825D75E3E00AEED84 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA75925D75E3E00AEED84 /* index.html */; };
+		68ACA77925D75E3E00AEED84 /* accessTiger.css in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA75B25D75E3E00AEED84 /* accessTiger.css */; };
+		68ACA77A25D75E3E00AEED84 /* index.css in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA75C25D75E3E00AEED84 /* index.css */; };
+		68ACA77B25D75E3E00AEED84 /* genlist_style.css in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA75D25D75E3E00AEED84 /* genlist_style.css */; };
+		68ACA77C25D75E3E00AEED84 /* task_style.css in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA75E25D75E3E00AEED84 /* task_style.css */; };
+		68ACA77D25D75E3E00AEED84 /* genlist.html in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA75F25D75E3E00AEED84 /* genlist.html */; };
+		68ACA77E25D75E3E00AEED84 /* wn.html in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA76125D75E3E00AEED84 /* wn.html */; };
+		68ACA77F25D75E3E00AEED84 /* probcart.html in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA76225D75E3E00AEED84 /* probcart.html */; };
+		68ACA78025D75E3E00AEED84 /* probcomm.html in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA76325D75E3E00AEED84 /* probcomm.html */; };
+		68ACA78125D75E3E00AEED84 /* insertcart.html in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA76425D75E3E00AEED84 /* insertcart.html */; };
+		68ACA78225D75E3E00AEED84 /* ejectcart.html in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA76525D75E3E00AEED84 /* ejectcart.html */; };
+		68ACA78325D75E3E00AEED84 /* gettingstarted.html in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA76625D75E3E00AEED84 /* gettingstarted.html */; };
+		68ACA78425D75E3E00AEED84 /* tci.html in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA76725D75E3E00AEED84 /* tci.html */; };
+		68ACA78525D75E3E00AEED84 /* viewlog.html in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA76825D75E3E00AEED84 /* viewlog.html */; };
+		68ACA78625D75E3E00AEED84 /* newcart.html in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA76925D75E3E00AEED84 /* newcart.html */; };
+		68ACA78725D75E3E00AEED84 /* newdoc.html in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA76A25D75E3E00AEED84 /* newdoc.html */; };
+		68ACA78825D75E3E00AEED84 /* server.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA76C25D75E3E00AEED84 /* server.jpg */; };
+		68ACA78925D75E3E00AEED84 /* imageinserted.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA76D25D75E3E00AEED84 /* imageinserted.jpg */; };
+		68ACA78A25D75E3E00AEED84 /* bigserver.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA76E25D75E3E00AEED84 /* bigserver.jpg */; };
+		68ACA78B25D75E3E00AEED84 /* stats.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA76F25D75E3E00AEED84 /* stats.jpg */; };
+		68ACA78C25D75E3E00AEED84 /* newdocument.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA77025D75E3E00AEED84 /* newdocument.jpg */; };
+		68ACA78D25D75E3E00AEED84 /* xicndw.gif in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA77125D75E3E00AEED84 /* xicndw.gif */; };
+		68ACA78E25D75E3E00AEED84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA77225D75E3E00AEED84 /* InfoPlist.strings */; };
+		68ACA78F25D75E3E00AEED84 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA77425D75E3E00AEED84 /* Credits.rtf */; };
+		68ACA79025D75E3E00AEED84 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA77625D75E3E00AEED84 /* MainMenu.xib */; };
+		68ACA79525D75E5E00AEED84 /* DriveWireDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA79325D75E5E00AEED84 /* DriveWireDocument.xib */; };
 		68ADE055096B7686002324CE /* DriveWire Document.icns in Resources */ = {isa = PBXBuildFile; fileRef = 68C494E20965F01800F9E265 /* DriveWire Document.icns */; };
 		68ADE056096B7686002324CE /* DriveWire Disk Image.icns in Resources */ = {isa = PBXBuildFile; fileRef = 68C494E00965F00500F9E265 /* DriveWire Disk Image.icns */; };
 		68ADE057096B7686002324CE /* DriveWire Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6872687908A97EDD00ADD1F0 /* DriveWire Icon.icns */; };
@@ -168,6 +194,32 @@
 		68ACA72525D7576F00AEED84 /* VirtualDriveJukeBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualDriveJukeBoxView.h; sourceTree = "<group>"; };
 		68ACA72625D7576F00AEED84 /* VirtualDriveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualDriveView.h; sourceTree = "<group>"; };
 		68ACA72725D7576F00AEED84 /* VirtualDriveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualDriveController.h; sourceTree = "<group>"; };
+		68ACA75925D75E3E00AEED84 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		68ACA75B25D75E3E00AEED84 /* accessTiger.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = accessTiger.css; sourceTree = "<group>"; };
+		68ACA75C25D75E3E00AEED84 /* index.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = index.css; sourceTree = "<group>"; };
+		68ACA75D25D75E3E00AEED84 /* genlist_style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = genlist_style.css; sourceTree = "<group>"; };
+		68ACA75E25D75E3E00AEED84 /* task_style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = task_style.css; sourceTree = "<group>"; };
+		68ACA75F25D75E3E00AEED84 /* genlist.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = genlist.html; sourceTree = "<group>"; };
+		68ACA76125D75E3E00AEED84 /* wn.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = wn.html; sourceTree = "<group>"; };
+		68ACA76225D75E3E00AEED84 /* probcart.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = probcart.html; sourceTree = "<group>"; };
+		68ACA76325D75E3E00AEED84 /* probcomm.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = probcomm.html; sourceTree = "<group>"; };
+		68ACA76425D75E3E00AEED84 /* insertcart.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = insertcart.html; sourceTree = "<group>"; };
+		68ACA76525D75E3E00AEED84 /* ejectcart.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ejectcart.html; sourceTree = "<group>"; };
+		68ACA76625D75E3E00AEED84 /* gettingstarted.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = gettingstarted.html; sourceTree = "<group>"; };
+		68ACA76725D75E3E00AEED84 /* tci.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = tci.html; sourceTree = "<group>"; };
+		68ACA76825D75E3E00AEED84 /* viewlog.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = viewlog.html; sourceTree = "<group>"; };
+		68ACA76925D75E3E00AEED84 /* newcart.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = newcart.html; sourceTree = "<group>"; };
+		68ACA76A25D75E3E00AEED84 /* newdoc.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = newdoc.html; sourceTree = "<group>"; };
+		68ACA76C25D75E3E00AEED84 /* server.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = server.jpg; sourceTree = "<group>"; };
+		68ACA76D25D75E3E00AEED84 /* imageinserted.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = imageinserted.jpg; sourceTree = "<group>"; };
+		68ACA76E25D75E3E00AEED84 /* bigserver.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bigserver.jpg; sourceTree = "<group>"; };
+		68ACA76F25D75E3E00AEED84 /* stats.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = stats.jpg; sourceTree = "<group>"; };
+		68ACA77025D75E3E00AEED84 /* newdocument.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = newdocument.jpg; sourceTree = "<group>"; };
+		68ACA77125D75E3E00AEED84 /* xicndw.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = xicndw.gif; sourceTree = "<group>"; };
+		68ACA77325D75E3E00AEED84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		68ACA77525D75E3E00AEED84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = Credits.rtf; sourceTree = "<group>"; };
+		68ACA77725D75E3E00AEED84 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = MainMenu.xib; sourceTree = "<group>"; };
+		68ACA79425D75E5E00AEED84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DriveWireDocument.xib; sourceTree = SOURCE_ROOT; };
 		68ADDE99096B723F002324CE /* DriveWire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DriveWire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68C100E62434D1EF00D28789 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		68C100E72434D1EF00D28789 /* en */ = {isa = PBXFileReference; lastKnownFileType = folder; name = en; path = "en.lproj/DriveWire Help"; sourceTree = "<group>"; };
@@ -177,8 +229,8 @@
 		68C494E00965F00500F9E265 /* DriveWire Disk Image.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "DriveWire Disk Image.icns"; path = "assets/DriveWire Disk Image.icns"; sourceTree = "<group>"; };
 		68C494E20965F01800F9E265 /* DriveWire Document.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "DriveWire Document.icns"; path = "assets/DriveWire Document.icns"; sourceTree = "<group>"; };
 		68C4C9501F98BB150077A72D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		68D291EE1FFE6BE10015B8DC /* DriveWire.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = DriveWire.sdef; sourceTree = "<group>"; };
-		68D292181FFED1600015B8DC /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = dsa_pub.pem; sourceTree = "<group>"; };
+		68D291EE1FFE6BE10015B8DC /* DriveWire.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DriveWire.sdef; sourceTree = "<group>"; };
+		68D292181FFED1600015B8DC /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* DriveWire-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "DriveWire-Info.plist"; path = "source/DriveWire-Info.plist"; sourceTree = "<group>"; };
 		959227020E964D36700A544E /* Pods-DriveWire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveWire.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DriveWire/Pods-DriveWire.debug.xcconfig"; sourceTree = "<group>"; };
 		BD40BD754E2481641C1DCDF9 /* Pods-DriveWire MacServer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveWire MacServer.release.xcconfig"; path = "Pods/Target Support Files/Pods-DriveWire MacServer/Pods-DriveWire MacServer.release.xcconfig"; sourceTree = "<group>"; };
@@ -221,6 +273,7 @@
 				68C4C9501F98BB150077A72D /* README.md */,
 				68D292181FFED1600015B8DC /* dsa_pub.pem */,
 				68D291EE1FFE6BE10015B8DC /* DriveWire.sdef */,
+				68ACA75725D75E3E00AEED84 /* en.lproj */,
 				68ACA6DA25D7576F00AEED84 /* Sources */,
 				6842CEBC1F97B35B00A6F829 /* Tests */,
 				68DB155809683356005D9079 /* Frameworks */,
@@ -432,6 +485,71 @@
 			path = "Drive Management";
 			sourceTree = "<group>";
 		};
+		68ACA75725D75E3E00AEED84 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				68ACA79325D75E5E00AEED84 /* DriveWireDocument.xib */,
+				68ACA75825D75E3E00AEED84 /* DriveWire Help */,
+				68ACA77225D75E3E00AEED84 /* InfoPlist.strings */,
+				68ACA77425D75E3E00AEED84 /* Credits.rtf */,
+				68ACA77625D75E3E00AEED84 /* MainMenu.xib */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		68ACA75825D75E3E00AEED84 /* DriveWire Help */ = {
+			isa = PBXGroup;
+			children = (
+				68ACA75925D75E3E00AEED84 /* index.html */,
+				68ACA75A25D75E3E00AEED84 /* sty */,
+				68ACA76025D75E3E00AEED84 /* pgs */,
+				68ACA76B25D75E3E00AEED84 /* gfx */,
+			);
+			path = "DriveWire Help";
+			sourceTree = "<group>";
+		};
+		68ACA75A25D75E3E00AEED84 /* sty */ = {
+			isa = PBXGroup;
+			children = (
+				68ACA75B25D75E3E00AEED84 /* accessTiger.css */,
+				68ACA75C25D75E3E00AEED84 /* index.css */,
+				68ACA75D25D75E3E00AEED84 /* genlist_style.css */,
+				68ACA75E25D75E3E00AEED84 /* task_style.css */,
+				68ACA75F25D75E3E00AEED84 /* genlist.html */,
+			);
+			path = sty;
+			sourceTree = "<group>";
+		};
+		68ACA76025D75E3E00AEED84 /* pgs */ = {
+			isa = PBXGroup;
+			children = (
+				68ACA76125D75E3E00AEED84 /* wn.html */,
+				68ACA76225D75E3E00AEED84 /* probcart.html */,
+				68ACA76325D75E3E00AEED84 /* probcomm.html */,
+				68ACA76425D75E3E00AEED84 /* insertcart.html */,
+				68ACA76525D75E3E00AEED84 /* ejectcart.html */,
+				68ACA76625D75E3E00AEED84 /* gettingstarted.html */,
+				68ACA76725D75E3E00AEED84 /* tci.html */,
+				68ACA76825D75E3E00AEED84 /* viewlog.html */,
+				68ACA76925D75E3E00AEED84 /* newcart.html */,
+				68ACA76A25D75E3E00AEED84 /* newdoc.html */,
+			);
+			path = pgs;
+			sourceTree = "<group>";
+		};
+		68ACA76B25D75E3E00AEED84 /* gfx */ = {
+			isa = PBXGroup;
+			children = (
+				68ACA76C25D75E3E00AEED84 /* server.jpg */,
+				68ACA76D25D75E3E00AEED84 /* imageinserted.jpg */,
+				68ACA76E25D75E3E00AEED84 /* bigserver.jpg */,
+				68ACA76F25D75E3E00AEED84 /* stats.jpg */,
+				68ACA77025D75E3E00AEED84 /* newdocument.jpg */,
+				68ACA77125D75E3E00AEED84 /* xicndw.gif */,
+			);
+			path = gfx;
+			sourceTree = "<group>";
+		};
 		68DB155809683356005D9079 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -551,23 +669,49 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68ACA78425D75E3E00AEED84 /* tci.html in Resources */,
 				68ADE055096B7686002324CE /* DriveWire Document.icns in Resources */,
 				68ADE056096B7686002324CE /* DriveWire Disk Image.icns in Resources */,
+				68ACA78D25D75E3E00AEED84 /* xicndw.gif in Resources */,
 				68ADE057096B7686002324CE /* DriveWire Icon.icns in Resources */,
+				68ACA77925D75E3E00AEED84 /* accessTiger.css in Resources */,
+				68ACA78A25D75E3E00AEED84 /* bigserver.jpg in Resources */,
+				68ACA78925D75E3E00AEED84 /* imageinserted.jpg in Resources */,
 				68ACA74925D7576F00AEED84 /* VirtualDriveView.xib in Resources */,
 				68ADE05D096B7686002324CE /* Credits.rtf in Resources */,
 				686CA3FD1AE11ED900544862 /* DriveWire-Logo.png in Resources */,
 				68ADE05F096B7686002324CE /* InfoPlist.strings in Resources */,
+				68ACA79025D75E3E00AEED84 /* MainMenu.xib in Resources */,
 				68ABF6F309806CD600838EB9 /* DriveWire Help in Resources */,
+				68ACA78725D75E3E00AEED84 /* newdoc.html in Resources */,
+				68ACA78225D75E3E00AEED84 /* ejectcart.html in Resources */,
+				68ACA78625D75E3E00AEED84 /* newcart.html in Resources */,
+				68ACA78825D75E3E00AEED84 /* server.jpg in Resources */,
+				68ACA79525D75E5E00AEED84 /* DriveWireDocument.xib in Resources */,
 				6809AE070F6C0C4C000BB954 /* MainMenu.xib in Resources */,
+				68ACA78525D75E3E00AEED84 /* viewlog.html in Resources */,
+				68ACA78F25D75E3E00AEED84 /* Credits.rtf in Resources */,
 				68D292191FFED1600015B8DC /* dsa_pub.pem in Resources */,
+				68ACA77A25D75E3E00AEED84 /* index.css in Resources */,
+				68ACA78C25D75E3E00AEED84 /* newdocument.jpg in Resources */,
 				6809AEFB0F6C0DB6000BB954 /* drive.jpg in Resources */,
+				68ACA77F25D75E3E00AEED84 /* probcart.html in Resources */,
+				68ACA77D25D75E3E00AEED84 /* genlist.html in Resources */,
 				6809AEFC0F6C0DB6000BB954 /* driveface.jpg in Resources */,
 				68D291EF1FFE6BE10015B8DC /* DriveWire.sdef in Resources */,
+				68ACA78B25D75E3E00AEED84 /* stats.jpg in Resources */,
+				68ACA77E25D75E3E00AEED84 /* wn.html in Resources */,
+				68ACA78E25D75E3E00AEED84 /* InfoPlist.strings in Resources */,
 				6809AF030F6C0DB6000BB954 /* eject.wav in Resources */,
 				6809AF040F6C0DB6000BB954 /* insert.wav in Resources */,
 				6809AF050F6C0DB6000BB954 /* redled.jpg in Resources */,
+				68ACA78125D75E3E00AEED84 /* insertcart.html in Resources */,
+				68ACA78325D75E3E00AEED84 /* gettingstarted.html in Resources */,
+				68ACA77B25D75E3E00AEED84 /* genlist_style.css in Resources */,
+				68ACA78025D75E3E00AEED84 /* probcomm.html in Resources */,
 				6809AF3E0F6C0F81000BB954 /* greenled.jpg in Resources */,
+				68ACA77825D75E3E00AEED84 /* index.html in Resources */,
+				68ACA77C25D75E3E00AEED84 /* task_style.css in Resources */,
 				68ACA73625D7576F00AEED84 /* VirtualScreenWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -718,6 +862,38 @@
 				68C100E72434D1EF00D28789 /* en */,
 			);
 			name = "DriveWire Help";
+			sourceTree = "<group>";
+		};
+		68ACA77225D75E3E00AEED84 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				68ACA77325D75E3E00AEED84 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		68ACA77425D75E3E00AEED84 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				68ACA77525D75E3E00AEED84 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		68ACA77625D75E3E00AEED84 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				68ACA77725D75E3E00AEED84 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		68ACA79325D75E5E00AEED84 /* DriveWireDocument.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				68ACA79425D75E5E00AEED84 /* Base */,
+			);
+			name = DriveWireDocument.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

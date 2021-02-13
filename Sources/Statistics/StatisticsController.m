@@ -25,15 +25,12 @@
 // OpCode
 - (void)setLastOpCode: (NSString *)opCode
 {
-    [opCode retain];
-    [lastOpCode release];
     lastOpCode = opCode;
 }
 
 
 - (void)resetLastOpCode
 {
-    [lastOpCode release];
     lastOpCode = @"OP_RESET";
 }
 
@@ -179,7 +176,6 @@
 
 - (void)setLastGetStat:(int)code
 {
-    [lastGetStat release];
     lastGetStat = [self statCodeToString:code];
     
     return;
@@ -188,7 +184,6 @@
 
 - (void)resetLastGetStat
 {
-    [lastGetStat release];
     lastGetStat = @"NONE";
     
     return;
@@ -204,7 +199,6 @@
 
 - (void)setLastSetStat:(int)code
 {
-    [lastSetStat release];
     lastSetStat = [self statCodeToString:code];
     
     return;
@@ -213,7 +207,6 @@
 
 - (void)resetLastSetStat
 {
-    [lastSetStat release];
     lastSetStat = @"NONE";
     
     return;

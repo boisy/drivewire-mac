@@ -73,9 +73,9 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
-	<string>http://www.pitre.org/drivewire/DriveWireAppcast.xml</string>
-	<key>SUPublicDSAKeyFile</key>
-	<string>dsa_pub.pem</string>
+	<string>https://raw.githubusercontent.com/boisy/drivewire-mac/master/DriveWireAppcast.xml</string>
+	<key>SUPublicEDKey</key>
+	<string>9KaV6DpVKAU8ARZC88TuJcbL9kjJ1yZC67su9WYaBBg=</string>
 	<key>NSAppleScriptEnabled</key>
 	<true/>
 	<key>OSAScriptingDefinition</key>

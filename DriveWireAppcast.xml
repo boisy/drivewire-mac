@@ -4,9 +4,9 @@
         <title>DriveWire</title>
         <item>
             <title>1.2.1</title>
-            <pubDate>Sat, 13 Feb 2021 20:39:05 -0600</pubDate>
+            <pubDate>Sat, 13 Feb 2021 21:09:53 -0600</pubDate>
             <sparkle:minimumSystemVersion>10.9</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/boisy/drivewire-mac/releases/latest/DriveWire.zip" sparkle:version="101" sparkle:shortVersionString="1.2.1" length="4729170" type="application/octet-stream" sparkle:edSignature="yMPGbpxKVvzdevudQJ35K4c3xE/Nw7y7nq7SiI8uYjM/As/ufAkhfHSHsUDKIJQwJ0FrMg88zBeZSube+wbPDw=="/>
+            <enclosure url="https://github.com/boisy/drivewire-mac/releases/latest/DriveWire.zip" sparkle:version="101" sparkle:shortVersionString="1.2.1" length="4729165" type="application/octet-stream" sparkle:edSignature="ytqeOBzhYWUOsommBHca8YR9DywHn4L5Jl/9T016iw/B8s2ptE6yk/MM/B6EMxMrnsMN9N27XEnZzae/YRK0CA=="/>
         </item>
     </channel>
 </rss>

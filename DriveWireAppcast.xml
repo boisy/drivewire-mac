@@ -1,22 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
-   <channel>
-      <title>DriveWire Changelog</title>
-      <link>http://downloads.tandycolorcomputer.com/DriveWireAppcast.xml</link>
-      <description>Most recent changes with links to updates.</description>
-      <language>en</language>
-		<item>
-			<title>Version __VERSION__</title>
-			<sparkle:releaseNotesLink>
-					http://downloads.tandycolorcomputer.com/DriveWire_ChangeLog.html
-			</sparkle:releaseNotesLink>
-			<pubDate>__RELEASEDATE__</pubDate>
-			<enclosure url="http://downloads.tandycolorcomputer.com/DriveWire.zip"
-						sparkle:version="__BUNDLEVERSION__"
-						sparkle:shortVersionString="__VERSION__"
-						sparkle:dsaSignature="__SIGNATURE__"
-						length="__LENGTH__"
-						type="application/octet-stream" />
-		</item>
-   </channel>
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>DriveWire</title>
+        <item>
+            <title>1.2</title>
+            <pubDate>Sat, 13 Feb 2021 20:39:05 -0600</pubDate>
+            <sparkle:minimumSystemVersion>10.9</sparkle:minimumSystemVersion>
+            <enclosure url="http://www.pitre.org/drivewire/DriveWire.zip" sparkle:version="100000" sparkle:shortVersionString="1.2" length="7803062" type="application/octet-stream"/>
+        </item>
+    </channel>
 </rss>

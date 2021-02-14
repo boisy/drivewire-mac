@@ -603,6 +603,7 @@
 				68ADDE97096B723F002324CE /* Frameworks */,
 				68150E281FA8A27800C516C9 /* Set Build Number */,
 				730E88D4E8D2D859A2E46F73 /* [CP] Embed Pods Frameworks */,
+				6823283D25D8BF50007DAE2E /* Set Appcast */,
 			);
 			buildRules = (
 			);
@@ -750,6 +751,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ \"the$XCS_INTEGRATION_NUMBER\" != \"the\" ]; then\necho \"Setting integration build number: $XCS_INTEGRATION_NUMBER\"\nxcrun agvtool new-version -all \"$XCS_INTEGRATION_NUMBER\"\nfi\n";
+		};
+		6823283D25D8BF50007DAE2E /* Set Appcast */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Set Appcast";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "env\nmkdir /tmp/DriveWire\nditto  -c -k -X --rsrc ${BUILT_PRODUCTS_DIR}/${APPLICATION_NAME} /tmp/DriveWire/DriveWire.zip\n${SRCROOT}/Pods/Sparkle/bin/generate_appcast /tmp/DriveWire \ncp /tmp/DriveWire/DriveWireAppcast.xml ${SRCROOT}/DriveWireAppcast.xml\n";
 		};
 		730E88D4E8D2D859A2E46F73 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

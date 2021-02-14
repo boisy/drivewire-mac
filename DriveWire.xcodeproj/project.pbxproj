@@ -7,14 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6809AE070F6C0C4C000BB954 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6809AE050F6C0C4C000BB954 /* MainMenu.xib */; };
 		6809AEFB0F6C0DB6000BB954 /* drive.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6809AEED0F6C0DB6000BB954 /* drive.jpg */; };
 		6809AEFC0F6C0DB6000BB954 /* driveface.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6809AEEE0F6C0DB6000BB954 /* driveface.jpg */; };
 		6809AF030F6C0DB6000BB954 /* eject.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6809AEF50F6C0DB6000BB954 /* eject.wav */; };
 		6809AF040F6C0DB6000BB954 /* insert.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6809AEF60F6C0DB6000BB954 /* insert.wav */; };
 		6809AF050F6C0DB6000BB954 /* redled.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6809AEF70F6C0DB6000BB954 /* redled.jpg */; };
 		6809AF3E0F6C0F81000BB954 /* greenled.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6809AF3D0F6C0F81000BB954 /* greenled.jpg */; };
-		6823286925D8C855007DAE2E /* DriveWire-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6823286825D8C855007DAE2E /* DriveWire-Info.plist */; };
 		6842CEBE1F97B35B00A6F829 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6842CEBD1F97B35B00A6F829 /* Tests.m */; };
 		686CA3FD1AE11ED900544862 /* DriveWire-Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 686CA3FC1AE11ED900544862 /* DriveWire-Logo.png */; };
 		686CA40C1AE272FE00544862 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 686CA40B1AE272FE00544862 /* Security.framework */; };
@@ -79,14 +77,12 @@
 		68ACA78C25D75E3E00AEED84 /* newdocument.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA77025D75E3E00AEED84 /* newdocument.jpg */; };
 		68ACA78D25D75E3E00AEED84 /* xicndw.gif in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA77125D75E3E00AEED84 /* xicndw.gif */; };
 		68ACA78E25D75E3E00AEED84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA77225D75E3E00AEED84 /* InfoPlist.strings */; };
-		68ACA78F25D75E3E00AEED84 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA77425D75E3E00AEED84 /* Credits.rtf */; };
 		68ACA79025D75E3E00AEED84 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA77625D75E3E00AEED84 /* MainMenu.xib */; };
 		68ACA79525D75E5E00AEED84 /* DriveWireDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68ACA79325D75E5E00AEED84 /* DriveWireDocument.xib */; };
 		68ADE055096B7686002324CE /* DriveWire Document.icns in Resources */ = {isa = PBXBuildFile; fileRef = 68C494E20965F01800F9E265 /* DriveWire Document.icns */; };
 		68ADE056096B7686002324CE /* DriveWire Disk Image.icns in Resources */ = {isa = PBXBuildFile; fileRef = 68C494E00965F00500F9E265 /* DriveWire Disk Image.icns */; };
 		68ADE057096B7686002324CE /* DriveWire Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6872687908A97EDD00ADD1F0 /* DriveWire Icon.icns */; };
 		68ADE05D096B7686002324CE /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
-		68ADE05F096B7686002324CE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		68D291EF1FFE6BE10015B8DC /* DriveWire.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 68D291EE1FFE6BE10015B8DC /* DriveWire.sdef */; };
 		68D292191FFED1600015B8DC /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 68D292181FFED1600015B8DC /* dsa_pub.pem */; };
 		94E43C06A59562DDAD6CF2B0 /* libPods-DriveWire.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 487F4A91F5C1CBD37CD4AFFE /* libPods-DriveWire.a */; };
@@ -278,19 +274,11 @@
 				68ACA6DA25D7576F00AEED84 /* Sources */,
 				6842CEBC1F97B35B00A6F829 /* Tests */,
 				68DB155809683356005D9079 /* Frameworks */,
-				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				6882CEA5096B5BAF0065973D /* Resources */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 				95D124CD3F955202ECB1EC9E /* Pods */,
 			);
 			name = DriveWire;
-			sourceTree = "<group>";
-		};
-		2A37F4AFFDCFA73011CA2CEA /* Other Sources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Other Sources";
 			sourceTree = "<group>";
 		};
 		680612CF1ADFC82C00B1C502 /* Source Assets */ = {
@@ -682,7 +670,6 @@
 				68ACA74925D7576F00AEED84 /* VirtualDriveView.xib in Resources */,
 				68ADE05D096B7686002324CE /* Credits.rtf in Resources */,
 				686CA3FD1AE11ED900544862 /* DriveWire-Logo.png in Resources */,
-				68ADE05F096B7686002324CE /* InfoPlist.strings in Resources */,
 				68ACA79025D75E3E00AEED84 /* MainMenu.xib in Resources */,
 				68ABF6F309806CD600838EB9 /* DriveWire Help in Resources */,
 				68ACA78725D75E3E00AEED84 /* newdoc.html in Resources */,
@@ -690,9 +677,7 @@
 				68ACA78625D75E3E00AEED84 /* newcart.html in Resources */,
 				68ACA78825D75E3E00AEED84 /* server.jpg in Resources */,
 				68ACA79525D75E5E00AEED84 /* DriveWireDocument.xib in Resources */,
-				6809AE070F6C0C4C000BB954 /* MainMenu.xib in Resources */,
 				68ACA78525D75E3E00AEED84 /* viewlog.html in Resources */,
-				68ACA78F25D75E3E00AEED84 /* Credits.rtf in Resources */,
 				68D292191FFED1600015B8DC /* dsa_pub.pem in Resources */,
 				68ACA77A25D75E3E00AEED84 /* index.css in Resources */,
 				68ACA78C25D75E3E00AEED84 /* newdocument.jpg in Resources */,
@@ -709,7 +694,6 @@
 				6809AF050F6C0DB6000BB954 /* redled.jpg in Resources */,
 				68ACA78125D75E3E00AEED84 /* insertcart.html in Resources */,
 				68ACA78325D75E3E00AEED84 /* gettingstarted.html in Resources */,
-				6823286925D8C855007DAE2E /* DriveWire-Info.plist in Resources */,
 				68ACA77B25D75E3E00AEED84 /* genlist_style.css in Resources */,
 				68ACA78025D75E3E00AEED84 /* probcomm.html in Resources */,
 				6809AF3E0F6C0F81000BB954 /* greenled.jpg in Resources */,

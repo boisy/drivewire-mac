@@ -266,15 +266,10 @@ NSString const *kBGPSerialPortDTR = @"BGPSerialPortDTR";
 					}
 
 					// hardware handshaking
-					switch (self.hardwareHandshaking)
-					{
-						case TRUE:
-							_ttyAttrs.c_cflag |= CRTSCTS;
-							break;
-							
-						case FALSE:
-							_ttyAttrs.c_cflag &= ~CRTSCTS;
-							break;
+                    if (self.hardwareHandshaking == TRUE) {
+                        _ttyAttrs.c_cflag |= CRTSCTS;
+                    } else {
+                        _ttyAttrs.c_cflag &= ~CRTSCTS;
 					}
 
 					// read timeout
@@ -289,15 +284,10 @@ NSString const *kBGPSerialPortDTR = @"BGPSerialPortDTR";
 					// set the DTR state
 					int portstatus;
 					ioctl(self.fd, TIOCMGET, &portstatus);   // get current port status
-					switch (self.dtrState)
-					{
-						case TRUE:
-							portstatus |= TIOCM_DTR;
-							break;
-							
-						case FALSE:
-							portstatus &= ~TIOCM_DTR;
-							break;
+                    if (self.dtrState == TRUE) {
+                        portstatus |= TIOCM_DTR;
+                    } else {
+                        portstatus &= ~TIOCM_DTR;
 					}
 					
 					ioctl(self.fd, TIOCMSET, &portstatus);   // set current port status

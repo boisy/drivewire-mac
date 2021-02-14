@@ -3,12 +3,6 @@
     <channel>
         <title>DriveWire</title>
         <item>
-            <title>1.2</title>
-            <pubDate>Sat, 13 Feb 2021 20:39:05 -0600</pubDate>
-            <sparkle:minimumSystemVersion>10.9</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/boisy/drivewire-mac/releases/latest/DriveWire.zip" sparkle:version="100000" sparkle:shortVersionString="1.2" length="4729170" type="application/octet-stream" sparkle:edSignature="9qKoZZDNSY96hvhtKqMSBmFSNMOjq7N3OiEKJPZaCvLqZ6kSgOLpwF2jwjSiUlyNQ9ijBkoyPAUmGpX04VHFDg=="/>
-        </item>
-        <item>
             <title>1.2.1</title>
             <pubDate>Sat, 13 Feb 2021 20:39:05 -0600</pubDate>
             <sparkle:minimumSystemVersion>10.9</sparkle:minimumSystemVersion>

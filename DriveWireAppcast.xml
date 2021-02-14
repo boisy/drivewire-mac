@@ -6,7 +6,7 @@
             <title>1.2</title>
             <pubDate>Sat, 13 Feb 2021 20:39:05 -0600</pubDate>
             <sparkle:minimumSystemVersion>10.9</sparkle:minimumSystemVersion>
-            <enclosure url="http://www.pitre.org/drivewire/DriveWire.zip" sparkle:version="100000" sparkle:shortVersionString="1.2" length="7803062" type="application/octet-stream"/>
+            <enclosure url="https://github.com/boisy/drivewire-mac/releases/latest/DriveWire.zip" sparkle:version="100000" sparkle:shortVersionString="1.2" length="7803062" type="application/octet-stream"/>
         </item>
     </channel>
 </rss>

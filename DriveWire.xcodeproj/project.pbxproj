@@ -768,7 +768,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "env\nmkdir /tmp/DriveWire\nditto  -c -k -X --rsrc ${BUILT_PRODUCTS_DIR}/${APPLICATION_NAME} /tmp/DriveWire/DriveWire.zip\n${SRCROOT}/Pods/Sparkle/bin/generate_appcast /tmp/DriveWire \ncp /tmp/DriveWire/DriveWireAppcast.xml ${SRCROOT}/DriveWireAppcast.xml\n";
+			shellScript = "env\nmkdir /tmp/DriveWire\nditto  -c -k -X --rsrc ${BUILT_PRODUCTS_DIR}/${APPLICATION_NAME} /tmp/DriveWire/DriveWire.zip\n${SRCROOT}/Pods/Sparkle/bin/generate_appcast /tmp/DriveWire --download-url-prefix https://github.com/boisy/drivewire-mac/releases/latest/download\ncp /tmp/DriveWire/DriveWireAppcast.xml ${SRCROOT}/DriveWireAppcast.xml\n";
 		};
 		730E88D4E8D2D859A2E46F73 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

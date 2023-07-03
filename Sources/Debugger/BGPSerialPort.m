@@ -200,11 +200,12 @@ NSString const *kBGPSerialPortDTR = @"BGPSerialPortDTR";
 			// set blocking I/O, no signal on data ready...
 			if ((status = fcntl(self.fd, F_SETFL, 0)) != -1)
 			{
-				// Get the current options and save them for later reset.
+                // Get the current options and save them for later reset.
 				if ((status = tcgetattr(self.fd, &_originalTTYAttrs)) != -1)
 				{
 					// These options are documented in the man page for termios.
 					_ttyAttrs = _originalTTYAttrs;
+                    
 					cfmakeraw(&_ttyAttrs);
 					_ttyAttrs.c_cflag |= CLOCAL | CREAD;
 					_ttyAttrs.c_lflag = IGNBRK | IGNPAR;
@@ -277,24 +278,32 @@ NSString const *kBGPSerialPortDTR = @"BGPSerialPortDTR";
 
 					// minimum read bytes
 					_ttyAttrs.c_cc[VMIN] = self.minimumReadBytes;
-					
-					// set the options.                
+
+                    // set the options.
 					status = tcsetattr(self.fd, TCSANOW, &_ttyAttrs);
 
-					// set the DTR state
-					int portstatus;
-					ioctl(self.fd, TIOCMGET, &portstatus);   // get current port status
-                    if (self.dtrState == TRUE) {
-                        portstatus |= TIOCM_DTR;
-                    } else {
-                        portstatus &= ~TIOCM_DTR;
-					}
-					
-					ioctl(self.fd, TIOCMSET, &portstatus);   // set current port status
-
-					// Log the opening of the port
-					BGPLogDebug(@"Opened port %@ @ %lu bps", self.serviceName, (unsigned long)self.baudRate);
-					[self startListenerThread];
+                    if (status != -1)
+                    {
+                        // set the DTR state
+                        int portstatus;
+                        status = ioctl(self.fd, TIOCMGET, &portstatus);   // get current port status
+                        if (status != -1)
+                        {
+                            if (self.dtrState == TRUE) {
+                                portstatus |= TIOCM_DTR;
+                            } else {
+                                portstatus &= ~TIOCM_DTR;
+                            }
+                            
+                            status = ioctl(self.fd, TIOCMSET, &portstatus);   // set current port status
+                            if (status != -1)
+                            {
+                                // Log the opening of the port
+                                BGPLogDebug(@"Opened port %@ @ %lu bps", self.serviceName, (unsigned long)self.baudRate);
+                                [self startListenerThread];
+                            }
+                        }
+                    }
 				}
 			}
 		}
@@ -305,6 +314,10 @@ NSString const *kBGPSerialPortDTR = @"BGPSerialPortDTR";
             
             switch (errno)
             {
+                case EINVAL:
+                    message = @"An invalid argument was supplied.";
+                    break;
+
                 case EBUSY:
                     message = @"The device is busy. Ensure that no other process has the device open.";
                     break;

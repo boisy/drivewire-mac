@@ -1379,7 +1379,7 @@ static BGPSerialManager *fSerialManager = nil;
 {
     NSUInteger result = 0;
     
-    if ([data length] >= nameobj_size)
+    if (nameobj_size > 0 && [data length] >= nameobj_size)
     {
         result = nameobj_size;
         

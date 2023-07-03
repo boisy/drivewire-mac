@@ -618,7 +618,7 @@
 						TestTargetID = 68ADDE98096B723F002324CE;
 					};
 					68ADDE98096B723F002324CE = {
-						DevelopmentTeam = 9UKFRNS4PM;
+						DevelopmentTeam = TL7WA9KV8Z;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
@@ -1066,6 +1066,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 101;
 				DEVELOPMENT_TEAM = 9UKFRNS4PM;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = TL7WA9KV8Z;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1123,6 +1124,7 @@
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 101;
 				DEVELOPMENT_TEAM = 9UKFRNS4PM;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = TL7WA9KV8Z;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -1622,7 +1622,7 @@ static BGPSerialManager *fSerialManager = nil;
             {
                 channel.shouldClose = FALSE;
                 response[0] = 0x10;
-                response[1] = channel.number;
+                response[1] = channel.number - 1;
             }
         }
     }

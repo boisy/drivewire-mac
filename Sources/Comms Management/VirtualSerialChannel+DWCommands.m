@@ -279,7 +279,6 @@
 - (NSError *)handleDWSERVERDIR:(NSArray *)array;
 {
     NSError *error = nil;
-    BOOL showHelp = TRUE;
     
     NSString *path = @".";
     

@@ -196,7 +196,7 @@
         
     if (ch != 0x00)
     {
-#if 0
+#if !0
         NSDictionary *attributes = @{NSFontAttributeName : [NSFont fontWithName:@"Courier New" size:charSize.height * .8],
                                      NSForegroundColorAttributeName : c.foregroundColor,
                                      NSBackgroundColorAttributeName : c.backgroundColor,

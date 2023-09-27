@@ -393,11 +393,11 @@
 			isa = PBXGroup;
 			children = (
 				68ACA6F725D7576F00AEED84 /* VirtualScreenWindowController.h */,
-				68ACA6F825D7576F00AEED84 /* VirtualScreenView.m */,
 				68ACA6F925D7576F00AEED84 /* VirtualScreenViewController.h */,
 				68ACA6FA25D7576F00AEED84 /* VirtualScreenWindowController.m */,
 				68ACA6FB25D7576F00AEED84 /* VirtualScreenWindowController.xib */,
 				68ACA6FC25D7576F00AEED84 /* VirtualScreenView.h */,
+				68ACA6F825D7576F00AEED84 /* VirtualScreenView.m */,
 				68ACA6FD25D7576F00AEED84 /* VirtualScreenViewController.m */,
 			);
 			path = "Screen Management";
@@ -618,7 +618,7 @@
 						TestTargetID = 68ADDE98096B723F002324CE;
 					};
 					68ADDE98096B723F002324CE = {
-						DevelopmentTeam = TL7WA9KV8Z;
+						DevelopmentTeam = 7ZF2657DS9;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
@@ -1061,12 +1061,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 101;
 				DEVELOPMENT_TEAM = 9UKFRNS4PM;
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = TL7WA9KV8Z;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = 7ZF2657DS9;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1119,12 +1120,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 101;
 				DEVELOPMENT_TEAM = 9UKFRNS4PM;
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = TL7WA9KV8Z;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = 7ZF2657DS9;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

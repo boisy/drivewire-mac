@@ -518,7 +518,7 @@ static BGPSerialManager *fSerialManager = nil;
     if (byte >= 0x91 && byte <= 0x9E)
     {
         // FASTWRITE virtual screen
-        self.fastwriteChannel = byte & 0x0F;
+        self.fastwriteChannel = (byte & 0x0F) - 1;
         self.currentState = @selector(OP_FASTWRITE_VirtualScreen:);
     }
     else
@@ -1664,6 +1664,7 @@ static BGPSerialManager *fSerialManager = nil;
     
     // Update log
     [statistics setObject:@"OP_SERREAD" forKey:@"OpCode"];
+    BGPDebug(@"OP_SERREAD->[$%02X,$%02X]", response[0], response[1]);
     [self postStatistics:statistics];
 
     [self resetState:nil];
@@ -1680,7 +1681,7 @@ static BGPSerialManager *fSerialManager = nil;
         // We read 2 bytes into this buffer (1 byte drive number, 1 getstat code)
         result = 2;
         
-        NSUInteger channelNumber = bytes[0];
+        NSUInteger channelNumber = bytes[0] - 1;
         
         VirtualSerialChannel *channel = [self channelWithNumber:channelNumber];
         [channel putByte:bytes[1]];
@@ -1809,6 +1810,7 @@ static BGPSerialManager *fSerialManager = nil;
     // Update log
     [statistics setObject:@"OP_FASTWRITE" forKey:@"OpCode"];
     [self postStatistics:statistics];
+    BGPDebug(@"OP_FASTWRITE<-[$%02X,$%02X(%c)]", self.fastwriteChannel, bytes[0], bytes[0] >=' ' ? bytes[0] : ' ');
 
     [self resetState:nil];
 
@@ -1830,7 +1832,8 @@ static BGPSerialManager *fSerialManager = nil;
     // Update log
     [statistics setObject:@"OP_FASTWRITE" forKey:@"OpCode"];
     [self postStatistics:statistics];
-    
+    BGPDebug(@"OP_FASTWRITE_VS<-[$%02X,$%02X(%c)]", self.fastwriteChannel, bytes[0], bytes[0] >=' ' ? bytes[0] : ' ');
+
     [self resetState:nil];
     
     return result;

@@ -1664,7 +1664,7 @@ static BGPSerialManager *fSerialManager = nil;
     
     // Update log
     [statistics setObject:@"OP_SERREAD" forKey:@"OpCode"];
-    BGPDebug(@"OP_SERREAD->[$%02X,$%02X]", response[0], response[1]);
+    BGPDebug(@"->OP_SERREAD... [$%02X,$%02X]->", response[0], response[1]);
     [self postStatistics:statistics];
 
     [self resetState:nil];
@@ -1717,6 +1717,7 @@ static BGPSerialManager *fSerialManager = nil;
     
         // Update log
         [statistics setObject:@"OP_SERREADM" forKey:@"OpCode"];
+        BGPDebug(@"->OP_SERREADM... [$%02X,$%02X]->", channelNumber, bytesToRead);
         [self postStatistics:statistics];
 
         [self resetState:nil];
@@ -1787,6 +1788,7 @@ static BGPSerialManager *fSerialManager = nil;
         
         // Update log
         [statistics setObject:@"OP_SERWRITE" forKey:@"OpCode"];
+        BGPDebug(@"OP_SERWRITE[$%02X,%c]->", channelNumber, bytes);
         [self postStatistics:statistics];
 
         [self resetState:nil];
@@ -1810,7 +1812,7 @@ static BGPSerialManager *fSerialManager = nil;
     // Update log
     [statistics setObject:@"OP_FASTWRITE" forKey:@"OpCode"];
     [self postStatistics:statistics];
-    BGPDebug(@"OP_FASTWRITE<-[$%02X,$%02X(%c)]", self.fastwriteChannel, bytes[0], bytes[0] >=' ' ? bytes[0] : ' ');
+    BGPDebug(@"->OP_FASTWRITE[$%02X,$%02X(%c)]", self.fastwriteChannel + 0x7F, bytes[0], bytes[0] >=' ' ? bytes[0] : ' ');
 
     [self resetState:nil];
 
@@ -1832,7 +1834,7 @@ static BGPSerialManager *fSerialManager = nil;
     // Update log
     [statistics setObject:@"OP_FASTWRITE" forKey:@"OpCode"];
     [self postStatistics:statistics];
-    BGPDebug(@"OP_FASTWRITE_VS<-[$%02X,$%02X(%c)]", self.fastwriteChannel, bytes[0], bytes[0] >=' ' ? bytes[0] : ' ');
+    BGPDebug(@"->OP_FASTWRITE[$%02X,$%02X(%c)]", self.fastwriteChannel, bytes[0], bytes[0] >=' ' ? bytes[0] : ' ');
 
     [self resetState:nil];
     

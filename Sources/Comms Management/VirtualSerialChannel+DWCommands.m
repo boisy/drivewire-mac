@@ -292,8 +292,6 @@
         // assume this is relative to the home directory
         path = [NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), path];
     }
-
-    showHelp = FALSE;
     
     // capture directory contents
     NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:&error];

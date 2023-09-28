@@ -207,14 +207,14 @@
 
 - (NSData *)readSectors:(uint32_t)lsn forCount:(uint32_t)count
 {
-	BGPDebug(@"readSectors LSN[%d] Count[%d]", lsn, count);
+	BGPDebug(@"->OP_READ/READEX LSN[%d] Count[%d]", lsn, count);
 	
 	return [model readSectors:lsn forCount:count];
 }
 
 - (void)writeSectors:(uint32_t)lsn forCount:(uint32_t)count sectors:(NSData *)sectors
 {
-	BGPDebug(@"writeSectors LSN[%d] Count[%d]", lsn, count);
+	BGPDebug(@"->OP_WRITE/WRITEX LSN[%d] Count[%d]", lsn, count);
 	
     [model writeSectors:lsn forCount:count withData:sectors];
 }
